@@ -1,0 +1,216 @@
+---
+title: "Embrace Your Fallibility"
+subtitle: "" 
+format: 
+  html: 
+    code-line-numbers: true
+    fig-align: "center"
+execute: 
+  echo: false
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+---
+
+```{r}
+#| echo: false
+
+exercise_number <- 1
+
+```
+
+```{r}
+#| message: false
+
+library(tidyverse)
+library(gt)
+
+source(here::here("src", "motivation.R"))
+
+```
+
+## Embrace Your Fallibility
+
+### Why are we here?
+
+The unifying interest of data scientists and statisticians is that **we want to learn about the world using data.**
+
+Working with data has always been tough.
+
+1.  Accurate
+2.  Reproducible and auditable
+3.  Collaborative
+
+Working with data has **gotten tougher with time**. Data sources, methods, and tools have become more sophisticated. This leaves a lot of us stressed out because errors and mistakes feel inevitable and are embarrassing.
+
+### What are we going to do?
+
+Errors and mistakes are **inevitable**. It's time to [embrace our fallibility](https://www.nickeubank.com/wp-content/uploads/2016/06/Eubank_EmbraceYourFallibility.pdf).
+
+In The Field Guide to Understanding Human Error [@dekker2014], the author argues that there are two paradigms:
+
+1.  **Old-World View:** errors are the fault of individuals
+2.  **New-World View:** errors are the fault of flawed systems that fail individuals
+
+Errors and mistakes are **inevitable**. We want to use systems that don't fail us as statisticians and data scientists.
+
+### How are we going to do this?
+
+Errors and mistakes are **inevitable**. We want to adopt evidence-based best practices that minimize the probability of making an error and maximize the probability of catching an error when it inevitably happens.
+
+[@parker] describes a process called opinionated analysis development.
+
+We're going to adopt the approaches outlined in *Opinionated Analysis Development* and then actually implement them using modern data science tools.
+
+Through years of applied data analysis, I've found these tools to be essential for creating analyses that are
+
+1.  Accurate
+2.  Reproducible and auditable
+3.  Collaborative
+
+## Why
+
+Working with data has **gotten tougher with time**.
+
+- Garden of forking paths and the credibility crisis. Transparency. 
+- Data sets are way bigger
+- Open source packages change
+
+
+
+Even for simple analysis, we can ask ourselves an entire set of questions at the end of the analysis. @tbl-questions lists a few of these questions. 
+
+```{r}
+#| label: tbl-questions
+#| tbl-cap: "Opinionated Analysis Development"
+
+motivation |>
+  select(`Question Addressed`) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  ) |>
+  tab_source_note(
+    source_note = "Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1."
+  )
+
+```
+
+## What
+
+@tbl-features groups these questions in analysis features and suggests opinionated approaches to each question.
+
+```{r}
+#| label: tbl-features
+#| tbl-cap: "Opinionated Analysis Development"
+
+motivation |>
+  select(-Tool, -Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  cols_hide(`Analysis Feature`) |>
+  tab_row_group(
+    label = md("**Collaborative**"),
+    rows = `Analysis Feature` == "Collaborative"
+  ) |>  
+  tab_row_group(
+    label = md("**Accurate Code**"),
+    rows = `Analysis Feature` == "Accurate Code"
+  ) |>  
+  tab_row_group(
+    label = md("**Reproducible and Auditable**"),
+    rows = `Analysis Feature` == "Reproducible and Auditable"
+  ) |>
+  tab_footnote(
+    footnote = "This was originally 'Code Review'",
+    locations = cells_body(columns = `Opinionated Approach`, rows = 7)
+  )|>
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
+
+```
+
+## How
+
+@tbl-tools lists specific tools we can use to adopt each opinionated approach. 
+
+```{r}
+#| label: tbl-tools
+#| tbl-cap: "Opinionated Analysis Development"
+
+motivation |>
+  select(-Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  cols_hide(`Analysis Feature`) |>
+  tab_row_group(
+    label = md("**Collaborative**"),
+    rows = `Analysis Feature` == "Collaborative"
+  ) |>  
+  tab_row_group(
+    label = md("**Accurate Code**"),
+    rows = `Analysis Feature` == "Accurate Code"
+  ) |>  
+  tab_row_group(
+    label = md("**Reproducible and Auditable**"),
+    rows = `Analysis Feature` == "Reproducible and Auditable"
+  ) |>
+  tab_footnote(
+    footnote = "This was originally 'Code Review'",
+    locations = cells_body(columns = `Opinionated Approach`, rows = 7)
+  )|>
+  tab_footnote(
+    footnote = "Added by Aaron R. Williams",
+    locations = cells_column_labels(columns = Tool)
+  ) |>  
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
+
+```
+
+BONUS STUFF
+
+- Reproducible analyses are easy to scale
+- Free web hosting
+- Awesome output formats
+
+
+
+
+
+
+## Roadmap
+
+Finally, @tbl-roadmap outlines the structure of the rest of the day. 
+
+```{r}
+#| label: tbl-roadmap
+#| tbl-cap: "Opinionated Analysis Development"
+
+motivation |>
+  filter(!is.na(Section)) |>
+  select(-`Analysis Feature`) |>
+  arrange(Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  tab_footnote(
+    footnote = "This was originally 'Code Review'",
+    locations = cells_body(columns = `Opinionated Approach`, rows = 7)
+  )|>
+  tab_footnote(
+    footnote = "Added by Aaron R. Williams",
+    locations = cells_column_labels(columns = c(Tool, Section))
+  ) |>  
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
+
+```
