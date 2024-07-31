@@ -1,0 +1,224 @@
+---
+title: "Embrace Your Fallibility"
+abstract: "This section will motivate and outline the workflows and tools we will adopt to promote reproducible research."
+format: 
+  html: 
+    code-line-numbers: true
+    fig-align: "center"
+execute: 
+  echo: false
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+---
+
+![The Duck-Rabbit Illusion](images/duck-rabbit.png){#fig-duck-rabbit}
+
+```{r}
+#| echo: false
+
+exercise_number <- 1
+
+```
+
+```{r}
+#| message: false
+
+library(tidyverse)
+library(gt)
+
+source(here::here("src", "motivation.R"))
+
+```
+
+## Embrace Your Fallibility
+
+### Why are we here?
+
+The unifying interest of data scientists and statisticians is that **we want to learn about the world using data.**
+
+Working with data has always been tough. It has always been difficult to create analyses that are
+
+1.  Accurate
+2.  Reproducible and auditable
+3.  Collaborative
+
+Working with data has **gotten tougher with time**. Data sources, methods, and tools have become more sophisticated. This leaves a lot of us stressed out because errors and mistakes feel inevitable and are embarrassing.
+
+### What are we going to do?
+
+Errors and mistakes are **inevitable**. It's time to [embrace our fallibility](https://www.nickeubank.com/wp-content/uploads/2016/06/Eubank_EmbraceYourFallibility.pdf).
+
+In The Field Guide to Understanding Human Error [@dekker2014], the author argues that there are two paradigms:
+
+1.  **Old-World View:** errors are the fault of individuals
+2.  **New-World View:** errors are the fault of flawed systems that fail individuals
+
+Errors and mistakes are **inevitable**. We want to use systems that don't fail us as statisticians and data scientists. This is our gestalt moment like the famous duck-rabbit illusion in @fig-duck-rabbit.
+
+### How are we going to do this?
+
+Errors and mistakes are **inevitable**. We want to adopt evidence-based best practices that minimize the probability of making an error and maximize the probability of catching an error when it inevitably happens.
+
+[@parker] describes a process called opinionated analysis development.
+
+We're going to adopt the approaches outlined in *Opinionated Analysis Development* and then actually implement them using modern data science tools.
+
+Through years of applied data analysis, I've found these tools to be essential for creating analyses that are
+
+1.  Accurate
+2.  Reproducible and auditable
+3.  Collaborative
+
+## Why is Modern Data Analysis Difficult to do Well?
+
+Working with data has **gotten tougher with time**.
+
+-   Data are larger on average. For example, The Billion Prices Project scraped prices from all around the world to build inflation indices [@cavallo2016].
+-   Complex data collection efforts are more common. For example, [@chetty2019] have gained access to massive administrative data sets and used formal privacy to understand inter-generational mobility.
+-   Open source packages that provide incredible functionality for free change over time.
+-   Papers like "The garden of forking paths: Why multiple comparisons can be a problem, even when there is no “fishing expedition” or “p-hacking” [@gelman2013garden] and the research hypothesis was posited ahead of time∗" and "Why Most Published Research Findings Are False" [@ioannidis2005] have motivated huge increases in transparency including focuses on pre-registration and computational reproducibility.
+
+> There is a growing realization that statistically significant claims in scientific publications are routinely mistaken. A dataset can be analyzed in so many different ways (with the choices being not just what statistical test to perform but also decisions on what data to exclude or exclude, what measures to study, what interactions to consider, etc.), that very little information is provided by the statement that a study came up with a p \< .05 result. The short version is that it’s easy to find a p \< .05 comparison even if nothing is going on, if you look hard enough—and good scientists are skilled at looking hard enough and subsequently coming up with good stories (plausible even to themselves, as well as to their colleagues and peer reviewers) to back up any statistically-significant comparisons they happen to come up with. ~ Gelman and Loken
+
+Even for simple analysis, we can ask ourselves an entire set of questions at the end of the analysis. @tbl-questions lists a few of these questions.
+
+```{r}
+#| label: tbl-questions
+#| tbl-cap: "Opinionated Analysis Development"
+
+motivation |>
+  select(`Question Addressed`) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  ) |>
+  tab_source_note(
+    source_note = "Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1."
+  )
+
+```
+
+## What are we going to do?
+
+@tbl-features groups these questions in analysis features and suggests opinionated approaches to each question.
+
+```{r}
+#| label: tbl-features
+#| tbl-cap: "Opinionated Analysis Development"
+
+motivation |>
+  select(-Tool, -Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  cols_hide(`Analysis Feature`) |>
+  tab_row_group(
+    label = md("**Collaborative**"),
+    rows = `Analysis Feature` == "Collaborative"
+  ) |>  
+  tab_row_group(
+    label = md("**Accurate Code**"),
+    rows = `Analysis Feature` == "Accurate Code"
+  ) |>  
+  tab_row_group(
+    label = md("**Reproducible and Auditable**"),
+    rows = `Analysis Feature` == "Reproducible and Auditable"
+  ) |>
+  tab_footnote(
+    footnote = "This was originally 'Code Review'",
+    locations = cells_body(columns = `Opinionated Approach`, rows = 7)
+  )|>
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
+
+```
+
+## How are we going to do this?
+
+@tbl-tools lists specific tools we can use to adopt each opinionated approach.
+
+```{r}
+#| label: tbl-tools
+#| tbl-cap: "Opinionated Analysis Development"
+
+motivation |>
+  select(-Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  cols_hide(`Analysis Feature`) |>
+  tab_row_group(
+    label = md("**Collaborative**"),
+    rows = `Analysis Feature` == "Collaborative"
+  ) |>  
+  tab_row_group(
+    label = md("**Accurate Code**"),
+    rows = `Analysis Feature` == "Accurate Code"
+  ) |>  
+  tab_row_group(
+    label = md("**Reproducible and Auditable**"),
+    rows = `Analysis Feature` == "Reproducible and Auditable"
+  ) |>
+  tab_footnote(
+    footnote = "This was originally 'Code Review'",
+    locations = cells_body(columns = `Opinionated Approach`, rows = 7)
+  )|>
+  tab_footnote(
+    footnote = "Added by Aaron R. Williams",
+    locations = cells_column_labels(columns = Tool)
+  ) |>  
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
+
+```
+
+### Bonus stuff!
+
+Adopting these opinionated approaches and tools promotes reproducible research. Adopting these opinionated approaches and tools also provides a bunch of great bonuses. 
+
+-   Reproducible analyses are easy to scale. Using tools we will cover, we created almost [4,000 county- and city-level websites](https://upward-mobility.urban.org/measuring-upward-mobility-counties-and-cities-across-us). 
+-   GitHub offers free web hosting for hosting books and web pages like the notes we're viewing right now. 
+-   Quarto makes it absurdly easy to build beautiful websites and PDFs. 
+## Roadmap
+
+Finally, we sort @tbl-tools into @tbl-roadmap, which outlines the structure of the rest of the day.
+
+```{r}
+#| label: tbl-roadmap
+#| tbl-cap: "Opinionated Analysis Development"
+
+motivation |>
+  filter(!is.na(Section)) |>
+  select(-`Analysis Feature`) |>
+  arrange(Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  tab_footnote(
+    footnote = "This was originally 'Code Review'",
+    locations = cells_body(columns = `Opinionated Approach`, rows = 7)
+  )|>
+  tab_footnote(
+    footnote = "Added by Aaron R. Williams",
+    locations = cells_column_labels(columns = c(Tool, Section))
+  ) |>  
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
+
+```
+
+The day roughly follows the process for setting up a reproducible data analysis. 
+
+- **Project organization** will cover how to organize all of the files of a data analysis so they are clear and so they work well with other tools. 
+- **Literate programming** will cover Quarto, which will allow us to combine narrative text, code, and the output of code into clear artifacts of our data analysis. 
+- **Version control** will cover Git and GitHub. These will allow us to organize the process of reviewing and merging code. 
+- In **programming**, we'll discuss best practices for writing code for data analysis like writing modular, well-tested functions and assertive testing of data, assumptions, and results.  
+- **Environment management** will cover .renv and the process of managing package dependencies while using open-source code. 
+- If we have time, we can discuss how a positive climate and ethical practices can improve transparency and strengthen science. 

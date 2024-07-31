@@ -1,0 +1,38 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Reproducible Research Bootcamp"
+  author: "Aaron R. Williams"
+  date: today
+  chapters:
+    - index.qmd
+    - part: Introduction
+      chapters:
+        - 01_syllabus.qmd
+        - 02_embrace-your-fallibility.qmd
+    - part: Project Organization
+      chapters:
+        - 03_project-organization.qmd
+    - part: Literate Programming
+      chapters:
+        - 04_quarto.qmd
+        - 05_advanced-quarto.qmd
+    - part: Version Control
+      chapters:
+        - 06_reproducible-research-with-git.qmd
+        - 07_advanced-git.qmd
+    - part: Programming
+    - part: Environment Management
+      chapters:
+        - renv.qmd
+    - references.qmd
+  appendices:
+    - reproducible-research-bootcamp_software-installation.qmd
+      
+
+format:
+  html:
+    theme: cosmo
+    number-depth: 3

@@ -1,0 +1,2984 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Reproducible Research Bootcamp - 2&nbsp; Embrace Your Fallibility</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03_project-organization.html" rel="next">
+<link href="./01_syllabus.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_syllabus.html">Introduction</a></li><li class="breadcrumb-item"><a href="./02_embrace-your-fallibility.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Embrace Your Fallibility</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Reproducible Research Bootcamp</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abstract</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_embrace-your-fallibility.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Embrace Your Fallibility</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Project Organization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_project-organization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project Organization</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Literate Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_advanced-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Advanced Quarto</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Version Control</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_reproducible-research-with-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Research with Git and GitHub</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_advanced-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Programming</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Environment Management</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./renv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reproducible-research-bootcamp_software-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Software Requirements</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#embrace-your-fallibility" id="toc-embrace-your-fallibility" class="nav-link active" data-scroll-target="#embrace-your-fallibility"><span class="header-section-number">2.1</span> Embrace Your Fallibility</a>
+  <ul class="collapse">
+  <li><a href="#why-are-we-here" id="toc-why-are-we-here" class="nav-link" data-scroll-target="#why-are-we-here"><span class="header-section-number">2.1.1</span> Why are we here?</a></li>
+  <li><a href="#what-are-we-going-to-do" id="toc-what-are-we-going-to-do" class="nav-link" data-scroll-target="#what-are-we-going-to-do"><span class="header-section-number">2.1.2</span> What are we going to do?</a></li>
+  <li><a href="#how-are-we-going-to-do-this" id="toc-how-are-we-going-to-do-this" class="nav-link" data-scroll-target="#how-are-we-going-to-do-this"><span class="header-section-number">2.1.3</span> How are we going to do this?</a></li>
+  </ul></li>
+  <li><a href="#why-is-modern-data-analysis-difficult-to-do-well" id="toc-why-is-modern-data-analysis-difficult-to-do-well" class="nav-link" data-scroll-target="#why-is-modern-data-analysis-difficult-to-do-well"><span class="header-section-number">2.2</span> Why is Modern Data Analysis Difficult to do Well?</a></li>
+  <li><a href="#what-are-we-going-to-do-1" id="toc-what-are-we-going-to-do-1" class="nav-link" data-scroll-target="#what-are-we-going-to-do-1"><span class="header-section-number">2.3</span> What are we going to do?</a></li>
+  <li><a href="#how-are-we-going-to-do-this-1" id="toc-how-are-we-going-to-do-this-1" class="nav-link" data-scroll-target="#how-are-we-going-to-do-this-1"><span class="header-section-number">2.4</span> How are we going to do this?</a>
+  <ul class="collapse">
+  <li><a href="#bonus-stuff" id="toc-bonus-stuff" class="nav-link" data-scroll-target="#bonus-stuff"><span class="header-section-number">2.4.1</span> Bonus stuff!</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_syllabus.html">Introduction</a></li><li class="breadcrumb-item"><a href="./02_embrace-your-fallibility.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Embrace Your Fallibility</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Embrace Your Fallibility</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    This section will motivate and outline the workflows and tools we will adopt to promote reproducible research.
+  </div>
+</div>
+
+
+</header>
+
+
+<div id="fig-duck-rabbit" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-duck-rabbit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/duck-rabbit.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-duck-rabbit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: The Duck-Rabbit Illusion
+</figcaption>
+</figure>
+</div>
+<section id="embrace-your-fallibility" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="embrace-your-fallibility"><span class="header-section-number">2.1</span> Embrace Your Fallibility</h2>
+<section id="why-are-we-here" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="why-are-we-here"><span class="header-section-number">2.1.1</span> Why are we here?</h3>
+<p>The unifying interest of data scientists and statisticians is that <strong>we want to learn about the world using data.</strong></p>
+<p>Working with data has always been tough. It has always been difficult to create analyses that are</p>
+<ol type="1">
+<li>Accurate</li>
+<li>Reproducible and auditable</li>
+<li>Collaborative</li>
+</ol>
+<p>Working with data has <strong>gotten tougher with time</strong>. Data sources, methods, and tools have become more sophisticated. This leaves a lot of us stressed out because errors and mistakes feel inevitable and are embarrassing.</p>
+</section>
+<section id="what-are-we-going-to-do" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="what-are-we-going-to-do"><span class="header-section-number">2.1.2</span> What are we going to do?</h3>
+<p>Errors and mistakes are <strong>inevitable</strong>. It’s time to <a href="https://www.nickeubank.com/wp-content/uploads/2016/06/Eubank_EmbraceYourFallibility.pdf">embrace our fallibility</a>.</p>
+<p>In The Field Guide to Understanding Human Error <span class="citation" data-cites="dekker2014">(<a href="references.html#ref-dekker2014" role="doc-biblioref">Dekker 2014</a>)</span>, the author argues that there are two paradigms:</p>
+<ol type="1">
+<li><strong>Old-World View:</strong> errors are the fault of individuals</li>
+<li><strong>New-World View:</strong> errors are the fault of flawed systems that fail individuals</li>
+</ol>
+<p>Errors and mistakes are <strong>inevitable</strong>. We want to use systems that don’t fail us as statisticians and data scientists. This is our gestalt moment like the famous duck-rabbit illusion in <a href="#fig-duck-rabbit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>.</p>
+</section>
+<section id="how-are-we-going-to-do-this" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="how-are-we-going-to-do-this"><span class="header-section-number">2.1.3</span> How are we going to do this?</h3>
+<p>Errors and mistakes are <strong>inevitable</strong>. We want to adopt evidence-based best practices that minimize the probability of making an error and maximize the probability of catching an error when it inevitably happens.</p>
+<p><span class="citation" data-cites="parker">(<a href="references.html#ref-parker" role="doc-biblioref">Parker, n.d.</a>)</span> describes a process called opinionated analysis development.</p>
+<p>We’re going to adopt the approaches outlined in <em>Opinionated Analysis Development</em> and then actually implement them using modern data science tools.</p>
+<p>Through years of applied data analysis, I’ve found these tools to be essential for creating analyses that are</p>
+<ol type="1">
+<li>Accurate</li>
+<li>Reproducible and auditable</li>
+<li>Collaborative</li>
+</ol>
+</section>
+</section>
+<section id="why-is-modern-data-analysis-difficult-to-do-well" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="why-is-modern-data-analysis-difficult-to-do-well"><span class="header-section-number">2.2</span> Why is Modern Data Analysis Difficult to do Well?</h2>
+<p>Working with data has <strong>gotten tougher with time</strong>.</p>
+<ul>
+<li>Data are larger on average. For example, The Billion Prices Project scraped prices from all around the world to build inflation indices <span class="citation" data-cites="cavallo2016">(<a href="references.html#ref-cavallo2016" role="doc-biblioref">Cavallo and Rigobon 2016</a>)</span>.</li>
+<li>Complex data collection efforts are more common. For example, <span class="citation" data-cites="chetty2019">(<a href="references.html#ref-chetty2019" role="doc-biblioref">Chetty and Friedman 2019</a>)</span> have gained access to massive administrative data sets and used formal privacy to understand inter-generational mobility.</li>
+<li>Open source packages that provide incredible functionality for free change over time.</li>
+<li>Papers like “The garden of forking paths: Why multiple comparisons can be a problem, even when there is no “fishing expedition” or “p-hacking” <span class="citation" data-cites="gelman2013garden">(<a href="references.html#ref-gelman2013garden" role="doc-biblioref">Gelman and Loken 2013</a>)</span> and the research hypothesis was posited ahead of time∗” and “Why Most Published Research Findings Are False” <span class="citation" data-cites="ioannidis2005">(<a href="references.html#ref-ioannidis2005" role="doc-biblioref">Ioannidis 2005</a>)</span> have motivated huge increases in transparency including focuses on pre-registration and computational reproducibility.</li>
+</ul>
+<blockquote class="blockquote">
+<p>There is a growing realization that statistically significant claims in scientific publications are routinely mistaken. A dataset can be analyzed in so many different ways (with the choices being not just what statistical test to perform but also decisions on what data to exclude or exclude, what measures to study, what interactions to consider, etc.), that very little information is provided by the statement that a study came up with a p &lt; .05 result. The short version is that it’s easy to find a p &lt; .05 comparison even if nothing is going on, if you look hard enough—and good scientists are skilled at looking hard enough and subsequently coming up with good stories (plausible even to themselves, as well as to their colleagues and peer reviewers) to back up any statistically-significant comparisons they happen to come up with. ~ Gelman and Loken</p>
+</blockquote>
+<p>Even for simple analysis, we can ask ourselves an entire set of questions at the end of the analysis. <a href="#tbl-questions" class="quarto-xref">Table&nbsp;<span>2.1</span></a> lists a few of these questions.</p>
+<div class="cell">
+<div id="tbl-questions" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-questions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Opinionated Analysis Development
+</figcaption>
+<div aria-describedby="tbl-questions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<div id="agffngmvip" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#agffngmvip table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#agffngmvip thead, #agffngmvip tbody, #agffngmvip tfoot, #agffngmvip tr, #agffngmvip td, #agffngmvip th {
+  border-style: none;
+}
+
+#agffngmvip p {
+  margin: 0;
+  padding: 0;
+}
+
+#agffngmvip .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#agffngmvip .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#agffngmvip .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#agffngmvip .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#agffngmvip .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#agffngmvip .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#agffngmvip .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#agffngmvip .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#agffngmvip .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#agffngmvip .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#agffngmvip .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#agffngmvip .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#agffngmvip .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#agffngmvip .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#agffngmvip .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#agffngmvip .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#agffngmvip .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#agffngmvip .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#agffngmvip .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#agffngmvip .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#agffngmvip .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#agffngmvip .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#agffngmvip .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#agffngmvip .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#agffngmvip .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#agffngmvip .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#agffngmvip .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#agffngmvip .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#agffngmvip .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#agffngmvip .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#agffngmvip .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#agffngmvip .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#agffngmvip .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#agffngmvip .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#agffngmvip .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#agffngmvip .gt_left {
+  text-align: left;
+}
+
+#agffngmvip .gt_center {
+  text-align: center;
+}
+
+#agffngmvip .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#agffngmvip .gt_font_normal {
+  font-weight: normal;
+}
+
+#agffngmvip .gt_font_bold {
+  font-weight: bold;
+}
+
+#agffngmvip .gt_font_italic {
+  font-style: italic;
+}
+
+#agffngmvip .gt_super {
+  font-size: 65%;
+}
+
+#agffngmvip .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#agffngmvip .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#agffngmvip .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#agffngmvip .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#agffngmvip .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#agffngmvip .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#agffngmvip .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th class="gt_heading gt_title gt_font_normal gt_bottom_border">Opinionated Analysis Development</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Question Addressed" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Question Addressed</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Question Addressed">Can you re-run the analysis and get the same results?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Question Addressed">If an external library you’re using is updated, can you still reproduce your original results?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Question Addressed">If you change code, do you know which downstream code need to be re-executed?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Question Addressed">If the data or code change but the analysis is not re-executed, will your analysis reflect that it is out-of-date?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Question Addressed">Can you re-run your analysis with new data and compare it to previous results?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Question Addressed">Can you surface the code changes that resulted in a different analysis results?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Question Addressed">Can a second analyst easily understand your code?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Question Addressed">Can you re-use logic in different parts of the analysis?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Question Addressed">If you decide to change logic, can you change it in just one place?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Question Addressed">If your code is not performing as expected, will you know?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Question Addressed">If your data are corrupted, do you notice?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Question Addressed">If you make a mistake in your code, will someone notice it?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Question Addressed">If you are not using efficient code, will you be able to identify it?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Question Addressed">Can a second analyst easily contribute code to the analysis?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Question Addressed">If two analysts are developing code simultaneously, can they easily combine them?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Question Addressed">Can you easily track next steps in your analysis?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Question Addressed">Can your collaborators make requests outside of meetings or email?</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td class="gt_sourcenote">Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="what-are-we-going-to-do-1" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="what-are-we-going-to-do-1"><span class="header-section-number">2.3</span> What are we going to do?</h2>
+<p><a href="#tbl-features" class="quarto-xref">Table&nbsp;<span>2.2</span></a> groups these questions in analysis features and suggests opinionated approaches to each question.</p>
+<div class="cell">
+<div id="tbl-features" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.2: Opinionated Analysis Development
+</figcaption>
+<div aria-describedby="tbl-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="whmehdgrlx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#whmehdgrlx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#whmehdgrlx thead, #whmehdgrlx tbody, #whmehdgrlx tfoot, #whmehdgrlx tr, #whmehdgrlx td, #whmehdgrlx th {
+  border-style: none;
+}
+
+#whmehdgrlx p {
+  margin: 0;
+  padding: 0;
+}
+
+#whmehdgrlx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#whmehdgrlx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#whmehdgrlx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#whmehdgrlx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#whmehdgrlx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#whmehdgrlx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#whmehdgrlx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#whmehdgrlx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#whmehdgrlx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#whmehdgrlx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#whmehdgrlx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#whmehdgrlx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#whmehdgrlx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#whmehdgrlx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#whmehdgrlx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#whmehdgrlx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#whmehdgrlx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#whmehdgrlx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#whmehdgrlx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#whmehdgrlx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#whmehdgrlx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#whmehdgrlx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#whmehdgrlx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#whmehdgrlx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#whmehdgrlx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#whmehdgrlx .gt_left {
+  text-align: left;
+}
+
+#whmehdgrlx .gt_center {
+  text-align: center;
+}
+
+#whmehdgrlx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#whmehdgrlx .gt_font_normal {
+  font-weight: normal;
+}
+
+#whmehdgrlx .gt_font_bold {
+  font-weight: bold;
+}
+
+#whmehdgrlx .gt_font_italic {
+  font-style: italic;
+}
+
+#whmehdgrlx .gt_super {
+  font-size: 65%;
+}
+
+#whmehdgrlx .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#whmehdgrlx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#whmehdgrlx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#whmehdgrlx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#whmehdgrlx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#whmehdgrlx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#whmehdgrlx .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Opinionated Analysis Development</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Opinionated Approach">Opinionated Approach</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Question Addressed">Question Addressed</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <th colspan="2" class="gt_group_heading" scope="colgroup" id="<strong>Reproducible and Auditable</strong>"><strong>Reproducible and Auditable</strong></th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Executable analysis scripts</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">Can you re-run the analysis and get the same results?</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Defined dependencies</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">If an external library you’re using is updated, can you still reproduce your original results?</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Watchers for changed code and data</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">If you change code, do you know which downstream code need to be re-executed?</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Watchers for changed code and data</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">If the data or code change but the analysis is not re-executed, will your analysis reflect that it is out-of-date?</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Version control (individual)</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">Can you re-run your analysis with new data and compare it to previous results?</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Version control (individual)</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">Can you surface the code changes that resulted in a different analysis results?</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Literate programming<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">Can a second analyst easily understand your code?</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="2" class="gt_group_heading" scope="colgroup" id="<strong>Accurate Code</strong>"><strong>Accurate Code</strong></th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">Can you re-use logic in different parts of the analysis?</td></tr>
+    <tr><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">If you decide to change logic, can you change it in just one place?</td></tr>
+    <tr><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">If your code is not performing as expected, will you know?</td></tr>
+    <tr><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Assertive testing of data, assumptions, and results</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">If your data are corrupted, do you notice?</td></tr>
+    <tr><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Code review</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">If you make a mistake in your code, will someone notice it?</td></tr>
+    <tr><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Code review</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">If you are not using efficient code, will you be able to identify it?</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="2" class="gt_group_heading" scope="colgroup" id="<strong>Collaborative</strong>"><strong>Collaborative</strong></th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="**Collaborative**  Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="**Collaborative**  Question Addressed" class="gt_row gt_left">Can a second analyst easily contribute code to the analysis?</td></tr>
+    <tr><td headers="**Collaborative**  Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="**Collaborative**  Question Addressed" class="gt_row gt_left">If two analysts are developing code simultaneously, can they easily combine them?</td></tr>
+    <tr><td headers="**Collaborative**  Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="**Collaborative**  Question Addressed" class="gt_row gt_left">Can you easily track next steps in your analysis?</td></tr>
+    <tr><td headers="**Collaborative**  Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="**Collaborative**  Question Addressed" class="gt_row gt_left">Can your collaborators make requests outside of meetings or email?</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="2"><strong>Source:</strong> Parker, Hilary. n.d. “Opinionated Analysis Development.” <a href="https://doi.org/10.7287/peerj.preprints.3210v1">https://doi.org/10.7287/peerj.preprints.3210v1</a>.</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> This was originally 'Code Review'</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="how-are-we-going-to-do-this-1" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="how-are-we-going-to-do-this-1"><span class="header-section-number">2.4</span> How are we going to do this?</h2>
+<p><a href="#tbl-tools" class="quarto-xref">Table&nbsp;<span>2.3</span></a> lists specific tools we can use to adopt each opinionated approach.</p>
+<div class="cell">
+<div id="tbl-tools" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tools-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.3: Opinionated Analysis Development
+</figcaption>
+<div aria-describedby="tbl-tools-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="jszstkkfoa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jszstkkfoa table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jszstkkfoa thead, #jszstkkfoa tbody, #jszstkkfoa tfoot, #jszstkkfoa tr, #jszstkkfoa td, #jszstkkfoa th {
+  border-style: none;
+}
+
+#jszstkkfoa p {
+  margin: 0;
+  padding: 0;
+}
+
+#jszstkkfoa .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jszstkkfoa .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jszstkkfoa .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jszstkkfoa .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jszstkkfoa .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jszstkkfoa .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jszstkkfoa .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jszstkkfoa .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jszstkkfoa .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jszstkkfoa .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jszstkkfoa .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jszstkkfoa .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jszstkkfoa .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jszstkkfoa .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jszstkkfoa .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jszstkkfoa .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jszstkkfoa .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jszstkkfoa .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jszstkkfoa .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jszstkkfoa .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jszstkkfoa .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jszstkkfoa .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jszstkkfoa .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jszstkkfoa .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jszstkkfoa .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jszstkkfoa .gt_left {
+  text-align: left;
+}
+
+#jszstkkfoa .gt_center {
+  text-align: center;
+}
+
+#jszstkkfoa .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jszstkkfoa .gt_font_normal {
+  font-weight: normal;
+}
+
+#jszstkkfoa .gt_font_bold {
+  font-weight: bold;
+}
+
+#jszstkkfoa .gt_font_italic {
+  font-style: italic;
+}
+
+#jszstkkfoa .gt_super {
+  font-size: 65%;
+}
+
+#jszstkkfoa .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jszstkkfoa .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jszstkkfoa .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jszstkkfoa .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jszstkkfoa .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jszstkkfoa .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jszstkkfoa .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Opinionated Analysis Development</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Opinionated Approach">Opinionated Approach</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Question Addressed">Question Addressed</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Tool<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>">Tool<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <th colspan="3" class="gt_group_heading" scope="colgroup" id="<strong>Reproducible and Auditable</strong>"><strong>Reproducible and Auditable</strong></th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Executable analysis scripts</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">Can you re-run the analysis and get the same results?</td>
+<td headers="**Reproducible and Auditable**  Tool" class="gt_row gt_left">Code first</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Defined dependencies</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">If an external library you’re using is updated, can you still reproduce your original results?</td>
+<td headers="**Reproducible and Auditable**  Tool" class="gt_row gt_left">.renv</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Watchers for changed code and data</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">If you change code, do you know which downstream code need to be re-executed?</td>
+<td headers="**Reproducible and Auditable**  Tool" class="gt_row gt_left">library(targets)</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Watchers for changed code and data</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">If the data or code change but the analysis is not re-executed, will your analysis reflect that it is out-of-date?</td>
+<td headers="**Reproducible and Auditable**  Tool" class="gt_row gt_left">library(targets)</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Version control (individual)</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">Can you re-run your analysis with new data and compare it to previous results?</td>
+<td headers="**Reproducible and Auditable**  Tool" class="gt_row gt_left">Git</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Version control (individual)</td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">Can you surface the code changes that resulted in a different analysis results?</td>
+<td headers="**Reproducible and Auditable**  Tool" class="gt_row gt_left">Git</td></tr>
+    <tr><td headers="**Reproducible and Auditable**  Opinionated Approach" class="gt_row gt_left">Literate programming<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></td>
+<td headers="**Reproducible and Auditable**  Question Addressed" class="gt_row gt_left">Can a second analyst easily understand your code?</td>
+<td headers="**Reproducible and Auditable**  Tool" class="gt_row gt_left">Quarto</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="3" class="gt_group_heading" scope="colgroup" id="<strong>Accurate Code</strong>"><strong>Accurate Code</strong></th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">Can you re-use logic in different parts of the analysis?</td>
+<td headers="**Accurate Code**  Tool" class="gt_row gt_left">Well-tested functions</td></tr>
+    <tr><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">If you decide to change logic, can you change it in just one place?</td>
+<td headers="**Accurate Code**  Tool" class="gt_row gt_left">Well-tested functions</td></tr>
+    <tr><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">If your code is not performing as expected, will you know?</td>
+<td headers="**Accurate Code**  Tool" class="gt_row gt_left">Well-tested functions</td></tr>
+    <tr><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Assertive testing of data, assumptions, and results</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">If your data are corrupted, do you notice?</td>
+<td headers="**Accurate Code**  Tool" class="gt_row gt_left">library(assertr)</td></tr>
+    <tr><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Code review</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">If you make a mistake in your code, will someone notice it?</td>
+<td headers="**Accurate Code**  Tool" class="gt_row gt_left">GitHub</td></tr>
+    <tr><td headers="**Accurate Code**  Opinionated Approach" class="gt_row gt_left">Code review</td>
+<td headers="**Accurate Code**  Question Addressed" class="gt_row gt_left">If you are not using efficient code, will you be able to identify it?</td>
+<td headers="**Accurate Code**  Tool" class="gt_row gt_left">library(microbenchmark)</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="3" class="gt_group_heading" scope="colgroup" id="<strong>Collaborative</strong>"><strong>Collaborative</strong></th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="**Collaborative**  Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="**Collaborative**  Question Addressed" class="gt_row gt_left">Can a second analyst easily contribute code to the analysis?</td>
+<td headers="**Collaborative**  Tool" class="gt_row gt_left">GitHub</td></tr>
+    <tr><td headers="**Collaborative**  Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="**Collaborative**  Question Addressed" class="gt_row gt_left">If two analysts are developing code simultaneously, can they easily combine them?</td>
+<td headers="**Collaborative**  Tool" class="gt_row gt_left">GitHub</td></tr>
+    <tr><td headers="**Collaborative**  Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="**Collaborative**  Question Addressed" class="gt_row gt_left">Can you easily track next steps in your analysis?</td>
+<td headers="**Collaborative**  Tool" class="gt_row gt_left">GitHub</td></tr>
+    <tr><td headers="**Collaborative**  Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="**Collaborative**  Question Addressed" class="gt_row gt_left">Can your collaborators make requests outside of meetings or email?</td>
+<td headers="**Collaborative**  Tool" class="gt_row gt_left">GitHub</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="3"><strong>Source:</strong> Parker, Hilary. n.d. “Opinionated Analysis Development.” <a href="https://doi.org/10.7287/peerj.preprints.3210v1">https://doi.org/10.7287/peerj.preprints.3210v1</a>.</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Added by Aaron R. Williams</td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> This was originally 'Code Review'</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<section id="bonus-stuff" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="bonus-stuff"><span class="header-section-number">2.4.1</span> Bonus stuff!</h3>
+<p>Adopting these opinionated approaches and tools promotes reproducible research. Adopting these opinionated approaches and tools also provides a bunch of great bonuses.</p>
+<ul>
+<li>Reproducible analyses are easy to scale. Using tools we will cover, we created almost <a href="https://upward-mobility.urban.org/measuring-upward-mobility-counties-and-cities-across-us">4,000 county- and city-level websites</a>.</li>
+<li>GitHub offers free web hosting for hosting books and web pages like the notes we’re viewing right now.</li>
+<li>Quarto makes it absurdly easy to build beautiful websites and PDFs. ## Roadmap</li>
+</ul>
+<p>Finally, we sort <a href="#tbl-tools" class="quarto-xref">Table&nbsp;<span>2.3</span></a> into <a href="renv.html#tbl-roadmap" class="quarto-xref">Table&nbsp;<span>8.1</span></a>, which outlines the structure of the rest of the day.</p>
+<div class="cell">
+<div id="tbl-roadmap" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.4: Opinionated Analysis Development
+</figcaption>
+<div aria-describedby="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="rbhsflfywi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rbhsflfywi table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rbhsflfywi thead, #rbhsflfywi tbody, #rbhsflfywi tfoot, #rbhsflfywi tr, #rbhsflfywi td, #rbhsflfywi th {
+  border-style: none;
+}
+
+#rbhsflfywi p {
+  margin: 0;
+  padding: 0;
+}
+
+#rbhsflfywi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rbhsflfywi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rbhsflfywi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rbhsflfywi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rbhsflfywi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rbhsflfywi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rbhsflfywi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rbhsflfywi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rbhsflfywi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rbhsflfywi .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rbhsflfywi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rbhsflfywi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rbhsflfywi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rbhsflfywi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rbhsflfywi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rbhsflfywi .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rbhsflfywi .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rbhsflfywi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rbhsflfywi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rbhsflfywi .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rbhsflfywi .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rbhsflfywi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rbhsflfywi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rbhsflfywi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rbhsflfywi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rbhsflfywi .gt_left {
+  text-align: left;
+}
+
+#rbhsflfywi .gt_center {
+  text-align: center;
+}
+
+#rbhsflfywi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rbhsflfywi .gt_font_normal {
+  font-weight: normal;
+}
+
+#rbhsflfywi .gt_font_bold {
+  font-weight: bold;
+}
+
+#rbhsflfywi .gt_font_italic {
+  font-style: italic;
+}
+
+#rbhsflfywi .gt_super {
+  font-size: 65%;
+}
+
+#rbhsflfywi .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rbhsflfywi .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rbhsflfywi .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rbhsflfywi .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rbhsflfywi .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rbhsflfywi .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rbhsflfywi .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Opinionated Analysis Development</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Opinionated Approach">Opinionated Approach</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Question Addressed">Question Addressed</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Tool<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>">Tool<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Section<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>">Section<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Executable analysis scripts</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can you re-run the analysis and get the same results?</td>
+<td headers="Tool" class="gt_row gt_left">Code first</td>
+<td headers="Section" class="gt_row gt_center">Project Organization</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Literate programming</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can a second analyst easily understand your code?</td>
+<td headers="Tool" class="gt_row gt_left">Quarto</td>
+<td headers="Section" class="gt_row gt_center">Literate Programming</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (individual)</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can you re-run your analysis with new data and compare it to previous results?</td>
+<td headers="Tool" class="gt_row gt_left">Git</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (individual)</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can you surface the code changes that resulted in a different analysis results?</td>
+<td headers="Tool" class="gt_row gt_left">Git</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Code review</td>
+<td headers="Question Addressed" class="gt_row gt_left">If you make a mistake in your code, will someone notice it?</td>
+<td headers="Tool" class="gt_row gt_left">GitHub</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can a second analyst easily contribute code to the analysis?</td>
+<td headers="Tool" class="gt_row gt_left">GitHub</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></td>
+<td headers="Question Addressed" class="gt_row gt_left">If two analysts are developing code simultaneously, can they easily combine them?</td>
+<td headers="Tool" class="gt_row gt_left">GitHub</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can you easily track next steps in your analysis?</td>
+<td headers="Tool" class="gt_row gt_left">GitHub</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can your collaborators make requests outside of meetings or email?</td>
+<td headers="Tool" class="gt_row gt_left">GitHub</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can you re-use logic in different parts of the analysis?</td>
+<td headers="Tool" class="gt_row gt_left">Well-tested functions</td>
+<td headers="Section" class="gt_row gt_center">Programming</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="Question Addressed" class="gt_row gt_left">If you decide to change logic, can you change it in just one place?</td>
+<td headers="Tool" class="gt_row gt_left">Well-tested functions</td>
+<td headers="Section" class="gt_row gt_center">Programming</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="Question Addressed" class="gt_row gt_left">If your code is not performing as expected, will you know?</td>
+<td headers="Tool" class="gt_row gt_left">Well-tested functions</td>
+<td headers="Section" class="gt_row gt_center">Programming</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Assertive testing of data, assumptions, and results</td>
+<td headers="Question Addressed" class="gt_row gt_left">If your data are corrupted, do you notice?</td>
+<td headers="Tool" class="gt_row gt_left">library(assertr)</td>
+<td headers="Section" class="gt_row gt_center">Programming</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Defined dependencies</td>
+<td headers="Question Addressed" class="gt_row gt_left">If an external library you’re using is updated, can you still reproduce your original results?</td>
+<td headers="Tool" class="gt_row gt_left">.renv</td>
+<td headers="Section" class="gt_row gt_center">Environment Management</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4"><strong>Source:</strong> Parker, Hilary. n.d. “Opinionated Analysis Development.” <a href="https://doi.org/10.7287/peerj.preprints.3210v1">https://doi.org/10.7287/peerj.preprints.3210v1</a>.</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Added by Aaron R. Williams</td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> This was originally 'Code Review'</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The day roughly follows the process for setting up a reproducible data analysis.</p>
+<ul>
+<li><strong>Project organization</strong> will cover how to organize all of the files of a data analysis so they are clear and so they work well with other tools.</li>
+<li><strong>Literate programming</strong> will cover Quarto, which will allow us to combine narrative text, code, and the output of code into clear artifacts of our data analysis.</li>
+<li><strong>Version control</strong> will cover Git and GitHub. These will allow us to organize the process of reviewing and merging code.</li>
+<li>In <strong>programming</strong>, we’ll discuss best practices for writing code for data analysis like writing modular, well-tested functions and assertive testing of data, assumptions, and results.<br>
+</li>
+<li><strong>Environment management</strong> will cover .renv and the process of managing package dependencies while using open-source code.</li>
+<li>If we have time, we can discuss how a positive climate and ethical practices can improve transparency and strengthen science.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-cavallo2016" class="csl-entry" role="listitem">
+Cavallo, Alberto, and Roberto Rigobon. 2016. <span>“The Billion Prices Project: Using Online Prices for Measurement and Research.”</span> <em>Journal of Economic Perspectives</em> 30 (2): 151–78. <a href="https://doi.org/10.1257/jep.30.2.151">https://doi.org/10.1257/jep.30.2.151</a>.
+</div>
+<div id="ref-chetty2019" class="csl-entry" role="listitem">
+Chetty, Raj, and John N. Friedman. 2019. <span>“A Practical Method to Reduce Privacy Loss When Disclosing Statistics Based on Small Samples.”</span> <em>AEA Papers and Proceedings</em> 109 (May): 414–20. <a href="https://doi.org/10.1257/pandp.20191109">https://doi.org/10.1257/pandp.20191109</a>.
+</div>
+<div id="ref-dekker2014" class="csl-entry" role="listitem">
+Dekker, Sidney. 2014. <em>The Field Guide to Understanding ’Human Error’</em>. Third edition. Farnham, Surrey, England ; Burlington, VT, USA: Ashgate.
+</div>
+<div id="ref-gelman2013garden" class="csl-entry" role="listitem">
+Gelman, Andrew, and Eric Loken. 2013. <span>“The Garden of Forking Paths: Why Multiple Comparisons Can Be a Problem, Even When There Is No <span>‘Fishing Expedition’</span> or <span>‘p-Hacking’</span> and the Research Hypothesis Was Posited Ahead of Time.”</span>
+</div>
+<div id="ref-ioannidis2005" class="csl-entry" role="listitem">
+Ioannidis, John P. A. 2005. <span>“Why Most Published Research Findings Are False.”</span> <em>PLoS Medicine</em> 2 (8): e124. <a href="https://doi.org/10.1371/journal.pmed.0020124">https://doi.org/10.1371/journal.pmed.0020124</a>.
+</div>
+<div id="ref-parker" class="csl-entry" role="listitem">
+Parker, Hilary. n.d. <span>“Opinionated Analysis Development.”</span> <a href="https://doi.org/10.7287/peerj.preprints.3210v1">https://doi.org/10.7287/peerj.preprints.3210v1</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01_syllabus.html" class="pagination-link" aria-label="Syllabus">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03_project-organization.html" class="pagination-link" aria-label="Project Organization">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project Organization</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
