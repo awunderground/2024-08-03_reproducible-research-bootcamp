@@ -1,6 +1,6 @@
 ---
 title: "Quarto"
-subtitle: "" 
+abstract: "This section introduces the literate statistical programming tool Quarto."
 format: 
   html: 
     code-line-numbers: true
@@ -10,10 +10,46 @@ editor_options:
 bibliography: references.bib
 ---
 
+![A page from Alexander Graham Bell's laboratory notebook](images/AGBell_Notebook.jpg)
+
 ```{r hidden-here-load}
 #| include: false
 
 exercise_number <- 1
+```
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(tidyverse)
+library(gt)
+
+source("src/motivation.R")
+
+```
+
+```{r}
+#| label: tbl-roadmap
+#| tbl-cap: "Opinionated Analysis Development"
+#| echo: false
+
+motivation |>
+  filter(!is.na(Section), Section == "Literate Programming") |>
+  select(-`Analysis Feature`) |>
+  arrange(Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  tab_footnote(
+    footnote = "Added by Aaron R. Williams",
+    locations = cells_column_labels(columns = c(Tool, Section))
+  ) |>  
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
+
 ```
 
 ## Literate (Statistical) Programming

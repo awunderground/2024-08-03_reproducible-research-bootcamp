@@ -14,17 +14,19 @@ book:
         - 02_embrace-your-fallibility.qmd
     - part: Project Organization
       chapters:
-        - project-organization.qmd
+        - 03_project-organization.qmd
     - part: Literate Programming
       chapters:
-        - 11_quarto.qmd
-        - 12_advanced-quarto.qmd
+        - 04_quarto.qmd
+        - 05_advanced-quarto.qmd
     - part: Version Control
       chapters:
-        - 08_reproducible-research-with-git.qmd
-        - 09_advanced-git.qmd
+        - 06_reproducible-research-with-git.qmd
+        - 07_advanced-git.qmd
     - part: Programming
     - part: Environment Management
+      chapters:
+        - renv.qmd
     - references.qmd
   appendices:
     - reproducible-research-bootcamp_software-installation.qmd

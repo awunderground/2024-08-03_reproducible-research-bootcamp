@@ -1,10 +1,13 @@
 ---
 title: "Project Organization"
+abstract: "This section covers the basics of organizing and documenting a reproducible analysis."
 format: 
   html:
     toc: true
     code-line-numbers: true
 ---
+
+![Architectural drawing, Canada, 1936](images/Joy_Oil_gas_station_blueprints.jpg)
 
 ```{r hidden-here-load}
 #| include: false
@@ -18,8 +21,32 @@ exercise_number <- 1
 #| warning: false
 
 library(tidyverse)
+library(gt)
 
-theme_set(theme_minimal())
+source("src/motivation.R")
+
+```
+
+```{r}
+#| label: tbl-roadmap
+#| tbl-cap: "Opinionated Analysis Development"
+#| echo: false
+
+motivation |>
+  filter(!is.na(Section), Section == "Project Organization") |>
+  select(-`Analysis Feature`) |>
+  arrange(Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  tab_footnote(
+    footnote = "Added by Aaron R. Williams",
+    locations = cells_column_labels(columns = c(Tool, Section))
+  ) |>  
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
 
 ```
 
@@ -29,7 +56,7 @@ To achieve reproducibility, we need to capture every step of an analysis from lo
 2. Project-Oriented Workflow
 3. Documentation
 
-## 1. Code First
+## 1. Code First {.unnumbered}
 
 ![](images/recipe.png)
 
@@ -73,7 +100,7 @@ if (!file.exists("data/data.csv")) {
 
 During development, it's easy to run lines of code out of order or to skip capturing an important step like loading a package or dropping that pesky outlier. Restarting your computing environment early and often can promote good practices and ensure accountability. This is easy in RStudio using Session > Restart R.
 
-## 2. Project-Oriented Workflow
+## 2. Project-Oriented Workflow {.unnumbered}
 
 We will use a [project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
 
@@ -139,7 +166,7 @@ Here’s an example directory:
 
 ![](images/directory.png){width=200}
 
-## 3. Documentation
+## 3. Documentation {.unnumbered}
 
 Humans are frequently the most expensive part of any data analysis. Documentation is essential to helping humans quickly and clearly understand the structure and steps of an analysis. 
 
@@ -199,6 +226,19 @@ Here are a few examples:
 - [Code and results for 'The Association between Income and Life Expectancy in the United States, 2001-2014'](https://github.com/michaelstepner/healthinequality-code/tree/main)
 - [Style Guide for 'The Association between Income and Life Expectancy in the United States, 2001-2014'](https://github.com/michaelstepner/healthinequality-code/tree/main/code)
 
+:::callout
+
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+1. Add a README.md to the top level of your project directory.
+2. Add a name for your project prefaced by `#` and add your name.
+:::
 
 ::: {.callout-tip}
 We should now have a project directory with a .Rproj and a README. 

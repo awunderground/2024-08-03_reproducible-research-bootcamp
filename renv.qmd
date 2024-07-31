@@ -1,0 +1,376 @@
+---
+title: "`library(renv)`"
+abstract: "This sections introduces enviroment management with a focus on `library(renv)`."
+format: 
+  html: 
+    code-line-numbers: true
+    fig-align: "center"
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+---
+
+![Lácar Lake, of glacial origin, in the province of Neuquén, Argentina](images/LAGO_LACAR.jpg)
+
+```{r hidden-here-load}
+#| include: false
+
+exercise_number <- 1
+```
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(tidyverse)
+library(gt)
+
+source("src/motivation.R")
+
+```
+
+```{r}
+#| label: tbl-roadmap
+#| tbl-cap: "Opinionated Analysis Development"
+#| echo: false
+
+motivation |>
+  filter(!is.na(Section), Section == "Environment Management") |>
+  select(-`Analysis Feature`) |>
+  arrange(Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  tab_footnote(
+    footnote = "Added by Aaron R. Williams",
+    locations = cells_column_labels(columns = c(Tool, Section))
+  ) |>  
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
+
+```
+
+## Problem Definition
+
+Every time we run a line of R code or Python code, we rely on an entire stack of software and hardware that affects how our line of R code or Python code runs.
+
+::: callout-tip
+## Computing Environment
+
+The packages, software, and hardware that supports running code for an analysis.
+:::
+
+Changing computing environments can lead to many issues with reproducibility.
+
+-   Python and R packages can change in ways that change the results of an analysis. The packages may change because the authors
+    -   introduce new functionality
+    -   improve the package interface
+    -   discover and fix bugs
+-   Beneath packages, Python or R can change in ways that change the results of an analysis. 
+-   Adjacent to programming languages, compilers and linear algebra libraries can change or even the computer operating system can change.
+-   Hardware can change in ways that change the results of an analysis.
+
+Each example above corresponds to a layer of a computing environment.
+
+-   package
+-   system
+-   hardware
+
+> Ignoring the readiness of the data science environment results in the dreaded *it works on my machine* phenomenon with a failed attempt to share code with a colleague or deploy an app to production. \~ [@gold2024]
+
+This is core to reproducibility. Unfortunately, this is where we must temper our expectations.
+
+::: callout-warning
+A perfectly reproducible environment isn't possible. We quickly hit the point of diminishing returns where system-level factors like machine precision and pseudo random processes (seeds) affect results.
+:::
+
+We will focus on the packages layer of our environment. It is the place where we can get the highest return on investment for our work.
+
+- We can avoid situations where our 2018 analysis using 2018 R packages breaks using 2024 R packages. 
+- We can avoid situations where our 2024 R packages don't work on our friend's computer. 
+- We can intentionally use older versions of R packages. 
+- We can make it easy to move from our computer to a cloud computer where we have scalable computing power. 
+
+## Ideal Solution
+
+What does an ideal solution look like for managing the package layer of a computing environment?
+
+1.  **Isolate:** We should be able to **isolate** the package environment at the project level. That means we can install, update, or remove packages in our current project without affecting any other projects. This means we'll have project-specific versions of packages.
+2.  **Document:** We should be able to document our package environment so the package environment is **reproducible**.
+3.  **Share:** Our environment should be **portable**. More precisely, we should be able to share documentation about our environment so someone else (or our future selves) can recreate the environment. 
+
+::: callout-tip
+## Library
+
+A **library** is a folder that contains installed packages. Libraries can hold at most one version of a package.
+:::
+
+Running the `.libPaths()` function shows the location of the library used by an R session.
+
+By default, R's library will be the system library. We're interested in creating a project-specific library.
+
+::: callout-tip
+## State
+
+The condition of a computing environment at a point-in-time.
+:::
+
+::: callout-tip
+## Repository
+
+A **repository** is a source of packages. The most popular repository is the [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/), which we typically use when we run `install.packages()`. 
+:::
+
+We're interested in documenting the repository used to install each package.
+
+## `library(renv)`
+
+`library(renv)`, short for **r**eproducible **env**ironment, allows us to create project-specific virtual environments.
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+1.  Install `renv` with `install.packages("renv")`.
+2.  Run the function `.libPaths()` at the console.
+:::
+
+Our workflow will have three steps.
+
+### 1. Isolate
+
+::: callout-note
+## Isolate
+We should be able to **isolate** the package environment at the project level. That means we can install, update, or remove packages in our current project without affecting any other projects. This means we'll have project-specific versions of packages.
+:::
+
+The `init()` function creates a project-specific virtual environment with a project-specific library. This means the R session will use packages from a project library instead of a system library. Running `init()` creates three new items in a project:
+
+-   `renv/library/` is the project-specific library.
+-   `renv.lock` contains metadata that describes the project-specific library.
+-   `.Rprofile` is a hidden system file. It isn't specific to `library(renv)`, but in this case it tells R to use the project library instead of the system library.
+
+At first, this library won't have anything in it. This is a little extra work! But we can use `install()` and `update()` to add R packages to the project-specific library.
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+1.  Run `install.packages("dplyr")` and then `library(dplyr)`. The `dplyr` package should load.
+2.  Run `renv::init()`. You will get a long message.
+3.  Run `library(dplyr)`
+4.  Run `.libPaths()`
+:::
+
+### 2. Document
+
+::: callout-note
+## Document
+We should be able to document our package environment so the package environment is **reproducible**.
+:::
+
+The `snapshot()` function documents the current project environment by updating metadata in the `renv.lock` file. `snapshot()` will install, update, or uninstall any packages that are in an inconsistent state and update the lockfile to represent the current state of dependencies in the project.
+
+The lockfile (`renv.lock`) contains JSON that documents the current state of dependencies for a project. For instance, if we install and use `library(palmerpenguins)`, the lockfile will look like:
+
+```         
+{
+  "R": {
+    "Version": "4.3.1",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://packagemanager.posit.co/cran/latest"
+      }
+    ]
+  },
+  "Packages": {
+    "palmerpenguins": {
+      "Package": "palmerpenguins",
+      "Version": "0.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "6c6861efbc13c1d543749e9c7be4a592"
+    },
+    "renv": {
+      "Package": "renv",
+      "Version": "1.0.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "utils"
+      ],
+      "Hash": "397b7b2a265bc5a7a06852524dabae20"
+    }
+  }
+}
+```
+
+The `status()` gives us a snapshot of the documented project environment.
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+1.  Run `renv::status()`
+2.  Run `ren::snapshot()`
+3.  Create an R script. Load `library(dplyr)`.
+4.  Run `renv::status()`
+5.  Run `ren::snapshot()`
+:::
+
+### 3. Share
+
+::: {.callout-note}
+## Share
+
+We should be able to share documentation about our environment so someone else (or our future selves) can recreate the environment.
+:::
+
+The `restore()` function will use files created by `snapshot()` to recreate a project environment.
+
+We won't actually directly run this function often. If we share a project that uses `renv`, RStudio should automatically ask us if we want to download and install the documented packages using `restore()`.
+
+We likely won't need to use `restore()` on the computer where `init()` was run. Rather, you should see a prompt when opening up a .Rproj:
+
+```         
+Project '~/presentations/test-project' loaded. [renv 1.0.7]
+```
+
+We'll need to commit multiple files to Git to share an renv virtual project environment:
+
+-   `renv.lock`
+-   `.Rprofile`
+-   `renv/settings.json`
+-   `renv/activate.R`
+
+If a Git repository has already been initialized, then `init()` will automatically add files that *should not* be shared to the .gitignore in the `renv/` folder:
+
+-   `renv/library/`
+-   Any other folder in `renv/`
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+1.  Clone the [penguins-analysis GitHub repository](https://github.com/awunderground/penguin-analysis).
+2.  Open up the project and confirm `library(renv)` recreates the package-layer of the computing environment. You *may* need to run `renv::restore()`.
+3.  Run the code in `analysis.R`.
+:::
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+1.  In your main project run `renv::init()`.
+2.  Install the necessary R packages with `renv::install()`.
+3.  Use `renv::snapshot()` to document the state of the project layer of the computing environment.
+:::
+
+### More about `library(renv)`
+
+`renv` doesn't install packages in a project directory. Instead, renv makes references to user-level packages, which saves space and install time.
+
+`renv` doesn't acknowledge a dependency until it is used somewhere in the project! `dependencies()` will show the .R scripts and Quarto documents where dependencies are created.
+
+`update()` updates a package that has already been installed and `remove()` removes a package that has been installed.
+
+`deactivate()` is like hitting pause on the project environment. It shifts the project to using the system library but doesn't delete any of the renv files in the directory. `reactivate()` is the opposite of `deactive()`.
+
+`renv::deactivate(clean = TRUE)` is dynamite. It shifts the project to using the system library and deletes all of the renv files. There is no going back. At this point, using renv in the project will require starting from scratch with `renv::init()`.
+
+If the repository has a Git history, `history()` can explore past versions of the project environment and `revert()` can return to an earlier version of the project library. With this in mind, it may make sense to begin using `renv` near the beginning of a project instead of at the end.
+
+### Going deeper
+
+`renv` solves environment management for the package layer of the computing environment but it doesn't help with the system layer or the hardware layer. We'll briefly cover some other tools that can help with the system layer and hardware layer.
+
+### Conda
+
+[Conda](https://anaconda.org/anaconda/conda) can help with the system layer in addition to managing the package layer.
+
+> Conda is an open source package management system and environment management system for installing multiple versions of software packages and their dependencies and switching easily between them. It works on Linux, OS X and Windows, and was created for Python programs but can package and distribute any software.
+
+Interestingly, @gold2024 is critical of Docker:
+
+> Conda allows you to create a virtual environment in user space on your laptop without having admin access. It’s especially useful when your machine is locked down by IT.
+>
+> That’s not a great fit for a production environment. Conda smashes together the language version, the package management, and, sometimes, the system library management. This is conceptually simple and easy to use, but it often goes awry in production environments. In a production environment (or a shared workbench server), I recommend people manage Python packages with a virtual environment tool like `{venv}` and manage system libraries and versions of Python with tools built for those purposes.
+
+### Docker
+
+::: {.callout-tip}
+## Container
+
+A container is a self-contained system for running computer software. Typically, containers are designed to be small and fit-for-use with specific analyses.
+:::
+
+Containerization is the process of creating a self-contained computer environment to run an analysis.
+
+[Docker](https://www.docker.com/) is a popular container tool. Docker can manage the software layer of a computing environment and the package layer of a computing environment. Docker can:
+
+-   Specify the computer operating system
+-   Control system dependencies like the version of Pandoc, BLAS, and compilers
+-   Control the R or Python version
+-   Manage R packages and Python packages
+-   Manage the version of the code that's run
+
+[DockerHub](https://hub.docker.com/) is a popular repository for sharing Docker images.
+
+It's worth noting that the packages within Docker can be controlled with `renv` and the version of the code can be controlled with Git and GitHub.
+
+The foundations of most containers are standard images. [Rocker](https://rocker-project.org/) and [Posit Images](https://github.com/rstudio/r-docker) provide useful starting images.
+
+-   [Docker 101 for data scientists](https://solutions.posit.co/envs-pkgs/environments/docker/)
+-   [DevOps for Data Science chapter 6](https://do4ds.com/chapters/sec1/1-6-docker.html)
+-   [renv + Docker](https://rstudio.github.io/renv/articles/docker.html)
+
+### Cloud Computing
+
+The explosion of popularity of cloud computing has expanded options for managing the hardware layer of a computing environment. [Amazon Web Services](https://aws.amazon.com/), [Google Cloud](https://cloud.google.com/), and [Microsoft Azure](https://azure.microsoft.com/en-us) provide on-demand cloud computing environments with predictable, consistent, and documentable hardware.
+
+These cloud computing environments have out-of-pocket marginal costs, but the costs are frequently cheaper than maintaining on-premise computing environments like servers. The costs are definitely cheaper than maintaining old, on-premise infrastructure to reproduce old computing environments.
+
+The following is a sensible workflow:
+
+-   Spin up a cloud instance (computer) with a specific operating system.
+-   Pick a Docker image from a Docker repository. This image should be close to fit-for-purpose.
+-   Set up Docker. Maybe set up renv. Create Dockerfiles and renv files.
+-   Run the project with good version control.
+-   Save the Docker files and renv
+
+## Final Thoughts
+
+**This is a lot!** Managing the software layer and hardware layer of a computing environment can improve the reproducibility of a project, but the rewards quickly diminish and the complexity quickly increases. 
+
+Improving project organization and documentation, literate programming, version control, programming best practices, and managing the package layer of a computing environment will almost always yield more benefits than focusing on the software layer or hardware layer of a computing environment.
