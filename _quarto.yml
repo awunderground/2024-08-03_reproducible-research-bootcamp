@@ -24,6 +24,8 @@ book:
         - 06_reproducible-research-with-git.qmd
         - 07_advanced-git.qmd
     - part: Programming
+      chapters:
+        - functions-and-tests.qmd
     - part: Environment Management
       chapters:
         - renv.qmd

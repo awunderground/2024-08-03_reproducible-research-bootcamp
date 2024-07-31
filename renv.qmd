@@ -125,6 +125,14 @@ A **repository** is a source of packages. The most popular repository is the [Co
 
 We're interested in documenting the repository used to install each package.
 
+::: {.callout-tip}
+## Virtual environment
+
+A virtual environment is a collection of packages and software that support a project that are isolated from other projects. 
+:::
+
+We will use `library(renv)` to create a virtual environment to track the state of our computing environment with a project-specific library with packages deliberately installed from specific repositories.  
+
 ## `library(renv)`
 
 `library(renv)`, short for **r**eproducible **env**ironment, allows us to create project-specific virtual environments.
