@@ -1,11 +1,17 @@
 ---
 title: "Reproducible Research with Git and GitHub"
-abstract: Git and Github are powerful software tools used to control different versions of a codebase, track changes, and collaborate with other programmers. This section introduces both tools.
+abstract: Git and GitHub are powerful software tools used to control different versions of a codebase, track changes, and collaborate with other programmers. This section introduces both tools.
 format: 
   html:
     toc: true
     code-line-numbers: true
 ---
+
+```{r}
+#| echo: false
+exercise_number <-  1
+
+```
 
 ```{r}
 #| label: quarto-setup
@@ -16,8 +22,34 @@ format:
 knitr::opts_chunk$set(fig.align = "center")
 
 library(tidyverse)
+library(gt)
 library(knitr)
 library(RXKCD)
+
+source("src/motivation.R")
+
+```
+
+```{r}
+#| label: tbl-roadmap
+#| tbl-cap: "Opinionated Analysis Development"
+#| echo: false
+
+motivation |>
+  filter(!is.na(Section), Section == "Version Control") |>
+  select(-`Analysis Feature`) |>
+  arrange(Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  tab_footnote(
+    footnote = "Added by Aaron R. Williams",
+    locations = cells_column_labels(columns = c(Tool, Section))
+  ) |>  
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
 
 ```
 
@@ -29,31 +61,37 @@ library(RXKCD)
 
 The command line (also known as shell or console) is a way of controlling computers without using a graphical user interface (i.e. pointing-and-clicking). The command line is useful because pointing-and-clicking is tough to reproduce or scale and because lots of useful software is only available through the command line. Furthermore, cloud computing often requires use of the command line.
 
-We will run Bash, a command line program, using Terminal on Mac and Git Bash on Windows. Open Terminal like any other program on Mac. Right-click in a desired directory and select "Git Bash Here" to access Git Bash on Windows.
+There are different ways to use the command line. 
 
-![](images/terminal.png){width="400" fig-align="center" width=70%}
+Macs use the Terminal (@fig-terminal). Open Terminal like any other program on Mac.
 
-Fortunately, we only need to know a little Bash for version control with Git and cloud computing.
+![Mac Terminal](images/terminal.png){#fig-terminal width="400" fig-align="center" width=70%}
 
-`pwd` - print working directory - prints the file path to the current location in the
+Git Bash, which is installed with Git, works well on Windows. If you have Git Bash, you should be able to right-click in a desired directory and select "Git Bash Here" to access Git Bash on Windows.
 
-`ls` - list - lists files and folders in the current working directory.
+RStudio contains a terminal in the tab adjacent to the console (@fig-terminal-rstudio). This will allow us to work at the common line with a common experience on Mac-, Windows-, and Linux-based computers.
 
-`cd` - change directory - move the current working directory.
+![RStudio Terminal](images/terminal-rstudio.png){#fig-terminal-rstudio width="400" fig-align="center" width=70%}
 
-`mkdir` - make directory - creates a directory (folder) in the current working directory.
+### Bash
 
-`touch` - creates a text file with the provided name.
+Bash is a shell program and command language that allows us to control our computer at the command line. Fortunately, we only need to know a little Bash for version control with Git.
 
-`mv` - move - moves a file from one location to the other.
+- `pwd` - print working directory - prints the file path to the current location in the
+- `ls` - list - lists files and folders in the current working directory.
+- `cd` - change directory - move the current working directory. Specify the relative path to move down in a directory. Use `cd ..` to move up a directory.
+- `mkdir` - make directory - creates a directory (folder) in the current working directory.
+- `touch` - creates a text file with the provided name.
+- `mv` - move - moves a file from one location to the other.
+- `cat` - concatenate - concatenate and print a file.
 
-`cat` - concatenate - concatenate and print a file.
+### Useful tips
 
-```{r}
-#| echo: false
-exercise_number <-  1
-
-```
+-   Tab completion can save a ton of typing. Hitting tab twice shows all of the available options that can complete from the currently typed text.
+-   Hit the up arrow to cycle through previously submitted commands.
+-   Use `man <command name>` to pull up help documentation. Hit `q` to exit.
+-   Typing `..` refers to the directory above the working directory. Writing `cd ..` changes to the directory above the working directory.
+-   Typing just `cd` changes to the home directory.
 
 ::: callout
 #### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
@@ -64,9 +102,8 @@ exercise_number <-  1 + exercise_number
 
 ```
 
-1.  Create a new directory called `cli-exercise`.
-2.  Navigate to this directory using `cd` in the Terminal or Git Bash.
-3.  Submit `pwd` to confirm you are in the correct directory.
+1.  Navigate to the `example-project` directory using `cd` in the RStudio terminal.
+2.  Submit `pwd` to confirm you are in the correct directory.
 :::
 
 ::: callout
@@ -87,8 +124,6 @@ touch haiku.txt
 ls
 ```
 :::
-
-
 
 ::: callout
 #### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
@@ -134,15 +169,6 @@ cat poems/haiku.txt
 ```
 :::
 
-
-### Useful tips
-
--   Tab completion can save a ton of typing. Hitting tab twice shows all of the available options that can complete from the currently typed text.
--   Hit the up arrow to cycle through previously submitted commands.
--   Use `man <command name>` to pull up help documentation. Hit `q` to exit.
--   Typing `..` refers to the directory above the working directory. Writing `cd ..` changes to the directory above the working directory.
--   Typing just `cd` changes to the home directory.
-
 ### Programs
 
 We can run programs from the command line. Commands from programs always start with the name of the program. Running git commands intuitively start with `git`. For example:
@@ -155,31 +181,64 @@ git status
 
 ## Why version control?
 
-Version control is a system for managing and recording changes to files over time. Version control is essential to managing code and analyses. Good version control can:
+::: {.callout-tip}
+## Version Control
 
--   Limit the chance of making a mistake
--   Maximize the chance of catching a mistake when it happens
+Version control is a system for managing and recording changes to files over time.
+:::
+
+ Version control is essential to managing code and analyses. Good version control can:
+
 -   Create a permanent record of changes to code
 -   Easily undo mistakes by switching between iterations of code
 -   Allow multiple paths of development while protecting working versions of code
 -   Encourage communication between collaborators
+-   Facilitate multiple code reviews
 -   Be used for external communication
 
 ## Why distributed version control?
 
-*Centralized version control* stores all files and the log of those files in one centralized location. *Distributed version control* stores files and logs in one or many locations and has tools for combining the different versions of files and logs.
+::: {.callout-tip}
+## Centralized version control
+
+Centralized version control stores all files and the log of those files in one centralized location.
+:::
+
+::: {.callout-tip}
+## Distributed version control
+
+Distributed version control stores files and logs in one or many locations and has tools for combining the different versions of files and logs.
+:::
 
 Centralized version control systems like Google Drive or Box are good for sharing a Microsoft Word document, but they are terrible for collaborating on code.
 
 Distributed version control allows for the simultaneous editing and running of code. It also allows for code development without sacrificing a working version of the code.
 
+::: {.callout-note}
+Git and GitHub are difficult to motivate a priori but the value is obvious after adopting the tools. We've done our best to motivate the tools. If you are unconvinced, we ask that you just trust us on this one. 
+:::
+
 ## Git vs. GitHub
 
+::: {.callout-tip}
+## Git
+
 Git is a distributed version-control system for tracking changes in code. Git is free, open-source software and can be used locally without an internet connection. It's like a turbo-charged version of Microsoft Word's track changes for code.
+:::
+
+::: {.callout-tip}
+## GitHub
 
 [GitHub](https://github.com/), which is owned by Microsoft, is an online hosting service for version control using Git. It also contains useful tools for collaboration and project management. It's like a turbo-charged version of Google Drive or Box for sharing repositories created using Git.
+:::
 
 At first, it's easy to mix up Git and GitHub. Just try to remember that they are separate tools that complement each other well.
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+1.  If you don't already have an account, sign up for [GitHub](https://github.com/). 
+:::
 
 ## SSH Keys for Authentication
 
@@ -187,11 +246,10 @@ GitHub started requiring token-based or SSH-based authentication in [2021](https
 
 We will follow the [instructions for setting up SSH keys](https://happygitwithr.com/ssh-keys.html#option-2-set-up-from-the-shell) using the console, or terminal window, from Jenny Bryan's fantastic *Happy Git with R*.
 
-
 ::: callout
 #### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
 
-1.  Follow the instructions above for setting up SSH keys using the console. We recommend using the default key location and key name. You can choose whether or not to add a password for the key. Note that if you choose to add a password, you will need to enter that password every time you perform operations with GitHub - so make sure you'll be able to remember it!
+1.  Follow [the instructions](https://happygitwithr.com/ssh-keys.html#option-2-set-up-from-the-shell) for setting up SSH keys using the console. We recommend using the default key location and key name. You can choose whether or not to add a password for the key. Note that if you choose to add a password, you will need to enter that password every time you perform operations with GitHub - so make sure you'll be able to remember it!
 2.  When you get to the section of the instructions to provide the public key to GitHub, we recommend obtaining the public key as follows:
 
 -   In a terminal window, run `cat ~/.ssh/id_ed25519.pub`
@@ -251,7 +309,7 @@ See @sec-app-b for the instructions on initializing a repo locally and then addi
 4.  Save the tracked files to the remote GitHub repository.
 5.  Repeat, repeat, repeat
 
-[^files]: Github refuses to store files larger than 100 MiB. This poses a challenge to writing reproducible code. However, many data sources can be downloaded directly from the web or via APIs, allowing code to be reproducible without relying on storing large data sets on Github. Materials later in this book discuss scaping data from the web and using APIs. 
+[^files]: GitHub refuses to store files larger than 100 MiB. This poses a challenge to writing reproducible code. However, many data sources can be downloaded directly from the web or via APIs, allowing code to be reproducible without relying on storing large data sets on GitHub. Materials later in this book discuss scaping data from the web and using APIs. 
 
 ![](images/git-github-workflow.jpeg){fig-align="center" width=70%}
 

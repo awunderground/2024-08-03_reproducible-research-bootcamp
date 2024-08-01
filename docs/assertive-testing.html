@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reproducible Research Bootcamp - 6&nbsp; Reproducible Research with Git and GitHub</title>
+<title>Reproducible Research Bootcamp - 9&nbsp; Modular, Tested Code</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07_advanced-git.html" rel="next">
-<link href="./05_advanced-quarto.html" rel="prev">
+<link href="./renv.html" rel="next">
+<link href="./functions-and-tests.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -115,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_reproducible-research-with-git.html">Version Control</a></li><li class="breadcrumb-item"><a href="./06_reproducible-research-with-git.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Research with Git and GitHub</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions-and-tests.html">Programming</a></li><li class="breadcrumb-item"><a href="./assertive-testing.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -220,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_reproducible-research-with-git.html" class="sidebar-item-text sidebar-link active">
+  <a href="./06_reproducible-research-with-git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Research with Git and GitHub</span></span></a>
   </div>
 </li>
@@ -249,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assertive-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="./assertive-testing.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
   </div>
 </li>
@@ -322,39 +351,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#command-line" id="toc-command-line" class="nav-link active" data-scroll-target="#command-line"><span class="header-section-number">6.1</span> Command Line</a>
+  <li><a href="#assertive-testing-of-data" id="toc-assertive-testing-of-data" class="nav-link active" data-scroll-target="#assertive-testing-of-data"><span class="header-section-number">9.1</span> Assertive Testing of Data</a>
   <ul class="collapse">
-  <li><a href="#bash" id="toc-bash" class="nav-link" data-scroll-target="#bash"><span class="header-section-number">6.1.1</span> Bash</a></li>
-  <li><a href="#useful-tips" id="toc-useful-tips" class="nav-link" data-scroll-target="#useful-tips"><span class="header-section-number">6.1.2</span> Useful tips</a></li>
-  <li><a href="#programs" id="toc-programs" class="nav-link" data-scroll-target="#programs"><span class="header-section-number">6.1.3</span> Programs</a></li>
+  <li><a href="#libraryassertr" id="toc-libraryassertr" class="nav-link" data-scroll-target="#libraryassertr"><span class="header-section-number">9.1.1</span> <code>library(assertr)</code></a></li>
+  <li><a href="#other-assertions" id="toc-other-assertions" class="nav-link" data-scroll-target="#other-assertions"><span class="header-section-number">9.1.2</span> Other Assertions</a></li>
   </ul></li>
-  <li><a href="#why-version-control" id="toc-why-version-control" class="nav-link" data-scroll-target="#why-version-control"><span class="header-section-number">6.2</span> Why version control?</a></li>
-  <li><a href="#why-distributed-version-control" id="toc-why-distributed-version-control" class="nav-link" data-scroll-target="#why-distributed-version-control"><span class="header-section-number">6.3</span> Why distributed version control?</a></li>
-  <li><a href="#git-vs.-github" id="toc-git-vs.-github" class="nav-link" data-scroll-target="#git-vs.-github"><span class="header-section-number">6.4</span> Git vs.&nbsp;GitHub</a></li>
-  <li><a href="#ssh-keys-for-authentication" id="toc-ssh-keys-for-authentication" class="nav-link" data-scroll-target="#ssh-keys-for-authentication"><span class="header-section-number">6.5</span> SSH Keys for Authentication</a></li>
-  <li><a href="#git-github-workflow" id="toc-git-github-workflow" class="nav-link" data-scroll-target="#git-github-workflow"><span class="header-section-number">6.6</span> Git + GitHub Workflow</a>
-  <ul class="collapse">
-  <li><a href="#basic-approach" id="toc-basic-approach" class="nav-link" data-scroll-target="#basic-approach"><span class="header-section-number">6.6.1</span> Basic Approach</a></li>
-  <li><a href="#commands" id="toc-commands" class="nav-link" data-scroll-target="#commands"><span class="header-section-number">6.6.2</span> Commands</a></li>
-  </ul></li>
-  <li><a href="#sec-ghp" id="toc-sec-ghp" class="nav-link" data-scroll-target="#sec-ghp"><span class="header-section-number">6.7</span> GitHub Pages</a></li>
-  <li><a href="#collaboration-using-git-github-with-branching" id="toc-collaboration-using-git-github-with-branching" class="nav-link" data-scroll-target="#collaboration-using-git-github-with-branching"><span class="header-section-number">6.8</span> Collaboration Using Git + GitHub (with branching)</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6.9</span> Conclusion</a>
-  <ul class="collapse">
-  <li><a href="#git-is-confusing" id="toc-git-is-confusing" class="nav-link" data-scroll-target="#git-is-confusing"><span class="header-section-number">6.9.1</span> Git is Confusing</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="header-section-number">6.9.2</span> Resources</a></li>
-  </ul></li>
-  <li><a href="#sec-ap-a" id="toc-sec-ap-a" class="nav-link" data-scroll-target="#sec-ap-a"><span class="header-section-number">6.10</span> Personal Access Tokens for Authentication</a></li>
-  <li><a href="#sec-app-b" id="toc-sec-app-b" class="nav-link" data-scroll-target="#sec-app-b"><span class="header-section-number">6.11</span> Initialize a Repo Locally and Add to GitHub</a></li>
+  <li><a href="#assertive-testing-of-assumptions" id="toc-assertive-testing-of-assumptions" class="nav-link" data-scroll-target="#assertive-testing-of-assumptions"><span class="header-section-number">9.2</span> Assertive Testing of Assumptions</a></li>
+  <li><a href="#profiling-and-benchmarking" id="toc-profiling-and-benchmarking" class="nav-link" data-scroll-target="#profiling-and-benchmarking"><span class="header-section-number">9.3</span> Profiling and Benchmarking</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_reproducible-research-with-git.html">Version Control</a></li><li class="breadcrumb-item"><a href="./06_reproducible-research-with-git.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Research with Git and GitHub</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions-and-tests.html">Programming</a></li><li class="breadcrumb-item"><a href="./assertive-testing.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Research with Git and GitHub</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></h1>
 </div>
 
 
@@ -366,42 +378,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
   </div>
   
-<div>
-  <div class="abstract">
-    <div class="block-title">Abstract</div>
-    Git and GitHub are powerful software tools used to control different versions of a codebase, track changes, and collaborate with other programmers. This section introduces both tools.
-  </div>
-</div>
 
 
 </header>
 
 
-<div class="cell" data-layout-align="center">
-<div id="tbl-roadmap" class="cell quarto-float anchored" data-layout-align="center">
+<dl>
+<dt><img src="images/Exams_Start..._Now.jpg" class="img-fluid" alt="A multiple-choice test"></dt>
+<dd>
+<p>Photo by <a href="https://en.wikipedia.org/wiki/Multiple_choice#/media/File:Exams_Start..._Now.jpg">Ryan McGilchrist</a></p>
+</dd>
+</dl>
+<div class="cell">
+<div id="tbl-roadmap" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;6.1: Opinionated Analysis Development
+Table&nbsp;9.1: Opinionated Analysis Development
 </figcaption>
 <div aria-describedby="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="yebjspcolf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yebjspcolf table {
+<div id="leynwndvpt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#leynwndvpt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yebjspcolf thead, #yebjspcolf tbody, #yebjspcolf tfoot, #yebjspcolf tr, #yebjspcolf td, #yebjspcolf th {
+#leynwndvpt thead, #leynwndvpt tbody, #leynwndvpt tfoot, #leynwndvpt tr, #leynwndvpt td, #leynwndvpt th {
   border-style: none;
 }
 
-#yebjspcolf p {
+#leynwndvpt p {
   margin: 0;
   padding: 0;
 }
 
-#yebjspcolf .gt_table {
+#leynwndvpt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -427,12 +439,12 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-left-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_caption {
+#leynwndvpt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yebjspcolf .gt_title {
+#leynwndvpt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -444,7 +456,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-bottom-width: 0;
 }
 
-#yebjspcolf .gt_subtitle {
+#leynwndvpt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -456,7 +468,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-top-width: 0;
 }
 
-#yebjspcolf .gt_heading {
+#leynwndvpt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -468,13 +480,13 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_bottom_border {
+#leynwndvpt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_col_headings {
+#leynwndvpt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -489,7 +501,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_col_heading {
+#leynwndvpt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -509,7 +521,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#yebjspcolf .gt_column_spanner_outer {
+#leynwndvpt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -521,15 +533,15 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 4px;
 }
 
-#yebjspcolf .gt_column_spanner_outer:first-child {
+#leynwndvpt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yebjspcolf .gt_column_spanner_outer:last-child {
+#leynwndvpt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yebjspcolf .gt_column_spanner {
+#leynwndvpt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -541,11 +553,11 @@ Table&nbsp;6.1: Opinionated Analysis Development
   width: 100%;
 }
 
-#yebjspcolf .gt_spanner_row {
+#leynwndvpt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yebjspcolf .gt_group_heading {
+#leynwndvpt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -571,7 +583,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   text-align: left;
 }
 
-#yebjspcolf .gt_empty_group_heading {
+#leynwndvpt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -586,15 +598,15 @@ Table&nbsp;6.1: Opinionated Analysis Development
   vertical-align: middle;
 }
 
-#yebjspcolf .gt_from_md > :first-child {
+#leynwndvpt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yebjspcolf .gt_from_md > :last-child {
+#leynwndvpt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yebjspcolf .gt_row {
+#leynwndvpt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -613,7 +625,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#yebjspcolf .gt_stub {
+#leynwndvpt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -626,7 +638,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#yebjspcolf .gt_stub_row_group {
+#leynwndvpt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -640,15 +652,15 @@ Table&nbsp;6.1: Opinionated Analysis Development
   vertical-align: top;
 }
 
-#yebjspcolf .gt_row_group_first td {
+#leynwndvpt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yebjspcolf .gt_row_group_first th {
+#leynwndvpt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yebjspcolf .gt_summary_row {
+#leynwndvpt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -658,16 +670,16 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#yebjspcolf .gt_first_summary_row {
+#leynwndvpt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_first_summary_row.thick {
+#leynwndvpt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yebjspcolf .gt_last_summary_row {
+#leynwndvpt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -677,7 +689,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_grand_summary_row {
+#leynwndvpt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -687,7 +699,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#yebjspcolf .gt_first_grand_summary_row {
+#leynwndvpt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -697,7 +709,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-top-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_last_grand_summary_row_top {
+#leynwndvpt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -707,11 +719,11 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_striped {
+#leynwndvpt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yebjspcolf .gt_table_body {
+#leynwndvpt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -720,7 +732,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_footnotes {
+#leynwndvpt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -734,7 +746,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_footnote {
+#leynwndvpt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -743,7 +755,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#yebjspcolf .gt_sourcenotes {
+#leynwndvpt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -757,7 +769,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_sourcenote {
+#leynwndvpt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -765,63 +777,63 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#yebjspcolf .gt_left {
+#leynwndvpt .gt_left {
   text-align: left;
 }
 
-#yebjspcolf .gt_center {
+#leynwndvpt .gt_center {
   text-align: center;
 }
 
-#yebjspcolf .gt_right {
+#leynwndvpt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yebjspcolf .gt_font_normal {
+#leynwndvpt .gt_font_normal {
   font-weight: normal;
 }
 
-#yebjspcolf .gt_font_bold {
+#leynwndvpt .gt_font_bold {
   font-weight: bold;
 }
 
-#yebjspcolf .gt_font_italic {
+#leynwndvpt .gt_font_italic {
   font-style: italic;
 }
 
-#yebjspcolf .gt_super {
+#leynwndvpt .gt_super {
   font-size: 65%;
 }
 
-#yebjspcolf .gt_footnote_marks {
+#leynwndvpt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yebjspcolf .gt_asterisk {
+#leynwndvpt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yebjspcolf .gt_indent_1 {
+#leynwndvpt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yebjspcolf .gt_indent_2 {
+#leynwndvpt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yebjspcolf .gt_indent_3 {
+#leynwndvpt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yebjspcolf .gt_indent_4 {
+#leynwndvpt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yebjspcolf .gt_indent_5 {
+#leynwndvpt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -839,34 +851,22 @@ Table&nbsp;6.1: Opinionated Analysis Development
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (individual)</td>
-<td headers="Question Addressed" class="gt_row gt_left">Can you re-run your analysis with new data and compare it to previous results?</td>
-<td headers="Tool" class="gt_row gt_left">Git</td>
-<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
-    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (individual)</td>
-<td headers="Question Addressed" class="gt_row gt_left">Can you surface the code changes that resulted in a different analysis results?</td>
-<td headers="Tool" class="gt_row gt_left">Git</td>
-<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
-    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Code review</td>
-<td headers="Question Addressed" class="gt_row gt_left">If you make a mistake in your code, will someone notice it?</td>
-<td headers="Tool" class="gt_row gt_left">GitHub</td>
-<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
-    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
-<td headers="Question Addressed" class="gt_row gt_left">Can a second analyst easily contribute code to the analysis?</td>
-<td headers="Tool" class="gt_row gt_left">GitHub</td>
-<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
-    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
-<td headers="Question Addressed" class="gt_row gt_left">If two analysts are developing code simultaneously, can they easily combine them?</td>
-<td headers="Tool" class="gt_row gt_left">GitHub</td>
-<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
-    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
-<td headers="Question Addressed" class="gt_row gt_left">Can you easily track next steps in your analysis?</td>
-<td headers="Tool" class="gt_row gt_left">GitHub</td>
-<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
-    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
-<td headers="Question Addressed" class="gt_row gt_left">Can your collaborators make requests outside of meetings or email?</td>
-<td headers="Tool" class="gt_row gt_left">GitHub</td>
-<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can you re-use logic in different parts of the analysis?</td>
+<td headers="Tool" class="gt_row gt_left">Well-tested functions</td>
+<td headers="Section" class="gt_row gt_center">Programming</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="Question Addressed" class="gt_row gt_left">If you decide to change logic, can you change it in just one place?</td>
+<td headers="Tool" class="gt_row gt_left">Well-tested functions</td>
+<td headers="Section" class="gt_row gt_center">Programming</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Modular, tested, code</td>
+<td headers="Question Addressed" class="gt_row gt_left">If your code is not performing as expected, will you know?</td>
+<td headers="Tool" class="gt_row gt_left">Well-tested functions</td>
+<td headers="Section" class="gt_row gt_center">Programming</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Assertive testing of data, assumptions, and results</td>
+<td headers="Question Addressed" class="gt_row gt_left">If your data are corrupted, do you notice?</td>
+<td headers="Tool" class="gt_row gt_left">library(assertr)</td>
+<td headers="Section" class="gt_row gt_center">Programming</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
@@ -885,67 +885,162 @@ Table&nbsp;6.1: Opinionated Analysis Development
 </figure>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="assertive-testing-of-data" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="assertive-testing-of-data"><span class="header-section-number">9.1</span> Assertive Testing of Data</h2>
+<blockquote class="blockquote">
+<p>While reproducibility drastically reduces the number of errors and opacity of analysis, without assertive testing it runs the risk of applying an analysis to corrupted data, or applying an analysis to data that have drifted too far from assumptions. ~ Parker</p>
+</blockquote>
+<p>Assertions are useful for verifying the quality of data. Many of the principles from assertions and unit testing for functions apply:</p>
+<ul>
+<li>Fail fast, fail often</li>
+<li>Fail loudly</li>
+<li>Fail clearly</li>
+</ul>
+<p>Assertive testing of data and assumptions is often much squishier than the unit testing and assertions from the previous section. We must now rely on subject matter expertise and experience with the data to develop assertions that can catch corruptions of the data or data processing mistakes.</p>
+<blockquote class="blockquote">
+<p>Assertive testing means establishing these quality-control checks – usually based on past knowledge of possible corruptions of the data – and halting an analysis if the quality-control checks are not passed, so the analyst can investigate and hopefully fix (or at least account for) the problem. ~ Parker</p>
+</blockquote>
+<section id="libraryassertr" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="libraryassertr"><span class="header-section-number">9.1.1</span> <code>library(assertr)</code></h3>
+<p><a href="https://docs.ropensci.org/assertr/"><code>library(assertr)</code></a> is a framework for applying assertions to data frames in R. It works well with the pipe (<code>%&gt;%</code> or <code>|&gt;</code>) because the first argument of the five main functions is always a data frame.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Predicate Function
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>&lt;&gt;</code> are used throughout this chapter to indicate blanks that need to be filled in. Don’t actually submit <code>&lt;&gt;</code>. Instead, replace them with the desired text.</p>
+<p>A predicate function is a function that returns a single <code>TRUE</code> or <code>FALSE</code>.</p>
 </div>
 </div>
-<section id="command-line" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="command-line"><span class="header-section-number">6.1</span> Command Line</h2>
-<p>The command line (also known as shell or console) is a way of controlling computers without using a graphical user interface (i.e.&nbsp;pointing-and-clicking). The command line is useful because pointing-and-clicking is tough to reproduce or scale and because lots of useful software is only available through the command line. Furthermore, cloud computing often requires use of the command line.</p>
-<p>There are different ways to use the command line.</p>
-<p>Macs use the Terminal (<a href="#fig-terminal" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>). Open Terminal like any other program on Mac.</p>
-<div id="fig-terminal" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-terminal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/terminal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400">
+<p><code>verify()</code> takes a logical expression. If the all values are <code>TRUE</code> for the logical expression, the code proceeds. If any value is <code>FALSE</code> for the logical expression, the code terminates and returns a diagnostic tibble.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(assertr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>msleep <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">verify</span>(<span class="fu">nrow</span>(.) <span class="sc">==</span> <span class="dv">83</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">verify</span>(sleep_total <span class="sc">&lt;</span> <span class="dv">24</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">verify</span>(<span class="fu">has_class</span>(<span class="st">"sleep_total"</span>, <span class="at">class =</span> <span class="st">"numeric"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+ 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+# ℹ 73 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-terminal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.1: Mac Terminal
-</figcaption>
-</figure>
 </div>
-<p>Git Bash, which is installed with Git, works well on Windows. If you have Git Bash, you should be able to right-click in a desired directory and select “Git Bash Here” to access Git Bash on Windows.</p>
-<p>RStudio contains a terminal in the tab adjacent to the console (<a href="#fig-terminal-rstudio" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>). This will allow us to work at the common line with a common experience on Mac-, Windows-, and Linux-based computers.</p>
-<div id="fig-terminal-rstudio" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-terminal-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/terminal-rstudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>msleep <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">verify</span>(<span class="fu">nrow</span>(.) <span class="sc">==</span> <span class="dv">82</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">verify</span>(sleep_total <span class="sc">&lt;</span> <span class="dv">14</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">verify</span>(<span class="fu">has_class</span>(<span class="st">"sleep_total"</span>, <span class="at">class =</span> <span class="st">"character"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-terminal-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.2: RStudio Terminal
-</figcaption>
-</figure>
+<pre><code>verification [nrow(.) == 82] failed! (1 failure)
+
+    verb redux_fn     predicate column index value
+1 verify       NA nrow(.) == 82     NA     1    NA
+
+Error: assertr stopped execution
+</code></pre>
+<p><code>assert()</code> takes a predicate function and an arbitrary number of variables. <code>assert()</code> will terminate if any values violate the predicate functions. Can apply tests to multiple variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>msleep <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">assert</span>(<span class="fu">within_bounds</span>(<span class="dv">0</span>, <span class="dv">24</span>), <span class="fu">c</span>(sleep_total, sleep_rem, sleep_cycle))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+ 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+# ℹ 73 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
 </div>
-<section id="bash" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="bash"><span class="header-section-number">6.1.1</span> Bash</h3>
-<p>Bash is a shell program and command language that allows us to control our computer at the command line. Fortunately, we only need to know a little Bash for version control with Git.</p>
+</div>
+<p><code>insist()</code> is like <code>assert()</code>, but <code>insist()</code> can make assertions based on the observed data (e.g.&nbsp;throw an error is any value exceed four sample standard deviations from the sample mean).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>msleep <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">insist</span>(<span class="fu">within_n_sds</span>(<span class="at">n =</span> <span class="dv">3</span>), sleep_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+ 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+# ℹ 73 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><code>assert_rows()</code> extends <code>assert()</code> so the assertion can rely on values from multiple columns (e.g.&nbsp;row means within a bound or row must have a certain number of non-missing values).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>msleep <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">assert_rows</span>(num_row_NAs, <span class="fu">within_bounds</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+ 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+# ℹ 73 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><code>insist_rows()</code>extends <code>insist()</code> so the assertion can rely on values from multiple columns. This is less common but can be used to see if any observation exceeds a certain mahalanobis distance from other rows.</p>
 <ul>
-<li><code>pwd</code> - print working directory - prints the file path to the current location in the</li>
-<li><code>ls</code> - list - lists files and folders in the current working directory.</li>
-<li><code>cd</code> - change directory - move the current working directory. Specify the relative path to move down in a directory. Use <code>cd ..</code> to move up a directory.</li>
-<li><code>mkdir</code> - make directory - creates a directory (folder) in the current working directory.</li>
-<li><code>touch</code> - creates a text file with the provided name.</li>
-<li><code>mv</code> - move - moves a file from one location to the other.</li>
-<li><code>cat</code> - concatenate - concatenate and print a file.</li>
-</ul>
-</section>
-<section id="useful-tips" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="useful-tips"><span class="header-section-number">6.1.2</span> Useful tips</h3>
+<li><code>verify()</code> predicate functions
 <ul>
-<li>Tab completion can save a ton of typing. Hitting tab twice shows all of the available options that can complete from the currently typed text.</li>
-<li>Hit the up arrow to cycle through previously submitted commands.</li>
-<li>Use <code>man &lt;command name&gt;</code> to pull up help documentation. Hit <code>q</code> to exit.</li>
-<li>Typing <code>..</code> refers to the directory above the working directory. Writing <code>cd ..</code> changes to the directory above the working directory.</li>
-<li>Typing just <code>cd</code> changes to the home directory.</li>
+<li><code>has_all_names()</code></li>
+<li><code>has_only_names()</code></li>
+<li><code>has_class()</code></li>
+</ul></li>
+<li><code>assert()</code> predicate functions
+<ul>
+<li><code>not_na()</code></li>
+<li><code>within_bounds()</code></li>
+<li><code>in_set()</code></li>
+<li><code>is_uniq()</code></li>
+</ul></li>
+<li><code>insist()</code> predicate functions
+<ul>
+<li><code>within_n_sds()</code></li>
+<li><code>within_n_mads()</code></li>
+</ul></li>
 </ul>
 <div class="callout callout-style-simple callout-none no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -958,130 +1053,137 @@ Figure&nbsp;6.2: RStudio Terminal
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Navigate to the <code>example-project</code> directory using <code>cd</code> in the RStudio terminal.</li>
-<li>Submit <code>pwd</code> to confirm you are in the correct directory.</li>
+<li>Run <code>glimpse(trees)</code>.</li>
+<li><code>verify()</code> that the variables <code>Girth</code> is numeric.</li>
+<li><code>assert()</code> that all three variables are in the interval <span class="math inline">\([0, \infty)\)</span>.</li>
 </ol>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 2</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use the following code to create a new text document called <code>haiku.txt</code> in the working directory.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="bu">pwd</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">ls</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">touch</span> haiku.txt</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 3</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use following to add the haiku “The Old Pond” by Matsuo Basho to <code>haiku.txt</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">cat</span> haiku.txt</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="bu">echo</span> <span class="st">"An old silent pond"</span> <span class="op">&gt;&gt;</span> haiku.txt</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">cat</span> haiku.txt</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="bu">echo</span> <span class="st">"A frog jumps into the pond-"</span> <span class="op">&gt;&gt;</span> haiku.txt</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="bu">echo</span> <span class="st">"Splash! Silence again."</span> <span class="op">&gt;&gt;</span> haiku.txt</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="bu">echo</span> <span class="st">"~Matsuo Basho"</span> <span class="op">&gt;&gt;</span> haiku.txt</span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="fu">cat</span> haiku.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 4</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use the following code to move <code>haiku.txt</code> to a subdirectory called <code>poems/</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ls</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">mkdir</span> poems</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">ls</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">mv</span> haiku.txt poems/haiku.txt</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">ls</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">cat</span> poems/haiku.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<p><a href="https://docs.ropensci.org/assertr/">This vignette</a> demonstrates additional functionality.</p>
+<p><code>library(assertr)</code> is designed to be used early in a workflow. If you want to run the assertions at the end of the workflow and you don’t want to see printed tibble after printed tibble, end the chain of code with the following custom function.</p>
+<pre><code>#' Helper function to silence output from testing code
+#'
+#' @param data A data frame
+#'
+quiet &lt;- function(data) {
+  
+  quiet &lt;- data
+  
+}</code></pre>
+<p>Example: <a href="https://github.com/UI-Research/mobility-from-poverty/blob/version2024/10_construct-database/11_construct_county_all.qmd">Boosting Upward Mobility from Poverty</a></p>
 </section>
-<section id="programs" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="programs"><span class="header-section-number">6.1.3</span> Programs</h3>
-<p>We can run programs from the command line. Commands from programs always start with the name of the program. Running git commands intuitively start with <code>git</code>. For example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">git</span> init</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="why-version-control" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="why-version-control"><span class="header-section-number">6.2</span> Why version control?</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="other-assertions" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="other-assertions"><span class="header-section-number">9.1.2</span> Other Assertions</h3>
+<p><a href="https://cran.r-project.org/web/packages/tidylog/readme/README.html"><code>library(tidylog)</code></a> prints diagnostic information when functions from <code>library(dplyr)</code> and <code>library(tidylog)</code> are used.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(tidylog)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'tidylog'</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Version Control
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:dplyr':
+
+    add_count, add_tally, anti_join, count, distinct, distinct_all,
+    distinct_at, distinct_if, filter, filter_all, filter_at, filter_if,
+    full_join, group_by, group_by_all, group_by_at, group_by_if,
+    inner_join, left_join, mutate, mutate_all, mutate_at, mutate_if,
+    relocate, rename, rename_all, rename_at, rename_if, rename_with,
+    right_join, sample_frac, sample_n, select, select_all, select_at,
+    select_if, semi_join, slice, slice_head, slice_max, slice_min,
+    slice_sample, slice_tail, summarise, summarise_all, summarise_at,
+    summarise_if, summarize, summarize_all, summarize_at, summarize_if,
+    tally, top_frac, top_n, transmute, transmute_all, transmute_at,
+    transmute_if, ungroup</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:tidyr':
+
+    drop_na, fill, gather, pivot_longer, pivot_wider, replace_na,
+    spread, uncount</code></pre>
 </div>
-<div class="callout-body-container callout-body">
-<p>Version control is a system for managing and recording changes to files over time.</p>
-</div>
-</div>
-<p>Version control is essential to managing code and analyses. Good version control can:</p>
-<ul>
-<li>Create a permanent record of changes to code</li>
-<li>Easily undo mistakes by switching between iterations of code</li>
-<li>Allow multiple paths of development while protecting working versions of code</li>
-<li>Encourage communication between collaborators</li>
-<li>Facilitate multiple code reviews</li>
-<li>Be used for external communication</li>
-</ul>
-</section>
-<section id="why-distributed-version-control" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="why-distributed-version-control"><span class="header-section-number">6.3</span> Why distributed version control?</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Centralized version control
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Centralized version control stores all files and the log of those files in one centralized location.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>math_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="sc">~</span>name, <span class="sc">~</span>math_score,</span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="st">"Alec"</span>, <span class="dv">95</span>,</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="st">"Bart"</span>, <span class="dv">97</span>,</span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>)</span>
+<span id="cb17-7"><a href="#cb17-7"></a></span>
+<span id="cb17-8"><a href="#cb17-8"></a>reading_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb17-9"><a href="#cb17-9"></a>  <span class="sc">~</span>name, <span class="sc">~</span>reading_score,</span>
+<span id="cb17-10"><a href="#cb17-10"></a>  <span class="st">"Alec"</span>, <span class="dv">88</span>,</span>
+<span id="cb17-11"><a href="#cb17-11"></a>  <span class="st">"Bart"</span>, <span class="dv">67</span>,</span>
+<span id="cb17-12"><a href="#cb17-12"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span>,</span>
+<span id="cb17-13"><a href="#cb17-13"></a>  <span class="st">"Zeta"</span>, <span class="dv">100</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a>)</span>
+<span id="cb17-15"><a href="#cb17-15"></a></span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="fu">left_join</span>(<span class="at">x =</span> math_scores, <span class="at">y =</span> reading_scores, <span class="at">by =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>left_join: added one column (reading_score)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows only in x   0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows only in y  (1)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; matched rows     3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt;                 ===</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows total       3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  name   math_score reading_score
+  &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 Alec           95            88
+2 Bart           97            67
+3 Carrie        100           100</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">full_join</span>(<span class="at">x =</span> math_scores, <span class="at">y =</span> reading_scores, <span class="at">by =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>full_join: added one column (reading_score)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows only in x   0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows only in y   1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; matched rows     3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt;                 ===</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows total       4</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  name   math_score reading_score
+  &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 Alec           95            88
+2 Bart           97            67
+3 Carrie        100           100
+4 Zeta           NA           100</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>We’ll detach tidylog to keep the rest of this document clean.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">detach</span>(<span class="st">"package:tidylog"</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-Distributed version control
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Distributed version control stores files and logs in one or many locations and has tools for combining the different versions of files and logs.</p>
-</div>
-</div>
-<p>Centralized version control systems like Google Drive or Box are good for sharing a Microsoft Word document, but they are terrible for collaborating on code.</p>
-<p>Distributed version control allows for the simultaneous editing and running of code. It also allows for code development without sacrificing a working version of the code.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1092,23 +1194,125 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Git and GitHub are difficult to motivate a priori but the value is obvious after adopting the tools. We’ve done our best to motivate the tools. If you are unconvinced, we ask that you just trust us on this one.</p>
+<p><code>library(tidylog)</code> is excellent for interactive development of data analyses.</p>
+<p>If you look at <code>library(tidylog)</code> output <em>more than once</em>, then write an assertion to capture the same information.</p>
 </div>
+</div>
+<section id="missing-values" class="level4">
+<h4 class="anchored" data-anchor-id="missing-values">Missing Values</h4>
+<p>The following throws an error if the data set contains any missing values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>missing_values <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(<span class="at">.x =</span> trees, <span class="sc">~</span><span class="fu">sum</span>(<span class="fu">is.na</span>(.x)))</span>
+<span id="cb34-2"><a href="#cb34-2"></a></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">stopifnot</span>(<span class="fu">sum</span>(missing_values) <span class="sc">==</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="git-vs.-github" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="git-vs.-github"><span class="header-section-number">6.4</span> Git vs.&nbsp;GitHub</h2>
+<section id="joins" class="level4">
+<h4 class="anchored" data-anchor-id="joins">Joins</h4>
+<p>Joins are one of the most dangerous parts of any data analysis. We can think of many different types of joins:</p>
+<ul>
+<li>“one-to-one”</li>
+<li>“one-to-many”</li>
+<li>“many-to-one”</li>
+<li>“many-to-many”</li>
+</ul>
+<p>We can provide an expectation for the type of join using the <code>relationship</code> argument in <code>*_join()</code> functions. This is an assertion.</p>
+<p>Consider the test scores data sets from earlier. This should be a one-to-one join because each row in <code>x</code> matches at most 1 row in <code>y</code> and each row in <code>y</code> matches at most 1 row in <code>x</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>math_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="sc">~</span>name, <span class="sc">~</span>math_score,</span>
+<span id="cb35-3"><a href="#cb35-3"></a>  <span class="st">"Alec"</span>, <span class="dv">95</span>,</span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="st">"Bart"</span>, <span class="dv">97</span>,</span>
+<span id="cb35-5"><a href="#cb35-5"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>)</span>
+<span id="cb35-7"><a href="#cb35-7"></a></span>
+<span id="cb35-8"><a href="#cb35-8"></a>reading_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb35-9"><a href="#cb35-9"></a>  <span class="sc">~</span>name, <span class="sc">~</span>reading_score,</span>
+<span id="cb35-10"><a href="#cb35-10"></a>  <span class="st">"Alec"</span>, <span class="dv">88</span>,</span>
+<span id="cb35-11"><a href="#cb35-11"></a>  <span class="st">"Bart"</span>, <span class="dv">67</span>,</span>
+<span id="cb35-12"><a href="#cb35-12"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span>,</span>
+<span id="cb35-13"><a href="#cb35-13"></a>  <span class="st">"Zeta"</span>, <span class="dv">100</span></span>
+<span id="cb35-14"><a href="#cb35-14"></a>)</span>
+<span id="cb35-15"><a href="#cb35-15"></a></span>
+<span id="cb35-16"><a href="#cb35-16"></a><span class="fu">left_join</span>(</span>
+<span id="cb35-17"><a href="#cb35-17"></a>  <span class="at">x =</span> math_scores,</span>
+<span id="cb35-18"><a href="#cb35-18"></a>  <span class="at">y =</span> reading_scores,</span>
+<span id="cb35-19"><a href="#cb35-19"></a>  <span class="at">by =</span> <span class="st">"name"</span>,</span>
+<span id="cb35-20"><a href="#cb35-20"></a>  <span class="at">relationship =</span> <span class="st">"one-to-one"</span></span>
+<span id="cb35-21"><a href="#cb35-21"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  name   math_score reading_score
+  &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 Alec           95            88
+2 Bart           97            67
+3 Carrie        100           100</code></pre>
+</div>
+</div>
+<p>Suppose there were two <code>"Alec"</code> in either data set. Then this code would throw a loud error.</p>
+</section>
+<section id="pivots" class="level4">
+<h4 class="anchored" data-anchor-id="pivots">Pivots</h4>
+<p>Pivots are also one of the most dangerous parts of any data analysis. We can write tests for the number of rows and the class for the output of pivots.</p>
+<p>Consider <code>table4a</code> from <code>library(tidyr)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  country     `1999` `2000`
+  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+1 Afghanistan    745   2666
+2 Brazil       37737  80488
+3 China       212258 213766</code></pre>
+</div>
+</div>
+<p>We want to pivot this data set to be longer because the data set isn’t <a href="https://r4ds.had.co.nz/tidy-data.html">tidy</a>. Before writing code to tidy the data, we can probably come up with a few assertions:</p>
+<ul>
+<li>There should be six rows.</li>
+<li><code>year</code> and <code>cases</code> should be numeric.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>table4a_tidy <span class="ot">&lt;-</span> table4a <span class="sc">|&gt;</span> </span>
+<span id="cb39-2"><a href="#cb39-2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb39-3"><a href="#cb39-3"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">1999</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span>), </span>
+<span id="cb39-4"><a href="#cb39-4"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>, </span>
+<span id="cb39-5"><a href="#cb39-5"></a>    <span class="at">values_to =</span> <span class="st">"cases"</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb39-7"><a href="#cb39-7"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(year))</span>
+<span id="cb39-8"><a href="#cb39-8"></a></span>
+<span id="cb39-9"><a href="#cb39-9"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(table4a_tidy) <span class="sc">==</span> <span class="dv">6</span>)</span>
+<span id="cb39-10"><a href="#cb39-10"></a><span class="fu">stopifnot</span>(<span class="fu">class</span>(<span class="fu">pull</span>(table4a_tidy, year)) <span class="sc">==</span> <span class="st">"numeric"</span>)</span>
+<span id="cb39-11"><a href="#cb39-11"></a><span class="fu">stopifnot</span>(<span class="fu">class</span>(<span class="fu">pull</span>(table4a_tidy, cases)) <span class="sc">==</span> <span class="st">"numeric"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It’s easy to get tired and to cut corners. Assertions never rest.</p>
+<blockquote class="blockquote">
+<p>Understand, that your assertions is out there. It can’t be bargained with. It can’t be reasoned with. It doesn’t feel pity or remorse or fear. It absolutely will not stop ever until your analysis is correct. ~ [Terminator (sort of)]https://www.youtube.com/watch?v=zu0rP2VWLWw)</p>
+</blockquote>
+</section>
+</section>
+</section>
+<section id="assertive-testing-of-assumptions" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="assertive-testing-of-assumptions"><span class="header-section-number">9.2</span> Assertive Testing of Assumptions</h2>
+<p>Assertive testing of assumptions is the squishiest of everything we’ve considered testing. We don’t want to apply an analysis to data that have drifted too far from the assumptions of analysis. We also don’t want to inappropriately apply a set of binary tests (think mechanical null hypothesis testing with p-values).</p>
+<p>At the very least, we should include visualizations and diagnostic tests that systematically explore the assumptions of an analysis in our Quarto documents. Then, we can use version control to track if anything changed unexpectedly.</p>
+<p>Beyond that, we need to rely on subject matter expertise to come up with heuristics for assertions.</p>
+</section>
+<section id="profiling-and-benchmarking" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="profiling-and-benchmarking"><span class="header-section-number">9.3</span> Profiling and Benchmarking</h2>
+<p>We skipped the questions “If you are not using efficient code, will you be able to identify it.”</p>
+<p>Human time is expensive. Machine time is cheap. All else equal, we shouldn’t worry too much about making our code more efficient.</p>
+<p>Sometimes, it is necessary to make our code more efficient. After all, who cares if our analysis is reproducible if it takes two weeks to run?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Git
+Profiling
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Git is a distributed version-control system for tracking changes in code. Git is free, open-source software and can be used locally without an internet connection. It’s like a turbo-charged version of Microsoft Word’s track changes for code.</p>
+<p>Profiling is the systematic measurement of the run-time of each line of code.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1117,255 +1321,23 @@ Git
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-GitHub
+Benchmarking
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="https://github.com/">GitHub</a>, which is owned by Microsoft, is an online hosting service for version control using Git. It also contains useful tools for collaboration and project management. It’s like a turbo-charged version of Google Drive or Box for sharing repositories created using Git.</p>
+<p>Benchmarking is the precise measurement of the performance of a small piece of code. Typically, the code is run multiple times to improve the precision of the measurement.</p>
 </div>
 </div>
-<p>At first, it’s easy to mix up Git and GitHub. Just try to remember that they are separate tools that complement each other well.</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 5</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>If you don’t already have an account, sign up for <a href="https://github.com/">GitHub</a>.</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="ssh-keys-for-authentication" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="ssh-keys-for-authentication"><span class="header-section-number">6.5</span> SSH Keys for Authentication</h2>
-<p>GitHub started requiring token-based or SSH-based authentication in <a href="https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/">2021</a>. We will focus on creating SSH keys for authentication. For instructions on creating a personal access token for authentication, see <a href="#sec-ap-a" class="quarto-xref"><span>Section 6.10</span></a> below.</p>
-<p>We will follow the <a href="https://happygitwithr.com/ssh-keys.html#option-2-set-up-from-the-shell">instructions for setting up SSH keys</a> using the console, or terminal window, from Jenny Bryan’s fantastic <em>Happy Git with R</em>.</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 5</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Follow <a href="https://happygitwithr.com/ssh-keys.html#option-2-set-up-from-the-shell">the instructions</a> for setting up SSH keys using the console. We recommend using the default key location and key name. You can choose whether or not to add a password for the key. Note that if you choose to add a password, you will need to enter that password every time you perform operations with GitHub - so make sure you’ll be able to remember it!</li>
-<li>When you get to the section of the instructions to provide the public key to GitHub, we recommend obtaining the public key as follows:</li>
-</ol>
+<p>Systematically making code more efficient generally proceeds in three steps:</p>
 <ul>
-<li>In a terminal window, run <code>cat ~/.ssh/id_ed25519.pub</code></li>
-<li>Highlight the public key that is printed to the console and copy the text.</li>
-<li>Follow the instructions from Jenny Bryan at 10.5.3 to add the copied key to GitHub.</li>
+<li>Step 1: Profile the entire set of code to identify bottlenecks.</li>
+<li>Step 2: Benchmark small pieces of code that are responsible for the bottleneck.</li>
+<li>Step 3: Try to improve the slow pieces of code. Return to step 2 to evaluate the result.</li>
 </ul>
-</div>
-</div>
-</section>
-<section id="git-github-workflow" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="git-github-workflow"><span class="header-section-number">6.6</span> Git + GitHub Workflow</h2>
-<p><strong>Repository:</strong> A collection of files, often a directory, where files are organized and logged by Git.</p>
-<p>Git and GitHub organize projects into repositories. Typically, a “repo” will correspond with the place where you started a .Rproj. When working with Git and GitHub, your files will exist in two places: <strong>locally</strong> on your computer and <strong>remotely</strong> on GitHub.</p>
-<p>When creating a new repository, you can use either of the following alternatives:</p>
-<ul>
-<li><p>Initialize the repo locally on your computer and later add the repo to GitHub</p></li>
-<li><p>Initialize the repo remotely on GitHub and then copy (clone) the repo to your computer.</p></li>
-</ul>
-<p>To create a repository (only needs to be done once per project):</p>
-<p><code>git init</code> initializes a local Git repository.</p>
-<p>OR</p>
-<p><code>git clone &lt;link&gt;</code> copies a remote repository from GitHub to the location of the working directory on your computer.</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 5</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We’re going to create a repo remotely on GitHub and clone it to our computer.</p>
-<ol type="1">
-<li>Go to GitHub.</li>
-<li>Click the big green “New” button.</li>
-<li>Call the repo <code>first-repo</code>. Select a public repository and check the box that says <code>Add a README file</code>.</li>
-<li>Click the “Create Repository” button.</li>
-<li>Click the green “Code” button and copy the SSH link.</li>
-<li>Navigate to your <code>cli-exercise</code> folder on the command line using <code>cd</code>. Run <code>git clone &lt; link &gt;</code>, where you replace <code>&lt; link &gt;</code> with the SSH link you copied. This will create a folder called <code>first-repo</code> with your repo files, including the <code>README.md</code> file you created when you initialized the repo.</li>
-</ol>
-<p>See <a href="#sec-app-b" class="quarto-xref"><span>Section 6.11</span></a> for the instructions on initializing a repo locally and then adding to GitHub.</p>
-</div>
-</div>
-<section id="basic-approach" class="level3" data-number="6.6.1">
-<h3 data-number="6.6.1" class="anchored" data-anchor-id="basic-approach"><span class="header-section-number">6.6.1</span> Basic Approach</h3>
-<ol type="1">
-<li>Initialize a repository for a project (we’ve already done this!).</li>
-<li>Tell Git which files to track. Track scripts. Avoid tracking data or binary files like <code>.xlsx</code>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
-<li>Take a snapshot of tracked files and add a commit message.</li>
-<li>Save the tracked files to the remote GitHub repository.</li>
-<li>Repeat, repeat, repeat</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/git-github-workflow.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</section>
-<section id="commands" class="level3" data-number="6.6.2">
-<h3 data-number="6.6.2" class="anchored" data-anchor-id="commands"><span class="header-section-number">6.6.2</span> Commands</h3>
-<p><code>git status</code> prints out all of the important information about your repo. Use it before and after most commands to understand how code changes your repo.</p>
-<p><code>git add &lt;file-name&gt;</code> adds a file to staging. It says, “hey look at this!”.</p>
-<p><code>git commit -m "&lt;message&gt;"</code> commits changes made to added files to the repository. It says, “hey, take a snapshot of the things you looked at in the previous command.” <strong>Don’t forget the <code>-m</code>.</strong> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<p><code>git push origin main</code> pushes your local commits to the remote repository on GitHub. It says, “hey, take a look at these snapshots I just made”. It is possible to push to branches other than <code>main</code>. Simply replace <code>main</code> with the desired branch name.</p>
-<p><code>git log --oneline</code> shows the commit history in the repository.</p>
-<p><code>git diff</code> shows changes since the last commit.</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 6</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Navigate to your <code>first-repo</code> directory on the command line and run <code>git status</code> to confirm that there is a git repo.</li>
-<li>In RStudio, create a new R project. Select the option to associate the R project with an existing directory and select the <code>first-repo</code> directory. This will open the <code>first-repo</code> project.</li>
-<li>Create a quarto document. Select the HTML option and give the document whatever title you’d like. Once the document is created, save the untitled document as “index.qmd”. Edit the YML header of the document to set <code>self-contained</code> to true as follows:</li>
-</ol>
-format: 
-      html:
-        self-contained: true
-<ol start="4" type="1">
-<li>In a code chunk, add <code>library(tidyverse)</code> and create any graph with <code>library(ggplot2)</code> and the <code>storms</code> dataset.</li>
-<li>Render the document to html.</li>
-<li>In the terminal, run <code>git add index.qmd index.html</code>. Then run <code>git status</code>.</li>
-<li>Then run <code>git commit -m "add first graph"</code> to commit the two files with a commit message. Then run <code>git status</code> again and observe the change.</li>
-<li>Finally, run <code>git push origin main</code> to push the commit to GitHub. Navigate to the repo on GitHub to confirm that the files have been pushed to your remote repo.</li>
-<li>Make some changes to your the graph in your <code>index.qmd</code> file (e.g.&nbsp;change the color of a geometry, add labels, etc.). Then run steps 5-8 again (with a different commit message in step 7).</li>
-<li>In the GitHub repo, click on <code>index.qmd</code> then click on the History icon in the top right corner. Note that you’ll see your two commits. Click on the most recent commit and notice that you can see the changes that you’ve made to the file.</li>
-</ol>
-</div>
-</div>
-</section>
-</section>
-<section id="sec-ghp" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="sec-ghp"><span class="header-section-number">6.7</span> GitHub Pages</h2>
-<p><a href="https://pages.github.com/">GitHub Pages</a> are free websites hosted directly from a GitHub repository. With a free GitHub account, a GitHub repo must be public to create a GitHub page with that repo. When you create a GitHub page, you associate it with a specific branch of your repo. GitHub Pages will look for an <code>index.html</code>, <code>index.md</code>, or <code>README.md</code> file as the entry file for your site.</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 7</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Go to your GitHub repository and select “Settings” on the top right.</li>
-<li>Under the “Code and Automations” menu on the left side, select “Pages”.</li>
-<li>Under “Build and Deployment” and “Branch”, use the drop down menu to change the branch to “main”. This will trigger the deployment of your GitHub page from the “main” branch of your repository. It will take a bit of time for your GitHub page to be ready.</li>
-<li>Refresh the page, and when you see a box that says “your site is live” at the top of your page, click the link to go to your website!</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="collaboration-using-git-github-with-branching" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="collaboration-using-git-github-with-branching"><span class="header-section-number">6.8</span> Collaboration Using Git + GitHub (with branching)</h2>
-<p>Our workflow so far has involved only one person, but the true power of GitHub comes through collaboration! There are two main models for collaborating with GitHub.</p>
-<ol type="1">
-<li>Shared repository with branching</li>
-<li>Fork and pull</li>
-</ol>
-<p>We have almost exclusively seen approach one used by collaborative teams. Approach two is more common when a repository has been publicized, and someone external to the work wants to propose changes while lacking the ability to “write” (or push) to that repository. Approach one is covered in more detail in the next chapter.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/git-branching.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>A Common Branching Workflow</figcaption>
-</figure>
-</div>
-<p>To add a collaborator to your repository, under Settings select “Collaborators” under the Access menu on the left. Select the “Add people” button and add your collaborators by entering their GitHub user name.</p>
-</section>
-<section id="conclusion" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6.9</span> Conclusion</h2>
-<p>Git is a distributed version-control system. It is used for tracking changes in the code. GitHub is an online hosting service for version control using git. Key workhorse commands are <code>git status</code>, <code>git add</code>, <code>git commit -m &lt;message&gt;</code> <code>git push</code> and <code>git diff</code>. GitHub is also great because it will host websites using GitHub Pages.</p>
-<section id="git-is-confusing" class="level3" data-number="6.9.1">
-<h3 data-number="6.9.1" class="anchored" data-anchor-id="git-is-confusing"><span class="header-section-number">6.9.1</span> Git is Confusing</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="06_reproducible-research-with-git_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="624"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We promise that it’s worth it.</p>
-</section>
-<section id="resources" class="level3" data-number="6.9.2">
-<h3 data-number="6.9.2" class="anchored" data-anchor-id="resources"><span class="header-section-number">6.9.2</span> Resources</h3>
-<ul>
-<li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a></li>
-<li><a href="https://happygitwithr.com/">Happy Git and GitHub for the UserR</a></li>
-<li><a href="https://www.amazon.com/Git-Pocket-Guide-Working-Introduction/dp/1449325866">Git Pocket Guide</a></li>
-<li><a href="https://www.atlassian.com/git">Getting Git Right</a></li>
-<li><a href="https://lab.github.com/">Git Learning Lab</a></li>
-<li><a href="https://guides.github.com/introduction/git-handbook/">Git Handbook</a></li>
-<li><a href="https://guides.github.com/features/mastering-markdown/">Mastering Markdown</a></li>
-<li><a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></li>
-<li><a href="https://guides.github.com/features/wikis/">Documenting Your Projects on GitHub</a></li>
-<li><a href="https://www.katacoda.com/courses/git">Git Tutorial</a></li>
-</ul>
-</section>
-</section>
-<section id="sec-ap-a" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="sec-ap-a"><span class="header-section-number">6.10</span> Personal Access Tokens for Authentication</h2>
-<ol type="1">
-<li>Starting on your GitHub account navigate through the following:
-<ol type="a">
-<li>Click your icon in the far right</li>
-<li>Select <strong>Settings</strong> at the bottom of the drop down menu</li>
-<li>Select <strong>Developer Settings</strong> on the bottom left</li>
-<li>Select <strong>Personal access tokens</strong> on the bottom left</li>
-<li>Select <strong>Generate new token</strong></li>
-</ol></li>
-<li>Set up your Personal Access Token (PAT)
-<ol type="a">
-<li>Add a note describing the use of your token. This is useful if you intend to generate multiple tokens for different uses.</li>
-<li>Select “No expiration”. You may want tokens to expire if that access sensitive resources.</li>
-<li>Select scopes. You must select at least the “repo” scope. You may want to add other scopes but they are not required for this course.</li>
-</ol></li>
-<li>Click <strong>Generate token</strong></li>
-<li>This is your only chance to view the token. Copy and paste the token and store it somewhere safe. If you lose the token, you can always generate a new token.</li>
-<li>Git will prompt you for your GitHub username and password sometimes while cloning repositories or pushing to private repositories. Use your GitHub username when prompted for username. Use your generated PAT when prompted for password.</li>
-</ol>
-</section>
-<section id="sec-app-b" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="sec-app-b"><span class="header-section-number">6.11</span> Initialize a Repo Locally and Add to GitHub</h2>
-<p><em>This only needs to happen once per repository</em></p>
-<ol type="1">
-<li>Initialize a local repository with <code>git init</code> as outlined above.</li>
-<li>On GitHub, click the plus sign in the top, right corner and select <code>New Repository</code>.</li>
-<li>Create a repository with the same name as your directory.</li>
-<li>Copy the code under <strong>…or push an existing repository from the command line</strong> and submit it in the command line that is already open.</li>
-</ol>
+<p>RStudio has built-in tools for profiling the run time and memory usage of large chunks of code. See <a href="https://adv-r.hadley.nz/perf-measure.html#profiling">this section</a> of Advanced R to learn more.</p>
+<p><code>library(microbenchmark)</code> has robust tools for benchmarking code. See <a href="https://adv-r.hadley.nz/perf-measure.html#microbenchmarking">this section</a> of Advanced R to learn more.</p>
 
 
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>GitHub refuses to store files larger than 100 MiB. This poses a challenge to writing reproducible code. However, many data sources can be downloaded directly from the web or via APIs, allowing code to be reproducible without relying on storing large data sets on GitHub. Materials later in this book discuss scaping data from the web and using APIs.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>The <code>-m</code> stands for <code>message</code>. Writing a brief commit message like “fixes bug in data cleaning script” can help collaborators (including your future self) understand the purpose of your commits.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1780,13 +1752,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05_advanced-quarto.html" class="pagination-link" aria-label="Advanced Quarto">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Advanced Quarto</span></span>
+      <a href="./functions-and-tests.html" class="pagination-link" aria-label="Modular, Tested Code">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07_advanced-git.html" class="pagination-link" aria-label="Advanced Git and Github">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./renv.html" class="pagination-link" aria-label="`library(renv)`">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -9,6 +9,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+![Chemistry stencils that used to be used for drawing equipment in lab notebooks](images/Schablone_Logarex_25524-S,_Chemie_II.jpg)
+
 ```{r hidden-here-load}
 #| include: false
 

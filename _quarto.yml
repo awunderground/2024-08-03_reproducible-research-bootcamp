@@ -24,9 +24,15 @@ book:
         - 06_reproducible-research-with-git.qmd
         - 07_advanced-git.qmd
     - part: Programming
+      chapters:
+        - functions-and-tests.qmd
+        - assertive-testing.qmd
     - part: Environment Management
       chapters:
         - renv.qmd
+    - part: Culture and Ethics
+      chapters:
+        - culture-and-ethics.qmd
     - references.qmd
   appendices:
     - reproducible-research-bootcamp_software-installation.qmd
