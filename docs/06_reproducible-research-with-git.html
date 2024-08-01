@@ -272,12 +272,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
@@ -295,6 +289,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
@@ -324,8 +324,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#command-line" id="toc-command-line" class="nav-link active" data-scroll-target="#command-line"><span class="header-section-number">6.1</span> Command Line</a>
   <ul class="collapse">
-  <li><a href="#useful-tips" id="toc-useful-tips" class="nav-link" data-scroll-target="#useful-tips"><span class="header-section-number">6.1.1</span> Useful tips</a></li>
-  <li><a href="#programs" id="toc-programs" class="nav-link" data-scroll-target="#programs"><span class="header-section-number">6.1.2</span> Programs</a></li>
+  <li><a href="#bash" id="toc-bash" class="nav-link" data-scroll-target="#bash"><span class="header-section-number">6.1.1</span> Bash</a></li>
+  <li><a href="#useful-tips" id="toc-useful-tips" class="nav-link" data-scroll-target="#useful-tips"><span class="header-section-number">6.1.2</span> Useful tips</a></li>
+  <li><a href="#programs" id="toc-programs" class="nav-link" data-scroll-target="#programs"><span class="header-section-number">6.1.3</span> Programs</a></li>
   </ul></li>
   <li><a href="#why-version-control" id="toc-why-version-control" class="nav-link" data-scroll-target="#why-version-control"><span class="header-section-number">6.2</span> Why version control?</a></li>
   <li><a href="#why-distributed-version-control" id="toc-why-distributed-version-control" class="nav-link" data-scroll-target="#why-distributed-version-control"><span class="header-section-number">6.3</span> Why distributed version control?</a></li>
@@ -368,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
   <div class="abstract">
     <div class="block-title">Abstract</div>
-    Git and Github are powerful software tools used to control different versions of a codebase, track changes, and collaborate with other programmers. This section introduces both tools.
+    Git and GitHub are powerful software tools used to control different versions of a codebase, track changes, and collaborate with other programmers. This section introduces both tools.
   </div>
 </div>
 
@@ -376,6 +377,514 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="cell" data-layout-align="center">
+<div id="tbl-roadmap" class="cell quarto-float anchored" data-layout-align="center">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Opinionated Analysis Development
+</figcaption>
+<div aria-describedby="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="yebjspcolf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yebjspcolf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yebjspcolf thead, #yebjspcolf tbody, #yebjspcolf tfoot, #yebjspcolf tr, #yebjspcolf td, #yebjspcolf th {
+  border-style: none;
+}
+
+#yebjspcolf p {
+  margin: 0;
+  padding: 0;
+}
+
+#yebjspcolf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yebjspcolf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yebjspcolf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yebjspcolf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yebjspcolf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yebjspcolf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yebjspcolf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yebjspcolf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yebjspcolf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yebjspcolf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yebjspcolf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yebjspcolf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yebjspcolf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yebjspcolf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yebjspcolf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yebjspcolf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yebjspcolf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yebjspcolf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yebjspcolf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yebjspcolf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yebjspcolf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yebjspcolf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yebjspcolf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yebjspcolf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yebjspcolf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yebjspcolf .gt_left {
+  text-align: left;
+}
+
+#yebjspcolf .gt_center {
+  text-align: center;
+}
+
+#yebjspcolf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yebjspcolf .gt_font_normal {
+  font-weight: normal;
+}
+
+#yebjspcolf .gt_font_bold {
+  font-weight: bold;
+}
+
+#yebjspcolf .gt_font_italic {
+  font-style: italic;
+}
+
+#yebjspcolf .gt_super {
+  font-size: 65%;
+}
+
+#yebjspcolf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yebjspcolf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yebjspcolf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yebjspcolf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yebjspcolf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yebjspcolf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yebjspcolf .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Opinionated Analysis Development</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Opinionated Approach">Opinionated Approach</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Question Addressed">Question Addressed</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Tool<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>">Tool<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Section<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>">Section<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (individual)</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can you re-run your analysis with new data and compare it to previous results?</td>
+<td headers="Tool" class="gt_row gt_left">Git</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (individual)</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can you surface the code changes that resulted in a different analysis results?</td>
+<td headers="Tool" class="gt_row gt_left">Git</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Code review</td>
+<td headers="Question Addressed" class="gt_row gt_left">If you make a mistake in your code, will someone notice it?</td>
+<td headers="Tool" class="gt_row gt_left">GitHub</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can a second analyst easily contribute code to the analysis?</td>
+<td headers="Tool" class="gt_row gt_left">GitHub</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="Question Addressed" class="gt_row gt_left">If two analysts are developing code simultaneously, can they easily combine them?</td>
+<td headers="Tool" class="gt_row gt_left">GitHub</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can you easily track next steps in your analysis?</td>
+<td headers="Tool" class="gt_row gt_left">GitHub</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Version control (collaborative)</td>
+<td headers="Question Addressed" class="gt_row gt_left">Can your collaborators make requests outside of meetings or email?</td>
+<td headers="Tool" class="gt_row gt_left">GitHub</td>
+<td headers="Section" class="gt_row gt_center">Version Control</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4"><strong>Source:</strong> Parker, Hilary. n.d. “Opinionated Analysis Development.” <a href="https://doi.org/10.7287/peerj.preprints.3210v1">https://doi.org/10.7287/peerj.preprints.3210v1</a>.</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Added by Aaron R. Williams</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -392,20 +901,52 @@ Note
 <section id="command-line" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="command-line"><span class="header-section-number">6.1</span> Command Line</h2>
 <p>The command line (also known as shell or console) is a way of controlling computers without using a graphical user interface (i.e.&nbsp;pointing-and-clicking). The command line is useful because pointing-and-clicking is tough to reproduce or scale and because lots of useful software is only available through the command line. Furthermore, cloud computing often requires use of the command line.</p>
-<p>We will run Bash, a command line program, using Terminal on Mac and Git Bash on Windows. Open Terminal like any other program on Mac. Right-click in a desired directory and select “Git Bash Here” to access Git Bash on Windows.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/terminal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p>There are different ways to use the command line.</p>
+<p>Macs use the Terminal (<a href="#fig-terminal" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>). Open Terminal like any other program on Mac.</p>
+<div id="fig-terminal" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-terminal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/terminal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-terminal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Mac Terminal
+</figcaption>
 </figure>
 </div>
-<p>Fortunately, we only need to know a little Bash for version control with Git and cloud computing.</p>
-<p><code>pwd</code> - print working directory - prints the file path to the current location in the</p>
-<p><code>ls</code> - list - lists files and folders in the current working directory.</p>
-<p><code>cd</code> - change directory - move the current working directory.</p>
-<p><code>mkdir</code> - make directory - creates a directory (folder) in the current working directory.</p>
-<p><code>touch</code> - creates a text file with the provided name.</p>
-<p><code>mv</code> - move - moves a file from one location to the other.</p>
-<p><code>cat</code> - concatenate - concatenate and print a file.</p>
+<p>Git Bash, which is installed with Git, works well on Windows. If you have Git Bash, you should be able to right-click in a desired directory and select “Git Bash Here” to access Git Bash on Windows.</p>
+<p>RStudio contains a terminal in the tab adjacent to the console (<a href="#fig-terminal-rstudio" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>). This will allow us to work at the common line with a common experience on Mac-, Windows-, and Linux-based computers.</p>
+<div id="fig-terminal-rstudio" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-terminal-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/terminal-rstudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-terminal-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: RStudio Terminal
+</figcaption>
+</figure>
+</div>
+<section id="bash" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="bash"><span class="header-section-number">6.1.1</span> Bash</h3>
+<p>Bash is a shell program and command language that allows us to control our computer at the command line. Fortunately, we only need to know a little Bash for version control with Git.</p>
+<ul>
+<li><code>pwd</code> - print working directory - prints the file path to the current location in the</li>
+<li><code>ls</code> - list - lists files and folders in the current working directory.</li>
+<li><code>cd</code> - change directory - move the current working directory. Specify the relative path to move down in a directory. Use <code>cd ..</code> to move up a directory.</li>
+<li><code>mkdir</code> - make directory - creates a directory (folder) in the current working directory.</li>
+<li><code>touch</code> - creates a text file with the provided name.</li>
+<li><code>mv</code> - move - moves a file from one location to the other.</li>
+<li><code>cat</code> - concatenate - concatenate and print a file.</li>
+</ul>
+</section>
+<section id="useful-tips" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="useful-tips"><span class="header-section-number">6.1.2</span> Useful tips</h3>
+<ul>
+<li>Tab completion can save a ton of typing. Hitting tab twice shows all of the available options that can complete from the currently typed text.</li>
+<li>Hit the up arrow to cycle through previously submitted commands.</li>
+<li>Use <code>man &lt;command name&gt;</code> to pull up help documentation. Hit <code>q</code> to exit.</li>
+<li>Typing <code>..</code> refers to the directory above the working directory. Writing <code>cd ..</code> changes to the directory above the working directory.</li>
+<li>Typing just <code>cd</code> changes to the home directory.</li>
+</ul>
 <div class="callout callout-style-simple callout-none no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -417,8 +958,7 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Create a new directory called <code>cli-exercise</code>.</li>
-<li>Navigate to this directory using <code>cd</code> in the Terminal or Git Bash.</li>
+<li>Navigate to the <code>example-project</code> directory using <code>cd</code> in the RStudio terminal.</li>
 <li>Submit <code>pwd</code> to confirm you are in the correct directory.</li>
 </ol>
 </div>
@@ -479,18 +1019,9 @@ Note
 <span id="cb3-6"><a href="#cb3-6"></a><span class="fu">cat</span> poems/haiku.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<section id="useful-tips" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="useful-tips"><span class="header-section-number">6.1.1</span> Useful tips</h3>
-<ul>
-<li>Tab completion can save a ton of typing. Hitting tab twice shows all of the available options that can complete from the currently typed text.</li>
-<li>Hit the up arrow to cycle through previously submitted commands.</li>
-<li>Use <code>man &lt;command name&gt;</code> to pull up help documentation. Hit <code>q</code> to exit.</li>
-<li>Typing <code>..</code> refers to the directory above the working directory. Writing <code>cd ..</code> changes to the directory above the working directory.</li>
-<li>Typing just <code>cd</code> changes to the home directory.</li>
-</ul>
 </section>
-<section id="programs" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="programs"><span class="header-section-number">6.1.2</span> Programs</h3>
+<section id="programs" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="programs"><span class="header-section-number">6.1.3</span> Programs</h3>
 <p>We can run programs from the command line. Commands from programs always start with the name of the program. Running git commands intuitively start with <code>git</code>. For example:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">git</span> init</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -498,28 +1029,117 @@ Note
 </section>
 <section id="why-version-control" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="why-version-control"><span class="header-section-number">6.2</span> Why version control?</h2>
-<p>Version control is a system for managing and recording changes to files over time. Version control is essential to managing code and analyses. Good version control can:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Version Control
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Version control is a system for managing and recording changes to files over time.</p>
+</div>
+</div>
+<p>Version control is essential to managing code and analyses. Good version control can:</p>
 <ul>
-<li>Limit the chance of making a mistake</li>
-<li>Maximize the chance of catching a mistake when it happens</li>
 <li>Create a permanent record of changes to code</li>
 <li>Easily undo mistakes by switching between iterations of code</li>
 <li>Allow multiple paths of development while protecting working versions of code</li>
 <li>Encourage communication between collaborators</li>
+<li>Facilitate multiple code reviews</li>
 <li>Be used for external communication</li>
 </ul>
 </section>
 <section id="why-distributed-version-control" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="why-distributed-version-control"><span class="header-section-number">6.3</span> Why distributed version control?</h2>
-<p><em>Centralized version control</em> stores all files and the log of those files in one centralized location. <em>Distributed version control</em> stores files and logs in one or many locations and has tools for combining the different versions of files and logs.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Centralized version control
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Centralized version control stores all files and the log of those files in one centralized location.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Distributed version control
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Distributed version control stores files and logs in one or many locations and has tools for combining the different versions of files and logs.</p>
+</div>
+</div>
 <p>Centralized version control systems like Google Drive or Box are good for sharing a Microsoft Word document, but they are terrible for collaborating on code.</p>
 <p>Distributed version control allows for the simultaneous editing and running of code. It also allows for code development without sacrificing a working version of the code.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Git and GitHub are difficult to motivate a priori but the value is obvious after adopting the tools. We’ve done our best to motivate the tools. If you are unconvinced, we ask that you just trust us on this one.</p>
+</div>
+</div>
 </section>
 <section id="git-vs.-github" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="git-vs.-github"><span class="header-section-number">6.4</span> Git vs.&nbsp;GitHub</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Git
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Git is a distributed version-control system for tracking changes in code. Git is free, open-source software and can be used locally without an internet connection. It’s like a turbo-charged version of Microsoft Word’s track changes for code.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+GitHub
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><a href="https://github.com/">GitHub</a>, which is owned by Microsoft, is an online hosting service for version control using Git. It also contains useful tools for collaboration and project management. It’s like a turbo-charged version of Google Drive or Box for sharing repositories created using Git.</p>
+</div>
+</div>
 <p>At first, it’s easy to mix up Git and GitHub. Just try to remember that they are separate tools that complement each other well.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 5</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>If you don’t already have an account, sign up for <a href="https://github.com/">GitHub</a>.</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="ssh-keys-for-authentication" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="ssh-keys-for-authentication"><span class="header-section-number">6.5</span> SSH Keys for Authentication</h2>
@@ -536,7 +1156,7 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Follow the instructions above for setting up SSH keys using the console. We recommend using the default key location and key name. You can choose whether or not to add a password for the key. Note that if you choose to add a password, you will need to enter that password every time you perform operations with GitHub - so make sure you’ll be able to remember it!</li>
+<li>Follow <a href="https://happygitwithr.com/ssh-keys.html#option-2-set-up-from-the-shell">the instructions</a> for setting up SSH keys using the console. We recommend using the default key location and key name. You can choose whether or not to add a password for the key. Note that if you choose to add a password, you will need to enter that password every time you perform operations with GitHub - so make sure you’ll be able to remember it!</li>
 <li>When you get to the section of the instructions to provide the public key to GitHub, we recommend obtaining the public key as follows:</li>
 </ol>
 <ul>
@@ -683,7 +1303,7 @@ format:
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="06_reproducible-research-with-git_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="624"></p>
+<p><img src="06_reproducible-research-with-git_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="624"></p>
 </figure>
 </div>
 </div>
@@ -743,7 +1363,7 @@ format:
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Github refuses to store files larger than 100 MiB. This poses a challenge to writing reproducible code. However, many data sources can be downloaded directly from the web or via APIs, allowing code to be reproducible without relying on storing large data sets on Github. Materials later in this book discuss scaping data from the web and using APIs.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>GitHub refuses to store files larger than 100 MiB. This poses a challenge to writing reproducible code. However, many data sources can be downloaded directly from the web or via APIs, allowing code to be reproducible without relying on storing large data sets on GitHub. Materials later in this book discuss scaping data from the web and using APIs.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>The <code>-m</code> stands for <code>message</code>. Writing a brief commit message like “fixes bug in data cleaning script” can help collaborators (including your future self) understand the purpose of your commits.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
