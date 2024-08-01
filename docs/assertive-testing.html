@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reproducible Research Bootcamp - 8&nbsp; Modular, Tested Code</title>
+<title>Reproducible Research Bootcamp - 9&nbsp; Modular, Tested Code</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./assertive-testing.html" rel="next">
-<link href="./07_advanced-git.html" rel="prev">
+<link href="./renv.html" rel="next">
+<link href="./functions-and-tests.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -115,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions-and-tests.html">Programming</a></li><li class="breadcrumb-item"><a href="./functions-and-tests.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions-and-tests.html">Programming</a></li><li class="breadcrumb-item"><a href="./assertive-testing.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -243,13 +272,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions-and-tests.html" class="sidebar-item-text sidebar-link active">
+  <a href="./functions-and-tests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assertive-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="./assertive-testing.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
   </div>
 </li>
@@ -305,32 +334,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#fundamental-ideas" id="toc-fundamental-ideas" class="nav-link active" data-scroll-target="#fundamental-ideas"><span class="header-section-number">8.1</span> Fundamental Ideas</a></li>
-  <li><a href="#modular-tested-code" id="toc-modular-tested-code" class="nav-link" data-scroll-target="#modular-tested-code"><span class="header-section-number">8.2</span> Modular, Tested Code</a>
+  <li><a href="#assertive-testing-of-data" id="toc-assertive-testing-of-data" class="nav-link active" data-scroll-target="#assertive-testing-of-data"><span class="header-section-number">9.1</span> Assertive Testing of Data</a>
   <ul class="collapse">
-  <li><a href="#example-functions" id="toc-example-functions" class="nav-link" data-scroll-target="#example-functions"><span class="header-section-number">8.2.1</span> Example Functions</a></li>
-  <li><a href="#function-basics" id="toc-function-basics" class="nav-link" data-scroll-target="#function-basics"><span class="header-section-number">8.2.2</span> Function Basics</a></li>
-  <li><a href="#functions-with-multiple-outputs" id="toc-functions-with-multiple-outputs" class="nav-link" data-scroll-target="#functions-with-multiple-outputs"><span class="header-section-number">8.2.3</span> Functions with Multiple Outputs</a></li>
-  <li><a href="#referential-transparency" id="toc-referential-transparency" class="nav-link" data-scroll-target="#referential-transparency"><span class="header-section-number">8.2.4</span> Referential Transparency</a></li>
-  <li><a href="#limitations-of-macros" id="toc-limitations-of-macros" class="nav-link" data-scroll-target="#limitations-of-macros"><span class="header-section-number">8.2.5</span> Limitations of Macros</a></li>
+  <li><a href="#libraryassertr" id="toc-libraryassertr" class="nav-link" data-scroll-target="#libraryassertr"><span class="header-section-number">9.1.1</span> <code>library(assertr)</code></a></li>
+  <li><a href="#other-assertions" id="toc-other-assertions" class="nav-link" data-scroll-target="#other-assertions"><span class="header-section-number">9.1.2</span> Other Assertions</a></li>
   </ul></li>
-  <li><a href="#assertions-in-functions" id="toc-assertions-in-functions" class="nav-link" data-scroll-target="#assertions-in-functions"><span class="header-section-number">8.3</span> Assertions in Functions</a>
-  <ul class="collapse">
-  <li><a href="#unit-tests-for-functions" id="toc-unit-tests-for-functions" class="nav-link" data-scroll-target="#unit-tests-for-functions"><span class="header-section-number">8.3.1</span> Unit Tests for Functions</a></li>
-  </ul></li>
-  <li><a href="#custom-r-packages" id="toc-custom-r-packages" class="nav-link" data-scroll-target="#custom-r-packages"><span class="header-section-number">8.4</span> Custom R Packages</a>
-  <ul class="collapse">
-  <li><a href="#use-this" id="toc-use-this" class="nav-link" data-scroll-target="#use-this"><span class="header-section-number">8.4.1</span> Use This</a></li>
-  </ul></li>
+  <li><a href="#assertive-testing-of-assumptions" id="toc-assertive-testing-of-assumptions" class="nav-link" data-scroll-target="#assertive-testing-of-assumptions"><span class="header-section-number">9.2</span> Assertive Testing of Assumptions</a></li>
+  <li><a href="#profiling-and-benchmarking" id="toc-profiling-and-benchmarking" class="nav-link" data-scroll-target="#profiling-and-benchmarking"><span class="header-section-number">9.3</span> Profiling and Benchmarking</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions-and-tests.html">Programming</a></li><li class="breadcrumb-item"><a href="./functions-and-tests.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions-and-tests.html">Programming</a></li><li class="breadcrumb-item"><a href="./assertive-testing.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></h1>
 </div>
 
 
@@ -348,36 +367,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <dl>
-<dt><img src="images/Lego_Color_Bricks.jpg" class="img-fluid" alt="Log bricks"></dt>
+<dt><img src="images/Exams_Start..._Now.jpg" class="img-fluid" alt="A multiple-choice test"></dt>
 <dd>
-<p>Photo by <a href="https://en.wikipedia.org/wiki/Lego#/media/File:Lego_Color_Bricks.jpg">Alan Chia</a></p>
+<p>Photo by <a href="https://en.wikipedia.org/wiki/Multiple_choice#/media/File:Exams_Start..._Now.jpg">Ryan McGilchrist</a></p>
 </dd>
 </dl>
 <div class="cell">
 <div id="tbl-roadmap" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;8.1: Opinionated Analysis Development
+Table&nbsp;9.1: Opinionated Analysis Development
 </figcaption>
 <div aria-describedby="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="xuwqlsmjrl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xuwqlsmjrl table {
+<div id="vlwzuqssmc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vlwzuqssmc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xuwqlsmjrl thead, #xuwqlsmjrl tbody, #xuwqlsmjrl tfoot, #xuwqlsmjrl tr, #xuwqlsmjrl td, #xuwqlsmjrl th {
+#vlwzuqssmc thead, #vlwzuqssmc tbody, #vlwzuqssmc tfoot, #vlwzuqssmc tr, #vlwzuqssmc td, #vlwzuqssmc th {
   border-style: none;
 }
 
-#xuwqlsmjrl p {
+#vlwzuqssmc p {
   margin: 0;
   padding: 0;
 }
 
-#xuwqlsmjrl .gt_table {
+#vlwzuqssmc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -403,12 +422,12 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-left-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_caption {
+#vlwzuqssmc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xuwqlsmjrl .gt_title {
+#vlwzuqssmc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -420,7 +439,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-bottom-width: 0;
 }
 
-#xuwqlsmjrl .gt_subtitle {
+#vlwzuqssmc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -432,7 +451,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-top-width: 0;
 }
 
-#xuwqlsmjrl .gt_heading {
+#vlwzuqssmc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -444,13 +463,13 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_bottom_border {
+#vlwzuqssmc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_col_headings {
+#vlwzuqssmc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -465,7 +484,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_col_heading {
+#vlwzuqssmc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -485,7 +504,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#xuwqlsmjrl .gt_column_spanner_outer {
+#vlwzuqssmc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -497,15 +516,15 @@ Table&nbsp;8.1: Opinionated Analysis Development
   padding-right: 4px;
 }
 
-#xuwqlsmjrl .gt_column_spanner_outer:first-child {
+#vlwzuqssmc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xuwqlsmjrl .gt_column_spanner_outer:last-child {
+#vlwzuqssmc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xuwqlsmjrl .gt_column_spanner {
+#vlwzuqssmc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -517,11 +536,11 @@ Table&nbsp;8.1: Opinionated Analysis Development
   width: 100%;
 }
 
-#xuwqlsmjrl .gt_spanner_row {
+#vlwzuqssmc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xuwqlsmjrl .gt_group_heading {
+#vlwzuqssmc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -547,7 +566,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   text-align: left;
 }
 
-#xuwqlsmjrl .gt_empty_group_heading {
+#vlwzuqssmc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -562,15 +581,15 @@ Table&nbsp;8.1: Opinionated Analysis Development
   vertical-align: middle;
 }
 
-#xuwqlsmjrl .gt_from_md > :first-child {
+#vlwzuqssmc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xuwqlsmjrl .gt_from_md > :last-child {
+#vlwzuqssmc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xuwqlsmjrl .gt_row {
+#vlwzuqssmc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -589,7 +608,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#xuwqlsmjrl .gt_stub {
+#vlwzuqssmc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -602,7 +621,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#xuwqlsmjrl .gt_stub_row_group {
+#vlwzuqssmc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -616,15 +635,15 @@ Table&nbsp;8.1: Opinionated Analysis Development
   vertical-align: top;
 }
 
-#xuwqlsmjrl .gt_row_group_first td {
+#vlwzuqssmc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xuwqlsmjrl .gt_row_group_first th {
+#vlwzuqssmc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xuwqlsmjrl .gt_summary_row {
+#vlwzuqssmc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -634,16 +653,16 @@ Table&nbsp;8.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#xuwqlsmjrl .gt_first_summary_row {
+#vlwzuqssmc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_first_summary_row.thick {
+#vlwzuqssmc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xuwqlsmjrl .gt_last_summary_row {
+#vlwzuqssmc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -653,7 +672,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_grand_summary_row {
+#vlwzuqssmc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -663,7 +682,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#xuwqlsmjrl .gt_first_grand_summary_row {
+#vlwzuqssmc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -673,7 +692,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-top-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_last_grand_summary_row_top {
+#vlwzuqssmc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -683,11 +702,11 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_striped {
+#vlwzuqssmc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xuwqlsmjrl .gt_table_body {
+#vlwzuqssmc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -696,7 +715,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_footnotes {
+#vlwzuqssmc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -710,7 +729,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_footnote {
+#vlwzuqssmc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -719,7 +738,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#xuwqlsmjrl .gt_sourcenotes {
+#vlwzuqssmc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -733,7 +752,7 @@ Table&nbsp;8.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#xuwqlsmjrl .gt_sourcenote {
+#vlwzuqssmc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -741,63 +760,63 @@ Table&nbsp;8.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#xuwqlsmjrl .gt_left {
+#vlwzuqssmc .gt_left {
   text-align: left;
 }
 
-#xuwqlsmjrl .gt_center {
+#vlwzuqssmc .gt_center {
   text-align: center;
 }
 
-#xuwqlsmjrl .gt_right {
+#vlwzuqssmc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xuwqlsmjrl .gt_font_normal {
+#vlwzuqssmc .gt_font_normal {
   font-weight: normal;
 }
 
-#xuwqlsmjrl .gt_font_bold {
+#vlwzuqssmc .gt_font_bold {
   font-weight: bold;
 }
 
-#xuwqlsmjrl .gt_font_italic {
+#vlwzuqssmc .gt_font_italic {
   font-style: italic;
 }
 
-#xuwqlsmjrl .gt_super {
+#vlwzuqssmc .gt_super {
   font-size: 65%;
 }
 
-#xuwqlsmjrl .gt_footnote_marks {
+#vlwzuqssmc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xuwqlsmjrl .gt_asterisk {
+#vlwzuqssmc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xuwqlsmjrl .gt_indent_1 {
+#vlwzuqssmc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xuwqlsmjrl .gt_indent_2 {
+#vlwzuqssmc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xuwqlsmjrl .gt_indent_3 {
+#vlwzuqssmc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xuwqlsmjrl .gt_indent_4 {
+#vlwzuqssmc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xuwqlsmjrl .gt_indent_5 {
+#vlwzuqssmc .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -849,200 +868,163 @@ Table&nbsp;8.1: Opinionated Analysis Development
 </figure>
 </div>
 </div>
-<section id="fundamental-ideas" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="fundamental-ideas"><span class="header-section-number">8.1</span> Fundamental Ideas</h2>
+<section id="assertive-testing-of-data" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="assertive-testing-of-data"><span class="header-section-number">9.1</span> Assertive Testing of Data</h2>
+<blockquote class="blockquote">
+<p>While reproducibility drastically reduces the number of errors and opacity of analysis, without assertive testing it runs the risk of applying an analysis to corrupted data, or applying an analysis to data that have drifted too far from assumptions. ~ Parker</p>
+</blockquote>
+<p>Assertions are useful for verifying the quality of data. Many of the principles from assertions and unit testing for functions apply:</p>
+<ul>
+<li>Fail fast, fail often</li>
+<li>Fail loudly</li>
+<li>Fail clearly</li>
+</ul>
+<p>Assertive testing of data and assumptions is often much squishier than the unit testing and assertions from the previous section. We must now rely on subject matter expertise and experience with the data to develop assertions that can catch corruptions of the data or data processing mistakes.</p>
+<blockquote class="blockquote">
+<p>Assertive testing means establishing these quality-control checks – usually based on past knowledge of possible corruptions of the data – and halting an analysis if the quality-control checks are not passed, so the analyst can investigate and hopefully fix (or at least account for) the problem. ~ Parker</p>
+</blockquote>
+<section id="libraryassertr" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="libraryassertr"><span class="header-section-number">9.1.1</span> <code>library(assertr)</code></h3>
+<p><a href="https://docs.ropensci.org/assertr/"><code>library(assertr)</code></a> is a framework for applying assertions to data frames in R. It works well with the pipe (<code>%&gt;%</code> or <code>|&gt;</code>) because the first argument of the five main functions is always a data frame.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Defensive programming
+Predicate Function
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Defensive programming</strong> is a set of practices intended to avoid common mistakes and to catch mistakes with assertions and unit tests.</p>
+<p>A predicate function is a function that returns a single <code>TRUE</code> or <code>FALSE</code>.</p>
 </div>
 </div>
-<p><a href="https://swc-osg-workshop.github.io/2017-05-17-JLAB/novice/python/05-defensive.html">Software carpentry</a> and <a href="https://www.nickeubank.com/wp-content/uploads/2016/06/Eubank_EmbraceYourFallibility.pdf">Nick Eubank</a> identify defensive programming as fundamental to avoiding mistakes in an analysis. Defensive programming can also add clarity to an analysis.</p>
-<p><a href="https://swc-osg-workshop.github.io/2017-05-17-JLAB/novice/python/05-defensive.html">Software carpentry</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> highlights three parts of defensive programming:</p>
-<blockquote class="blockquote">
+<p><code>verify()</code> takes a logical expression. If the all values are <code>TRUE</code> for the logical expression, the code proceeds. If any value is <code>FALSE</code> for the logical expression, the code terminates and returns a diagnostic tibble.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(assertr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>msleep <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">verify</span>(<span class="fu">nrow</span>(.) <span class="sc">==</span> <span class="dv">83</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">verify</span>(sleep_total <span class="sc">&lt;</span> <span class="dv">24</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">verify</span>(<span class="fu">has_class</span>(<span class="st">"sleep_total"</span>, <span class="at">class =</span> <span class="st">"numeric"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+ 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+# ℹ 73 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>msleep <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">verify</span>(<span class="fu">nrow</span>(.) <span class="sc">==</span> <span class="dv">82</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">verify</span>(sleep_total <span class="sc">&lt;</span> <span class="dv">14</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">verify</span>(<span class="fu">has_class</span>(<span class="st">"sleep_total"</span>, <span class="at">class =</span> <span class="st">"character"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>verification [nrow(.) == 82] failed! (1 failure)
+
+    verb redux_fn     predicate column index value
+1 verify       NA nrow(.) == 82     NA     1    NA
+
+Error: assertr stopped execution
+</code></pre>
+<p><code>assert()</code> takes a predicate function and an arbitrary number of variables. <code>assert()</code> will terminate if any values violate the predicate functions. Can apply tests to multiple variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>msleep <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">assert</span>(<span class="fu">within_bounds</span>(<span class="dv">0</span>, <span class="dv">24</span>), <span class="fu">c</span>(sleep_total, sleep_rem, sleep_cycle))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+ 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+# ℹ 73 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><code>insist()</code> is like <code>assert()</code>, but <code>insist()</code> can make assertions based on the observed data (e.g.&nbsp;throw an error is any value exceed four sample standard deviations from the sample mean).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>msleep <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">insist</span>(<span class="fu">within_n_sds</span>(<span class="at">n =</span> <span class="dv">3</span>), sleep_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+ 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+# ℹ 73 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><code>assert_rows()</code> extends <code>assert()</code> so the assertion can rely on values from multiple columns (e.g.&nbsp;row means within a bound or row must have a certain number of non-missing values).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>msleep <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">assert_rows</span>(num_row_NAs, <span class="fu">within_bounds</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+ 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+# ℹ 73 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><code>insist_rows()</code>extends <code>insist()</code> so the assertion can rely on values from multiple columns. This is less common but can be used to see if any observation exceeds a certain mahalanobis distance from other rows.</p>
 <ul>
-<li>write programs that check their own operation,</li>
-<li>write and run tests for widely-used functions, and</li>
-<li>make sure we know what “correct” actually means</li>
-</ul>
-</blockquote>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Unit test
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A <strong>unit test</strong> is an evaluation of a function under a preconceived set of conditions that returns TRUE or FALSE based on the output of the function.</p>
-</div>
-</div>
-<p>Unit tests have pre-conceived inputs (e.g.&nbsp;test data) with a pre-conceived set of out outputs.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Assertion
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Assertions</strong> are statements about what must be true at a specific point in a program.</p>
+<li><code>verify()</code> predicate functions
 <ul>
-<li>Precondition: An assertion about what must be true at the beginning of a function for the function to work correctly. (input tests)</li>
-<li>Postcondition: An assertion about what must be true at the end of a function (output tests).</li>
-<li>Invariant: A condition that is supposed to be true at a point in time in code.</li>
-</ul>
-</div>
-</div>
-<p>Suppose we’re an airplane manufacturer. Unit tests are all of the checks we would run before ever putting passengers on a plane. Does the engine consume fuel at a pre-determined rate? Does the airplane generate sufficient list? Assertions are all of the checks we would run every time the plane is operated. Did the landing gear come down? Do we have enough fuel for this flight distance?</p>
-<p>Let’s consider a few important principles of assertions and tests.</p>
+<li><code>has_all_names()</code></li>
+<li><code>has_only_names()</code></li>
+<li><code>has_class()</code></li>
+</ul></li>
+<li><code>assert()</code> predicate functions
 <ul>
-<li>Definition: Test-driven development is the practice of writing unit tests before writing code and then evaluating the code against the tests. We’ll also consider writing assertions before writing code and evaluating a program against assertions as test-driven development.</li>
-<li>Definition: Fail fast, fail often is the principle of working to catch mistakes as soon as they happen. When an error occurs, well-placed tests early in an analysis can minimize the scope of debugging, save computation time, and avoid costly mistakes.</li>
-<li>Definition: Fail loudly is the principle that errors should be difficult to ignore. In general, we will favor fatal errors that force us to address the underlying problem before proceeding.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
-<li>Definition: Fail clearly is the principle that errors should return meaningful and informative error messages.</li>
+<li><code>not_na()</code></li>
+<li><code>within_bounds()</code></li>
+<li><code>in_set()</code></li>
+<li><code>is_uniq()</code></li>
+</ul></li>
+<li><code>insist()</code> predicate functions
+<ul>
+<li><code>within_n_sds()</code></li>
+<li><code>within_n_mads()</code></li>
+</ul></li>
 </ul>
-<p>Below, we’ll take these principles and apply them to building functions, testing data for analysis, and testing the assumptions of an analysis.</p>
-</section>
-<section id="modular-tested-code" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="modular-tested-code"><span class="header-section-number">8.2</span> Modular, Tested Code</h2>
-<p>Functions with unit tests lead to modular, tested code and address three (!) questions from Opinionated Data Analysis:</p>
-<blockquote class="blockquote">
-<p>Can you re-use logic in different parts of the analysis?</p>
-</blockquote>
-<p>Functions allow us to reuse bits of R code over and over. In fact, we can iterate functions with for loops and map-reduce.</p>
-<blockquote class="blockquote">
-<p>If you decide to change logic, can you change it in just one place?</p>
-</blockquote>
-<p>Functions are the best way to follow the DRY principle. DRY, or <strong>d</strong>on’t <strong>r</strong>epeat <strong>y</strong>ourself, is the principle that we should we should create a function any time we do something three times.</p>
-<p>Copying-and-pasting is typically bad because it is easy to make mistakes and we typically want a single source source of truth in a script. Custom functions also promote modular code design and testing.</p>
-<p>Suppose we copy and paste the same code with minor changes twenty times. Then, we realize we need to make a change to the core functionality. Now we need to make the change twenty times. If we use a function and need to make a change, we only need to change the code in the function.</p>
-<blockquote class="blockquote">
-<p>If your code is not performing as expected, will you know?</p>
-</blockquote>
-<p>Assertions and unit tests that fail fast, fail loudly, and fail clearly are the best way to ensure our code is performing as expected.</p>
-<p>The bottom line: we want to write clear functions that do one and only one thing that are sufficiently tested so we are confident in their correctness.</p>
-<section id="example-functions" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="example-functions"><span class="header-section-number">8.2.1</span> Example Functions</h3>
-<p>Let’s consider a couple of examples from <span class="citation" data-cites="barrientos2021">(<a href="references.html#ref-barrientos2021" role="doc-biblioref"><strong>barrientos2021?</strong></a>)</span>. This paper is a large-scale simulation of formally private mechanisms, which relates to several future chapters of this book.</p>
-<p>Division by zero, which returns <code>NaN</code>, can be a real pain when comparing confidential and noisy results when the confidential value is <code>zero</code>. This function simply returns <code>0</code> when the denominator is <code>0</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#' Safely divide number. When zero is in the denominator, return 0. </span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#'</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#' @param numerator A numeric value for the numerator</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#' @param denominator A numeric value for the denominator</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#'</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#' @return A numeric ratio</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#'</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>safe_divide <span class="ot">&lt;-</span> <span class="cf">function</span>(numerator, denominator) {</span>
-<span id="cb1-9"><a href="#cb1-9"></a>  </span>
-<span id="cb1-10"><a href="#cb1-10"></a>  <span class="cf">if</span> (denominator <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb1-11"><a href="#cb1-11"></a>    </span>
-<span id="cb1-12"><a href="#cb1-12"></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
-<span id="cb1-13"><a href="#cb1-13"></a>    </span>
-<span id="cb1-14"><a href="#cb1-14"></a>  } <span class="cf">else</span> {</span>
-<span id="cb1-15"><a href="#cb1-15"></a>    </span>
-<span id="cb1-16"><a href="#cb1-16"></a>    <span class="fu">return</span>(numerator <span class="sc">/</span> denominator)</span>
-<span id="cb1-17"><a href="#cb1-17"></a>    </span>
-<span id="cb1-18"><a href="#cb1-18"></a>  }</span>
-<span id="cb1-19"><a href="#cb1-19"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This function</p>
-<ol type="1">
-<li>Implements the laplace or double exponential distribution, which isn’t included in base R.</li>
-<li>Applies a technique called the laplace mechanism.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#' Apply the laplace mechanism</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#'</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#' @param eps Numeric epsilon privacy parameter</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#' @param gs Numeric global sensitivity for the statistics of interest</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#'</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#' @return</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#' </span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>lap_mech <span class="ot">&lt;-</span> <span class="cf">function</span>(eps, gs) {</span>
-<span id="cb2-9"><a href="#cb2-9"></a>  </span>
-<span id="cb2-10"><a href="#cb2-10"></a>  <span class="co"># Checking for proper values</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>  <span class="cf">if</span> (<span class="fu">any</span>(eps <span class="sc">&lt;=</span> <span class="dv">0</span>)) {</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    <span class="fu">stop</span>(<span class="st">"The eps must be positive."</span>)</span>
-<span id="cb2-13"><a href="#cb2-13"></a>  }</span>
-<span id="cb2-14"><a href="#cb2-14"></a>  <span class="cf">if</span> (<span class="fu">any</span>(gs <span class="sc">&lt;=</span> <span class="dv">0</span>)) {</span>
-<span id="cb2-15"><a href="#cb2-15"></a>    <span class="fu">stop</span>(<span class="st">"The GS must be positive."</span>)</span>
-<span id="cb2-16"><a href="#cb2-16"></a>  }</span>
-<span id="cb2-17"><a href="#cb2-17"></a>  </span>
-<span id="cb2-18"><a href="#cb2-18"></a>  <span class="co"># Calculating the scale</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>  scale <span class="ot">&lt;-</span> gs <span class="sc">/</span> eps</span>
-<span id="cb2-20"><a href="#cb2-20"></a></span>
-<span id="cb2-21"><a href="#cb2-21"></a>  r <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
-<span id="cb2-22"><a href="#cb2-22"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a>  <span class="cf">if</span>(r <span class="sc">&gt;</span> <span class="fl">0.5</span>) {</span>
-<span id="cb2-24"><a href="#cb2-24"></a>    r2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> r</span>
-<span id="cb2-25"><a href="#cb2-25"></a>    x <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="sc">-</span> <span class="fu">sign</span>(r <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">*</span> scale <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">2</span> <span class="sc">*</span> r2)</span>
-<span id="cb2-26"><a href="#cb2-26"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-27"><a href="#cb2-27"></a>    x <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="sc">-</span> <span class="fu">sign</span>(r <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">*</span> scale <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">2</span> <span class="sc">*</span> r)</span>
-<span id="cb2-28"><a href="#cb2-28"></a>  }</span>
-<span id="cb2-29"><a href="#cb2-29"></a>  </span>
-<span id="cb2-30"><a href="#cb2-30"></a>  <span class="fu">return</span>(x)</span>
-<span id="cb2-31"><a href="#cb2-31"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="function-basics" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="function-basics"><span class="header-section-number">8.2.2</span> Function Basics</h3>
-<p>R has a robust system for creating custom functions. To create a custom function, use <code>function()</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>say_hello <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  </span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="st">"hello"</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>   </span>
-<span id="cb3-5"><a href="#cb3-5"></a>}</span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">say_hello</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "hello"</code></pre>
-</div>
-</div>
-<p>Oftentimes, we want to pass parameters/arguments to our functions:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>say_hello <span class="ot">&lt;-</span> <span class="cf">function</span>(name) {</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  </span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">paste</span>(<span class="st">"hello,"</span>, name)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>   </span>
-<span id="cb5-5"><a href="#cb5-5"></a>}</span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="fu">say_hello</span>(<span class="at">name =</span> <span class="st">"aaron"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "hello, aaron"</code></pre>
-</div>
-</div>
-<p>We can also specify default values for parameters/arguments:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>say_hello <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">name =</span> <span class="st">"aaron"</span>) {</span>
-<span id="cb7-2"><a href="#cb7-2"></a>  </span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">paste</span>(<span class="st">"hello,"</span>, name)</span>
-<span id="cb7-4"><a href="#cb7-4"></a>   </span>
-<span id="cb7-5"><a href="#cb7-5"></a>}</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="fu">say_hello</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "hello, aaron"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">say_hello</span>(<span class="at">name =</span> <span class="st">"alex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "hello, alex"</code></pre>
-</div>
-</div>
-<p><code>say_hello()</code> just prints something to the console. More often, we want to perform a bunch of operations and the then return some object like a vector or a data frame. By default, R will return the last unassigned object in a custom function. It isn’t required, but it is good practice to wrap the object to return in <code>return()</code>.</p>
 <div class="callout callout-style-simple callout-none no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1054,190 +1036,266 @@ Assertion
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Create a function called <code>say_goodbye()</code> that says goodbye.</li>
-<li>Give it a <code>name</code> argument and a default value for <code>name</code>.</li>
+<li>Run <code>glimpse(trees)</code>.</li>
+<li><code>verify()</code> that the variables <code>Girth</code> is numeric.</li>
+<li><code>assert()</code> that all three variables are in the interval <span class="math inline">\([0, \infty)\)</span>.</li>
 </ol>
 </div>
 </div>
-<p>It’s also good practice to document functions. With your cursor inside of a function, go Insert &gt; Insert Roxygen Skeleton:</p>
+<p><a href="https://docs.ropensci.org/assertr/">This vignette</a> demonstrates additional functionality.</p>
+<p><code>library(assertr)</code> is designed to be used early in a workflow. If you want to run the assertions at the end of the workflow and you don’t want to see printed tibble after printed tibble, end the chain of code with the following custom function.</p>
+<pre><code>#' Helper function to silence output from testing code
+#'
+#' @param data A data frame
+#'
+quiet &lt;- function(data) {
+  
+  quiet &lt;- data
+  
+}</code></pre>
+<p>Example: <a href="https://github.com/UI-Research/mobility-from-poverty/blob/version2024/10_construct-database/11_construct_county_all.qmd">Boosting Upward Mobility from Poverty</a></p>
+</section>
+<section id="other-assertions" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="other-assertions"><span class="header-section-number">9.1.2</span> Other Assertions</h3>
+<p><a href="https://cran.r-project.org/web/packages/tidylog/readme/README.html"><code>library(tidylog)</code></a> prints diagnostic information when functions from <code>library(dplyr)</code> and <code>library(tidylog)</code> are used.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">#' Say hello</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#'</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="co">#' @param name A character vector with names</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="co">#'</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="co">#' @return A character vector with greetings to name</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co">#' </span></span>
-<span id="cb11-7"><a href="#cb11-7"></a>say_hello <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">name =</span> <span class="st">"aaron"</span>) {</span>
-<span id="cb11-8"><a href="#cb11-8"></a>  </span>
-<span id="cb11-9"><a href="#cb11-9"></a>  greeting <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"hello,"</span>, name)</span>
-<span id="cb11-10"><a href="#cb11-10"></a>  </span>
-<span id="cb11-11"><a href="#cb11-11"></a>  <span class="fu">return</span>(greeting)</span>
-<span id="cb11-12"><a href="#cb11-12"></a>  </span>
-<span id="cb11-13"><a href="#cb11-13"></a>}</span>
-<span id="cb11-14"><a href="#cb11-14"></a></span>
-<span id="cb11-15"><a href="#cb11-15"></a><span class="fu">say_hello</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(tidylog)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'tidylog'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:dplyr':
+
+    add_count, add_tally, anti_join, count, distinct, distinct_all,
+    distinct_at, distinct_if, filter, filter_all, filter_at, filter_if,
+    full_join, group_by, group_by_all, group_by_at, group_by_if,
+    inner_join, left_join, mutate, mutate_all, mutate_at, mutate_if,
+    relocate, rename, rename_all, rename_at, rename_if, rename_with,
+    right_join, sample_frac, sample_n, select, select_all, select_at,
+    select_if, semi_join, slice, slice_head, slice_max, slice_min,
+    slice_sample, slice_tail, summarise, summarise_all, summarise_at,
+    summarise_if, summarize, summarize_all, summarize_at, summarize_if,
+    tally, top_frac, top_n, transmute, transmute_all, transmute_at,
+    transmute_if, ungroup</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:tidyr':
+
+    drop_na, fill, gather, pivot_longer, pivot_wider, replace_na,
+    spread, uncount</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>math_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="sc">~</span>name, <span class="sc">~</span>math_score,</span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="st">"Alec"</span>, <span class="dv">95</span>,</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="st">"Bart"</span>, <span class="dv">97</span>,</span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>)</span>
+<span id="cb17-7"><a href="#cb17-7"></a></span>
+<span id="cb17-8"><a href="#cb17-8"></a>reading_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb17-9"><a href="#cb17-9"></a>  <span class="sc">~</span>name, <span class="sc">~</span>reading_score,</span>
+<span id="cb17-10"><a href="#cb17-10"></a>  <span class="st">"Alec"</span>, <span class="dv">88</span>,</span>
+<span id="cb17-11"><a href="#cb17-11"></a>  <span class="st">"Bart"</span>, <span class="dv">67</span>,</span>
+<span id="cb17-12"><a href="#cb17-12"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span>,</span>
+<span id="cb17-13"><a href="#cb17-13"></a>  <span class="st">"Zeta"</span>, <span class="dv">100</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a>)</span>
+<span id="cb17-15"><a href="#cb17-15"></a></span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="fu">left_join</span>(<span class="at">x =</span> math_scores, <span class="at">y =</span> reading_scores, <span class="at">by =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>left_join: added one column (reading_score)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows only in x   0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows only in y  (1)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; matched rows     3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt;                 ===</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows total       3</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "hello, aaron"</code></pre>
+<pre><code># A tibble: 3 × 3
+  name   math_score reading_score
+  &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 Alec           95            88
+2 Bart           97            67
+3 Carrie        100           100</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">full_join</span>(<span class="at">x =</span> math_scores, <span class="at">y =</span> reading_scores, <span class="at">by =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>full_join: added one column (reading_score)</code></pre>
 </div>
-<p>As you can see from the <a href="https://jozef.io/r102-addin-roxytags/">Roxygen Skeleton</a> template above, function documentation should contain the following:</p>
-<ul>
-<li>A description of what the function does</li>
-<li>A description of each function argument, including the class of the argument (e.g.&nbsp;string, integer, dataframe)</li>
-<li>A description of what the function returns, including the class of the object</li>
-</ul>
-<p>Tips for writing functions:</p>
-<ul>
-<li>Function names should be short but effectively describe what the function does. Function names should generally be verbs while function arguments should be nouns. See the <a href="https://style.tidyverse.org/functions.html">Tidyverse style guide</a> for more details on function naming and style.</li>
-<li>As a general principle, functions should each do only one task. This makes it much easier to debug your code and reuse functions!</li>
-<li>Use <code>::</code> (e.g.&nbsp;<code>dplyr::filter()</code> instead of <code>filter()</code>) when writing custom functions. This will create stabler code and make it easier to develop R packages.</li>
-</ul>
-</section>
-<section id="functions-with-multiple-outputs" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="functions-with-multiple-outputs"><span class="header-section-number">8.2.3</span> Functions with Multiple Outputs</h3>
-<p>When <code>return()</code> is reached in a function, <code>return()</code> is evaluated, evaluation ends and R leaves the function.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>sow_return <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb13-2"><a href="#cb13-2"></a>  </span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">return</span>(<span class="st">"The function stops!"</span>)</span>
-<span id="cb13-4"><a href="#cb13-4"></a>  </span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">return</span>(<span class="st">"This never happens!"</span>)</span>
-<span id="cb13-6"><a href="#cb13-6"></a>  </span>
-<span id="cb13-7"><a href="#cb13-7"></a>}</span>
-<span id="cb13-8"><a href="#cb13-8"></a></span>
-<span id="cb13-9"><a href="#cb13-9"></a><span class="fu">sow_return</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows only in x   0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows only in y   1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; matched rows     3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt;                 ===</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>           &gt; rows total       4</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The function stops!"</code></pre>
+<pre><code># A tibble: 4 × 3
+  name   math_score reading_score
+  &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 Alec           95            88
+2 Bart           97            67
+3 Carrie        100           100
+4 Zeta           NA           100</code></pre>
 </div>
 </div>
-<p>If the end of a function is reached without calling <code>return()</code>, the value from the last evaluated expression is returned.</p>
-<p>We prefer to include <code>return()</code> at the end of functions for clarity even though <code>return()</code> doesn’t change the behavior of the function.</p>
-</section>
-<section id="referential-transparency" class="level3" data-number="8.2.4">
-<h3 data-number="8.2.4" class="anchored" data-anchor-id="referential-transparency"><span class="header-section-number">8.2.4</span> Referential Transparency</h3>
-<p>R functions, like mathematical functions, should always return the exact same output for a given set of inputs.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> This is called referential transparency. R will not enforce this idea, so you must write good code.</p>
-<section id="bad" class="level4">
-<h4 class="anchored" data-anchor-id="bad">Bad!</h4>
+<p>We’ll detach tidylog to keep the rest of this document clean.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>bad_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb15-2"><a href="#cb15-2"></a>  </span>
-<span id="cb15-3"><a href="#cb15-3"></a>  x <span class="sc">*</span> y</span>
-<span id="cb15-4"><a href="#cb15-4"></a>  </span>
-<span id="cb15-5"><a href="#cb15-5"></a>}</span>
-<span id="cb15-6"><a href="#cb15-6"></a></span>
-<span id="cb15-7"><a href="#cb15-7"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="fu">bad_function</span>(<span class="at">x =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">detach</span>(<span class="st">"package:tidylog"</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">bad_function</span>(<span class="at">x =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 6</code></pre>
-</div>
-</div>
-</section>
-<section id="good" class="level4">
-<h4 class="anchored" data-anchor-id="good">Good!</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>good_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb19-2"><a href="#cb19-2"></a>  </span>
-<span id="cb19-3"><a href="#cb19-3"></a>  x <span class="sc">*</span> y</span>
-<span id="cb19-4"><a href="#cb19-4"></a>  </span>
-<span id="cb19-5"><a href="#cb19-5"></a>}</span>
-<span id="cb19-6"><a href="#cb19-6"></a>  </span>
-<span id="cb19-7"><a href="#cb19-7"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb19-8"><a href="#cb19-8"></a><span class="fu">good_function</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">good_function</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<p>Bruno Rodriguez has a <a href="http://modern-rstats.eu/functional-programming.html#properties-of-functions">book</a> and a <a href="https://www.brodrigues.co/blog/2022-05-26-safer_programs/">blog</a> that explore this idea further.</p>
-</section>
-</section>
-<section id="limitations-of-macros" class="level3" data-number="8.2.5">
-<h3 data-number="8.2.5" class="anchored" data-anchor-id="limitations-of-macros"><span class="header-section-number">8.2.5</span> Limitations of Macros</h3>
-<p>Macros are popular in Stata and SAS. Macros promote DRY programming and modular programming.</p>
-<p>Functions have environments, which means an object in a function doesn’t exist outside of the function unless it is explicitly returned. Macros rely on textual substitution, which makes it easy for an object in a function to affect objects outside of a function.</p>
-</section>
-</section>
-<section id="assertions-in-functions" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="assertions-in-functions"><span class="header-section-number">8.3</span> Assertions in Functions</h2>
-<p><code>stopifnot()</code>, <code>stop()</code>, and <code>warning()</code> are useful functions for implementing assertions inside custom functions. <code>stopifnot()</code> is easier to use but <code>stop()</code> allows for detailed error messages.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>sum_integers <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb23-2"><a href="#cb23-2"></a>  </span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">stopifnot</span>(<span class="fu">class</span>(x) <span class="sc">==</span> <span class="st">"integer"</span>)</span>
-<span id="cb23-4"><a href="#cb23-4"></a>  </span>
-<span id="cb23-5"><a href="#cb23-5"></a>  x_sum <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
-<span id="cb23-6"><a href="#cb23-6"></a>  </span>
-<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">return</span>(x_sum)</span>
-<span id="cb23-8"><a href="#cb23-8"></a>  </span>
-<span id="cb23-9"><a href="#cb23-9"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">sum_integers</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<pre><code>Error in sum_integers(x = c(1, 2)) : class(x) == "integer" is not TRUE</code></pre>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>sum_integers <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb26-2"><a href="#cb26-2"></a>  </span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="cf">if</span> (<span class="fu">class</span>(x) <span class="sc">!=</span> <span class="st">"integer"</span>) {</span>
-<span id="cb26-4"><a href="#cb26-4"></a>    <span class="fu">stop</span>(<span class="st">"Error: input vector x must be of class integer"</span>)</span>
-<span id="cb26-5"><a href="#cb26-5"></a>  }</span>
-<span id="cb26-6"><a href="#cb26-6"></a>  </span>
-<span id="cb26-7"><a href="#cb26-7"></a>  x_sum <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
-<span id="cb26-8"><a href="#cb26-8"></a>  </span>
-<span id="cb26-9"><a href="#cb26-9"></a>  <span class="fu">return</span>(x_sum)</span>
-<span id="cb26-10"><a href="#cb26-10"></a>  </span>
-<span id="cb26-11"><a href="#cb26-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">sum_integers</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<pre><code>Error in sum_integers(x = c(1, 2)) : 
-  Error: input vector x must be of class integer</code></pre>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 2</span>
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li>Add an precondition assertion to <code>say_goodbye()</code> to test if the input is a character string. <code>is.character()</code> is useful.</li>
-</ol>
+<p><code>library(tidylog)</code> is excellent for interactive development of data analyses.</p>
+<p>If you look at <code>library(tidylog)</code> output <em>more than once</em>, then write an assertion to capture the same information.</p>
 </div>
 </div>
-<section id="unit-tests-for-functions" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="unit-tests-for-functions"><span class="header-section-number">8.3.1</span> Unit Tests for Functions</h3>
-<p><code>library(testthat)</code> is a powerful framework for unit testing</p>
-<p><code>library(testthat)</code> uses two big ideas: <strong>expectations</strong> and <strong>tests</strong>.</p>
-<p>Expectations compare the output of the function against expected output. Consider the <code>sum_integer()</code> from earlier. We can write an expectation that the function throws an error with incorrect inputs and we can write an expectation that the function returns an integer when it has the correct inputs.</p>
+<section id="missing-values" class="level4">
+<h4 class="anchored" data-anchor-id="missing-values">Missing Values</h4>
+<p>The following throws an error if the data set contains any missing values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">library</span>(testthat)</span>
-<span id="cb29-2"><a href="#cb29-2"></a></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">expect_error</span>(<span class="fu">sum_integers</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)))</span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="fu">expect_type</span>(<span class="fu">sum_integers</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>L, <span class="dv">2</span>L)), <span class="at">type =</span> <span class="st">"integer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>missing_values <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(<span class="at">.x =</span> trees, <span class="sc">~</span><span class="fu">sum</span>(<span class="fu">is.na</span>(.x)))</span>
+<span id="cb34-2"><a href="#cb34-2"></a></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">stopifnot</span>(<span class="fu">sum</span>(missing_values) <span class="sc">==</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Tests group multiple expectations together and begins with <code>test_that()</code>.</p>
+</section>
+<section id="joins" class="level4">
+<h4 class="anchored" data-anchor-id="joins">Joins</h4>
+<p>Joins are one of the most dangerous parts of any data analysis. We can think of many different types of joins:</p>
+<ul>
+<li>“one-to-one”</li>
+<li>“one-to-many”</li>
+<li>“many-to-one”</li>
+<li>“many-to-many”</li>
+</ul>
+<p>We can provide an expectation for the type of join using the <code>relationship</code> argument in <code>*_join()</code> functions. This is an assertion.</p>
+<p>Consider the test scores data sets from earlier. This should be a one-to-one join because each row in <code>x</code> matches at most 1 row in <code>y</code> and each row in <code>y</code> matches at most 1 row in <code>x</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">test_that</span>(<span class="st">"sum_integers() tests inputs and returns the correct output"</span>, {</span>
-<span id="cb30-2"><a href="#cb30-2"></a>  </span>
-<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">expect_error</span>(<span class="fu">sum_integers</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)))</span>
-<span id="cb30-4"><a href="#cb30-4"></a>  <span class="fu">expect_type</span>(<span class="fu">sum_integers</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>L, <span class="dv">2</span>L)), <span class="at">type =</span> <span class="st">"integer"</span>)</span>
-<span id="cb30-5"><a href="#cb30-5"></a>  </span>
-<span id="cb30-6"><a href="#cb30-6"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>math_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="sc">~</span>name, <span class="sc">~</span>math_score,</span>
+<span id="cb35-3"><a href="#cb35-3"></a>  <span class="st">"Alec"</span>, <span class="dv">95</span>,</span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="st">"Bart"</span>, <span class="dv">97</span>,</span>
+<span id="cb35-5"><a href="#cb35-5"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>)</span>
+<span id="cb35-7"><a href="#cb35-7"></a></span>
+<span id="cb35-8"><a href="#cb35-8"></a>reading_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb35-9"><a href="#cb35-9"></a>  <span class="sc">~</span>name, <span class="sc">~</span>reading_score,</span>
+<span id="cb35-10"><a href="#cb35-10"></a>  <span class="st">"Alec"</span>, <span class="dv">88</span>,</span>
+<span id="cb35-11"><a href="#cb35-11"></a>  <span class="st">"Bart"</span>, <span class="dv">67</span>,</span>
+<span id="cb35-12"><a href="#cb35-12"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span>,</span>
+<span id="cb35-13"><a href="#cb35-13"></a>  <span class="st">"Zeta"</span>, <span class="dv">100</span></span>
+<span id="cb35-14"><a href="#cb35-14"></a>)</span>
+<span id="cb35-15"><a href="#cb35-15"></a></span>
+<span id="cb35-16"><a href="#cb35-16"></a><span class="fu">left_join</span>(</span>
+<span id="cb35-17"><a href="#cb35-17"></a>  <span class="at">x =</span> math_scores,</span>
+<span id="cb35-18"><a href="#cb35-18"></a>  <span class="at">y =</span> reading_scores,</span>
+<span id="cb35-19"><a href="#cb35-19"></a>  <span class="at">by =</span> <span class="st">"name"</span>,</span>
+<span id="cb35-20"><a href="#cb35-20"></a>  <span class="at">relationship =</span> <span class="st">"one-to-one"</span></span>
+<span id="cb35-21"><a href="#cb35-21"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test passed 🎉</code></pre>
+<pre><code># A tibble: 3 × 3
+  name   math_score reading_score
+  &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+1 Alec           95            88
+2 Bart           97            67
+3 Carrie        100           100</code></pre>
+</div>
+</div>
+<p>Suppose there were two <code>"Alec"</code> in either data set. Then this code would throw a loud error.</p>
+</section>
+<section id="pivots" class="level4">
+<h4 class="anchored" data-anchor-id="pivots">Pivots</h4>
+<p>Pivots are also one of the most dangerous parts of any data analysis. We can write tests for the number of rows and the class for the output of pivots.</p>
+<p>Consider <code>table4a</code> from <code>library(tidyr)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  country     `1999` `2000`
+  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+1 Afghanistan    745   2666
+2 Brazil       37737  80488
+3 China       212258 213766</code></pre>
+</div>
+</div>
+<p>We want to pivot this data set to be longer because the data set isn’t <a href="https://r4ds.had.co.nz/tidy-data.html">tidy</a>. Before writing code to tidy the data, we can probably come up with a few assertions:</p>
+<ul>
+<li>There should be six rows.</li>
+<li><code>year</code> and <code>cases</code> should be numeric.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>table4a_tidy <span class="ot">&lt;-</span> table4a <span class="sc">|&gt;</span> </span>
+<span id="cb39-2"><a href="#cb39-2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb39-3"><a href="#cb39-3"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">1999</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span>), </span>
+<span id="cb39-4"><a href="#cb39-4"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>, </span>
+<span id="cb39-5"><a href="#cb39-5"></a>    <span class="at">values_to =</span> <span class="st">"cases"</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb39-7"><a href="#cb39-7"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(year))</span>
+<span id="cb39-8"><a href="#cb39-8"></a></span>
+<span id="cb39-9"><a href="#cb39-9"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(table4a_tidy) <span class="sc">==</span> <span class="dv">6</span>)</span>
+<span id="cb39-10"><a href="#cb39-10"></a><span class="fu">stopifnot</span>(<span class="fu">class</span>(<span class="fu">pull</span>(table4a_tidy, year)) <span class="sc">==</span> <span class="st">"numeric"</span>)</span>
+<span id="cb39-11"><a href="#cb39-11"></a><span class="fu">stopifnot</span>(<span class="fu">class</span>(<span class="fu">pull</span>(table4a_tidy, cases)) <span class="sc">==</span> <span class="st">"numeric"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It’s easy to get tired and to cut corners. Assertions never rest.</p>
+<blockquote class="blockquote">
+<p>Understand, that your assertions is out there. It can’t be bargained with. It can’t be reasoned with. It doesn’t feel pity or remorse or fear. It absolutely will not stop ever until your analysis is correct. ~ [Terminator (sort of)]https://www.youtube.com/watch?v=zu0rP2VWLWw)</p>
+</blockquote>
+</section>
+</section>
+</section>
+<section id="assertive-testing-of-assumptions" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="assertive-testing-of-assumptions"><span class="header-section-number">9.2</span> Assertive Testing of Assumptions</h2>
+<p>Assertive testing of assumptions is the squishiest of everything we’ve considered testing. We don’t want to apply an analysis to data that have drifted too far from the assumptions of analysis. We also don’t want to inappropriately apply a set of binary tests (think mechanical null hypothesis testing with p-values).</p>
+<p>At the very least, we should include visualizations and diagnostic tests that systematically explore the assumptions of an analysis in our Quarto documents. Then, we can use version control to track if anything changed unexpectedly.</p>
+<p>Beyond that, we need to rely on subject matter expertise to come up with heuristics for assertions.</p>
+</section>
+<section id="profiling-and-benchmarking" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="profiling-and-benchmarking"><span class="header-section-number">9.3</span> Profiling and Benchmarking</h2>
+<p>We skipped the questions “If you are not using efficient code, will you be able to identify it.”</p>
+<p>Human time is expensive. Machine time is cheap. All else equal, we shouldn’t worry too much about making our code more efficient.</p>
+<p>Sometimes, it is necessary to make our code more efficient. After all, who cares if our analysis is reproducible if it takes two weeks to run?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Profiling
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Profiling is the systematic measurement of the run-time of each line of code.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1246,45 +1304,23 @@ Assertion
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Test coverage
+Benchmarking
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Test coverage</strong> is the scope and quality of tests performed on a code base.</p>
+<p>Benchmarking is the precise measurement of the performance of a small piece of code. Typically, the code is run multiple times to improve the precision of the measurement.</p>
 </div>
 </div>
-<p>The goal to develop tests with good test coverage that will loudly fail when bugs are introduced into code.</p>
-</section>
-</section>
-<section id="custom-r-packages" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="custom-r-packages"><span class="header-section-number">8.4</span> Custom R Packages</h2>
-<p>If we have R functions with roxygen headers and tests, then we almost have an R package.</p>
-<p>At some point, the same scripts or data are used often enough or widely enough to justify moving from sourced R scripts to a full-blown R package. R packages make it easier to</p>
-<ol type="1">
-<li>Make it easier to share and version code.</li>
-<li>Improve documentation of functions and data.</li>
-<li>Make it easier to test code.</li>
-<li>Often lead to fun hex stickers.</li>
-</ol>
-<section id="use-this" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="use-this"><span class="header-section-number">8.4.1</span> Use This</h3>
-<p><code>library(usethis)</code> includes an R package template. The following will add all necessary files for an R package to a directory called <code>testpackage/</code> and open an RStudio package.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">library</span>(usethis)</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">create_package</span>(<span class="st">"/Users/adam/testpackage"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We won’t cover the rest of R package development but a custom R package is easier to make than it sounds. The <a href="https://r-pkgs.org/">second edition of R Packages</a> by Hadley Wickham and Jennifer Bryant is a great free resource to learn more.</p>
+<p>Systematically making code more efficient generally proceeds in three steps:</p>
+<ul>
+<li>Step 1: Profile the entire set of code to identify bottlenecks.</li>
+<li>Step 2: Benchmark small pieces of code that are responsible for the bottleneck.</li>
+<li>Step 3: Try to improve the slow pieces of code. Return to step 2 to evaluate the result.</li>
+</ul>
+<p>RStudio has built-in tools for profiling the run time and memory usage of large chunks of code. See <a href="https://adv-r.hadley.nz/perf-measure.html#profiling">this section</a> of Advanced R to learn more.</p>
+<p><code>library(microbenchmark)</code> has robust tools for benchmarking code. See <a href="https://adv-r.hadley.nz/perf-measure.html#microbenchmarking">this section</a> of Advanced R to learn more.</p>
 
 
-</section>
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p><a href="https://www.nickeubank.com/wp-content/uploads/2016/06/Eubank_EmbraceYourFallibility.pdf">Nick Eubank</a> identifies adding tests, never transcribe, style matters, and don’t duplicate information. Many of the ideas are scattered throughout this training.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Recall, Quarto requires the code to run error-free for the document to render.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>This rule won’t exactly hold if the function contains random or stochastic code. In those cases, the function should return the same output every time if the seed is set with <code>set.seed()</code>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1699,13 +1735,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./07_advanced-git.html" class="pagination-link" aria-label="Advanced Git and Github">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></span>
+      <a href="./functions-and-tests.html" class="pagination-link" aria-label="Modular, Tested Code">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./assertive-testing.html" class="pagination-link" aria-label="Modular, Tested Code">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./renv.html" class="pagination-link" aria-label="`library(renv)`">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

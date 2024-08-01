@@ -26,6 +26,7 @@ book:
     - part: Programming
       chapters:
         - functions-and-tests.qmd
+        - assertive-testing.qmd
     - part: Environment Management
       chapters:
         - renv.qmd

@@ -439,6 +439,8 @@ exercise_number <- exercise_number + 1
 Expectations compare the output of the function against expected output. Consider the `sum_integer()` from earlier. We can write an expectation that the function throws an error with incorrect inputs and we can write an expectation that the function returns an integer when it has the correct inputs. 
 
 ```{r}
+#| message: false
+
 library(testthat)
 
 expect_error(sum_integers(x = c(1, 2)))
