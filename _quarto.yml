@@ -30,6 +30,9 @@ book:
     - part: Environment Management
       chapters:
         - renv.qmd
+    - part: Culture and Ethics
+      chapters:
+        - culture-and-ethics.qmd
     - references.qmd
   appendices:
     - reproducible-research-bootcamp_software-installation.qmd

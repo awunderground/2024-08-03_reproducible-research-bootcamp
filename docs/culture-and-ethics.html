@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reproducible Research Bootcamp - 9&nbsp; Modular, Tested Code</title>
+<title>Reproducible Research Bootcamp - 11&nbsp; Culture and Ethics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -64,8 +50,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./renv.html" rel="next">
-<link href="./functions-and-tests.html" rel="prev">
+<link href="./reproducible-research-bootcamp_software-installation.html" rel="next">
+<link href="./references.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -103,35 +89,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -144,7 +101,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions-and-tests.html">Programming</a></li><li class="breadcrumb-item"><a href="./assertive-testing.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./culture-and-ethics.html">Culture and Ethics</a></li><li class="breadcrumb-item"><a href="./culture-and-ethics.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Culture and Ethics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -278,7 +235,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assertive-testing.html" class="sidebar-item-text sidebar-link active">
+  <a href="./assertive-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
   </div>
 </li>
@@ -318,7 +275,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./culture-and-ethics.html" class="sidebar-item-text sidebar-link">
+  <a href="./culture-and-ethics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Culture and Ethics</span></span></a>
   </div>
 </li>
@@ -351,22 +308,22 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#assertive-testing-of-data" id="toc-assertive-testing-of-data" class="nav-link active" data-scroll-target="#assertive-testing-of-data"><span class="header-section-number">9.1</span> Assertive Testing of Data</a>
+  <li><a href="#culture" id="toc-culture" class="nav-link active" data-scroll-target="#culture"><span class="header-section-number">11.1</span> Culture</a>
   <ul class="collapse">
-  <li><a href="#libraryassertr" id="toc-libraryassertr" class="nav-link" data-scroll-target="#libraryassertr"><span class="header-section-number">9.1.1</span> <code>library(assertr)</code></a></li>
-  <li><a href="#other-assertions" id="toc-other-assertions" class="nav-link" data-scroll-target="#other-assertions"><span class="header-section-number">9.1.2</span> Other Assertions</a></li>
+  <li><a href="#continuous-improvement" id="toc-continuous-improvement" class="nav-link" data-scroll-target="#continuous-improvement"><span class="header-section-number">11.1.1</span> Continuous Improvement</a></li>
+  <li><a href="#error-log" id="toc-error-log" class="nav-link" data-scroll-target="#error-log"><span class="header-section-number">11.1.2</span> Error Log</a></li>
+  <li><a href="#blameless-postmortem" id="toc-blameless-postmortem" class="nav-link" data-scroll-target="#blameless-postmortem"><span class="header-section-number">11.1.3</span> Blameless Postmortem</a></li>
   </ul></li>
-  <li><a href="#assertive-testing-of-assumptions" id="toc-assertive-testing-of-assumptions" class="nav-link" data-scroll-target="#assertive-testing-of-assumptions"><span class="header-section-number">9.2</span> Assertive Testing of Assumptions</a></li>
-  <li><a href="#profiling-and-benchmarking" id="toc-profiling-and-benchmarking" class="nav-link" data-scroll-target="#profiling-and-benchmarking"><span class="header-section-number">9.3</span> Profiling and Benchmarking</a></li>
+  <li><a href="#ethics" id="toc-ethics" class="nav-link" data-scroll-target="#ethics"><span class="header-section-number">11.2</span> Ethics</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions-and-tests.html">Programming</a></li><li class="breadcrumb-item"><a href="./assertive-testing.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./culture-and-ethics.html">Culture and Ethics</a></li><li class="breadcrumb-item"><a href="./culture-and-ethics.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Culture and Ethics</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Culture and Ethics</span></h1>
 </div>
 
 
@@ -384,36 +341,36 @@ window.Quarto = {
 
 
 <dl>
-<dt><img src="images/Exams_Start..._Now.jpg" class="img-fluid" alt="A multiple-choice test"></dt>
+<dt><img src="images/9_Bisonte_Magdaleniense_polícromo.jpg" class="img-fluid" alt="An early expression of culture"></dt>
 <dd>
-<p>Photo by <a href="https://en.wikipedia.org/wiki/Multiple_choice#/media/File:Exams_Start..._Now.jpg">Ryan McGilchrist</a></p>
+<p>Photo by <a href="https://en.wikipedia.org/wiki/Culture#/media/File:9_Bisonte_Magdaleniense_pol%C3%ADcromo.jpg">Museo de Altamira y D. Rodríguez</a></p>
 </dd>
 </dl>
 <div class="cell">
 <div id="tbl-roadmap" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;9.1: Opinionated Analysis Development
+Table&nbsp;11.1: Opinionated Analysis Development
 </figcaption>
 <div aria-describedby="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="sscalzutuf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sscalzutuf table {
+<div id="zwgmercgub" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zwgmercgub table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sscalzutuf thead, #sscalzutuf tbody, #sscalzutuf tfoot, #sscalzutuf tr, #sscalzutuf td, #sscalzutuf th {
+#zwgmercgub thead, #zwgmercgub tbody, #zwgmercgub tfoot, #zwgmercgub tr, #zwgmercgub td, #zwgmercgub th {
   border-style: none;
 }
 
-#sscalzutuf p {
+#zwgmercgub p {
   margin: 0;
   padding: 0;
 }
 
-#sscalzutuf .gt_table {
+#zwgmercgub .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -439,12 +396,12 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-left-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_caption {
+#zwgmercgub .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sscalzutuf .gt_title {
+#zwgmercgub .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -456,7 +413,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-bottom-width: 0;
 }
 
-#sscalzutuf .gt_subtitle {
+#zwgmercgub .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -468,7 +425,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-top-width: 0;
 }
 
-#sscalzutuf .gt_heading {
+#zwgmercgub .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -480,13 +437,13 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_bottom_border {
+#zwgmercgub .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_col_headings {
+#zwgmercgub .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -501,7 +458,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_col_heading {
+#zwgmercgub .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -521,7 +478,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#sscalzutuf .gt_column_spanner_outer {
+#zwgmercgub .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -533,15 +490,15 @@ Table&nbsp;9.1: Opinionated Analysis Development
   padding-right: 4px;
 }
 
-#sscalzutuf .gt_column_spanner_outer:first-child {
+#zwgmercgub .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sscalzutuf .gt_column_spanner_outer:last-child {
+#zwgmercgub .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sscalzutuf .gt_column_spanner {
+#zwgmercgub .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -553,11 +510,11 @@ Table&nbsp;9.1: Opinionated Analysis Development
   width: 100%;
 }
 
-#sscalzutuf .gt_spanner_row {
+#zwgmercgub .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sscalzutuf .gt_group_heading {
+#zwgmercgub .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -583,7 +540,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   text-align: left;
 }
 
-#sscalzutuf .gt_empty_group_heading {
+#zwgmercgub .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -598,15 +555,15 @@ Table&nbsp;9.1: Opinionated Analysis Development
   vertical-align: middle;
 }
 
-#sscalzutuf .gt_from_md > :first-child {
+#zwgmercgub .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sscalzutuf .gt_from_md > :last-child {
+#zwgmercgub .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sscalzutuf .gt_row {
+#zwgmercgub .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -625,7 +582,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#sscalzutuf .gt_stub {
+#zwgmercgub .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -638,7 +595,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#sscalzutuf .gt_stub_row_group {
+#zwgmercgub .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -652,15 +609,15 @@ Table&nbsp;9.1: Opinionated Analysis Development
   vertical-align: top;
 }
 
-#sscalzutuf .gt_row_group_first td {
+#zwgmercgub .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sscalzutuf .gt_row_group_first th {
+#zwgmercgub .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sscalzutuf .gt_summary_row {
+#zwgmercgub .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -670,16 +627,16 @@ Table&nbsp;9.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#sscalzutuf .gt_first_summary_row {
+#zwgmercgub .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_first_summary_row.thick {
+#zwgmercgub .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sscalzutuf .gt_last_summary_row {
+#zwgmercgub .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -689,7 +646,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_grand_summary_row {
+#zwgmercgub .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -699,7 +656,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#sscalzutuf .gt_first_grand_summary_row {
+#zwgmercgub .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -709,7 +666,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-top-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_last_grand_summary_row_top {
+#zwgmercgub .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -719,11 +676,11 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_striped {
+#zwgmercgub .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sscalzutuf .gt_table_body {
+#zwgmercgub .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -732,7 +689,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_footnotes {
+#zwgmercgub .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -746,7 +703,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_footnote {
+#zwgmercgub .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -755,7 +712,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#sscalzutuf .gt_sourcenotes {
+#zwgmercgub .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -769,7 +726,7 @@ Table&nbsp;9.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#sscalzutuf .gt_sourcenote {
+#zwgmercgub .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -777,63 +734,63 @@ Table&nbsp;9.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#sscalzutuf .gt_left {
+#zwgmercgub .gt_left {
   text-align: left;
 }
 
-#sscalzutuf .gt_center {
+#zwgmercgub .gt_center {
   text-align: center;
 }
 
-#sscalzutuf .gt_right {
+#zwgmercgub .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sscalzutuf .gt_font_normal {
+#zwgmercgub .gt_font_normal {
   font-weight: normal;
 }
 
-#sscalzutuf .gt_font_bold {
+#zwgmercgub .gt_font_bold {
   font-weight: bold;
 }
 
-#sscalzutuf .gt_font_italic {
+#zwgmercgub .gt_font_italic {
   font-style: italic;
 }
 
-#sscalzutuf .gt_super {
+#zwgmercgub .gt_super {
   font-size: 65%;
 }
 
-#sscalzutuf .gt_footnote_marks {
+#zwgmercgub .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sscalzutuf .gt_asterisk {
+#zwgmercgub .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sscalzutuf .gt_indent_1 {
+#zwgmercgub .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sscalzutuf .gt_indent_2 {
+#zwgmercgub .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sscalzutuf .gt_indent_3 {
+#zwgmercgub .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sscalzutuf .gt_indent_4 {
+#zwgmercgub .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sscalzutuf .gt_indent_5 {
+#zwgmercgub .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -885,459 +842,81 @@ Table&nbsp;9.1: Opinionated Analysis Development
 </figure>
 </div>
 </div>
-<section id="assertive-testing-of-data" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="assertive-testing-of-data"><span class="header-section-number">9.1</span> Assertive Testing of Data</h2>
-<blockquote class="blockquote">
-<p>While reproducibility drastically reduces the number of errors and opacity of analysis, without assertive testing it runs the risk of applying an analysis to corrupted data, or applying an analysis to data that have drifted too far from assumptions. ~ Parker</p>
-</blockquote>
-<p>Assertions are useful for verifying the quality of data. Many of the principles from assertions and unit testing for functions apply:</p>
-<ul>
-<li>Fail fast, fail often</li>
-<li>Fail loudly</li>
-<li>Fail clearly</li>
-</ul>
-<p>Assertive testing of data and assumptions is often much squishier than the unit testing and assertions from the previous section. We must now rely on subject matter expertise and experience with the data to develop assertions that can catch corruptions of the data or data processing mistakes.</p>
-<blockquote class="blockquote">
-<p>Assertive testing means establishing these quality-control checks – usually based on past knowledge of possible corruptions of the data – and halting an analysis if the quality-control checks are not passed, so the analyst can investigate and hopefully fix (or at least account for) the problem. ~ Parker</p>
-</blockquote>
-<section id="libraryassertr" class="level3" data-number="9.1.1">
-<h3 data-number="9.1.1" class="anchored" data-anchor-id="libraryassertr"><span class="header-section-number">9.1.1</span> <code>library(assertr)</code></h3>
-<p><a href="https://docs.ropensci.org/assertr/"><code>library(assertr)</code></a> is a framework for applying assertions to data frames in R. It works well with the pipe (<code>%&gt;%</code> or <code>|&gt;</code>) because the first argument of the five main functions is always a data frame.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Predicate Function
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A predicate function is a function that returns a single <code>TRUE</code> or <code>FALSE</code>.</p>
-</div>
-</div>
-<p><code>verify()</code> takes a logical expression. If the all values are <code>TRUE</code> for the logical expression, the code proceeds. If any value is <code>FALSE</code> for the logical expression, the code terminates and returns a diagnostic tibble.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(assertr)</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>msleep <span class="sc">%&gt;%</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">verify</span>(<span class="fu">nrow</span>(.) <span class="sc">==</span> <span class="dv">83</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">verify</span>(sleep_total <span class="sc">&lt;</span> <span class="dv">24</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">verify</span>(<span class="fu">has_class</span>(<span class="st">"sleep_total"</span>, <span class="at">class =</span> <span class="st">"numeric"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 83 × 11
-   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
-   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
- 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
- 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
- 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
- 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
- 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
- 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
- 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
- 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
- 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
-10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
-# ℹ 73 more rows
-# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>msleep <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">verify</span>(<span class="fu">nrow</span>(.) <span class="sc">==</span> <span class="dv">82</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">verify</span>(sleep_total <span class="sc">&lt;</span> <span class="dv">14</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">verify</span>(<span class="fu">has_class</span>(<span class="st">"sleep_total"</span>, <span class="at">class =</span> <span class="st">"character"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<pre><code>verification [nrow(.) == 82] failed! (1 failure)
-
-    verb redux_fn     predicate column index value
-1 verify       NA nrow(.) == 82     NA     1    NA
-
-Error: assertr stopped execution
-</code></pre>
-<p><code>assert()</code> takes a predicate function and an arbitrary number of variables. <code>assert()</code> will terminate if any values violate the predicate functions. Can apply tests to multiple variables.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>msleep <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">assert</span>(<span class="fu">within_bounds</span>(<span class="dv">0</span>, <span class="dv">24</span>), <span class="fu">c</span>(sleep_total, sleep_rem, sleep_cycle))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 83 × 11
-   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
-   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
- 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
- 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
- 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
- 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
- 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
- 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
- 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
- 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
- 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
-10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
-# ℹ 73 more rows
-# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<p><code>insist()</code> is like <code>assert()</code>, but <code>insist()</code> can make assertions based on the observed data (e.g.&nbsp;throw an error is any value exceed four sample standard deviations from the sample mean).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>msleep <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">insist</span>(<span class="fu">within_n_sds</span>(<span class="at">n =</span> <span class="dv">3</span>), sleep_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 83 × 11
-   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
-   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
- 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
- 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
- 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
- 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
- 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
- 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
- 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
- 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
- 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
-10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
-# ℹ 73 more rows
-# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<p><code>assert_rows()</code> extends <code>assert()</code> so the assertion can rely on values from multiple columns (e.g.&nbsp;row means within a bound or row must have a certain number of non-missing values).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>msleep <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">assert_rows</span>(num_row_NAs, <span class="fu">within_bounds</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 83 × 11
-   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
-   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
- 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
- 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
- 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
- 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
- 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
- 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
- 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
- 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
- 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
-10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
-# ℹ 73 more rows
-# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<p><code>insist_rows()</code>extends <code>insist()</code> so the assertion can rely on values from multiple columns. This is less common but can be used to see if any observation exceeds a certain mahalanobis distance from other rows.</p>
-<ul>
-<li><code>verify()</code> predicate functions
-<ul>
-<li><code>has_all_names()</code></li>
-<li><code>has_only_names()</code></li>
-<li><code>has_class()</code></li>
-</ul></li>
-<li><code>assert()</code> predicate functions
-<ul>
-<li><code>not_na()</code></li>
-<li><code>within_bounds()</code></li>
-<li><code>in_set()</code></li>
-<li><code>is_uniq()</code></li>
-</ul></li>
-<li><code>insist()</code> predicate functions
-<ul>
-<li><code>within_n_sds()</code></li>
-<li><code>within_n_mads()</code></li>
-</ul></li>
-</ul>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 1</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="culture" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="culture"><span class="header-section-number">11.1</span> Culture</h2>
+<p>Tools and strategies will only go so far. Culture is essential to building reproducible data analyses.</p>
+<p>People who are scared to be wrong in public will not work as hard to find errors. They will be less likely to share their code and data and to adopt transparent and reproducible practies.</p>
+<p>Instead of dunking on people for corrections or errors, we should celebrate their transparency.</p>
+<section id="continuous-improvement" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="continuous-improvement"><span class="header-section-number">11.1.1</span> Continuous Improvement</h3>
+<p>Continuous improvement is an ongoing practice to improve processes and outputs. Continuous improvement focuses on incremental improvement over breakthrough improvement.</p>
+<p>There are many different continuous improvement models but most have at least three features:</p>
 <ol type="1">
-<li>Run <code>glimpse(trees)</code>.</li>
-<li><code>verify()</code> that the variables <code>Girth</code> is numeric.</li>
-<li><code>assert()</code> that all three variables are in the interval <span class="math inline">\([0, \infty)\)</span>.</li>
+<li>Analyze performance</li>
+<li>Identify areas for improvement</li>
+<li>Make incremental changes</li>
 </ol>
-</div>
-</div>
-<p><a href="https://docs.ropensci.org/assertr/">This vignette</a> demonstrates additional functionality.</p>
-<p><code>library(assertr)</code> is designed to be used early in a workflow. If you want to run the assertions at the end of the workflow and you don’t want to see printed tibble after printed tibble, end the chain of code with the following custom function.</p>
-<pre><code>#' Helper function to silence output from testing code
-#'
-#' @param data A data frame
-#'
-quiet &lt;- function(data) {
-  
-  quiet &lt;- data
-  
-}</code></pre>
-<p>Example: <a href="https://github.com/UI-Research/mobility-from-poverty/blob/version2024/10_construct-database/11_construct_county_all.qmd">Boosting Upward Mobility from Poverty</a></p>
 </section>
-<section id="other-assertions" class="level3" data-number="9.1.2">
-<h3 data-number="9.1.2" class="anchored" data-anchor-id="other-assertions"><span class="header-section-number">9.1.2</span> Other Assertions</h3>
-<p><a href="https://cran.r-project.org/web/packages/tidylog/readme/README.html"><code>library(tidylog)</code></a> prints diagnostic information when functions from <code>library(dplyr)</code> and <code>library(tidylog)</code> are used.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(tidylog)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'tidylog'</code></pre>
+<section id="error-log" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="error-log"><span class="header-section-number">11.1.2</span> Error Log</h3>
+<p>Code reviews, tests, and assertions are essential for analyzing performance and identifying areas for improvement.</p>
+<p>Error logs are one tool for analyzing performance. Any time an error makes it past code review, document the error in a running tracker and note the plan for remedying the error. The errors can be analytic (e.g.&nbsp;<code>2 + 2 = 5</code>) or process (e.g.&nbsp;“we started too late on data collection and missed our deadline).</p>
+</section>
+<section id="blameless-postmortem" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="blameless-postmortem"><span class="header-section-number">11.1.3</span> Blameless Postmortem</h3>
+<p>Incident postmortems are common in data engineering:</p>
+<blockquote class="blockquote">
+<p>An incident postmortem brings people together to discuss the details of an incident: why it happened, its impact, what actions were taken to mitigate it and resolve it, and what should be done to prevent it from happening again. ~ <a href="https://www.atlassian.com/incident-management/postmortem">Atlassian</a></p>
+</blockquote>
+<p>A blameless postmortem approaches the incident postmortem without any cynicism or hidden agendas:</p>
+<blockquote class="blockquote">
+<p>In a blameless postmortem, it’s assumed that every team and employee acted with the best intentions based on the information they had at the time. Instead of identifying—and punishing—whoever screwed up, blameless postmortems focus on improving performance moving forward. ~ <a href="https://www.atlassian.com/incident-management/postmortem/blameless">Atlassian</a></p>
+</blockquote>
+<p>The term “incident postmortem” hides some of the value of this approach.</p>
+<ol type="1">
+<li>We don’t need an incident to host this type of discussion.</li>
+<li>This type of meeting need not be post-data analysis.</li>
+</ol>
+<div class="{callout-note}">
+<p>Holding regular meetings where it is assumed that everyone acted with good intentions to analyze performance, identify areas for improvement, and make incremental changes will improve collaboration and strengthen data analyses.</p>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:dplyr':
-
-    add_count, add_tally, anti_join, count, distinct, distinct_all,
-    distinct_at, distinct_if, filter, filter_all, filter_at, filter_if,
-    full_join, group_by, group_by_all, group_by_at, group_by_if,
-    inner_join, left_join, mutate, mutate_all, mutate_at, mutate_if,
-    relocate, rename, rename_all, rename_at, rename_if, rename_with,
-    right_join, sample_frac, sample_n, select, select_all, select_at,
-    select_if, semi_join, slice, slice_head, slice_max, slice_min,
-    slice_sample, slice_tail, summarise, summarise_all, summarise_at,
-    summarise_if, summarize, summarize_all, summarize_at, summarize_if,
-    tally, top_frac, top_n, transmute, transmute_all, transmute_at,
-    transmute_if, ungroup</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:tidyr':
-
-    drop_na, fill, gather, pivot_longer, pivot_wider, replace_na,
-    spread, uncount</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stats':
-
-    filter</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>math_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="sc">~</span>name, <span class="sc">~</span>math_score,</span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="st">"Alec"</span>, <span class="dv">95</span>,</span>
-<span id="cb17-4"><a href="#cb17-4"></a>  <span class="st">"Bart"</span>, <span class="dv">97</span>,</span>
-<span id="cb17-5"><a href="#cb17-5"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a>)</span>
-<span id="cb17-7"><a href="#cb17-7"></a></span>
-<span id="cb17-8"><a href="#cb17-8"></a>reading_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb17-9"><a href="#cb17-9"></a>  <span class="sc">~</span>name, <span class="sc">~</span>reading_score,</span>
-<span id="cb17-10"><a href="#cb17-10"></a>  <span class="st">"Alec"</span>, <span class="dv">88</span>,</span>
-<span id="cb17-11"><a href="#cb17-11"></a>  <span class="st">"Bart"</span>, <span class="dv">67</span>,</span>
-<span id="cb17-12"><a href="#cb17-12"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span>,</span>
-<span id="cb17-13"><a href="#cb17-13"></a>  <span class="st">"Zeta"</span>, <span class="dv">100</span></span>
-<span id="cb17-14"><a href="#cb17-14"></a>)</span>
-<span id="cb17-15"><a href="#cb17-15"></a></span>
-<span id="cb17-16"><a href="#cb17-16"></a><span class="fu">left_join</span>(<span class="at">x =</span> math_scores, <span class="at">y =</span> reading_scores, <span class="at">by =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>left_join: added one column (reading_score)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>           &gt; rows only in x   0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>           &gt; rows only in y  (1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>           &gt; matched rows     3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>           &gt;                 ===</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>           &gt; rows total       3</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  name   math_score reading_score
-  &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
-1 Alec           95            88
-2 Bart           97            67
-3 Carrie        100           100</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">full_join</span>(<span class="at">x =</span> math_scores, <span class="at">y =</span> reading_scores, <span class="at">by =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>full_join: added one column (reading_score)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>           &gt; rows only in x   0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>           &gt; rows only in y   1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>           &gt; matched rows     3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>           &gt;                 ===</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>           &gt; rows total       4</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-  name   math_score reading_score
-  &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
-1 Alec           95            88
-2 Bart           97            67
-3 Carrie        100           100
-4 Zeta           NA           100</code></pre>
-</div>
-</div>
-<p>We’ll detach tidylog to keep the rest of this document clean.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">detach</span>(<span class="st">"package:tidylog"</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+</section>
+</section>
+<section id="ethics" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="ethics"><span class="header-section-number">11.2</span> Ethics</h2>
+<p>We could go talk for eight more hours about the ethics of statistics and data science.</p>
+<p>The social sciences are in a multi-decade transformation motivated by a series of major issues:</p>
+<ul>
+<li>Multiple testing</li>
+<li>Hypothesizing After Results are Known (HARKing)</li>
+<li>p-hacking</li>
+<li>Publication bias</li>
+</ul>
+<p>Transparency and reproducibility help with some of these issues. Adopting version control <em>at the beginning</em> can help too. Pre-registration is a final tool that can help <span class="citation" data-cites="nosek2018">(<a href="references.html#ref-nosek2018" role="doc-biblioref">Nosek et al. 2018</a>)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Pre-Registration
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>library(tidylog)</code> is excellent for interactive development of data analyses.</p>
-<p>If you look at <code>library(tidylog)</code> output <em>more than once</em>, then write an assertion to capture the same information.</p>
+<p>Pre-registration is the process of submitting a pre-analysis plan. This differentiates hypothesis generation and hypothesis testing, which is necessary because the same data cannot be used to generate and test a hypothesis.</p>
 </div>
 </div>
-<section id="missing-values" class="level4">
-<h4 class="anchored" data-anchor-id="missing-values">Missing Values</h4>
-<p>The following throws an error if the data set contains any missing values.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>missing_values <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(<span class="at">.x =</span> trees, <span class="sc">~</span><span class="fu">sum</span>(<span class="fu">is.na</span>(.x)))</span>
-<span id="cb34-2"><a href="#cb34-2"></a></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">stopifnot</span>(<span class="fu">sum</span>(missing_values) <span class="sc">==</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="joins" class="level4">
-<h4 class="anchored" data-anchor-id="joins">Joins</h4>
-<p>Joins are one of the most dangerous parts of any data analysis. We can think of many different types of joins:</p>
 <ul>
-<li>“one-to-one”</li>
-<li>“one-to-many”</li>
-<li>“many-to-one”</li>
-<li>“many-to-many”</li>
+<li><a href="https://www.cos.io/initiatives/prereg">Center for Open Science pre-registration resources</a></li>
+<li><a href="https://help.osf.io/article/145-preregistration">Open Science pre-registration resources</a></li>
 </ul>
-<p>We can provide an expectation for the type of join using the <code>relationship</code> argument in <code>*_join()</code> functions. This is an assertion.</p>
-<p>Consider the test scores data sets from earlier. This should be a one-to-one join because each row in <code>x</code> matches at most 1 row in <code>y</code> and each row in <code>y</code> matches at most 1 row in <code>x</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>math_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb35-2"><a href="#cb35-2"></a>  <span class="sc">~</span>name, <span class="sc">~</span>math_score,</span>
-<span id="cb35-3"><a href="#cb35-3"></a>  <span class="st">"Alec"</span>, <span class="dv">95</span>,</span>
-<span id="cb35-4"><a href="#cb35-4"></a>  <span class="st">"Bart"</span>, <span class="dv">97</span>,</span>
-<span id="cb35-5"><a href="#cb35-5"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span></span>
-<span id="cb35-6"><a href="#cb35-6"></a>)</span>
-<span id="cb35-7"><a href="#cb35-7"></a></span>
-<span id="cb35-8"><a href="#cb35-8"></a>reading_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb35-9"><a href="#cb35-9"></a>  <span class="sc">~</span>name, <span class="sc">~</span>reading_score,</span>
-<span id="cb35-10"><a href="#cb35-10"></a>  <span class="st">"Alec"</span>, <span class="dv">88</span>,</span>
-<span id="cb35-11"><a href="#cb35-11"></a>  <span class="st">"Bart"</span>, <span class="dv">67</span>,</span>
-<span id="cb35-12"><a href="#cb35-12"></a>  <span class="st">"Carrie"</span>, <span class="dv">100</span>,</span>
-<span id="cb35-13"><a href="#cb35-13"></a>  <span class="st">"Zeta"</span>, <span class="dv">100</span></span>
-<span id="cb35-14"><a href="#cb35-14"></a>)</span>
-<span id="cb35-15"><a href="#cb35-15"></a></span>
-<span id="cb35-16"><a href="#cb35-16"></a><span class="fu">left_join</span>(</span>
-<span id="cb35-17"><a href="#cb35-17"></a>  <span class="at">x =</span> math_scores,</span>
-<span id="cb35-18"><a href="#cb35-18"></a>  <span class="at">y =</span> reading_scores,</span>
-<span id="cb35-19"><a href="#cb35-19"></a>  <span class="at">by =</span> <span class="st">"name"</span>,</span>
-<span id="cb35-20"><a href="#cb35-20"></a>  <span class="at">relationship =</span> <span class="st">"one-to-one"</span></span>
-<span id="cb35-21"><a href="#cb35-21"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  name   math_score reading_score
-  &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
-1 Alec           95            88
-2 Bart           97            67
-3 Carrie        100           100</code></pre>
-</div>
-</div>
-<p>Suppose there were two <code>"Alec"</code> in either data set. Then this code would throw a loud error.</p>
-</section>
-<section id="pivots" class="level4">
-<h4 class="anchored" data-anchor-id="pivots">Pivots</h4>
-<p>Pivots are also one of the most dangerous parts of any data analysis. We can write tests for the number of rows and the class for the output of pivots.</p>
-<p>Consider <code>table4a</code> from <code>library(tidyr)</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  country     `1999` `2000`
-  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
-1 Afghanistan    745   2666
-2 Brazil       37737  80488
-3 China       212258 213766</code></pre>
-</div>
-</div>
-<p>We want to pivot this data set to be longer because the data set isn’t <a href="https://r4ds.had.co.nz/tidy-data.html">tidy</a>. Before writing code to tidy the data, we can probably come up with a few assertions:</p>
-<ul>
-<li>There should be six rows.</li>
-<li><code>year</code> and <code>cases</code> should be numeric.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>table4a_tidy <span class="ot">&lt;-</span> table4a <span class="sc">|&gt;</span> </span>
-<span id="cb39-2"><a href="#cb39-2"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb39-3"><a href="#cb39-3"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">1999</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span>), </span>
-<span id="cb39-4"><a href="#cb39-4"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>, </span>
-<span id="cb39-5"><a href="#cb39-5"></a>    <span class="at">values_to =</span> <span class="st">"cases"</span></span>
-<span id="cb39-6"><a href="#cb39-6"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb39-7"><a href="#cb39-7"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(year))</span>
-<span id="cb39-8"><a href="#cb39-8"></a></span>
-<span id="cb39-9"><a href="#cb39-9"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(table4a_tidy) <span class="sc">==</span> <span class="dv">6</span>)</span>
-<span id="cb39-10"><a href="#cb39-10"></a><span class="fu">stopifnot</span>(<span class="fu">class</span>(<span class="fu">pull</span>(table4a_tidy, year)) <span class="sc">==</span> <span class="st">"numeric"</span>)</span>
-<span id="cb39-11"><a href="#cb39-11"></a><span class="fu">stopifnot</span>(<span class="fu">class</span>(<span class="fu">pull</span>(table4a_tidy, cases)) <span class="sc">==</span> <span class="st">"numeric"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>It’s easy to get tired and to cut corners. Assertions never rest.</p>
-<blockquote class="blockquote">
-<p>Understand, that your assertions is out there. It can’t be bargained with. It can’t be reasoned with. It doesn’t feel pity or remorse or fear. It absolutely will not stop ever until your analysis is correct. ~ [Terminator (sort of)]https://www.youtube.com/watch?v=zu0rP2VWLWw)</p>
-</blockquote>
-</section>
-</section>
-</section>
-<section id="assertive-testing-of-assumptions" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="assertive-testing-of-assumptions"><span class="header-section-number">9.2</span> Assertive Testing of Assumptions</h2>
-<p>Assertive testing of assumptions is the squishiest of everything we’ve considered testing. We don’t want to apply an analysis to data that have drifted too far from the assumptions of analysis. We also don’t want to inappropriately apply a set of binary tests (think mechanical null hypothesis testing with p-values).</p>
-<p>At the very least, we should include visualizations and diagnostic tests that systematically explore the assumptions of an analysis in our Quarto documents. Then, we can use version control to track if anything changed unexpectedly.</p>
-<p>Beyond that, we need to rely on subject matter expertise to come up with heuristics for assertions.</p>
-</section>
-<section id="profiling-and-benchmarking" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="profiling-and-benchmarking"><span class="header-section-number">9.3</span> Profiling and Benchmarking</h2>
-<p>We skipped the questions “If you are not using efficient code, will you be able to identify it.”</p>
-<p>Human time is expensive. Machine time is cheap. All else equal, we shouldn’t worry too much about making our code more efficient.</p>
-<p>Sometimes, it is necessary to make our code more efficient. After all, who cares if our analysis is reproducible if it takes two weeks to run?</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Profiling
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Profiling is the systematic measurement of the run-time of each line of code.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Benchmarking
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Benchmarking is the precise measurement of the performance of a small piece of code. Typically, the code is run multiple times to improve the precision of the measurement.</p>
-</div>
-</div>
-<p>Systematically making code more efficient generally proceeds in three steps:</p>
-<ul>
-<li>Step 1: Profile the entire set of code to identify bottlenecks.</li>
-<li>Step 2: Benchmark small pieces of code that are responsible for the bottleneck.</li>
-<li>Step 3: Try to improve the slow pieces of code. Return to step 2 to evaluate the result.</li>
-</ul>
-<p>RStudio has built-in tools for profiling the run time and memory usage of large chunks of code. See <a href="https://adv-r.hadley.nz/perf-measure.html#profiling">this section</a> of Advanced R to learn more.</p>
-<p><code>library(microbenchmark)</code> has robust tools for benchmarking code. See <a href="https://adv-r.hadley.nz/perf-measure.html#microbenchmarking">this section</a> of Advanced R to learn more.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-nosek2018" class="csl-entry" role="listitem">
+Nosek, Brian A., Charles R. Ebersole, Alexander C. DeHaven, and David T. Mellor. 2018. <span>“The Preregistration Revolution.”</span> <em>Proceedings of the National Academy of Sciences</em> 115 (11): 2600–2606. <a href="https://doi.org/10.1073/pnas.1708274114">https://doi.org/10.1073/pnas.1708274114</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -1752,13 +1331,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./functions-and-tests.html" class="pagination-link" aria-label="Modular, Tested Code">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">References</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./renv.html" class="pagination-link" aria-label="`library(renv)`">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./reproducible-research-bootcamp_software-installation.html" class="pagination-link" aria-label="Software Requirements">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Software Requirements</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
