@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Reproducible Research Bootcamp - 10&nbsp; library(renv)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./11_culture-and-ethics.html" rel="next">
+<link href="./09_assertive-testing.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_renv.html">Environment Management</a></li><li class="breadcrumb-item"><a href="./10_renv.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">`library(renv)`</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Reproducible Research Bootcamp</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abstract</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_embrace-your-fallibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Embrace Your Fallibility</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Project Organization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_project-organization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project Organization</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Literate Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_advanced-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Advanced Quarto</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Version Control</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_reproducible-research-with-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Research with Git and GitHub</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_advanced-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and GitHub</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_functions-and-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_assertive-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Assertive Testing</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Environment Management</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_renv.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Putting it All Together</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_culture-and-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Culture and Ethics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_final-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Final Workflow</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reproducible-research-bootcamp_software-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Software Requirements</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./alternative-software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Alternative Software</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#problem-definition" id="toc-problem-definition" class="nav-link active" data-scroll-target="#problem-definition"><span class="header-section-number">10.1</span> Problem Definition</a></li>
+  <li><a href="#ideal-solution" id="toc-ideal-solution" class="nav-link" data-scroll-target="#ideal-solution"><span class="header-section-number">10.2</span> Ideal Solution</a></li>
+  <li><a href="#libraryrenv" id="toc-libraryrenv" class="nav-link" data-scroll-target="#libraryrenv"><span class="header-section-number">10.3</span> <code>library(renv)</code></a>
+  <ul class="collapse">
+  <li><a href="#isolate" id="toc-isolate" class="nav-link" data-scroll-target="#isolate"><span class="header-section-number">10.3.1</span> 1. Isolate</a></li>
+  <li><a href="#document" id="toc-document" class="nav-link" data-scroll-target="#document"><span class="header-section-number">10.3.2</span> 2. Document</a></li>
+  <li><a href="#share" id="toc-share" class="nav-link" data-scroll-target="#share"><span class="header-section-number">10.3.3</span> 3. Share</a></li>
+  <li><a href="#more-about-libraryrenv" id="toc-more-about-libraryrenv" class="nav-link" data-scroll-target="#more-about-libraryrenv"><span class="header-section-number">10.3.4</span> More about <code>library(renv)</code></a></li>
+  <li><a href="#going-deeper" id="toc-going-deeper" class="nav-link" data-scroll-target="#going-deeper"><span class="header-section-number">10.3.5</span> Going deeper</a></li>
+  <li><a href="#conda" id="toc-conda" class="nav-link" data-scroll-target="#conda"><span class="header-section-number">10.3.6</span> Conda</a></li>
+  <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker"><span class="header-section-number">10.3.7</span> Docker</a></li>
+  <li><a href="#cloud-computing" id="toc-cloud-computing" class="nav-link" data-scroll-target="#cloud-computing"><span class="header-section-number">10.3.8</span> Cloud Computing</a></li>
+  </ul></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts"><span class="header-section-number">10.4</span> Final Thoughts</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Abstract</div>
+    This sections introduces enviroment management with a focus on <code>library(renv)</code>.
+  </div>
+</div>
+
+</header>
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/LAGO_LACAR.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Lácar Lake, of glacial origin, in the province of Neuquén, Argentina</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-roadmap" class="anchored">
+
+<div id="ljsligbvba" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ljsligbvba table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ljsligbvba thead, #ljsligbvba tbody, #ljsligbvba tfoot, #ljsligbvba tr, #ljsligbvba td, #ljsligbvba th {
+  border-style: none;
+}
+
+#ljsligbvba p {
+  margin: 0;
+  padding: 0;
+}
+
+#ljsligbvba .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ljsligbvba .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ljsligbvba .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ljsligbvba .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ljsligbvba .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ljsligbvba .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ljsligbvba .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ljsligbvba .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ljsligbvba .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ljsligbvba .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ljsligbvba .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ljsligbvba .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ljsligbvba .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ljsligbvba .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ljsligbvba .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ljsligbvba .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ljsligbvba .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ljsligbvba .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ljsligbvba .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ljsligbvba .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ljsligbvba .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ljsligbvba .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ljsligbvba .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ljsligbvba .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ljsligbvba .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ljsligbvba .gt_left {
+  text-align: left;
+}
+
+#ljsligbvba .gt_center {
+  text-align: center;
+}
+
+#ljsligbvba .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ljsligbvba .gt_font_normal {
+  font-weight: normal;
+}
+
+#ljsligbvba .gt_font_bold {
+  font-weight: bold;
+}
+
+#ljsligbvba .gt_font_italic {
+  font-style: italic;
+}
+
+#ljsligbvba .gt_super {
+  font-size: 65%;
+}
+
+#ljsligbvba .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ljsligbvba .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ljsligbvba .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ljsligbvba .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ljsligbvba .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ljsligbvba .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ljsligbvba .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;10.1:  <p>Opinionated Analysis Development</p> </caption>
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Opinionated Analysis Development</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Opinionated Approach">Opinionated Approach</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Question Addressed">Question Addressed</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Tool<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>">Tool<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Section<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>">Section<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Opinionated Approach" class="gt_row gt_left">Defined dependencies</td>
+<td headers="Question Addressed" class="gt_row gt_left">If an external library you’re using is updated, can you still reproduce your original results?</td>
+<td headers="Tool" class="gt_row gt_left">library(renv)</td>
+<td headers="Section" class="gt_row gt_center">Environment Management</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4"><strong>Source:</strong> Parker, Hilary. n.d. “Opinionated Analysis Development.” <a href="https://doi.org/10.7287/peerj.preprints.3210v1">https://doi.org/10.7287/peerj.preprints.3210v1</a>.</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Added by Aaron R. Williams</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</div>
+<section id="problem-definition" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="problem-definition"><span class="header-section-number">10.1</span> Problem Definition</h2>
+<p>Every time we run a line of R code or Python code, we rely on an entire stack of software and hardware that affects how our line of R code or Python code runs.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Computing Environment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The packages, software, and hardware that supports running code for an analysis.</p>
+</div>
+</div>
+<p>Changing computing environments can lead to many issues with reproducibility.</p>
+<ul>
+<li>Python and R packages can change in ways that change the results of an analysis. The packages may change because the authors
+<ul>
+<li>introduce new functionality</li>
+<li>improve the package interface</li>
+<li>discover and fix bugs</li>
+</ul></li>
+<li>Beneath packages, Python or R can change in ways that change the results of an analysis.</li>
+<li>Adjacent to programming languages, compilers and linear algebra libraries can change or even the computer operating system can change.</li>
+<li>Hardware can change in ways that change the results of an analysis.</li>
+</ul>
+<p>Each example above corresponds to a layer of a computing environment.</p>
+<ul>
+<li>package</li>
+<li>system</li>
+<li>hardware</li>
+</ul>
+<blockquote class="blockquote">
+<p>Ignoring the readiness of the data science environment results in the dreaded <em>it works on my machine</em> phenomenon with a failed attempt to share code with a colleague or deploy an app to production. ~ <span class="citation" data-cites="gold2024">(<a href="references.html#ref-gold2024" role="doc-biblioref">Gold 2024</a>)</span></p>
+</blockquote>
+<p>This is core to reproducibility. Unfortunately, this is where we must temper our expectations.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A perfectly reproducible environment isn’t possible. We quickly hit the point of diminishing returns where system-level factors like machine precision and pseudo random processes (seeds) affect results.</p>
+</div>
+</div>
+<p>We will focus on the packages layer of our environment. It is the place where we can get the highest return on investment for our work.</p>
+<ul>
+<li>We can avoid situations where our 2018 analysis using 2018 R packages breaks using 2024 R packages.</li>
+<li>We can avoid situations where our 2024 R packages don’t work on our friend’s computer.</li>
+<li>We can intentionally use older versions of R packages.</li>
+<li>We can make it easy to move from our computer to a cloud computer where we have scalable computing power.</li>
+</ul>
+</section>
+<section id="ideal-solution" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="ideal-solution"><span class="header-section-number">10.2</span> Ideal Solution</h2>
+<p>What does an ideal solution look like for managing the package layer of a computing environment?</p>
+<ol type="1">
+<li><strong>Isolate:</strong> We should be able to <strong>isolate</strong> the package environment at the project level. That means we can install, update, or remove packages in our current project without affecting any other projects. This means we’ll have project-specific versions of packages.</li>
+<li><strong>Document:</strong> We should be able to document our package environment so the package environment is <strong>reproducible</strong>.</li>
+<li><strong>Share:</strong> Our environment should be <strong>portable</strong>. More precisely, we should be able to share documentation about our environment so someone else (or our future selves) can recreate the environment.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Library
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>library</strong> is a folder that contains installed packages. Libraries can hold at most one version of a package.</p>
+</div>
+</div>
+<p>Running the <code>.libPaths()</code> function shows the location of the library used by an R session.</p>
+<p>By default, R’s library will be the system library. We’re interested in creating a project-specific library.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+State
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The condition of a computing environment at a point-in-time.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Repository
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>repository</strong> is a source of packages. The most popular repository is the <a href="https://cran.r-project.org/">Comprehensive R Archive Network (CRAN)</a>, which we typically use when we run <code>install.packages()</code>.</p>
+</div>
+</div>
+<p>We’re interested in documenting the repository used to install each package.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Virtual environment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A virtual environment is a collection of packages and software that support a project that are isolated from other projects.</p>
+</div>
+</div>
+<p>We will use <code>library(renv)</code> to create a virtual environment to track the state of our computing environment with a project-specific library with packages deliberately installed from specific repositories.</p>
+</section>
+<section id="libraryrenv" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="libraryrenv"><span class="header-section-number">10.3</span> <code>library(renv)</code></h2>
+<p><code>library(renv)</code>, short for <strong>r</strong>eproducible <strong>env</strong>ironment, allows us to create project-specific virtual environments.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 1</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Install <code>renv</code> with <code>install.packages("renv")</code>.</li>
+<li>Run the function <code>.libPaths()</code> at the console.</li>
+</ol>
+</div>
+</div>
+<p>Our workflow will have three steps.</p>
+<section id="isolate" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="isolate"><span class="header-section-number">10.3.1</span> 1. Isolate</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Isolate
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We should be able to <strong>isolate</strong> the package environment at the project level. That means we can install, update, or remove packages in our current project without affecting any other projects. This means we’ll have project-specific versions of packages.</p>
+</div>
+</div>
+<p>The <code>init()</code> function creates a project-specific virtual environment with a project-specific library. This means the R session will use packages from a project library instead of a system library. Running <code>init()</code> creates three new items in a project:</p>
+<ul>
+<li><code>renv/library/</code> is the project-specific library.</li>
+<li><code>renv.lock</code> contains metadata that describes the project-specific library.</li>
+<li><code>.Rprofile</code> is a hidden system file. It isn’t specific to <code>library(renv)</code>, but in this case it tells R to use the project library instead of the system library.</li>
+</ul>
+<p>At first, this library won’t have anything in it. This is a little extra work! But we can use <code>install()</code> and <code>update()</code> to add R packages to the project-specific library.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 2</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Run <code>install.packages("dplyr")</code> and then <code>library(dplyr)</code>. The <code>dplyr</code> package should load.</li>
+<li>Run <code>renv::init()</code>. You will get a long message.</li>
+<li>Run <code>library(dplyr)</code></li>
+<li>Run <code>.libPaths()</code></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="document" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="document"><span class="header-section-number">10.3.2</span> 2. Document</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We should be able to document our package environment so the package environment is <strong>reproducible</strong>.</p>
+</div>
+</div>
+<p>The <code>snapshot()</code> function documents the current project environment by updating metadata in the <code>renv.lock</code> file. <code>snapshot()</code> will install, update, or uninstall any packages that are in an inconsistent state and update the lockfile to represent the current state of dependencies in the project.</p>
+<p>The lockfile (<code>renv.lock</code>) contains JSON that documents the current state of dependencies for a project. For instance, if we install and use <code>library(palmerpenguins)</code>, the lockfile will look like:</p>
+<pre><code>{
+  "R": {
+    "Version": "4.3.1",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://packagemanager.posit.co/cran/latest"
+      }
+    ]
+  },
+  "Packages": {
+    "palmerpenguins": {
+      "Package": "palmerpenguins",
+      "Version": "0.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "6c6861efbc13c1d543749e9c7be4a592"
+    },
+    "renv": {
+      "Package": "renv",
+      "Version": "1.0.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "utils"
+      ],
+      "Hash": "397b7b2a265bc5a7a06852524dabae20"
+    }
+  }
+}</code></pre>
+<p>The <code>status()</code> gives us a snapshot of the documented project environment.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 3</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Run <code>renv::status()</code></li>
+<li>Run <code>ren::snapshot()</code></li>
+<li>Create an R script. Load <code>library(dplyr)</code>.</li>
+<li>Run <code>renv::status()</code></li>
+<li>Run <code>ren::snapshot()</code></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="share" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="share"><span class="header-section-number">10.3.3</span> 3. Share</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Share
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We should be able to share documentation about our environment so someone else (or our future selves) can recreate the environment.</p>
+</div>
+</div>
+<p>The <code>restore()</code> function will use files created by <code>snapshot()</code> to recreate a project environment.</p>
+<p>We won’t actually directly run this function often. If we share a project that uses <code>renv</code>, RStudio should automatically ask us if we want to download and install the documented packages using <code>restore()</code>.</p>
+<p>We likely won’t need to use <code>restore()</code> on the computer where <code>init()</code> was run. Rather, you should see a prompt when opening up a .Rproj:</p>
+<pre><code>Project '~/presentations/test-project' loaded. [renv 1.0.7]</code></pre>
+<p>We’ll need to commit multiple files to Git to share an renv virtual project environment:</p>
+<ul>
+<li><code>renv.lock</code></li>
+<li><code>.Rprofile</code></li>
+<li><code>renv/settings.json</code></li>
+<li><code>renv/activate.R</code></li>
+</ul>
+<p>If a Git repository has already been initialized, then <code>init()</code> will automatically add files that <em>should not</em> be shared to the .gitignore in the <code>renv/</code> folder:</p>
+<ul>
+<li><code>renv/library/</code></li>
+<li>Any other folder in <code>renv/</code></li>
+</ul>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 4</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Clone the <a href="https://github.com/awunderground/penguin-analysis">penguins-analysis GitHub repository</a>.</li>
+<li>Open up the project and confirm <code>library(renv)</code> recreates the package-layer of the computing environment. You <em>may</em> need to run <code>renv::restore()</code>.</li>
+<li>Run the code in <code>analysis.R</code>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 5</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Run <code>renv::init()</code> in <code>example-analysis/</code>.</li>
+<li>Install the necessary R packages with <code>renv::install()</code>.</li>
+<li>Use <code>renv::snapshot()</code> to document the state of the project layer of the computing environment.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="more-about-libraryrenv" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="more-about-libraryrenv"><span class="header-section-number">10.3.4</span> More about <code>library(renv)</code></h3>
+<p><code>renv</code> doesn’t install packages in a project directory. Instead, renv makes references to user-level packages, which saves space and install time.</p>
+<p><code>renv</code> doesn’t acknowledge a dependency until it is used somewhere in the project! <code>dependencies()</code> will show the .R scripts and Quarto documents where dependencies are created.</p>
+<p><code>update()</code> updates a package that has already been installed and <code>remove()</code> removes a package that has been installed.</p>
+<p><code>deactivate()</code> is like hitting pause on the project environment. It shifts the project to using the system library but doesn’t delete any of the renv files in the directory. <code>reactivate()</code> is the opposite of <code>deactive()</code>.</p>
+<p><code>renv::deactivate(clean = TRUE)</code> is dynamite. It shifts the project to using the system library and deletes all of the renv files. There is no going back. At this point, using renv in the project will require starting from scratch with <code>renv::init()</code>.</p>
+<p>If the repository has a Git history, <code>history()</code> can explore past versions of the project environment and <code>revert()</code> can return to an earlier version of the project library. With this in mind, it may make sense to begin using <code>renv</code> near the beginning of a project instead of at the end.</p>
+</section>
+<section id="going-deeper" class="level3" data-number="10.3.5">
+<h3 data-number="10.3.5" class="anchored" data-anchor-id="going-deeper"><span class="header-section-number">10.3.5</span> Going deeper</h3>
+<p><code>renv</code> solves environment management for the package layer of the computing environment but it doesn’t help with the system layer or the hardware layer. We’ll briefly cover some other tools that can help with the system layer and hardware layer.</p>
+</section>
+<section id="conda" class="level3" data-number="10.3.6">
+<h3 data-number="10.3.6" class="anchored" data-anchor-id="conda"><span class="header-section-number">10.3.6</span> Conda</h3>
+<p><a href="https://anaconda.org/anaconda/conda">Conda</a> can help with the system layer in addition to managing the package layer.</p>
+<blockquote class="blockquote">
+<p>Conda is an open source package management system and environment management system for installing multiple versions of software packages and their dependencies and switching easily between them. It works on Linux, OS X and Windows, and was created for Python programs but can package and distribute any software.</p>
+</blockquote>
+<p>Interestingly, <span class="citation" data-cites="gold2024">Gold (<a href="references.html#ref-gold2024" role="doc-biblioref">2024</a>)</span> is critical of Docker:</p>
+<blockquote class="blockquote">
+<p>Conda allows you to create a virtual environment in user space on your laptop without having admin access. It’s especially useful when your machine is locked down by IT.</p>
+<p>That’s not a great fit for a production environment. Conda smashes together the language version, the package management, and, sometimes, the system library management. This is conceptually simple and easy to use, but it often goes awry in production environments. In a production environment (or a shared workbench server), I recommend people manage Python packages with a virtual environment tool like <code>{venv}</code> and manage system libraries and versions of Python with tools built for those purposes.</p>
+</blockquote>
+</section>
+<section id="docker" class="level3" data-number="10.3.7">
+<h3 data-number="10.3.7" class="anchored" data-anchor-id="docker"><span class="header-section-number">10.3.7</span> Docker</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Container
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A container is a self-contained system for running computer software. Typically, containers are designed to be small and fit-for-use with specific analyses.</p>
+</div>
+</div>
+<p>Containerization is the process of creating a self-contained computer environment to run an analysis. Lars Vilhuber, the Data Editor for the American Economic Association, <a href="https://github.com/larsvilhuber/ssb-demo/blob/master/code/Description-docker-conf.md">has advocated for using containers in economics research</a>.</p>
+<p><a href="https://www.docker.com/">Docker</a> is a popular container tool. Docker can manage the software layer of a computing environment and the package layer of a computing environment. Docker can:</p>
+<ul>
+<li>Specify the computer operating system</li>
+<li>Control system dependencies like the version of Pandoc, BLAS, and compilers</li>
+<li>Control the R or Python version</li>
+<li>Manage R packages and Python packages</li>
+<li>Manage the version of the code that’s run</li>
+</ul>
+<p><a href="https://hub.docker.com/">DockerHub</a> is a popular repository for sharing Docker images.</p>
+<p>It’s worth noting that the packages within Docker can be controlled with <code>renv</code> and the version of the code can be controlled with Git and GitHub.</p>
+<p>The foundations of most containers are standard images. <a href="https://rocker-project.org/">Rocker</a> and <a href="https://github.com/rstudio/r-docker">Posit Images</a> provide useful starting images.</p>
+<ul>
+<li><a href="https://solutions.posit.co/envs-pkgs/environments/docker/">Docker 101 for data scientists</a></li>
+<li><a href="https://do4ds.com/chapters/sec1/1-6-docker.html">DevOps for Data Science chapter 6</a></li>
+<li><a href="https://rstudio.github.io/renv/articles/docker.html">renv + Docker</a></li>
+</ul>
+</section>
+<section id="cloud-computing" class="level3" data-number="10.3.8">
+<h3 data-number="10.3.8" class="anchored" data-anchor-id="cloud-computing"><span class="header-section-number">10.3.8</span> Cloud Computing</h3>
+<p>The explosion of popularity of cloud computing has expanded options for managing the hardware layer of a computing environment. <a href="https://aws.amazon.com/">Amazon Web Services</a>, <a href="https://cloud.google.com/">Google Cloud</a>, and <a href="https://azure.microsoft.com/en-us">Microsoft Azure</a> provide on-demand cloud computing environments with predictable, consistent, and documentable hardware.</p>
+<p>These cloud computing environments have out-of-pocket marginal costs, but the costs are frequently cheaper than maintaining on-premise computing environments like servers. The costs are definitely cheaper than maintaining old, on-premise infrastructure to reproduce old computing environments.</p>
+<p>The following is a sensible workflow:</p>
+<ul>
+<li>Spin up a cloud instance (computer) with a specific operating system.</li>
+<li>Pick a Docker image from a Docker repository. This image should be close to fit-for-purpose.</li>
+<li>Set up Docker. Maybe set up renv. Create Dockerfiles and renv files.</li>
+<li>Run the project with good version control.</li>
+<li>Save the Docker files and renv</li>
+</ul>
+</section>
+</section>
+<section id="final-thoughts" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="final-thoughts"><span class="header-section-number">10.4</span> Final Thoughts</h2>
+<p><strong>This is a lot!</strong> Managing the software layer and hardware layer of a computing environment can improve the reproducibility of a project, but the rewards quickly diminish and the complexity quickly increases.</p>
+<p>Improving project organization and documentation, literate programming, version control, programming best practices, and managing the package layer of a computing environment will almost always yield more benefits than focusing on the software layer or hardware layer of a computing environment.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-gold2024" class="csl-entry" role="listitem">
+Gold, Alex K. 2024. <em>DevOps for data science</em>. First edition. Boca Raton, FL: CRC Press.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./09_assertive-testing.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Assertive Testing</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./11_culture-and-ethics.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Culture and Ethics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,519 @@
+---
+title: "Modular, Tested Code"
+abstract: ""
+format: 
+  html: 
+    code-line-numbers: true
+    fig-align: "center"
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+---
+
+![Log bricks](images/Lego_Color_Bricks.jpg)
+
+~ Photo by [Alan Chia](https://en.wikipedia.org/wiki/Lego#/media/File:Lego_Color_Bricks.jpg)
+
+```{r hidden-here-load}
+#| include: false
+
+exercise_number <- 1
+```
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(tidyverse)
+library(gt)
+
+source("src/motivation.R")
+
+```
+
+```{r}
+#| label: tbl-roadmap
+#| tbl-cap: "Opinionated Analysis Development"
+#| echo: false
+
+motivation |>
+  filter(!is.na(Section), Section == "Programming") |>
+  select(-`Analysis Feature`) |>
+  arrange(Section) |>
+  gt() |>
+    tab_header(
+    title = "Opinionated Analysis Development"
+  )  |>
+  tab_footnote(
+    footnote = "Added by Aaron R. Williams",
+    locations = cells_column_labels(columns = c(Tool, Section))
+  ) |>  
+  tab_source_note(
+    source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
+  )
+
+```
+
+## Fundamental Ideas
+
+::: {.callout-tip}
+## Defensive programming
+
+**Defensive programming** is a set of practices intended to avoid common mistakes and to catch mistakes with assertions and unit tests. 
+:::
+
+
+[Software carpentry](https://swc-osg-workshop.github.io/2017-05-17-JLAB/novice/python/05-defensive.html) and [Nick Eubank](https://www.nickeubank.com/wp-content/uploads/2016/06/Eubank_EmbraceYourFallibility.pdf) identify defensive programming as fundamental to avoiding mistakes in an analysis. Defensive programming can also add clarity to an analysis. 
+
+[Software carpentry](https://swc-osg-workshop.github.io/2017-05-17-JLAB/novice/python/05-defensive.html)[^eubank] highlights three parts of defensive programming:
+
+> - write programs that check their own operation,
+> - write and run tests for widely-used functions, and
+> - make sure we know what "correct" actually means
+
+[^eubank]: [Nick Eubank](https://www.nickeubank.com/wp-content/uploads/2016/06/Eubank_EmbraceYourFallibility.pdf) identifies adding tests, never transcribe, style matters, and don't duplicate information. Many of the ideas are scattered throughout this training. 
+
+::: {.callout-tip}
+## Unit test
+
+A **unit test** is an evaluation of a function under a preconceived set of conditions that returns TRUE or FALSE based on the output of the function.
+:::
+
+
+Unit tests have pre-conceived inputs (e.g. test data) with a pre-conceived set of out outputs. 
+
+::: {.callout-tip}
+## Assertion
+
+**Assertions** are statements about what must be true at a specific point in a program. 
+
+- Precondition: An assertion about what must be true at the beginning of a function for the function to work correctly. (input tests)
+- Postcondition: An assertion about what must be true at the end of a function (output tests).
+- Invariant: A condition that is supposed to be true at a point in time in code.
+
+:::
+
+Suppose we're an airplane manufacturer. Unit tests are all of the checks we would run before ever putting passengers on a plane. Does the engine consume fuel at a pre-determined rate? Does the airplane generate sufficient list? Assertions are all of the checks we would run every time the plane is operated. Did the landing gear come down? Do we have enough fuel for this flight distance?
+
+Let's consider a few important principles of assertions and tests. 
+
+::: {.callout-tip}
+## Test-driven development
+
+Test-driven development is the practice of writing unit tests before writing code and then evaluating the code against the tests. We'll also consider writing assertions before writing code and evaluating a program against assertions as test-driven development.
+:::
+
+::: {.callout-tip}
+## Fail fast, fail often
+
+Fail fast, fail often is the principle of working to catch mistakes as soon as they happen. When an error occurs, well-placed tests early in an analysis can minimize the scope of debugging, save computation time, and avoid costly mistakes.
+:::
+
+::: {.callout-tip}
+## Fail loudly
+
+Fail loudly is the principle that errors should be difficult to ignore. In general, we will favor fatal errors that force us to address the underlying problem before proceeding.[^quarto]
+:::
+
+::: {.callout-tip}
+## Fail clearly
+
+Fail clearly is the principle that errors should return meaningful and informative error messages. 
+:::
+
+[^quarto]: Recall, Quarto requires the code to run error-free for the document to render. 
+
+Below, we'll take these principles and apply them to building functions, testing data for analysis, and testing the assumptions of an analysis. 
+
+## Modular, Tested Code
+
+Functions with unit tests lead to modular, tested code and address three (!) questions from Opinionated Data Analysis:
+
+> Can you re-use logic in different parts of the analysis?
+
+Functions allow us to reuse bits of R code over and over. In fact, we can iterate functions with for loops and map-reduce. 
+
+> If you decide to change logic, can you change it in just one place?
+
+::: {.callout-tip}
+## DRY
+
+DRY, or **d**on't **r**epeat **y**ourself, is the principle that we should we should create a function any time we do something three times.
+:::
+
+Functions are the best way to follow the DRY principle. 
+
+Copying-and-pasting is typically bad because it is easy to make mistakes and we typically want a single source source of truth in a script. Custom functions also promote modular code design and testing.
+
+Suppose we copy and paste the same code with minor changes twenty times. Then, we realize we need to make a change to the core functionality. Now we need to make the change twenty times. If we use a function and need to make a change, we only need to change the code in the function.
+
+> If your code is not performing as expected, will you know?
+
+Assertions and unit tests that fail fast, fail loudly, and fail clearly are the best way to ensure our code is performing as expected. 
+
+The bottom line: we want to write clear functions that do one and only one thing that are sufficiently tested so we are confident in their correctness.
+
+### Example Functions
+
+Let's consider a couple of examples from [@barrientos2021]. This paper is a large-scale simulation of formally private mechanisms, which relates to several future chapters of this book. 
+
+Division by zero, which returns `NaN`, can be a real pain when comparing confidential and noisy results when the confidential value is `zero`. This function simply returns `0` when the denominator is `0`. 
+
+```{r}
+#' Safely divide number. When zero is in the denominator, return 0. 
+#'
+#' @param numerator A numeric value for the numerator
+#' @param denominator A numeric value for the denominator
+#'
+#' @return A numeric ratio
+#'
+safe_divide <- function(numerator, denominator) {
+  
+  if (denominator == 0) {
+    
+    return(0)
+    
+  } else {
+    
+    return(numerator / denominator)
+    
+  }
+}
+
+```
+
+This function 
+
+1. Implements the laplace or double exponential distribution, which isn't included in base R. 
+2. Applies a technique called the laplace mechanism. 
+
+```{r}
+#' Apply the laplace mechanism
+#'
+#' @param eps Numeric epsilon privacy parameter
+#' @param gs Numeric global sensitivity for the statistics of interest
+#'
+#' @return
+#' 
+lap_mech <- function(eps, gs) {
+  
+  # Checking for proper values
+  if (any(eps <= 0)) {
+    stop("The eps must be positive.")
+  }
+  if (any(gs <= 0)) {
+    stop("The GS must be positive.")
+  }
+  
+  # Calculating the scale
+  scale <- gs / eps
+
+  r <- runif(1)
+
+  if(r > 0.5) {
+    r2 <- 1 - r
+    x <- 0 - sign(r - 0.5) * scale * log(2 * r2)
+  } else {
+    x <- 0 - sign(r - 0.5) * scale * log(2 * r)
+  }
+  
+  return(x)
+}
+
+
+
+```
+
+### Function Basics
+
+R has a robust system for creating custom functions. To create a custom function, use `function()`:
+
+```{r}
+say_hello <- function() {
+  
+  "hello"
+   
+}
+
+say_hello()
+
+```
+
+Oftentimes, we want to pass parameters/arguments to our functions:
+
+```{r}
+say_hello <- function(name) {
+  
+  paste("hello,", name)
+   
+}
+
+say_hello(name = "aaron")
+
+```
+
+We can also specify default values for parameters/arguments:
+
+```{r}
+say_hello <- function(name = "aaron") {
+  
+  paste("hello,", name)
+   
+}
+
+say_hello()
+
+say_hello(name = "alex")
+
+```
+
+`say_hello()` just prints something to the console. More often, we want to perform a bunch of operations and the then return some object like a vector or a data frame. By default, R will return the last unassigned object in a custom function. It isn't required, but it is good practice to wrap the object to return in `return()`.
+
+::: callout
+
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r, include = FALSE}
+exercise_number <- exercise_number + 1
+```
+
+1. Create a function called `say_goodbye()` that says goodbye. 
+2. Give it a `name` argument and a default value for `name`. 
+
+:::
+
+It's also good practice to document functions. With your cursor inside of a function, go Insert \> Insert Roxygen Skeleton:
+
+```{r}
+#' Say hello
+#'
+#' @param name A character vector with names
+#'
+#' @return A character vector with greetings to name
+#' 
+say_hello <- function(name = "aaron") {
+  
+  greeting <- paste("hello,", name)
+  
+  return(greeting)
+  
+}
+
+say_hello()
+
+```
+
+As you can see from the [Roxygen Skeleton](https://jozef.io/r102-addin-roxytags/) template above, function documentation should contain the following:
+
+-   A description of what the function does
+-   A description of each function argument, including the class of the argument (e.g. string, integer, dataframe)
+-   A description of what the function returns, including the class of the object
+
+Tips for writing functions:
+
+-   Function names should be short but effectively describe what the function does. Function names should generally be verbs while function arguments should be nouns. See the [Tidyverse style guide](https://style.tidyverse.org/functions.html) for more details on function naming and style.
+-   As a general principle, functions should each do only one task. This makes it much easier to debug your code and reuse functions!
+-   Use `::` (e.g. `dplyr::filter()` instead of `filter()`) when writing custom functions. This will create stabler code and make it easier to develop R packages.
+
+### `return()`
+
+When `return()` is reached in a function, `return()` is evaluated, evaluation ends and R leaves the function. 
+
+```{r}
+sow_return <- function() {
+  
+  return("The function stops!")
+  
+  return("This never happens!")
+  
+}
+
+sow_return()
+
+```
+
+If the end of a function is reached without calling `return()`, the value from the last evaluated expression is returned.
+
+We prefer to include `return()` at the end of functions for clarity even though `return()` doesn't change the behavior of the function. 
+
+### Referential Transparency
+
+R functions, like mathematical functions, should always return the exact same output for a given set of inputs.[^stochastic] This is called referential transparency. R will not enforce this idea, so you must write good code.
+
+[^stochastic]: This rule won't exactly hold if the function contains random or stochastic code. In those cases, the function should return the same output every time if the seed is set with `set.seed()`. 
+
+#### Bad!
+
+```{r}
+bad_function <- function(x) {
+  
+  x * y
+  
+}
+
+y <- 2
+bad_function(x = 2)
+
+y <- 3
+bad_function(x = 2)
+
+```
+
+#### Good!
+
+```{r}
+good_function <- function(x, y) {
+  
+  x * y
+  
+}
+  
+y <- 2
+good_function(x = 2, y = 1)
+
+y <- 3
+good_function(x = 2, y = 1)
+
+
+```
+
+Bruno Rodriguez has a [book](http://modern-rstats.eu/functional-programming.html#properties-of-functions) and a [blog](https://www.brodrigues.co/blog/2022-05-26-safer_programs/) that explore this idea further.
+
+### Limitations of Macros
+
+Macros are popular in Stata and SAS. Macros promote DRY programming and modular programming. 
+
+Functions have environments, which means an object in a function doesn't exist outside of the function unless it is explicitly returned. Macros rely on textual substitution, which makes it easy for an object in a function to affect objects outside of a function. 
+
+## Assertions in Functions
+
+`stopifnot()`, `stop()`, and `warning()` are useful functions for implementing assertions inside custom functions. `stopifnot()` is easier to use but `stop()` allows for detailed error messages. 
+
+
+```{r}
+sum_integers <- function(x) {
+  
+  stopifnot(class(x) == "integer")
+  
+  x_sum <- sum(x)
+  
+  return(x_sum)
+  
+}
+
+```
+
+```{r}
+#| eval: false
+
+sum_integers(x = c(1, 2))
+
+```
+
+
+```
+Error in sum_integers(x = c(1, 2)) : class(x) == "integer" is not TRUE
+```
+
+```{r}
+sum_integers <- function(x) {
+  
+  if (class(x) != "integer") {
+    stop("Error: input vector x must be of class integer")
+  }
+  
+  x_sum <- sum(x)
+  
+  return(x_sum)
+  
+}
+
+```
+
+```{r}
+#| eval: false
+
+sum_integers(x = c(1, 2))
+
+```
+
+
+```
+Error in sum_integers(x = c(1, 2)) : 
+  Error: input vector x must be of class integer
+```
+
+::: callout
+
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r, include = FALSE}
+exercise_number <- exercise_number + 1
+```
+
+1. Add an precondition assertion to `say_goodbye()` to test if the input is a character string. `is.character()` is useful.  
+
+:::
+
+### Unit Tests for Functions
+
+`library(testthat)` is a powerful framework for unit testing 
+
+`library(testthat)` uses two big ideas: **expectations** and **tests**. 
+
+Expectations compare the output of the function against expected output. Consider the `sum_integer()` from earlier. We can write an expectation that the function throws an error with incorrect inputs and we can write an expectation that the function returns an integer when it has the correct inputs. 
+
+```{r}
+#| message: false
+
+library(testthat)
+
+expect_error(sum_integers(x = c(1, 2)))
+expect_type(sum_integers(x = c(1L, 2L)), type = "integer")
+
+```
+
+Tests group multiple expectations together and begins with `test_that()`. 
+
+```{r}
+test_that("sum_integers() tests inputs and returns the correct output", {
+  
+  expect_error(sum_integers(x = c(1, 2)))
+  expect_type(sum_integers(x = c(1L, 2L)), type = "integer")
+  
+})
+
+```
+
+::: callout-tip
+## Test coverage
+
+**Test coverage** is the scope and quality of tests performed on a code base.
+:::
+
+The goal to develop tests with good test coverage that will loudly fail when bugs are introduced into code.
+
+## Custom R Packages
+
+If we have R functions with roxygen headers and tests, then we almost have an R package. 
+
+At some point, the same scripts or data are used often enough or widely enough to justify moving from sourced R scripts to a full-blown R package. R packages make it easier to
+
+1.  Make it easier to share and version code.
+2.  Improve documentation of functions and data.
+3.  Make it easier to test code.
+4.  Often lead to fun hex stickers.
+
+### Use This
+
+`library(usethis)` includes an R package template. The following will add all necessary files for an R package to a directory called `testpackage/` and open an RStudio package.
+
+```{r}
+#| eval: false
+
+library(usethis)
+create_package("/Users/adam/testpackage")
+
+```
+
+We won't cover the rest of R package development but a custom R package is easier to make than it sounds. The [second edition of R Packages](https://r-pkgs.org/) by Hadley Wickham and Jennifer Bryant is a great free resource to learn more. 

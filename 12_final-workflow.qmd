@@ -1,0 +1,54 @@
+---
+title: "Final Workflow"
+abstract: "This section outlines a workflow built from the best practices and tools outlined in this training."
+format: 
+  html: 
+    code-line-numbers: true
+    fig-align: "center"
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+---
+
+```{r hidden-here-load}
+#| include: false
+
+exercise_number <- 1
+```
+
+## Final Workflow
+
+We've learned many best practices and explored a lot of tools. How can we put it all together into a sustainable workflow?
+
+### Setup
+
+1. Create a folder for your project. 
+    - Add any project-relevant materials you already have (e.g. that data someone emailed to you and that paper that that inspired the project). 
+2. Optional: Create a Zotero library or group for relevant literature
+3. Create a .Rproj
+4. Create a README
+5. `init` a local Git repository
+6. `add` and `commit` the .Rproj and README
+7. Create a remote GitHub repository with the same name as the folder. Connect the local and remote repositories using the instruction on GitHub.
+8. Initialize a virtual environment with `library(renv)`.
+
+### Analysis Development
+
+1. Create GitHub issues that organize progress on your work.
+2. For each issue, checkout a branch with the name `iss<number>`.
+3. Develop your analysis
+    - Use Quarto. Render early and often.
+    - Regularly commit and push changes to GitHub.
+    - Keep your renv up-to-date. 
+    - Adopt defensive programming techniques like modular, well-tested code and assertions.
+4. When you think you've addressed an issue, open a pull request from `iss<number>` to `main` and flag someone as a reviewer.
+5. Close the issue when the PR is approved and merged into `main`.
+
+### Closing Up a Project
+
+1. Ensure that all Quarto documents have been rendered with the most up-to-date `.qmd` documents.
+2. Ensure that `renv` reflects the software layer of the computing environment.
+3. Ensure that all local changes have been pushed to the GitHub repository.
+4. Ensure all necessary branches have been merged into `main`. 
+5. Update the README with instructions for how to reproduce the analysis.
+6. Consider building a GitHub page for your analysis. 

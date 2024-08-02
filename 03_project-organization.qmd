@@ -52,57 +52,24 @@ motivation |>
 
 To achieve reproducibility, we need to capture every step of an analysis from loading and cleaning the data to creating figures and visualizations. Recording and documenting every step ensures that others (and future you!) has a fighting chance and re-creating the analysis. We'll start with three pillars of project organization:
 
-1. Code First
-2. Project-Oriented Workflow
+1. Project-Oriented Workflow
+2. Code First
 3. Documentation
 
-## 1. Code First {.unnumbered}
+## 1. Project-Oriented Workflow {.unnumbered}
 
-![](images/recipe.png)
-
-Source: [Qr189](https://en.wikipedia.org/wiki/Recipe#/media/File:Pistachio_cake.png)
-
-The Great British Bake Off (GBBO) is a popular show about a baking competition in Great Britain. Each week contestants compete in a three-round baking competition. The second round is always the technical challenge, where bakers try to finish a challenging bake with *intentionally vague* instructions. Data analysis should never feel like a technical round from the GBBO. 
-
-Our analyses should be captured from start to finish by a script or scripts. If we think of a script as a recipe, we want to capture every step from buying the ingredients for a bake all the way to how we put the bake on the table. Ideally, we want to capture *every* step with code. 
-
-This desire should influence our tool selection. Point-and-click tools like Excel, Tableau, and Power BI are widely used but fall short of this simple standard. Instead, we should use programming languages with robust functionality. 
-
-How we use these programming languages matters! R and Python are powerful because they support interactive data analysis that works well with the development and testing of hypotheses. The uncleaned results of interactive data analysis are rarely reproducible. Rather, we need to clean up our scripts so they run from start to finish without intervention (executable) and achieve all of the objectives of our final analysis.
-
-Proprietary tools like SAS and Stata can be used for reproducible workflows! I have a personal preference for R, Python, and Julia because they are open source and promote accessibility because they don't cost any money for users. R and Python used to be much tougher to use. Now they are supported by Integrated Development Environments (IDE) like RStudio, [Positron](https://github.com/posit-dev/positron), and VS Code.
-
-Adopting a code-first approach to data analysis creates many benefits!
-
-1. Code maximizes the chance of catching mistakes when they inevitably happen.
-2. Code is the clearest way to document and share an analysis.
-3. Reproducible code creates a [single source of truth](https://posit.co/blog/the-advantages-of-code-first-data-science/). Any result can be mapped back to the code and data that created the result.
-4. Code allows for robust version control.
-5. Code can scale analyses to bigger data and bigger projects.
-
-We'll cover more programming concepts later. For now, let's focus on three. 
-
-1. Load external dependencies at the top of an analysis.
-2. When possible, gather your data using code. Many data sets can be accessed through application programming interface (API). For example, if you run a data collection using Qualtrics use the Qualtrics API instead of point-and-clicking to download the data from the website. With R, it's possible to download data with `download.file()`. I don't recommend downloading the data every time you run your analysis. Instead, download the data only if the data aren't present. 
+My name is Aaron Williams. I don't have a "tbayes" folder on my computer and I'm guessing most people don't. Yet, it's common to run into the following situation:
 
 ```{r}
 #| eval: false
-
-if (!file.exists("data/data.csv")) {
-
-  download.file(url = "web-url.csv", destfile = "data/data.csv")
-
-}
-
+read_csv("tbayes/projects/example-analysis/data/data.csv")
 ```
 
-3. Finally, capture outputs with code. It's so tempting to jump into a tool like Excel but this undermines our objectives. `library(ggplot2)` is powerful for data visualizations and `library(gt)` is powerful for tables. 
+```
+Error: 'tbayes/projects/example-analysis/data/data.csv' does not exist in current working directory ('/Users/aaronwilliams').
+```
 
-During development, it's easy to run lines of code out of order or to skip capturing an important step like loading a package or dropping that pesky outlier. Restarting your computing environment early and often can promote good practices and ensure accountability. This is easy in RStudio using Session > Restart R.
-
-## 2. Project-Oriented Workflow {.unnumbered}
-
-We will use a [project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
+One approach to avoid this issue is to use `setwd()`. Unfortunately, `setwd()` will require anyone attempting to reproduce an analysis to alter the analysis. Instead, we will use a [project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
 
 ### R Projects
 
@@ -111,7 +78,8 @@ R Projects, proper noun, are the best way to organize an analysis. They have sev
 * They make it possible to concurrently run multiple RStudio sessions.
 * They allow for project-specific RStudio settings.
 * They integrate well with Git version control.
-* They are the “node” of relative file paths. (more on this in a second) This makes code highly portable. 
+* They work well with `library(renv)` for virtual environments.
+* They are the “node” of relative file paths. (more on this in a second) This makes code highly portable.
 
 :::callout
 
@@ -149,12 +117,15 @@ Upon completion, the name of the R Project should now be displayed in the top ri
 exercise_number <- exercise_number + 1
 ```
 
-Let's walk through this process and create an R project for this training. 
+1. Create a folder called `example-analysis/` on your computer.  
+2. Following the previous steps, create an RStudio project for the folder.
 :::
 
 ### Filepaths
 
-Windows file paths are usually delimited with `\`. *nix file paths are usually delimited with `/`. Never use `\` in file paths in R. `\` is an escape character in R and will complicate an analysis. Fortunately, RStudio understands `/` in file paths regardless of operating system.
+Windows filepaths are usually delimited with `\`. *nix file paths are usually delimited with `/`. Never use `\` in file paths in R. `\` is an escape character in R and will complicate an analysis. Fortunately, RStudio understands `/` in file paths regardless of operating system.
+
+Avoid spaces when naming folders and files. Spaces will complicate using Git.
 
 Never use `setwd()` in R. It is unnecessary, it makes code unreproducible across machines, and it is rude to collaborators. R Projects create a better framework for file paths. Simply treat the directory where the R Project lives as the working directory and directories inside of that directory as sub-directories.
 
@@ -165,6 +136,93 @@ This simplifies code and makes it portable because all relative file paths will 
 Here’s an example directory:
 
 ![](images/directory.png){width=200}
+
+Use leading numbers to strategically order files and `-` and `_` to give structure to names. 
+
+```{r}
+#| code-fold: true
+
+list.files(pattern = "^[01]")
+
+```
+
+## 2. Code First {.unnumbered}
+
+![](images/recipe.png)
+
+Source: [Qr189](https://en.wikipedia.org/wiki/Recipe#/media/File:Pistachio_cake.png)
+
+The Great British Bake Off (GBBO) is a popular show about a baking competition in Great Britain. Each week contestants compete in a three-round baking competition. The second round is always the technical challenge, where bakers try to finish a challenging bake with *intentionally vague* instructions. *Data analysis should never feel like a technical challenge from the GBBO.* 
+
+::: {.callout-note}
+Our analyses should be captured from start to finish by code stored in a script or scripts. If we think of a script as a recipe, we want to capture every step from buying the ingredients for a bake all the way to how we put the bake on the table. Ideally, we want to capture *every* step with code. 
+:::
+
+This desire should influence our tool selection. Point-and-click tools like Excel, Tableau, and Power BI are widely used but fall short of this simple standard. Instead, we should use programming languages with robust functionality. 
+
+How we use these programming languages matters! R and Python are powerful because they support interactive data analysis that works well with the development and testing of hypotheses. The uncleaned results of interactive data analysis are rarely reproducible. Rather, we need to clean up our scripts so they run from start to finish without intervention (executable) and achieve all of the objectives of our final analysis.
+
+Proprietary tools like SAS and Stata can be used for reproducible workflows! I have a personal preference for R, Python, and Julia because they are open source and promote accessibility because they don't cost any money for users. R and Python used to be much tougher to use. Now they are supported by Integrated Development Environments (IDE) like RStudio, [Positron](https://github.com/posit-dev/positron), and VS Code.
+
+Adopting a code-first approach to data analysis creates many benefits!
+
+1. Code maximizes the chance of catching mistakes when they inevitably happen.
+2. Code is the clearest way to document and share an analysis.
+3. Reproducible code creates a [single source of truth](https://posit.co/blog/the-advantages-of-code-first-data-science/). Any result can be mapped back to the code and data that created the result.
+4. Code allows for robust version control.
+5. Code can scale analyses to bigger data and bigger projects.
+
+We'll cover more programming concepts later. For now, let's focus on three. 
+
+1. Load external dependencies at the top of an analysis.[^install.packages]
+2. When possible, gather your data using code. Many data sets can be accessed through application programming interface (API). For example, if you run a data collection using Qualtrics use the Qualtrics API instead of pointing-and-clicking to download the data from the website. With R, it's possible to download data with `download.file()`. I don't recommend downloading the data every time you run your analysis. Instead, download the data only if the data aren't present. 
+
+```{r}
+#| eval: false
+
+if (!file.exists("data/data.csv")) {
+
+  download.file(url = "web-url.csv", destfile = "data/data.csv")
+
+}
+
+```
+
+3. Finally, capture outputs with code. It's so tempting to jump into a tool like Excel but this undermines our objectives. `library(ggplot2)` is powerful for data visualizations and `library(gt)` is powerful for tables. 
+
+[^install.packages]: It is tempting to include `install.packages()` when using R. It can be rude to install software on someone else's computer. Instead, we'll use `library(renv)`.
+
+During development, it's easy to run lines of code out of order or to skip capturing an important step like loading a package or dropping that pesky outlier. Restarting your computing environment early and often can promote good practices and ensure accountability. This is easy in RStudio using Session > Restart R.
+
+:::callout
+
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+1. Add a `data/` folder to `example-analysis/`.
+2. Add a .R script called `download-data.R`.
+3. Download data with the following code:
+
+```{r}
+#| eval: false
+
+file <- "data/virginia-injury-deaths.xlsx"
+
+if (!file.exists(file)) {
+  
+  download.file(
+    url = "https://www.countyhealthrankings.org/sites/default/files/media/document/2023%20County%20Health%20Rankings%20Virginia%20Data%20-%20v2.xlsx", 
+    destfile = file
+  )
+  
+}
+```
+:::
 
 ## 3. Documentation {.unnumbered}
 

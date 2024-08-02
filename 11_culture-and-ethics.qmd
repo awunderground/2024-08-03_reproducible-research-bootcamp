@@ -1,0 +1,86 @@
+---
+title: "Culture and Ethics"
+abstract: ""
+format: 
+  html: 
+    code-line-numbers: true
+    fig-align: "center"
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+---
+
+![An early expression of culture](images/9_Bisonte_Magdaleniense_polícromo.jpg)
+
+~ Photo by [Museo de Altamira y D. Rodríguez](https://en.wikipedia.org/wiki/Culture#/media/File:9_Bisonte_Magdaleniense_pol%C3%ADcromo.jpg)
+
+```{r hidden-here-load}
+#| include: false
+
+exercise_number <- 1
+```
+
+## Culture
+
+Tools and strategies will only go so far. Culture is essential to building reproducible data analyses.
+
+People who are scared to be wrong in public will not work as hard to find errors. They will be less likely to share their code and data and to adopt transparent and reproducible practies.
+
+Instead of dunking on people for corrections or errors, we should celebrate their transparency.
+
+### Continuous Improvement
+
+Continuous improvement is an ongoing practice to improve processes and outputs. Continuous improvement focuses on incremental improvement over breakthrough improvement.
+
+There are many different continuous improvement models but most have at least three features:
+
+1.  Analyze performance
+2.  Identify areas for improvement
+3.  Make incremental changes
+
+### Error Log
+
+Code reviews, tests, and assertions are essential for analyzing performance and identifying areas for improvement.
+
+Error logs are one tool for analyzing performance. Any time an error makes it past code review, document the error in a running tracker and note the plan for remedying the error. The errors can be analytic (e.g. `2 + 2 = 5`) or process (e.g. "we started too late on data collection and missed our deadline).
+
+### Blameless Postmortem
+
+Incident postmortems are common in data engineering:
+
+> An incident postmortem brings people together to discuss the details of an incident: why it happened, its impact, what actions were taken to mitigate it and resolve it, and what should be done to prevent it from happening again. \~ [Atlassian](https://www.atlassian.com/incident-management/postmortem)
+
+A blameless postmortem approaches the incident postmortem without any cynicism or hidden agendas:
+
+> In a blameless postmortem, it’s assumed that every team and employee acted with the best intentions based on the information they had at the time. Instead of identifying—and punishing—whoever screwed up, blameless postmortems focus on improving performance moving forward. \~ [Atlassian](https://www.atlassian.com/incident-management/postmortem/blameless)
+
+The term "incident postmortem" hides some of the value of this approach.
+
+1.  We don't need an incident to host this type of discussion.
+2.  This type of meeting need not be post-data analysis.
+
+::: {callout-note}
+Holding regular meetings where it is assumed that everyone acted with good intentions to analyze performance, identify areas for improvement, and make incremental changes will improve collaboration and strengthen data analyses.
+:::
+
+## Ethics
+
+We could go talk for eight more hours about the ethics of statistics and data science.
+
+The social sciences are in a multi-decade transformation motivated by a series of major issues:
+
+-   Multiple testing
+-   Hypothesizing After Results are Known (HARKing)
+-   p-hacking
+-   Publication bias
+
+Transparency and reproducibility help with some of these issues. Adopting version control *at the beginning* can help too. Pre-registration is a final tool that can help [@nosek2018].
+
+::: callout-note
+## Pre-Registration
+
+Pre-registration is the process of submitting a pre-analysis plan. This differentiates hypothesis generation and hypothesis testing, which is necessary because the same data cannot be used to generate and test a hypothesis.
+:::
+
+-   [Center for Open Science pre-registration resources](https://www.cos.io/initiatives/prereg)
+-   [Open Science pre-registration resources](https://help.osf.io/article/145-preregistration)

@@ -7,6 +7,8 @@ format:
     code-line-numbers: true
 ---
 
+![Hansel and Gretel by Arthur Rackham](images/Hansel-and-gretel-rackham.jpg)
+
 ```{r}
 #| echo: false
 exercise_number <-  1
@@ -257,18 +259,24 @@ We will follow the [instructions for setting up SSH keys](https://happygitwithr.
 -   Follow the instructions from Jenny Bryan at 10.5.3 to add the copied key to GitHub.
 :::
 
-
 ## Git + GitHub Workflow
 
-**Repository:** A collection of files, often a directory, where files are organized and logged by Git.
+::: {.callout-important}
+Git does not work well with shared drives like Box, Google Drive, and SharePoint. Fortunately, those tools aren't necessary for a Git + GitHub workflow. 
+:::
+
+::: {.callout-tip}
+## Repository
+
+A repository is a collection of files, often a directory, where files are organized and logged by Git.
+:::
 
 Git and GitHub organize projects into repositories. Typically, a "repo" will correspond with the place where you started a .Rproj. When working with Git and GitHub, your files will exist in two places: **locally** on your computer and **remotely** on GitHub.
 
 When creating a new repository, you can use either of the following alternatives:
 
 - Initialize the repo locally on your computer and later add the repo to GitHub 
-
-- Initialize the repo remotely on GitHub and then copy (clone) the repo to your computer. 
+- Initialize the repo remotely on GitHub and then copy (clone) the repo to your computer.
 
 To create a repository (only needs to be done once per project):
 
@@ -278,6 +286,23 @@ OR
 
 `git clone <link>` copies a remote repository from GitHub to the location of the working directory on your computer.
 
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+exercise_number <-  1 + exercise_number
+
+```
+
+We're going to create a repo remotely on GitHub and clone it to our computer.
+
+1.  Go [here](https://github.com/awunderground/2024-08-03_reproducible-research-bootcamp) to see the repository for today's course materials.
+2. Click the green "Code" button and copy the URL under SSH.
+3. At the command line, navigate to where you want to clone the course notes.
+4. `git clone https://github.com/awunderground/2024-08-03_reproducible-research-bootcamp`
+
+:::
 
 ::: callout
 #### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
@@ -292,27 +317,25 @@ We're going to create a repo remotely on GitHub and clone it to our computer.
 
 1.  Go to GitHub.
 2.  Click the big green "New" button.
-3.  Call the repo `first-repo`. Select a public repository and check the box that says `Add a README file`.
+3.  Call the repo `my-first-repo`. Select a public repository and check the box that says `Add a README file`.
 4.  Click the "Create Repository" button.
 5.  Click the green "Code" button and copy the SSH link.
-6.  Navigate to your `cli-exercise` folder on the command line using `cd`. Run `git clone < link >`, where you replace `< link >` with the SSH link you copied. This will create a folder called `first-repo` with your repo files, including the `README.md` file you created when you initialized the repo.
+6.  Using the command line, navigate to a sensible place on your computer to store a project. 
+7. Run `git clone < link >`, where you replace `< link >` with the SSH link you copied. This will create a folder called `my-first-repo` with your repo files, including the `README.md` file you created when you initialized the repo.
 
-See @sec-app-b for the instructions on initializing a repo locally and then adding to GitHub.
 :::
-
 
 ### Basic Approach
 
 1.  Initialize a repository for a project (we've already done this!).
-2.  Tell Git which files to track. Track scripts. Avoid tracking data or binary files like `.xlsx`. [^files]
+2.  Tell Git which files to track. Track scripts. Avoid tracking data or binary files like `.docx` and `.xlsx`. [^files]
 3.  Take a snapshot of tracked files and add a commit message.
 4.  Save the tracked files to the remote GitHub repository.
 5.  Repeat, repeat, repeat
 
-[^files]: GitHub refuses to store files larger than 100 MiB. This poses a challenge to writing reproducible code. However, many data sources can be downloaded directly from the web or via APIs, allowing code to be reproducible without relying on storing large data sets on GitHub. Materials later in this book discuss scaping data from the web and using APIs. 
+[^files]: GitHub refuses to store files larger than 100 MiB. This poses a challenge to writing reproducible code. However, many data sources can be downloaded directly from the web or via APIs, allowing code to be reproducible without relying on storing large data sets on GitHub. 
 
-![](images/git-github-workflow.jpeg){fig-align="center" width=70%}
-
+![Basic Git + GitHub workflow](images/git-workflow-commands.png){fig-align="center" width=100%}
 
 ### Commands
 
@@ -340,25 +363,31 @@ exercise_number <-  1 + exercise_number
 
 ```
 
-1.  Navigate to your `first-repo` directory on the command line and run `git status` to confirm that there is a git repo.
-2.  In RStudio, create a new R project. Select the option to associate the R project with an existing directory and select the `first-repo` directory. This will open the `first-repo` project.
-3.  Create a quarto document. Select the HTML option and give the document whatever title you'd like. Once the document is created, save the untitled document as "index.qmd". Edit the YML header of the document to set `self-contained` to true as follows:
+1.  Navigate to your `example-project` directory on the command line and run `git status` to confirm that there isn't a git repo.
+2. Use `git init` to initialize a new repository. 
+3.  In the terminal, run `git add analysis.qmd analysis.html`. Then run `git status`.
+4.  Then run `git commit -m "add draft analysis"` to commit the two files with a commit message. Then run `git status` again and observe the change.
+5. Create a repository on GitHub called `example-project`. Select a public repository and **do not** check the box that says `Add a README file`.
+6. Follow the instructions to `…or push an existing repository from the command line`.
 
-```{=html}
-format: 
-      html:
-        self-contained: true
-```
-    
-4.  In a code chunk, add `library(tidyverse)` and create any graph with `library(ggplot2)` and the `storms` dataset.
-5.  Render the document to html.
-6.  In the terminal, run `git add index.qmd index.html`. Then run `git status`.
-7.  Then run `git commit -m "add first graph"` to commit the two files with a commit message. Then run `git status` again and observe the change.
-8.  Finally, run `git push origin main` to push the commit to GitHub. Navigate to the repo on GitHub to confirm that the files have been pushed to your remote repo.
-9.  Make some changes to your the graph in your `index.qmd` file (e.g. change the color of a geometry, add labels, etc.). Then run steps 5-8 again (with a different commit message in step 7).
-10. In the GitHub repo, click on `index.qmd` then click on the History icon in the top right corner. Note that you'll see your two commits. Click on the most recent commit and notice that you can see the changes that you've made to the file.
 :::
 
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+exercise_number <-  1 + exercise_number
+
+```
+
+1. Make some changes to `index.qmd` and re-render the document. 
+2. Add your files. 
+3. Commit your files. 
+4. Push your files. 
+5. In the GitHub repo, click on `index.qmd` then click on the History icon in the top right corner. Note that you'll see your two commits. Click on the most recent commit and notice that you can see the changes that you've made to the file.
+
+:::
 
 ## GitHub Pages {#sec-ghp}
 
@@ -375,23 +404,31 @@ exercise_number <-  1 + exercise_number
 
 1.  Go to your GitHub repository and select "Settings" on the top right.
 2.  Under the "Code and Automations" menu on the left side, select "Pages".
-3.  Under "Build and Deployment" and "Branch", use the drop down menu to change the branch to "main". This will trigger the deployment of your GitHub page from the "main" branch of your repository. It will take a bit of time for your GitHub page to be ready.
+3.  Under "Build and Deployment" and "Branch", use the drop down menu to change the branch to from "None" to "main". This will trigger the deployment of your GitHub page from the "main" branch of your repository. It will take a bit of time for your GitHub page to be ready.
 4.  Refresh the page, and when you see a box that says "your site is live" at the top of your page, click the link to go to your website!
 :::
 
+## .gitignore
 
-## Collaboration Using Git + GitHub (with branching)
+We don't want to add every file to Git or GitHub. We want to avoid binary files like Word documents. We can't add very large files. 
 
-Our workflow so far has involved only one person, but the true power of GitHub comes through collaboration! There are two main models for collaborating with GitHub.
+By default, every file in a local repository will show up after `git status` and those files we don't want to add will be at risk of being added by accident. This is annoying. 
 
-1.  Shared repository with branching
-2.  Fork and pull
+Fortunately, we can use a `.gitignore` to ignore files and directories. This cleans up our `git status` and protects us from accidentally add a file we don't want to add. To ignore a file, just add the name of the file or folder to the `.gitignore`. 
 
-We have almost exclusively seen approach one used by collaborative teams. Approach two is more common when a repository has been publicized, and someone external to the work wants to propose changes while lacking the ability to "write" (or push) to that repository. Approach one is covered in more detail in the next chapter. 
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
 
-![A Common Branching Workflow](images/git-branching.png){fig-align="center" width=70%}
+```{r}
+#| echo: false
+exercise_number <-  1 + exercise_number
 
-To add a collaborator to your repository, under Settings select "Collaborators" under the Access menu on the left. Select the "Add people" button and add your collaborators by entering their GitHub user name.
+```
+
+1.  Run `git status`.
+2. Add a file called `.gitignore`. In the file, add `poems/`.
+3. Run `git status`.
+:::
 
 ## Conclusion
 Git is a distributed version-control system. It is used for tracking changes in the code. GitHub is an online hosting service for version control using git. Key workhorse commands are `git status`, `git add`, `git commit -m <message>` `git push` and `git diff`. GitHub is also great because it will host websites using GitHub Pages. 
@@ -446,3 +483,4 @@ We promise that it's worth it.
 2.  On GitHub, click the plus sign in the top, right corner and select `New Repository`.
 3.  Create a repository with the same name as your directory.
 4.  Copy the code under **...or push an existing repository from the command line** and submit it in the command line that is already open.
+

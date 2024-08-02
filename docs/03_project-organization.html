@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,13 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -96,7 +90,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -112,12 +105,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_project-organization.html">Project Organization</a></li><li class="breadcrumb-item"><a href="./03_project-organization.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project Organization</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_project-organization.html">Project Organization</a></li><li class="breadcrumb-item"><a href="./03_project-organization.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project Organization</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -127,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Reproducible Research Bootcamp</a> 
@@ -227,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07_advanced-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and GitHub</span></span></a>
   </div>
 </li>
       </ul>
@@ -243,14 +236,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions-and-tests.html" class="sidebar-item-text sidebar-link">
+  <a href="./08_functions-and-tests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assertive-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
+  <a href="./09_assertive-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Assertive Testing</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./renv.html" class="sidebar-item-text sidebar-link">
+  <a href="./10_renv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></span></a>
   </div>
 </li>
@@ -275,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">Culture and Ethics</span></a>
+ <span class="menu-text">Putting it All Together</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -283,8 +276,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./culture-and-ethics.html" class="sidebar-item-text sidebar-link">
+  <a href="./11_culture-and-ethics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Culture and Ethics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_final-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Final Workflow</span></span></a>
   </div>
 </li>
       </ul>
@@ -310,24 +309,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Software Requirements</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./alternative-software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Alternative Software</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#code-first" id="toc-code-first" class="nav-link active" data-scroll-target="#code-first">1. Code First</a></li>
-  <li><a href="#project-oriented-workflow" id="toc-project-oriented-workflow" class="nav-link" data-scroll-target="#project-oriented-workflow">2. Project-Oriented Workflow</a>
+  <li><a href="#project-oriented-workflow" id="toc-project-oriented-workflow" class="nav-link active" data-scroll-target="#project-oriented-workflow">1. Project-Oriented Workflow</a>
   <ul class="collapse">
   <li><a href="#r-projects" id="toc-r-projects" class="nav-link" data-scroll-target="#r-projects"><span class="header-section-number">3.0.1</span> R Projects</a></li>
   <li><a href="#filepaths" id="toc-filepaths" class="nav-link" data-scroll-target="#filepaths"><span class="header-section-number">3.0.2</span> Filepaths</a></li>
   </ul></li>
+  <li><a href="#code-first" id="toc-code-first" class="nav-link" data-scroll-target="#code-first">2. Code First</a></li>
   <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">3. Documentation</a>
   <ul class="collapse">
   <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"><span class="header-section-number">3.0.3</span> Comments</a></li>
@@ -339,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_project-organization.html">Project Organization</a></li><li class="breadcrumb-item"><a href="./03_project-organization.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project Organization</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project Organization</span></h1>
 </div>
@@ -355,46 +360,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 <div>
   <div class="abstract">
-    <div class="block-title">Abstract</div>
+    <div class="abstract-title">Abstract</div>
     This section covers the basics of organizing and documenting a reproducible analysis.
   </div>
 </div>
 
-
 </header>
-
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Joy_Oil_gas_station_blueprints.jpg" class="img-fluid figure-img"></p>
-<figcaption>Architectural drawing, Canada, 1936</figcaption>
+<figcaption class="figure-caption">Architectural drawing, Canada, 1936</figcaption>
 </figure>
 </div>
 <div class="cell">
-<div id="tbl-roadmap" class="cell quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.1: Opinionated Analysis Development
-</figcaption>
-<div aria-describedby="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="ovdhknuamv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ovdhknuamv table {
+<div id="tbl-roadmap" class="anchored">
+
+<div id="bbjgnjlvlk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bbjgnjlvlk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ovdhknuamv thead, #ovdhknuamv tbody, #ovdhknuamv tfoot, #ovdhknuamv tr, #ovdhknuamv td, #ovdhknuamv th {
+#bbjgnjlvlk thead, #bbjgnjlvlk tbody, #bbjgnjlvlk tfoot, #bbjgnjlvlk tr, #bbjgnjlvlk td, #bbjgnjlvlk th {
   border-style: none;
 }
 
-#ovdhknuamv p {
+#bbjgnjlvlk p {
   margin: 0;
   padding: 0;
 }
 
-#ovdhknuamv .gt_table {
+#bbjgnjlvlk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -420,12 +419,12 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-left-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_caption {
+#bbjgnjlvlk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ovdhknuamv .gt_title {
+#bbjgnjlvlk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -437,7 +436,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-bottom-width: 0;
 }
 
-#ovdhknuamv .gt_subtitle {
+#bbjgnjlvlk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -449,7 +448,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-top-width: 0;
 }
 
-#ovdhknuamv .gt_heading {
+#bbjgnjlvlk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -461,13 +460,13 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_bottom_border {
+#bbjgnjlvlk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_col_headings {
+#bbjgnjlvlk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -482,7 +481,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_col_heading {
+#bbjgnjlvlk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -502,7 +501,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#ovdhknuamv .gt_column_spanner_outer {
+#bbjgnjlvlk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -514,15 +513,15 @@ Table&nbsp;3.1: Opinionated Analysis Development
   padding-right: 4px;
 }
 
-#ovdhknuamv .gt_column_spanner_outer:first-child {
+#bbjgnjlvlk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ovdhknuamv .gt_column_spanner_outer:last-child {
+#bbjgnjlvlk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ovdhknuamv .gt_column_spanner {
+#bbjgnjlvlk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -534,11 +533,11 @@ Table&nbsp;3.1: Opinionated Analysis Development
   width: 100%;
 }
 
-#ovdhknuamv .gt_spanner_row {
+#bbjgnjlvlk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ovdhknuamv .gt_group_heading {
+#bbjgnjlvlk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -564,7 +563,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   text-align: left;
 }
 
-#ovdhknuamv .gt_empty_group_heading {
+#bbjgnjlvlk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -579,15 +578,15 @@ Table&nbsp;3.1: Opinionated Analysis Development
   vertical-align: middle;
 }
 
-#ovdhknuamv .gt_from_md > :first-child {
+#bbjgnjlvlk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ovdhknuamv .gt_from_md > :last-child {
+#bbjgnjlvlk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ovdhknuamv .gt_row {
+#bbjgnjlvlk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -606,7 +605,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#ovdhknuamv .gt_stub {
+#bbjgnjlvlk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -619,7 +618,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#ovdhknuamv .gt_stub_row_group {
+#bbjgnjlvlk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -633,15 +632,15 @@ Table&nbsp;3.1: Opinionated Analysis Development
   vertical-align: top;
 }
 
-#ovdhknuamv .gt_row_group_first td {
+#bbjgnjlvlk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ovdhknuamv .gt_row_group_first th {
+#bbjgnjlvlk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ovdhknuamv .gt_summary_row {
+#bbjgnjlvlk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -651,16 +650,16 @@ Table&nbsp;3.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#ovdhknuamv .gt_first_summary_row {
+#bbjgnjlvlk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_first_summary_row.thick {
+#bbjgnjlvlk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ovdhknuamv .gt_last_summary_row {
+#bbjgnjlvlk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -670,7 +669,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_grand_summary_row {
+#bbjgnjlvlk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -680,7 +679,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#ovdhknuamv .gt_first_grand_summary_row {
+#bbjgnjlvlk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -690,7 +689,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-top-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_last_grand_summary_row_top {
+#bbjgnjlvlk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -700,11 +699,11 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_striped {
+#bbjgnjlvlk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ovdhknuamv .gt_table_body {
+#bbjgnjlvlk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -713,7 +712,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_footnotes {
+#bbjgnjlvlk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -727,7 +726,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_footnote {
+#bbjgnjlvlk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -736,7 +735,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#ovdhknuamv .gt_sourcenotes {
+#bbjgnjlvlk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -750,7 +749,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#ovdhknuamv .gt_sourcenote {
+#bbjgnjlvlk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -758,67 +757,67 @@ Table&nbsp;3.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#ovdhknuamv .gt_left {
+#bbjgnjlvlk .gt_left {
   text-align: left;
 }
 
-#ovdhknuamv .gt_center {
+#bbjgnjlvlk .gt_center {
   text-align: center;
 }
 
-#ovdhknuamv .gt_right {
+#bbjgnjlvlk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ovdhknuamv .gt_font_normal {
+#bbjgnjlvlk .gt_font_normal {
   font-weight: normal;
 }
 
-#ovdhknuamv .gt_font_bold {
+#bbjgnjlvlk .gt_font_bold {
   font-weight: bold;
 }
 
-#ovdhknuamv .gt_font_italic {
+#bbjgnjlvlk .gt_font_italic {
   font-style: italic;
 }
 
-#ovdhknuamv .gt_super {
+#bbjgnjlvlk .gt_super {
   font-size: 65%;
 }
 
-#ovdhknuamv .gt_footnote_marks {
+#bbjgnjlvlk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ovdhknuamv .gt_asterisk {
+#bbjgnjlvlk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ovdhknuamv .gt_indent_1 {
+#bbjgnjlvlk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ovdhknuamv .gt_indent_2 {
+#bbjgnjlvlk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ovdhknuamv .gt_indent_3 {
+#bbjgnjlvlk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ovdhknuamv .gt_indent_4 {
+#bbjgnjlvlk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ovdhknuamv .gt_indent_5 {
+#bbjgnjlvlk .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;3.1:  <p>Opinionated Analysis Development</p> </caption>
   <thead>
     <tr class="gt_heading">
       <td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Opinionated Analysis Development</td>
@@ -851,52 +850,21 @@ Table&nbsp;3.1: Opinionated Analysis Development
 </div>
 </div>
 </div>
-</figure>
-</div>
 </div>
 <p>To achieve reproducibility, we need to capture every step of an analysis from loading and cleaning the data to creating figures and visualizations. Recording and documenting every step ensures that others (and future you!) has a fighting chance and re-creating the analysis. We’ll start with three pillars of project organization:</p>
 <ol type="1">
-<li>Code First</li>
 <li>Project-Oriented Workflow</li>
+<li>Code First</li>
 <li>Documentation</li>
 </ol>
-<section id="code-first" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="code-first">1. Code First</h2>
-<p><img src="images/recipe.png" class="img-fluid"></p>
-<p>Source: <a href="https://en.wikipedia.org/wiki/Recipe#/media/File:Pistachio_cake.png">Qr189</a></p>
-<p>The Great British Bake Off (GBBO) is a popular show about a baking competition in Great Britain. Each week contestants compete in a three-round baking competition. The second round is always the technical challenge, where bakers try to finish a challenging bake with <em>intentionally vague</em> instructions. Data analysis should never feel like a technical round from the GBBO.</p>
-<p>Our analyses should be captured from start to finish by a script or scripts. If we think of a script as a recipe, we want to capture every step from buying the ingredients for a bake all the way to how we put the bake on the table. Ideally, we want to capture <em>every</em> step with code.</p>
-<p>This desire should influence our tool selection. Point-and-click tools like Excel, Tableau, and Power BI are widely used but fall short of this simple standard. Instead, we should use programming languages with robust functionality.</p>
-<p>How we use these programming languages matters! R and Python are powerful because they support interactive data analysis that works well with the development and testing of hypotheses. The uncleaned results of interactive data analysis are rarely reproducible. Rather, we need to clean up our scripts so they run from start to finish without intervention (executable) and achieve all of the objectives of our final analysis.</p>
-<p>Proprietary tools like SAS and Stata can be used for reproducible workflows! I have a personal preference for R, Python, and Julia because they are open source and promote accessibility because they don’t cost any money for users. R and Python used to be much tougher to use. Now they are supported by Integrated Development Environments (IDE) like RStudio, <a href="https://github.com/posit-dev/positron">Positron</a>, and VS Code.</p>
-<p>Adopting a code-first approach to data analysis creates many benefits!</p>
-<ol type="1">
-<li>Code maximizes the chance of catching mistakes when they inevitably happen.</li>
-<li>Code is the clearest way to document and share an analysis.</li>
-<li>Reproducible code creates a&nbsp;<a href="https://posit.co/blog/the-advantages-of-code-first-data-science/">single source of truth</a>. Any result can be mapped back to the code and data that created the result.</li>
-<li>Code allows for robust version control.</li>
-<li>Code can scale analyses to bigger data and bigger projects.</li>
-</ol>
-<p>We’ll cover more programming concepts later. For now, let’s focus on three.</p>
-<ol type="1">
-<li>Load external dependencies at the top of an analysis.</li>
-<li>When possible, gather your data using code. Many data sets can be accessed through application programming interface (API). For example, if you run a data collection using Qualtrics use the Qualtrics API instead of point-and-clicking to download the data from the website. With R, it’s possible to download data with <code>download.file()</code>. I don’t recommend downloading the data every time you run your analysis. Instead, download the data only if the data aren’t present.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"data/data.csv"</span>)) {</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">download.file</span>(<span class="at">url =</span> <span class="st">"web-url.csv"</span>, <span class="at">destfile =</span> <span class="st">"data/data.csv"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="1">
-<li>Finally, capture outputs with code. It’s so tempting to jump into a tool like Excel but this undermines our objectives. <code>library(ggplot2)</code> is powerful for data visualizations and <code>library(gt)</code> is powerful for tables.</li>
-</ol>
-<p>During development, it’s easy to run lines of code out of order or to skip capturing an important step like loading a package or dropping that pesky outlier. Restarting your computing environment early and often can promote good practices and ensure accountability. This is easy in RStudio using Session &gt; Restart R.</p>
-</section>
 <section id="project-oriented-workflow" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="project-oriented-workflow">2. Project-Oriented Workflow</h2>
-<p>We will use a <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">project-oriented workflow</a>.</p>
+<h2 class="unnumbered anchored" data-anchor-id="project-oriented-workflow">1. Project-Oriented Workflow</h2>
+<p>My name is Aaron Williams. I don’t have a “tbayes” folder on my computer and I’m guessing most people don’t. Yet, it’s common to run into the following situation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">read_csv</span>(<span class="st">"tbayes/projects/example-analysis/data/data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Error: 'tbayes/projects/example-analysis/data/data.csv' does not exist in current working directory ('/Users/aaronwilliams').</code></pre>
+<p>One approach to avoid this issue is to use <code>setwd()</code>. Unfortunately, <code>setwd()</code> will require anyone attempting to reproduce an analysis to alter the analysis. Instead, we will use a <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">project-oriented workflow</a>.</p>
 <section id="r-projects" class="level3" data-number="3.0.1">
 <h3 data-number="3.0.1" class="anchored" data-anchor-id="r-projects"><span class="header-section-number">3.0.1</span> R Projects</h3>
 <p>R Projects, proper noun, are the best way to organize an analysis. They have several advantages:</p>
@@ -904,6 +872,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
 <li>They make it possible to concurrently run multiple RStudio sessions.</li>
 <li>They allow for project-specific RStudio settings.</li>
 <li>They integrate well with Git version control.</li>
+<li>They work well with <code>library(renv)</code> for virtual environments.</li>
 <li>They are the “node” of relative file paths. (more on this in a second) This makes code highly portable.</li>
 </ul>
 <div class="callout callout-style-simple callout-none no-icon callout-titled">
@@ -935,19 +904,123 @@ Table&nbsp;3.1: Opinionated Analysis Development
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Let’s walk through this process and create an R project for this training.</p>
+<ol type="1">
+<li>Create a folder called <code>example-analysis/</code> on your computer.<br>
+</li>
+<li>Following the previous steps, create an RStudio project for the folder.</li>
+</ol>
 </div>
 </div>
 </section>
 <section id="filepaths" class="level3" data-number="3.0.2">
 <h3 data-number="3.0.2" class="anchored" data-anchor-id="filepaths"><span class="header-section-number">3.0.2</span> Filepaths</h3>
-<p>Windows file paths are usually delimited with <code>\</code>. *nix file paths are usually delimited with <code>/</code>. Never use <code>\</code> in file paths in R. <code>\</code> is an escape character in R and will complicate an analysis. Fortunately, RStudio understands <code>/</code> in file paths regardless of operating system.</p>
+<p>Windows filepaths are usually delimited with <code>\</code>. *nix file paths are usually delimited with <code>/</code>. Never use <code>\</code> in file paths in R. <code>\</code> is an escape character in R and will complicate an analysis. Fortunately, RStudio understands <code>/</code> in file paths regardless of operating system.</p>
+<p>Avoid spaces when naming folders and files. Spaces will complicate using Git.</p>
 <p>Never use <code>setwd()</code> in R. It is unnecessary, it makes code unreproducible across machines, and it is rude to collaborators. R Projects create a better framework for file paths. Simply treat the directory where the R Project lives as the working directory and directories inside of that directory as sub-directories.</p>
 <p>For example, say there’s a <code>.Rproj</code> called <code>starwars-analysis.Rproj</code> in a directory called <code>starwars-analysis/</code>. If there is a .csv in that folder called <code>jedi.csv</code>, the file can be loaded with <code>read_csv("jedi.csv")</code> instead of <code>read_csv("H:/alena/analyses/starwars-analysis/jedi.csv")</code>. If that file is in a sub-directory of starwars-analysis called data, it can be loaded with <code>read_csv("data/jedi.csv")</code>. The same concepts hold for writing data and graphics.</p>
 <p>This simplifies code and makes it portable because all relative file paths will be identical on all computers. To share an analysis, simply send the entire directory to a collaborator or share it with GitHub.</p>
 <p>Here’s an example directory:</p>
 <p><img src="images/directory.png" class="img-fluid" width="200"></p>
+<p>Use leading numbers to strategically order files and <code>-</code> and <code>_</code> to give structure to names.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">list.files</span>(<span class="at">pattern =</span> <span class="st">"^[01]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "01_syllabus.html"                     
+ [2] "01_syllabus.qmd"                      
+ [3] "02_embrace-your-fallibility.html"     
+ [4] "02_embrace-your-fallibility.qmd"      
+ [5] "03_project-organization.qmd"          
+ [6] "03_project-organization.rmarkdown"    
+ [7] "04_quarto.qmd"                        
+ [8] "05_advanced-quarto.qmd"               
+ [9] "06_reproducible-research-with-git.qmd"
+[10] "07_advanced-git.qmd"                  
+[11] "08_functions-and-tests.qmd"           
+[12] "09_assertive-testing.qmd"             
+[13] "10_renv.qmd"                          
+[14] "11_culture-and-ethics.qmd"            
+[15] "12_final-workflow.qmd"                </code></pre>
+</div>
+</div>
 </section>
+</section>
+<section id="code-first" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="code-first">2. Code First</h2>
+<p><img src="images/recipe.png" class="img-fluid"></p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Recipe#/media/File:Pistachio_cake.png">Qr189</a></p>
+<p>The Great British Bake Off (GBBO) is a popular show about a baking competition in Great Britain. Each week contestants compete in a three-round baking competition. The second round is always the technical challenge, where bakers try to finish a challenging bake with <em>intentionally vague</em> instructions. <em>Data analysis should never feel like a technical challenge from the GBBO.</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Our analyses should be captured from start to finish by code stored in a script or scripts. If we think of a script as a recipe, we want to capture every step from buying the ingredients for a bake all the way to how we put the bake on the table. Ideally, we want to capture <em>every</em> step with code.</p>
+</div>
+</div>
+<p>This desire should influence our tool selection. Point-and-click tools like Excel, Tableau, and Power BI are widely used but fall short of this simple standard. Instead, we should use programming languages with robust functionality.</p>
+<p>How we use these programming languages matters! R and Python are powerful because they support interactive data analysis that works well with the development and testing of hypotheses. The uncleaned results of interactive data analysis are rarely reproducible. Rather, we need to clean up our scripts so they run from start to finish without intervention (executable) and achieve all of the objectives of our final analysis.</p>
+<p>Proprietary tools like SAS and Stata can be used for reproducible workflows! I have a personal preference for R, Python, and Julia because they are open source and promote accessibility because they don’t cost any money for users. R and Python used to be much tougher to use. Now they are supported by Integrated Development Environments (IDE) like RStudio, <a href="https://github.com/posit-dev/positron">Positron</a>, and VS Code.</p>
+<p>Adopting a code-first approach to data analysis creates many benefits!</p>
+<ol type="1">
+<li>Code maximizes the chance of catching mistakes when they inevitably happen.</li>
+<li>Code is the clearest way to document and share an analysis.</li>
+<li>Reproducible code creates a <a href="https://posit.co/blog/the-advantages-of-code-first-data-science/">single source of truth</a>. Any result can be mapped back to the code and data that created the result.</li>
+<li>Code allows for robust version control.</li>
+<li>Code can scale analyses to bigger data and bigger projects.</li>
+</ol>
+<p>We’ll cover more programming concepts later. For now, let’s focus on three.</p>
+<ol type="1">
+<li>Load external dependencies at the top of an analysis.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>When possible, gather your data using code. Many data sets can be accessed through application programming interface (API). For example, if you run a data collection using Qualtrics use the Qualtrics API instead of pointing-and-clicking to download the data from the website. With R, it’s possible to download data with <code>download.file()</code>. I don’t recommend downloading the data every time you run your analysis. Instead, download the data only if the data aren’t present.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"data/data.csv"</span>)) {</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">download.file</span>(<span class="at">url =</span> <span class="st">"web-url.csv"</span>, <span class="at">destfile =</span> <span class="st">"data/data.csv"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Finally, capture outputs with code. It’s so tempting to jump into a tool like Excel but this undermines our objectives. <code>library(ggplot2)</code> is powerful for data visualizations and <code>library(gt)</code> is powerful for tables.</li>
+</ol>
+<p>During development, it’s easy to run lines of code out of order or to skip capturing an important step like loading a package or dropping that pesky outlier. Restarting your computing environment early and often can promote good practices and ensure accountability. This is easy in RStudio using Session &gt; Restart R.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 3</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Add a <code>data/</code> folder to <code>example-analysis/</code>.</li>
+<li>Add a .R script called <code>download-data.R</code>.</li>
+<li>Download data with the following code:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>file <span class="ot">&lt;-</span> <span class="st">"data/virginia-injury-deaths.xlsx"</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(file)) {</span>
+<span id="cb6-4"><a href="#cb6-4"></a>  </span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">download.file</span>(</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">url =</span> <span class="st">"https://www.countyhealthrankings.org/sites/default/files/media/document/2023%20County%20Health%20Rankings%20Virginia%20Data%20-%20v2.xlsx"</span>, </span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">destfile =</span> file</span>
+<span id="cb6-8"><a href="#cb6-8"></a>  )</span>
+<span id="cb6-9"><a href="#cb6-9"></a>  </span>
+<span id="cb6-10"><a href="#cb6-10"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="documentation" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="documentation">3. Documentation</h2>
@@ -957,27 +1030,27 @@ Table&nbsp;3.1: Opinionated Analysis Development
 <h3 data-number="3.0.3" class="anchored" data-anchor-id="comments"><span class="header-section-number">3.0.3</span> Comments</h3>
 <p>Comments are important for adding in-the-weeds context for code. R will interpret all text in a <code>.R</code> script as R code unless the code follows <code>#</code>, the comment symbol. Comments are essential to writing clear code in any programming language.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Demonstrate the value of a comment and make a simple calculation</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Demonstrate the value of a comment and make a simple calculation</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It should be obvious <em>what</em> a line of clear R code accomplishes. It isn’t always obvious <em>why</em> a clear line of R code is included in a script. Comments should focus on the <em>why</em> of R code and not the <em>what</em> of R code.</p>
 <p>The following comment isn’t useful because it just restates the R code, which is clear:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># divide every value by 1.11</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>cost <span class="sc">/</span> <span class="fl">1.11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># divide every value by 1.11</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>cost <span class="sc">/</span> <span class="fl">1.11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following comment is useful because it adds context to the R code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># convert costs from dollars to Euros using the 2020-01-13 exchange rate</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>cost <span class="sc">/</span> <span class="fl">1.11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># convert costs from dollars to Euros using the 2020-01-13 exchange rate</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>cost <span class="sc">/</span> <span class="fl">1.11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following is useful because it avoids <a href="https://www.inf.unibz.it/~calvanese/teaching/05-06-ip/lecture-notes/uni04/node17.html">magic numbers</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># dollars to Euros 2020-01-13 exchange rate</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>exchange_rate <span class="ot">&lt;-</span> <span class="fl">1.11</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># convert costs from dollars to Euros</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>cost <span class="sc">/</span> exchange_rate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># dollars to Euros 2020-01-13 exchange rate</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>exchange_rate <span class="ot">&lt;-</span> <span class="fl">1.11</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co"># convert costs from dollars to Euros</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>cost <span class="sc">/</span> exchange_rate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="readme" class="level3" data-number="3.0.4">
@@ -1004,7 +1077,7 @@ Table&nbsp;3.1: Opinionated Analysis Development
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 3</span>
+<span style="color:#1696d2;">Exercise 4</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1030,6 +1103,12 @@ Tip
 
 
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>It is tempting to include <code>install.packages()</code> when using R. It can be rude to install software on someone else’s computer. Instead, we’ll use <code>library(renv)</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1112,27 +1191,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1142,17 +1204,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1164,130 +1217,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -1331,7 +1261,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1357,32 +1286,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1444,18 +1347,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02_embrace-your-fallibility.html" class="pagination-link" aria-label="Embrace Your Fallibility">
+      <a href="./02_embrace-your-fallibility.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Embrace Your Fallibility</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./04_quarto.html" class="pagination-link" aria-label="Quarto">
+      <a href="./04_quarto.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quarto</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

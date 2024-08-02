@@ -1,0 +1,372 @@
+---
+title: "Quarto: The Life-Changing Magic of Tidying Up (Your Work with Notebooks)"
+format: 
+  revealjs:
+    code-fold: true
+    embed-resources: true
+    theme: www/styles.scss
+editor_options: 
+  chunk_output_type: console
+---
+
+# Intro
+
+## Two Principles
+
+::: {.incremental}
+1. Our work should be **<span style="color:#1696d2;">accurate</span>** and **<span style="color:#1696d2;">reproducible</span>**[^1].
+
+2. We can't prove **<span style="color:#1696d2;">accuracy</span>** without **<span style="color:#1696d2;">reproducibility</span>**.
+:::
+
+::: {.fragment}
+*Reproducibility should be the minimum standard for all computational social sciences.*
+:::
+
+[^1]: Someone else can take your materials (code, data, documentation) and consistently produce the same outputs. 
+
+## Two Implications
+
+::: {.incremental}
+1. We should adopt **<span style="color:#1696d2;">code-first data analysis</span>**.
+2. We should organize our work in **<span style="color:#1696d2;">notebooks</span>** and/or **<span style="color:#1696d2;">packages</span>**.
+:::
+
+## This is More Work!
+
+![](www/work.gif){fig-align="center"}
+
+## This is More Work!
+
+::: {.incremental}
+1. These tools are the best way to create **<span style="color:#1696d2;">accurate</span>** and **<span style="color:#1696d2;">reproducible</span>**.
+2. There are many positive side effects
+    - Easy to share
+    - Scalable
+3. Cool stuff!
+:::
+
+# Challenges
+
+## 1. Insufficient Documentation
+
+A collaborator (probably you from six months ago) skipped some key details in an analysis because in-line documentation is a pain. 
+
+## The Why, For Humans
+
+![](www/digital-rain.gif){fig-align="center"}
+
+::: {.fragment}
+We want to capture **<span style="color:#ec008b;">the why</span>** in a way that is written for humans instead of computers. 
+:::
+
+## 1. .qmd
+
+Quarto relies on **<span style="color:#1696d2;">.qmd</span>** files (or Jupyter notebooks) that combine
+
+::: {.incremental}
+1. Formatted text
+2. Code
+3. Code output
+:::
+
+## 2. Copying-and-pasting
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](www/copy-paste.gif){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+*Copying-and-pasting is a weak link in research workflows.*
+
+::: {.incremental}
+1. Transposition errors
+2. 🔥🔥🔥<span style="color:#db2b27;">Updating an analysis because of reviewer #2</span>🔥🔥🔥
+:::
+
+:::
+
+::::
+
+## 2. One Source of Truth
+
+```{r}
+#| echo: true
+library(tidyverse)
+
+cars_slr <- lm(dist ~ speed, data = cars)
+
+ggplot(data = cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+```
+
+On average, the stopping distance of cars increases by `r round(coef(cars_slr)["speed"], 2)` feet for each addition mile per hour of driving speed. 
+
+## 3. Out-of-order
+
+![](www/out-of-sync.gif){fig-align="center" height=200}
+
+It is too easy to run steps out-of-order or to accidentally skip code run in interactive mode. 
+
+## 3. Rendering
+
+![](www/render.png){fig-align="center" height=80}
+
+::: {.incremental}
+1. Quarto starts a brand new R session and runs all code in order from scratch.
+2. Quarto combines the executed code and markdown into an output document using pandoc. 
+:::
+
+## 4. Iteration
+
+Sometimes we want to create the same artifact for many geographies, many time periods, and many anything else.
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-fold: false
+
+quarto_render(
+  input = template_name,
+  output_file = output_file,
+  execute_params = execute_params
+)
+
+```
+
+## 4. Many times {background-iframe="https://upward-mobility.urban.org/sites/default/files/mobility-metrics-data-pages/999_county-pages/42101/index.html" background-interactive=true}
+
+# Quarto Basics
+
+## Opening a .qmd file
+
+1. Click "File > New File > Quarto Document..."
+2. Click create
+3. Save the document in your project directory
+
+## 1. YAML Header
+
+YAML headers contain meta information about a Quarto document. The YAML header starts with `---` and ends with `---`.
+
+```
+---
+format: pdf
+---
+```
+
+## 1. YAML Header
+
+```
+---
+title: "Quarto: The Life-Changing Magic of Tidying Up (Your Work with Notebooks)"
+format: 
+  revealjs:
+    embed-resources: true
+---
+```
+
+```
+---
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    toc: true
+---
+```
+
+## 2. Markdown text
+
+Markdown is a shortcut for HyperText Markup Language (HTML). Essentially, simple meta characters corresponding to formatting are added to plain text.
+
+```         
+Titles and subtitltes
+------------------------------------------------------------
+
+# Title 1
+
+## Title 2
+
+### Title 3
+
+Text formatting 
+------------------------------------------------------------
+
+*italic*  
+
+**bold**   
+
+`code`
+
+Lists
+------------------------------------------------------------
+
+- Bulleted list item 1
+- Item 2
+  - Item 2a
+  - Item 2b
+
+1. Item 1
+2. Item 2
+
+Links and images
+------------------------------------------------------------
+
+[text](http://link.com)
+
+![Image caption](images/images.png)
+```
+
+
+## 3. Code chunks
+
+```{r}
+#| echo: false
+
+knitr::include_graphics(here::here("quarto-slides", "www", "inline-r-code.png"))
+
+```
+
+More frequently, code is added in code chunks:
+
+```{r}
+#| echo: fenced
+#| code-fold: false
+
+2 + 2
+
+```
+
+## Running code and rendering
+
+![](www/render.png){fig-align="center" height=80}
+
+Can also run R code in RStudio in interactive mode. This is essential for developing analyses. 
+
+# Differences from .Rmd
+
+## Self-contained documents
+
+Quarto does not embed all resources (images, CSS, etc.) into rendered .html documents by default. This is a change from .Rmd! Be sure to include the following in your YAML header!
+
+```
+---
+format: 
+  html:
+    embed-resources: true
+---
+```
+
+## YAML parameters
+
+`TRUE` and `FALSE` don’t work as parameters in Quarto YAML headers but you can use `"yes"` and `"no"`.
+
+[source](https://stackoverflow.com/questions/73571919/how-to-pass-logical-parameters-with-the-quarto-r-package-to-the-knitr-chunk-opti)
+
+## Autocomplete and Validation
+
+<center>🙌GOOD NEWS!🙌</center>
+
+Quarto autocompletes and validates contents in the YAML header. 
+
+# Cool Stuff!
+
+## Tables of Contents and Code Folding
+
+```
+---
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    toc: true
+---
+```
+
+```{r}
+#| echo: true
+
+library(tidyverse)
+
+cars %>%
+  ggplot(aes(x = speed, y = dist)) +
+  geom_point(alpha = 0.3) +
+  labs(title = "Cars Traveling at Higher Speeds Take Longer to Stop") +
+  theme_minimal()
+
+```
+
+## YAML options
+
+```
+---
+title: "Introduction to R"
+subtitle: "This is an example subtitle"
+author-title: "Authors"
+authors: "Aaron R. Williams"
+affiliation: "Georgetown University"
+date: today
+abstract-title: "Brief Abstract"
+abstract: In this chapter, we introduce six key concepts for data analysis. We subsequently describe the R programming language and RStudio, its most popular Integrated Development Environment. Finally, we  share key foundational concepts when programming with R. 
+format: 
+  html:
+    toc: true
+    code-line-numbers: true
+editor_options: 
+  chunk_output_type: console
+---
+```
+
+## Tabsets
+
+::: {.panel-tabset}
+
+### Attempt 1
+
+```{r}
+#| echo: true
+2 + 2
+```
+
+### Attempt 2
+
+```{r}
+#| echo: true
+3 + 3
+```
+
+:::
+
+## Tabsets
+
+
+    ::: {.panel-tabset}
+  
+    ## Attempt 1
+  
+    ```{{r}}
+    2 + 2
+    ```
+    
+    ## Attempt 2
+    
+    ```{{r}}
+    3 + 3
+    ```
+    
+    :::
+
+
+## More cool stuff!
+
+Let's pivot to the [Urban Institute Quarto example](https://github.com/UI-Research/urbnquarto).
+
+# Resources
+
+* https://quarto.org/
+* https://r4ds.hadley.nz/quarto.html
+* https://github.com/UI-Research/urbnquarto
