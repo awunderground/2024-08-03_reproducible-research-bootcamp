@@ -259,7 +259,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07_advanced-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and GitHub</span></span></a>
   </div>
 </li>
       </ul>
@@ -275,14 +275,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions-and-tests.html" class="sidebar-item-text sidebar-link">
+  <a href="./08_functions-and-tests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assertive-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
+  <a href="./09_assertive-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Assertive Testing</span></span></a>
   </div>
 </li>
       </ul>
@@ -307,7 +307,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">Culture and Ethics</span></a>
+ <span class="menu-text">Putting it All Together</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -355,7 +355,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">5.1</span> Introduction</a></li>
-  <li><a href="#yaml-headers" id="toc-yaml-headers" class="nav-link" data-scroll-target="#yaml-headers"><span class="header-section-number">5.2</span> YAMl Headers</a>
+  <li><a href="#yaml-headers" id="toc-yaml-headers" class="nav-link" data-scroll-target="#yaml-headers"><span class="header-section-number">5.2</span> YAML Headers</a>
   <ul class="collapse">
   <li><a href="#execute" id="toc-execute" class="nav-link" data-scroll-target="#execute"><span class="header-section-number">5.2.1</span> execute</a></li>
   <li><a href="#params" id="toc-params" class="nav-link" data-scroll-target="#params"><span class="header-section-number">5.2.2</span> params</a></li>
@@ -378,7 +378,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-cross-references" id="toc-sec-cross-references" class="nav-link" data-scroll-target="#sec-cross-references"><span class="header-section-number">5.6</span> Cross references</a></li>
   <li><a href="#tabset-panels" id="toc-tabset-panels" class="nav-link" data-scroll-target="#tabset-panels"><span class="header-section-number">5.7</span> Tabset Panels</a></li>
-  <li><a href="#sec-callouts" id="toc-sec-callouts" class="nav-link" data-scroll-target="#sec-callouts"><span class="header-section-number">5.8</span> Callouts</a></li>
+  <li><a href="#sec-callouts" id="toc-sec-callouts" class="nav-link" data-scroll-target="#sec-callouts"><span class="header-section-number">5.8</span> Callout Blocks</a></li>
   <li><a href="#sec-footnotes" id="toc-sec-footnotes" class="nav-link" data-scroll-target="#sec-footnotes"><span class="header-section-number">5.9</span> Footnotes</a></li>
   <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations"><span class="header-section-number">5.10</span> Citations</a>
   <ul class="collapse">
@@ -411,6 +411,12 @@ window.Quarto = {
     
   </div>
   
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    This section explores the potential of Quarto as a tool for technical documentation and literate programming.
+  </div>
+</div>
 
 
 </header>
@@ -424,10 +430,10 @@ window.Quarto = {
 </div>
 <section id="introduction" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">5.1</span> Introduction</h2>
-<p>This set of notes introduces advanced Quarto concepts including params and embed-resources YAML headers, mathematical notation, cross references, and citations. The <a href="https://quarto.org/docs/guide/">Quarto website</a> includes more gems and is an example of high-quality technical documentation.</p>
+<p>Quarto contains extensive functionality for building rich documents. The <a href="https://quarto.org/docs/guide/">Quarto website</a> includes complete documentations and gems, and is an example of high-quality technical documentation.</p>
 </section>
 <section id="yaml-headers" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="yaml-headers"><span class="header-section-number">5.2</span> YAMl Headers</h2>
+<h2 data-number="5.2" class="anchored" data-anchor-id="yaml-headers"><span class="header-section-number">5.2</span> YAML Headers</h2>
 <section id="execute" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="execute"><span class="header-section-number">5.2.1</span> execute</h3>
 <p>Most options that change the behavior of code chunks can be set for all code chunks in a document using <code>execute</code> in the YAML header.</p>
@@ -473,6 +479,24 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 1</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Pick a Quarto document in your <code>example-project/</code>.</p></li>
+<li><p>Add the following to the YAML header to hide all code chunks:</p>
+<p>execute: echo: false</p></li>
+<li><p>Re-render the document.</p></li>
+</ol>
+</div>
+</div>
 </section>
 <section id="params" class="level3" data-number="5.2.2">
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="params"><span class="header-section-number">5.2.2</span> params</h3>
@@ -519,12 +543,12 @@ Warning
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 1</span>
+<span style="color:#1696d2;">Exercise 2</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>In the <code>hello-quarto.qmd</code> file you previously created, add <code>date: today</code> to your YAML header after <code>title</code>. This will update every time the document is rendered.</li>
+<li>In the <code>analysis.qmd</code> file you previously created, add <code>date: today</code> to your YAML header after <code>title</code>. This will update every time the document is rendered.</li>
 </ol>
 </div>
 </div>
@@ -604,14 +628,20 @@ Figure&nbsp;5.2: Stenomylus and Camels
 </section>
 <section id="sec-dataviz" class="level3" data-number="5.4.2">
 <h3 data-number="5.4.2" class="anchored" data-anchor-id="sec-dataviz"><span class="header-section-number">5.4.2</span> Data Visualization</h3>
-<p>Quarto works well with <code>library(ggplot2)</code>. Consider an examples using the <code>cars</code> dataset, which contains <code>speed</code> and <code>dist</code> for 50. <a href="#fig-histogram" class="quarto-xref">Figure&nbsp;<span>5.3</span></a> shows two histograms displaying the distributions of <code>speed</code> and <code>dist</code> individually.</p>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> speed)) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of speeds"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4"></a></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> dist)) <span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of distances"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Quarto works well with <code>library(ggplot2)</code>. Consider an examples using the <code>cars</code> dataset, which contains <code>speed</code> and <code>dist</code> for 50. <a href="#fig-histogram" class="quarto-xref">Figure&nbsp;<span>5.3</span></a> shows two histograms displaying the distributions of <code>speed</code> and <code>dist</code> individually. The header for this chunk is:</p>
+<pre><code>#| label: fig-histogram
+#| fig-cap: "Histograms of individual variables"
+#| fig-subcap:
+#|   - "Histogram of `speed`s"
+#|   - "Histogram of `dist`s" 
+#| layout-ncol: 2</code></pre>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> speed)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of speeds"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> dist)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of distances"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-histogram" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-histogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -647,13 +677,15 @@ Figure&nbsp;5.3: Histograms of individual variables
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-scatterplot" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> displays the relationship between these two variables in a scatterplot.</p>
+<p><a href="#fig-scatterplot" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> displays the relationship between these two variables in a scatterplot. It uses the following chunk header:</p>
+<pre><code>#| label: fig-scatterplot
+#| fig-cap: "Scatterplot of speed vs. distances"</code></pre>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cars Traveling at Higher Speeds Take Longer to Stop"</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">scatter_grid</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cars Traveling at Higher Speeds Take Longer to Stop"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">scatter_grid</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-scatterplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -667,21 +699,22 @@ Figure&nbsp;5.4: Scatterplot of speed vs.&nbsp;distances
 </div>
 </div>
 </div>
+<hr>
 </section>
 <section id="sec-tables" class="level3" data-number="5.4.3">
 <h3 data-number="5.4.3" class="anchored" data-anchor-id="sec-tables"><span class="header-section-number">5.4.3</span> Data Tables</h3>
 <p>The default for df-print is kable. This is the only type of table that works with the table references. kable works well until there is tons of data, where paged thrives.</p>
 <p><a href="#tbl-stats-kable" class="quarto-xref">Table&nbsp;<span>5.1</span></a> displays basic summary statistics for these two variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb9-3"><a href="#cb9-3"></a>    <span class="st">`</span><span class="at">Median speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(speed),</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    <span class="st">`</span><span class="at">IQR speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(speed),</span>
-<span id="cb9-5"><a href="#cb9-5"></a>    <span class="st">`</span><span class="at">Median dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(dist),</span>
-<span id="cb9-6"><a href="#cb9-6"></a>    <span class="st">`</span><span class="at">IQR dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(dist),</span>
-<span id="cb9-7"><a href="#cb9-7"></a>    <span class="st">`</span><span class="at">Correlation, r</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">cor</span>(speed, dist)</span>
-<span id="cb9-8"><a href="#cb9-8"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="st">`</span><span class="at">Median speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(speed),</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="st">`</span><span class="at">IQR speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(speed),</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="st">`</span><span class="at">Median dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(dist),</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="st">`</span><span class="at">IQR dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(dist),</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="st">`</span><span class="at">Correlation, r</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">cor</span>(speed, dist)</span>
+<span id="cb11-8"><a href="#cb11-8"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="tbl-stats-kable" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stats-kable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -714,10 +747,515 @@ Table&nbsp;5.1: Summary statistics for speed and dist (kable)
 </figure>
 </div>
 </div>
+<p><code>library(gt)</code>, which is an implementation of a grammar of tables, provides additional functionality for building tables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="st">`</span><span class="at">Median speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(speed),</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="st">`</span><span class="at">IQR speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(speed),</span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="st">`</span><span class="at">Median dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(dist),</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    <span class="st">`</span><span class="at">IQR dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(dist),</span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="st">`</span><span class="at">Correlation, r</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">cor</span>(speed, dist)</span>
+<span id="cb12-10"><a href="#cb12-10"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a>  <span class="fu">fmt_number</span>(<span class="st">`</span><span class="at">Correlation, r</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>  <span class="fu">tab_footnote</span>(</span>
+<span id="cb12-14"><a href="#cb12-14"></a>    <span class="at">footnote =</span> <span class="fu">md</span>(<span class="st">"**Source:** cars data set"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-stats-gt" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stats-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.2: Summary statistics for speed and dist (gt)
+</figcaption>
+<div aria-describedby="tbl-stats-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<div id="urhlnewmse" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#urhlnewmse table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#urhlnewmse thead, #urhlnewmse tbody, #urhlnewmse tfoot, #urhlnewmse tr, #urhlnewmse td, #urhlnewmse th {
+  border-style: none;
+}
+
+#urhlnewmse p {
+  margin: 0;
+  padding: 0;
+}
+
+#urhlnewmse .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#urhlnewmse .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#urhlnewmse .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#urhlnewmse .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#urhlnewmse .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#urhlnewmse .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#urhlnewmse .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#urhlnewmse .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#urhlnewmse .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#urhlnewmse .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#urhlnewmse .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#urhlnewmse .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#urhlnewmse .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#urhlnewmse .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#urhlnewmse .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#urhlnewmse .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#urhlnewmse .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#urhlnewmse .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#urhlnewmse .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#urhlnewmse .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#urhlnewmse .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#urhlnewmse .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#urhlnewmse .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#urhlnewmse .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#urhlnewmse .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#urhlnewmse .gt_left {
+  text-align: left;
+}
+
+#urhlnewmse .gt_center {
+  text-align: center;
+}
+
+#urhlnewmse .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#urhlnewmse .gt_font_normal {
+  font-weight: normal;
+}
+
+#urhlnewmse .gt_font_bold {
+  font-weight: bold;
+}
+
+#urhlnewmse .gt_font_italic {
+  font-style: italic;
+}
+
+#urhlnewmse .gt_super {
+  font-size: 65%;
+}
+
+#urhlnewmse .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#urhlnewmse .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#urhlnewmse .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#urhlnewmse .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#urhlnewmse .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#urhlnewmse .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#urhlnewmse .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Median speed" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Median speed</th>
+<th id="IQR speed" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">IQR speed</th>
+<th id="Median dist" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Median dist</th>
+<th id="IQR dist" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">IQR dist</th>
+<th id="Correlation, r" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Correlation, r</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Median speed">15</td>
+<td class="gt_row gt_right" headers="IQR speed">7</td>
+<td class="gt_row gt_right" headers="Median dist">36</td>
+<td class="gt_row gt_right" headers="IQR dist">30</td>
+<td class="gt_row gt_right" headers="Correlation, r">0.807</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="even">
+<td colspan="5" class="gt_footnote"><strong>Source:</strong> cars data set</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<hr>
 </section>
 <section id="sec-diagrams" class="level3" data-number="5.4.4">
 <h3 data-number="5.4.4" class="anchored" data-anchor-id="sec-diagrams"><span class="header-section-number">5.4.4</span> Diagrams</h3>
 <p>Quarto has access to Mermaid and Graphviz for creating diagrams. Here is a simple example from the <a href="https://quarto.org/docs/authoring/diagrams.html">Quarto documentation</a>:</p>
+<pre><code>flowchart LR
+  A[Hard edge] --&gt; B(Round edge)
+  B --&gt; C{Decision}
+  C --&gt; D[Result one]
+  C --&gt; E[Result two]</code></pre>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div>
@@ -744,17 +1282,17 @@ Table&nbsp;5.1: Summary statistics for speed and dist (kable)
 <p><span id="eq-slr"><span class="math display">\[
 dist = \hat{\beta}_0 + \hat{\beta}_1 \times speed + \epsilon
 \tag{5.1}\]</span></span></p>
-<p><a href="#tbl-lm" class="quarto-xref">Table&nbsp;<span>5.2</span></a> shows the regression output for this model.</p>
+<p><a href="#tbl-lm" class="quarto-xref">Table&nbsp;<span>5.3</span></a> shows the regression output for this model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>dist_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
-<span id="cb10-2"><a href="#cb10-2"></a>  </span>
-<span id="cb10-3"><a href="#cb10-3"></a>dist_fit <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dist_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>  </span>
+<span id="cb14-3"><a href="#cb14-3"></a>dist_fit <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="tbl-lm" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.2: Linear regression model for predicting price from area
+Table&nbsp;5.3: Linear regression model for predicting price from area
 </figcaption>
 <div aria-describedby="tbl-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -797,17 +1335,17 @@ Table&nbsp;5.2: Linear regression model for predicting price from area
 <p><span id="eq-mlr"><span class="math display">\[
 dist = \hat{\beta}_0 + \hat{\beta}_1 \times speed + \hat{\beta}_2 \times speed ^ 2 + \epsilon
 \tag{5.2}\]</span></span></p>
-<p><a href="#tbl-lm2" class="quarto-xref">Table&nbsp;<span>5.3</span></a> shows the regression output for this model.</p>
+<p><a href="#tbl-lm2" class="quarto-xref">Table&nbsp;<span>5.4</span></a> shows the regression output for this model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>dist_fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> <span class="fu">poly</span>(speed, <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), <span class="at">data =</span> cars)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>  </span>
-<span id="cb11-3"><a href="#cb11-3"></a>dist_fit2 <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>dist_fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> <span class="fu">poly</span>(speed, <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), <span class="at">data =</span> cars)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  </span>
+<span id="cb15-3"><a href="#cb15-3"></a>dist_fit2 <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="tbl-lm2" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.3: Second linear regression model for predicting price from area
+Table&nbsp;5.4: Second linear regression model for predicting price from area
 </figcaption>
 <div aria-describedby="tbl-lm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -862,12 +1400,12 @@ Table&nbsp;5.3: Second linear regression model for predicting price from area
 <h3 data-number="5.5.3" class="anchored" data-anchor-id="math-mode"><span class="header-section-number">5.5.3</span> Math Mode</h3>
 <p>Use <code>$</code> to start and stop in-line math notation and <code>$$</code> to start multi-line math notation. Math notation uses LaTeX’s syntax for mathematical notation.</p>
 <p>Here’s an example with in-line math:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a>Consider a binomially distributed random variable, $X \sim binom(n, p)$. </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1"></a>Consider a binomially distributed random variable, $X \sim binom(n, p)$. </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Consider a binomially distributed random variable, <span class="math inline">\(X \sim binom(n, p)\)</span>.</p>
 <p>Here’s an example with a chunk of math:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a>$$</span>
-<span id="cb13-2"><a href="#cb13-2"></a>P(X = x) = {n \choose x} p ^ x (1 - p) ^ {n - x}</span>
-<span id="cb13-3"><a href="#cb13-3"></a>$${#eq-binomial}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a>$$</span>
+<span id="cb17-2"><a href="#cb17-2"></a>P(X = x) = {n \choose x} p ^ x (1 - p) ^ {n - x}</span>
+<span id="cb17-3"><a href="#cb17-3"></a>$${#eq-binomial}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span id="eq-binomial"><span class="math display">\[
 P(X = x) = {n \choose x} p ^ x (1 - p) ^ {n - x}
 \tag{5.3}\]</span></span></p>
@@ -879,7 +1417,7 @@ P(X = x) = {n \choose x} p ^ x (1 - p) ^ {n - x}
 <div id="tbl-greek" class="quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-greek-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.4: My Caption
+Table&nbsp;5.5: My Caption
 </figcaption>
 <div aria-describedby="tbl-greek-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -967,13 +1505,30 @@ Warning
 <section id="sec-cross-references" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="sec-cross-references"><span class="header-section-number">5.6</span> Cross references</h2>
 <p>This document is littered with cross references. Cross references require labeling objects. For example:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">## Cross references {#sec-cross-references}</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a>$$</span>
-<span id="cb15-4"><a href="#cb15-4"></a>dist = \hat{\beta}_0 + \hat{\beta}_1 \times speed + \epsilon</span>
-<span id="cb15-5"><a href="#cb15-5"></a>$$ {#eq-slr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">## Cross references {#sec-cross-references}</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a>$$</span>
+<span id="cb19-4"><a href="#cb19-4"></a>dist = \hat{\beta}_0 + \hat{\beta}_1 \times speed + \epsilon</span>
+<span id="cb19-5"><a href="#cb19-5"></a>$$ {#eq-slr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>After labeling objects, simply reference the tags with <code>@</code>.</p>
 <p>The numbers in cross references automatically update when additional referenced objects are added (e.g.&nbsp;a table is added before table 1).</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 2</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Add a cross reference to a section in analysis.qmd.</li>
+<li>Add an equation with a cross reference in analysis.qmd.</li>
+<li>Render!</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="tabset-panels" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="tabset-panels"><span class="header-section-number">5.7</span> Tabset Panels</h2>
@@ -983,13 +1538,13 @@ Warning
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="05_advanced-quarto_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="05_advanced-quarto_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -997,27 +1552,27 @@ Warning
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<div id="gvwbcokbpb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gvwbcokbpb table {
+<div id="ehfbpvntsk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ehfbpvntsk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gvwbcokbpb thead, #gvwbcokbpb tbody, #gvwbcokbpb tfoot, #gvwbcokbpb tr, #gvwbcokbpb td, #gvwbcokbpb th {
+#ehfbpvntsk thead, #ehfbpvntsk tbody, #ehfbpvntsk tfoot, #ehfbpvntsk tr, #ehfbpvntsk td, #ehfbpvntsk th {
   border-style: none;
 }
 
-#gvwbcokbpb p {
+#ehfbpvntsk p {
   margin: 0;
   padding: 0;
 }
 
-#gvwbcokbpb .gt_table {
+#ehfbpvntsk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1043,12 +1598,12 @@ Warning
   border-left-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_caption {
+#ehfbpvntsk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gvwbcokbpb .gt_title {
+#ehfbpvntsk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1060,7 +1615,7 @@ Warning
   border-bottom-width: 0;
 }
 
-#gvwbcokbpb .gt_subtitle {
+#ehfbpvntsk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1072,7 +1627,7 @@ Warning
   border-top-width: 0;
 }
 
-#gvwbcokbpb .gt_heading {
+#ehfbpvntsk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1084,13 +1639,13 @@ Warning
   border-right-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_bottom_border {
+#ehfbpvntsk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_col_headings {
+#ehfbpvntsk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1105,7 +1660,7 @@ Warning
   border-right-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_col_heading {
+#ehfbpvntsk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1125,7 +1680,7 @@ Warning
   overflow-x: hidden;
 }
 
-#gvwbcokbpb .gt_column_spanner_outer {
+#ehfbpvntsk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1137,15 +1692,15 @@ Warning
   padding-right: 4px;
 }
 
-#gvwbcokbpb .gt_column_spanner_outer:first-child {
+#ehfbpvntsk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gvwbcokbpb .gt_column_spanner_outer:last-child {
+#ehfbpvntsk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gvwbcokbpb .gt_column_spanner {
+#ehfbpvntsk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1157,11 +1712,11 @@ Warning
   width: 100%;
 }
 
-#gvwbcokbpb .gt_spanner_row {
+#ehfbpvntsk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gvwbcokbpb .gt_group_heading {
+#ehfbpvntsk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1187,7 +1742,7 @@ Warning
   text-align: left;
 }
 
-#gvwbcokbpb .gt_empty_group_heading {
+#ehfbpvntsk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1202,15 +1757,15 @@ Warning
   vertical-align: middle;
 }
 
-#gvwbcokbpb .gt_from_md > :first-child {
+#ehfbpvntsk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gvwbcokbpb .gt_from_md > :last-child {
+#ehfbpvntsk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gvwbcokbpb .gt_row {
+#ehfbpvntsk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1229,7 +1784,7 @@ Warning
   overflow-x: hidden;
 }
 
-#gvwbcokbpb .gt_stub {
+#ehfbpvntsk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1242,7 +1797,7 @@ Warning
   padding-right: 5px;
 }
 
-#gvwbcokbpb .gt_stub_row_group {
+#ehfbpvntsk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1256,15 +1811,15 @@ Warning
   vertical-align: top;
 }
 
-#gvwbcokbpb .gt_row_group_first td {
+#ehfbpvntsk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gvwbcokbpb .gt_row_group_first th {
+#ehfbpvntsk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gvwbcokbpb .gt_summary_row {
+#ehfbpvntsk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1274,16 +1829,16 @@ Warning
   padding-right: 5px;
 }
 
-#gvwbcokbpb .gt_first_summary_row {
+#ehfbpvntsk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_first_summary_row.thick {
+#ehfbpvntsk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gvwbcokbpb .gt_last_summary_row {
+#ehfbpvntsk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1293,7 +1848,7 @@ Warning
   border-bottom-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_grand_summary_row {
+#ehfbpvntsk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1303,7 +1858,7 @@ Warning
   padding-right: 5px;
 }
 
-#gvwbcokbpb .gt_first_grand_summary_row {
+#ehfbpvntsk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1313,7 +1868,7 @@ Warning
   border-top-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_last_grand_summary_row_top {
+#ehfbpvntsk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1323,11 +1878,11 @@ Warning
   border-bottom-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_striped {
+#ehfbpvntsk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gvwbcokbpb .gt_table_body {
+#ehfbpvntsk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1336,7 +1891,7 @@ Warning
   border-bottom-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_footnotes {
+#ehfbpvntsk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1350,7 +1905,7 @@ Warning
   border-right-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_footnote {
+#ehfbpvntsk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1359,7 +1914,7 @@ Warning
   padding-right: 5px;
 }
 
-#gvwbcokbpb .gt_sourcenotes {
+#ehfbpvntsk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1373,7 +1928,7 @@ Warning
   border-right-color: #D3D3D3;
 }
 
-#gvwbcokbpb .gt_sourcenote {
+#ehfbpvntsk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1381,63 +1936,63 @@ Warning
   padding-right: 5px;
 }
 
-#gvwbcokbpb .gt_left {
+#ehfbpvntsk .gt_left {
   text-align: left;
 }
 
-#gvwbcokbpb .gt_center {
+#ehfbpvntsk .gt_center {
   text-align: center;
 }
 
-#gvwbcokbpb .gt_right {
+#ehfbpvntsk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gvwbcokbpb .gt_font_normal {
+#ehfbpvntsk .gt_font_normal {
   font-weight: normal;
 }
 
-#gvwbcokbpb .gt_font_bold {
+#ehfbpvntsk .gt_font_bold {
   font-weight: bold;
 }
 
-#gvwbcokbpb .gt_font_italic {
+#ehfbpvntsk .gt_font_italic {
   font-style: italic;
 }
 
-#gvwbcokbpb .gt_super {
+#ehfbpvntsk .gt_super {
   font-size: 65%;
 }
 
-#gvwbcokbpb .gt_footnote_marks {
+#ehfbpvntsk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gvwbcokbpb .gt_asterisk {
+#ehfbpvntsk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gvwbcokbpb .gt_indent_1 {
+#ehfbpvntsk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gvwbcokbpb .gt_indent_2 {
+#ehfbpvntsk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gvwbcokbpb .gt_indent_3 {
+#ehfbpvntsk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gvwbcokbpb .gt_indent_4 {
+#ehfbpvntsk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gvwbcokbpb .gt_indent_5 {
+#ehfbpvntsk .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1677,7 +2232,11 @@ Content!
 </code></pre>
 </section>
 <section id="sec-callouts" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="sec-callouts"><span class="header-section-number">5.8</span> Callouts</h2>
+<h2 data-number="5.8" class="anchored" data-anchor-id="sec-callouts"><span class="header-section-number">5.8</span> Callout Blocks</h2>
+<p>Callout blocks are a useful tool for drawing attention to content in a Quarto document. For example, this note set regularly uses <code>.callout-tip</code> to add definitions in green callout blocks.</p>
+<pre><code>:::{.callout-note}
+This template is incomplete and we are always looking for help to expand it!
+:::</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1691,6 +2250,9 @@ Note
 <p>This template is incomplete and we are always looking for help to expand it!</p>
 </div>
 </div>
+<pre><code>:::{.callout-warning}
+Caution, quarto is so powerful you may abandon LaTeX. 
+:::</code></pre>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1704,6 +2266,10 @@ Warning
 <p>Caution, quarto is so powerful you may abandon LaTeX.</p>
 </div>
 </div>
+<pre><code>:::{.callout-important}
+Reproducible work is a cornerstone of quality research. Quarto makes reproducible work easy and fun. 
+:::
+</code></pre>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1717,8 +2283,11 @@ Important
 <p>Reproducible work is a cornerstone of quality research. Quarto makes reproducible work easy and fun.</p>
 </div>
 </div>
+<pre><code>:::{.callout-tip collapse="true"}
+Use `library(urbntemplates)` to access Urban Institute quarto templates. 
+:::</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1727,14 +2296,17 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Use <code>library(urbntemplates)</code> to access Urban Institute quarto templates.</p>
 </div>
 </div>
 </div>
+<pre><code>:::{.callout-caution collapse="true"}
+Quarto may transform the way the Urban Institute communicates research. 
+:::</code></pre>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1743,7 +2315,7 @@ Caution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Quarto may transform the way the Urban Institute communicates research.</p>
 </div>
@@ -1755,15 +2327,15 @@ Caution
 <p>Here is an inline note<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, footnote<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and a much longer footnote.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>Long notes can contain multiple paragraphs.</p>
 <p>The notes are created with the following:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1"></a>Here is an inline note^<span class="co">[</span><span class="ot">The tooltip is pretty cool!</span><span class="co">]</span>, footnote<span class="ot">[^1]</span>, and a much longer footnote.<span class="ot">[^longnote]</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="ot">[^1]: </span>I suppose the footnotes are really more endnotes. </span>
-<span id="cb19-4"><a href="#cb19-4"></a></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="ot">[^longnote]: </span>The longnote gives the ability to add very long footnotes. </span>
-<span id="cb19-6"><a href="#cb19-6"></a>  </span>
-<span id="cb19-7"><a href="#cb19-7"></a>  Long notes can contain multiple paragraphs. </span>
-<span id="cb19-8"><a href="#cb19-8"></a></span>
-<span id="cb19-9"><a href="#cb19-9"></a>The notes are created with the following:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1"></a>Here is an inline note^<span class="co">[</span><span class="ot">The tooltip is pretty cool!</span><span class="co">]</span>, footnote<span class="ot">[^1]</span>, and a much longer footnote.<span class="ot">[^longnote]</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="ot">[^1]: </span>I suppose the footnotes are really more endnotes. </span>
+<span id="cb28-4"><a href="#cb28-4"></a></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="ot">[^longnote]: </span>The longnote gives the ability to add very long footnotes. </span>
+<span id="cb28-6"><a href="#cb28-6"></a>  </span>
+<span id="cb28-7"><a href="#cb28-7"></a>  Long notes can contain multiple paragraphs. </span>
+<span id="cb28-8"><a href="#cb28-8"></a></span>
+<span id="cb28-9"><a href="#cb28-9"></a>The notes are created with the following:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="citations" class="level2" data-number="5.10">
 <h2 data-number="5.10" class="anchored" data-anchor-id="citations"><span class="header-section-number">5.10</span> Citations</h2>
@@ -1789,7 +2361,7 @@ Digital Object Identifier (DOI)
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 1</span>
+<span style="color:#1696d2;">Exercise 3</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1833,7 +2405,7 @@ Digital Object Identifier (DOI)
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 2</span>
+<span style="color:#1696d2;">Exercise 4</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">

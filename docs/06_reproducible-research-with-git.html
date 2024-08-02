@@ -227,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07_advanced-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and GitHub</span></span></a>
   </div>
 </li>
       </ul>
@@ -243,14 +243,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions-and-tests.html" class="sidebar-item-text sidebar-link">
+  <a href="./08_functions-and-tests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assertive-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
+  <a href="./09_assertive-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Assertive Testing</span></span></a>
   </div>
 </li>
       </ul>
@@ -275,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">Culture and Ethics</span></a>
+ <span class="menu-text">Putting it All Together</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#commands" id="toc-commands" class="nav-link" data-scroll-target="#commands"><span class="header-section-number">6.6.2</span> Commands</a></li>
   </ul></li>
   <li><a href="#sec-ghp" id="toc-sec-ghp" class="nav-link" data-scroll-target="#sec-ghp"><span class="header-section-number">6.7</span> GitHub Pages</a></li>
-  <li><a href="#collaboration-using-git-github-with-branching" id="toc-collaboration-using-git-github-with-branching" class="nav-link" data-scroll-target="#collaboration-using-git-github-with-branching"><span class="header-section-number">6.8</span> Collaboration Using Git + GitHub (with branching)</a></li>
+  <li><a href="#gitignore" id="toc-gitignore" class="nav-link" data-scroll-target="#gitignore"><span class="header-section-number">6.8</span> .gitignore</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6.9</span> Conclusion</a>
   <ul class="collapse">
   <li><a href="#git-is-confusing" id="toc-git-is-confusing" class="nav-link" data-scroll-target="#git-is-confusing"><span class="header-section-number">6.9.1</span> Git is Confusing</a></li>
@@ -377,6 +377,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Hansel-and-gretel-rackham.jpg" class="img-fluid figure-img"></p>
+<figcaption>Hansel and Gretel by Arthur Rackham</figcaption>
+</figure>
+</div>
 <div class="cell" data-layout-align="center">
 <div id="tbl-roadmap" class="cell quarto-float anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -385,23 +391,23 @@ Table&nbsp;6.1: Opinionated Analysis Development
 </figcaption>
 <div aria-describedby="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="yebjspcolf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yebjspcolf table {
+<div id="hwoierbqqw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hwoierbqqw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yebjspcolf thead, #yebjspcolf tbody, #yebjspcolf tfoot, #yebjspcolf tr, #yebjspcolf td, #yebjspcolf th {
+#hwoierbqqw thead, #hwoierbqqw tbody, #hwoierbqqw tfoot, #hwoierbqqw tr, #hwoierbqqw td, #hwoierbqqw th {
   border-style: none;
 }
 
-#yebjspcolf p {
+#hwoierbqqw p {
   margin: 0;
   padding: 0;
 }
 
-#yebjspcolf .gt_table {
+#hwoierbqqw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -427,12 +433,12 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-left-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_caption {
+#hwoierbqqw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yebjspcolf .gt_title {
+#hwoierbqqw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -444,7 +450,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-bottom-width: 0;
 }
 
-#yebjspcolf .gt_subtitle {
+#hwoierbqqw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -456,7 +462,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-top-width: 0;
 }
 
-#yebjspcolf .gt_heading {
+#hwoierbqqw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -468,13 +474,13 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_bottom_border {
+#hwoierbqqw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_col_headings {
+#hwoierbqqw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -489,7 +495,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_col_heading {
+#hwoierbqqw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -509,7 +515,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#yebjspcolf .gt_column_spanner_outer {
+#hwoierbqqw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -521,15 +527,15 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 4px;
 }
 
-#yebjspcolf .gt_column_spanner_outer:first-child {
+#hwoierbqqw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yebjspcolf .gt_column_spanner_outer:last-child {
+#hwoierbqqw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yebjspcolf .gt_column_spanner {
+#hwoierbqqw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -541,11 +547,11 @@ Table&nbsp;6.1: Opinionated Analysis Development
   width: 100%;
 }
 
-#yebjspcolf .gt_spanner_row {
+#hwoierbqqw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yebjspcolf .gt_group_heading {
+#hwoierbqqw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -571,7 +577,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   text-align: left;
 }
 
-#yebjspcolf .gt_empty_group_heading {
+#hwoierbqqw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -586,15 +592,15 @@ Table&nbsp;6.1: Opinionated Analysis Development
   vertical-align: middle;
 }
 
-#yebjspcolf .gt_from_md > :first-child {
+#hwoierbqqw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yebjspcolf .gt_from_md > :last-child {
+#hwoierbqqw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yebjspcolf .gt_row {
+#hwoierbqqw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -613,7 +619,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#yebjspcolf .gt_stub {
+#hwoierbqqw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -626,7 +632,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#yebjspcolf .gt_stub_row_group {
+#hwoierbqqw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -640,15 +646,15 @@ Table&nbsp;6.1: Opinionated Analysis Development
   vertical-align: top;
 }
 
-#yebjspcolf .gt_row_group_first td {
+#hwoierbqqw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yebjspcolf .gt_row_group_first th {
+#hwoierbqqw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yebjspcolf .gt_summary_row {
+#hwoierbqqw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -658,16 +664,16 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#yebjspcolf .gt_first_summary_row {
+#hwoierbqqw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_first_summary_row.thick {
+#hwoierbqqw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yebjspcolf .gt_last_summary_row {
+#hwoierbqqw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -677,7 +683,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_grand_summary_row {
+#hwoierbqqw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -687,7 +693,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#yebjspcolf .gt_first_grand_summary_row {
+#hwoierbqqw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -697,7 +703,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-top-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_last_grand_summary_row_top {
+#hwoierbqqw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -707,11 +713,11 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_striped {
+#hwoierbqqw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yebjspcolf .gt_table_body {
+#hwoierbqqw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -720,7 +726,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_footnotes {
+#hwoierbqqw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -734,7 +740,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_footnote {
+#hwoierbqqw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -743,7 +749,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#yebjspcolf .gt_sourcenotes {
+#hwoierbqqw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -757,7 +763,7 @@ Table&nbsp;6.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#yebjspcolf .gt_sourcenote {
+#hwoierbqqw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -765,63 +771,63 @@ Table&nbsp;6.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#yebjspcolf .gt_left {
+#hwoierbqqw .gt_left {
   text-align: left;
 }
 
-#yebjspcolf .gt_center {
+#hwoierbqqw .gt_center {
   text-align: center;
 }
 
-#yebjspcolf .gt_right {
+#hwoierbqqw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yebjspcolf .gt_font_normal {
+#hwoierbqqw .gt_font_normal {
   font-weight: normal;
 }
 
-#yebjspcolf .gt_font_bold {
+#hwoierbqqw .gt_font_bold {
   font-weight: bold;
 }
 
-#yebjspcolf .gt_font_italic {
+#hwoierbqqw .gt_font_italic {
   font-style: italic;
 }
 
-#yebjspcolf .gt_super {
+#hwoierbqqw .gt_super {
   font-size: 65%;
 }
 
-#yebjspcolf .gt_footnote_marks {
+#hwoierbqqw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yebjspcolf .gt_asterisk {
+#hwoierbqqw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yebjspcolf .gt_indent_1 {
+#hwoierbqqw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yebjspcolf .gt_indent_2 {
+#hwoierbqqw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yebjspcolf .gt_indent_3 {
+#hwoierbqqw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yebjspcolf .gt_indent_4 {
+#hwoierbqqw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yebjspcolf .gt_indent_5 {
+#hwoierbqqw .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1169,12 +1175,37 @@ GitHub
 </section>
 <section id="git-github-workflow" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="git-github-workflow"><span class="header-section-number">6.6</span> Git + GitHub Workflow</h2>
-<p><strong>Repository:</strong> A collection of files, often a directory, where files are organized and logged by Git.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Git does not work well with shared drives like Box, Google Drive, and SharePoint. Fortunately, those tools aren’t necessary for a Git + GitHub workflow.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Repository
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A repository is a collection of files, often a directory, where files are organized and logged by Git.</p>
+</div>
+</div>
 <p>Git and GitHub organize projects into repositories. Typically, a “repo” will correspond with the place where you started a .Rproj. When working with Git and GitHub, your files will exist in two places: <strong>locally</strong> on your computer and <strong>remotely</strong> on GitHub.</p>
 <p>When creating a new repository, you can use either of the following alternatives:</p>
 <ul>
-<li><p>Initialize the repo locally on your computer and later add the repo to GitHub</p></li>
-<li><p>Initialize the repo remotely on GitHub and then copy (clone) the repo to your computer.</p></li>
+<li>Initialize the repo locally on your computer and later add the repo to GitHub</li>
+<li>Initialize the repo remotely on GitHub and then copy (clone) the repo to your computer.</li>
 </ul>
 <p>To create a repository (only needs to be done once per project):</p>
 <p><code>git init</code> initializes a local Git repository.</p>
@@ -1194,26 +1225,26 @@ GitHub
 <ol type="1">
 <li>Go to GitHub.</li>
 <li>Click the big green “New” button.</li>
-<li>Call the repo <code>first-repo</code>. Select a public repository and check the box that says <code>Add a README file</code>.</li>
+<li>Call the repo <code>my-first-repo</code>. Select a public repository and check the box that says <code>Add a README file</code>.</li>
 <li>Click the “Create Repository” button.</li>
 <li>Click the green “Code” button and copy the SSH link.</li>
-<li>Navigate to your <code>cli-exercise</code> folder on the command line using <code>cd</code>. Run <code>git clone &lt; link &gt;</code>, where you replace <code>&lt; link &gt;</code> with the SSH link you copied. This will create a folder called <code>first-repo</code> with your repo files, including the <code>README.md</code> file you created when you initialized the repo.</li>
+<li>Using the command line, navigate to a sensible place on your computer to store a project.</li>
+<li>Run <code>git clone &lt; link &gt;</code>, where you replace <code>&lt; link &gt;</code> with the SSH link you copied. This will create a folder called <code>my-first-repo</code> with your repo files, including the <code>README.md</code> file you created when you initialized the repo.</li>
 </ol>
-<p>See <a href="#sec-app-b" class="quarto-xref"><span>Section 6.11</span></a> for the instructions on initializing a repo locally and then adding to GitHub.</p>
 </div>
 </div>
 <section id="basic-approach" class="level3" data-number="6.6.1">
 <h3 data-number="6.6.1" class="anchored" data-anchor-id="basic-approach"><span class="header-section-number">6.6.1</span> Basic Approach</h3>
 <ol type="1">
 <li>Initialize a repository for a project (we’ve already done this!).</li>
-<li>Tell Git which files to track. Track scripts. Avoid tracking data or binary files like <code>.xlsx</code>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>Tell Git which files to track. Track scripts. Avoid tracking data or binary files like <code>.docx</code> and <code>.xlsx</code>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
 <li>Take a snapshot of tracked files and add a commit message.</li>
 <li>Save the tracked files to the remote GitHub repository.</li>
 <li>Repeat, repeat, repeat</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/git-github-workflow.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="images/git-github-workflow.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </section>
@@ -1236,20 +1267,30 @@ GitHub
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Navigate to your <code>first-repo</code> directory on the command line and run <code>git status</code> to confirm that there is a git repo.</li>
-<li>In RStudio, create a new R project. Select the option to associate the R project with an existing directory and select the <code>first-repo</code> directory. This will open the <code>first-repo</code> project.</li>
-<li>Create a quarto document. Select the HTML option and give the document whatever title you’d like. Once the document is created, save the untitled document as “index.qmd”. Edit the YML header of the document to set <code>self-contained</code> to true as follows:</li>
-</ol>
-format: 
-      html:
-        self-contained: true
-<ol start="4" type="1">
-<li>In a code chunk, add <code>library(tidyverse)</code> and create any graph with <code>library(ggplot2)</code> and the <code>storms</code> dataset.</li>
-<li>Render the document to html.</li>
+<li>Navigate to your <code>example-project</code> directory on the command line and run <code>git status</code> to confirm that there isn’t a git repo.</li>
+<li>Use <code>git init</code> to initialize a new repository.</li>
 <li>In the terminal, run <code>git add index.qmd index.html</code>. Then run <code>git status</code>.</li>
-<li>Then run <code>git commit -m "add first graph"</code> to commit the two files with a commit message. Then run <code>git status</code> again and observe the change.</li>
-<li>Finally, run <code>git push origin main</code> to push the commit to GitHub. Navigate to the repo on GitHub to confirm that the files have been pushed to your remote repo.</li>
-<li>Make some changes to your the graph in your <code>index.qmd</code> file (e.g.&nbsp;change the color of a geometry, add labels, etc.). Then run steps 5-8 again (with a different commit message in step 7).</li>
+<li>Then run <code>git commit -m "add draft analysis"</code> to commit the two files with a commit message. Then run <code>git status</code> again and observe the change.</li>
+<li>Create a repository on GitHub called <code>example-project</code>. Select a public repository and <strong>do not</strong> check the box that says <code>Add a README file</code>.</li>
+<li>Follow the instructions to <code>…or push an existing repository from the command line</code>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 7</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Make some changes to <code>index.qmd</code> and re-render the document.</li>
+<li>Add your files.</li>
+<li>Commit your files.</li>
+<li>Push your files.</li>
 <li>In the GitHub repo, click on <code>index.qmd</code> then click on the History icon in the top right corner. Note that you’ll see your two commits. Click on the most recent commit and notice that you can see the changes that you’ve made to the file.</li>
 </ol>
 </div>
@@ -1265,34 +1306,41 @@ format:
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span style="color:#1696d2;">Exercise 7</span>
+<span style="color:#1696d2;">Exercise 8</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Go to your GitHub repository and select “Settings” on the top right.</li>
 <li>Under the “Code and Automations” menu on the left side, select “Pages”.</li>
-<li>Under “Build and Deployment” and “Branch”, use the drop down menu to change the branch to “main”. This will trigger the deployment of your GitHub page from the “main” branch of your repository. It will take a bit of time for your GitHub page to be ready.</li>
+<li>Under “Build and Deployment” and “Branch”, use the drop down menu to change the branch to from “None” to “main”. This will trigger the deployment of your GitHub page from the “main” branch of your repository. It will take a bit of time for your GitHub page to be ready.</li>
 <li>Refresh the page, and when you see a box that says “your site is live” at the top of your page, click the link to go to your website!</li>
 </ol>
 </div>
 </div>
 </section>
-<section id="collaboration-using-git-github-with-branching" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="collaboration-using-git-github-with-branching"><span class="header-section-number">6.8</span> Collaboration Using Git + GitHub (with branching)</h2>
-<p>Our workflow so far has involved only one person, but the true power of GitHub comes through collaboration! There are two main models for collaborating with GitHub.</p>
-<ol type="1">
-<li>Shared repository with branching</li>
-<li>Fork and pull</li>
-</ol>
-<p>We have almost exclusively seen approach one used by collaborative teams. Approach two is more common when a repository has been publicized, and someone external to the work wants to propose changes while lacking the ability to “write” (or push) to that repository. Approach one is covered in more detail in the next chapter.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/git-branching.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>A Common Branching Workflow</figcaption>
-</figure>
+<section id="gitignore" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="gitignore"><span class="header-section-number">6.8</span> .gitignore</h2>
+<p>We don’t want to add every file to Git or GitHub. We want to avoid binary files like Word documents. We can’t add very large files.</p>
+<p>By default, every file in a local repository will show up after <code>git status</code> and those files we don’t want to add will be at risk of being added by accident. This is annoying.</p>
+<p>Fortunately, we can use a <code>.gitignore</code> to ignore files and directories. This cleans up our <code>git status</code> and protects us from accidentally add a file we don’t want to add. To ignore a file, just add the name of the file or folder to the <code>.gitignore</code>.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-<p>To add a collaborator to your repository, under Settings select “Collaborators” under the Access menu on the left. Select the “Add people” button and add your collaborators by entering their GitHub user name.</p>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 9</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Run <code>git status</code>.</li>
+<li>Add a file called <code>.gitignore</code>. In the file, add <code>poems/</code>.</li>
+<li>Run <code>git status</code>.</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="conclusion" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6.9</span> Conclusion</h2>
@@ -1303,7 +1351,7 @@ format:
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="06_reproducible-research-with-git_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="624"></p>
+<p><img src="06_reproducible-research-with-git_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="624"></p>
 </figure>
 </div>
 </div>
@@ -1363,7 +1411,7 @@ format:
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>GitHub refuses to store files larger than 100 MiB. This poses a challenge to writing reproducible code. However, many data sources can be downloaded directly from the web or via APIs, allowing code to be reproducible without relying on storing large data sets on GitHub. Materials later in this book discuss scaping data from the web and using APIs.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>GitHub refuses to store files larger than 100 MiB. This poses a challenge to writing reproducible code. However, many data sources can be downloaded directly from the web or via APIs, allowing code to be reproducible without relying on storing large data sets on GitHub.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>The <code>-m</code> stands for <code>message</code>. Writing a brief commit message like “fixes bug in data cleaning script” can help collaborators (including your future self) understand the purpose of your commits.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
@@ -1785,8 +1833,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07_advanced-git.html" class="pagination-link" aria-label="Advanced Git and Github">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./07_advanced-git.html" class="pagination-link" aria-label="Advanced Git and GitHub">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and GitHub</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

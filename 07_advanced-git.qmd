@@ -1,12 +1,21 @@
 ---
-title: "Advanced Git and Github"
-abstract: git and GitHub are perfect for the Issue > Branch > PR workflow. This chapter introduces that workflow. 
+title: "Advanced Git and GitHub"
+abstract: Git and GitHub are perfect for the Issue > Branch > PR workflow. This chapter introduces that workflow. 
 format: 
   html:
     toc: true
     code-line-numbers: true
 ---
 
+![Czech national synchronized swimming team](images/Open_Make_Up_For_Ever_2013_-_Combination_-_Czech_Republic_-_20.jpg)
+
+~ Image by [Pierre-Yves Beaudouin](https://en.wikipedia.org/wiki/Synchronized_swimming#/media/File:Open_Make_Up_For_Ever_2013_-_Combination_-_Czech_Republic_-_20.jpg)
+
+```{r}
+#| echo: false
+exercise_number <-  1
+
+```
 
 ```{r}
 #| echo: false
@@ -18,17 +27,30 @@ theme_set(theme_minimal())
 
 ```
 
+
 ## The Issue > Branch > PR Workflow
 There are several popular workflows for collaborating with Git and GitHub. This section outlines an `issue`-`branch`-`pr` workflow which is extremely common and which we use regularly.
 
 ### GitHub issues
 
-[GitHub issues](https://help.github.com/en/github/managing-your-work-on-github/about-issues) are a GitHub project management tool for managing to-dos and conversations about a code base. This feature of Github can be seen as a built-in alternative to project management softwares like Jira, Trello, and monday, among many others.
+[GitHub issues](https://help.github.com/en/github/managing-your-work-on-github/about-issues) are a GitHub project management tool for managing to-dos and conversations about a code base. This feature of GitHub can be seen as a built-in alternative to project management software like Jira, Trello, and monday, among many others.
 
-![](images/issues.png)
-
+![GitHub issues from `library(urbnmapr)`](images/issues.png)
 
 For each substantial change to the code base, open a GitHub issue.
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+exercise_number <-  1 + exercise_number
+
+```
+
+1.  Go to your `example-project` repository on GitHub. 
+2. Open a GitHub issue for a new README.
+:::
 
 ### Working with Branches
 
@@ -39,18 +61,19 @@ The track changes feature in programs like with Microsoft Word follows each and 
 Meet branching. Branching allows multiple versions of the same program to be developed simultaneously and then merged together when those versions are ready and operational. 
 
 #### Branching Diagrammed 
-Recall the following diagram from last chapter. We need a way to:
+
+Consider a more advanced Git workflow. We need a way to:
 
 1. Create branches
 2. Switch between branches
 3. Combine branches
 
-![A standard git workflow](images/git-branching.png){fig-align="center" width=70%}
-
+![A standard git workflow](images/git-branching.png){fig-align="center" width=100%}
 
 A second stylized (and cute!) example of this workflow can be seen [in this tweet](https://twitter.com/jay_gee/status/702638177471873024/photo/1) from Jennifer Gilbert. The octopus on the left side of the image represents an existing, operational piece of code. Two programmers create separate copies (branches) of that code, work to create independent features (represented by the heart glasses and a cowboy hat), and then merge those features back to the master branch when those features are operational.
 
 #### How to branch
+
 `git branch` prints out important information about the available branches in a repo. It is similar to `git status` in that it provides useful information while not making any changes.
 
 `git switch -c <new branch name>` creates a new branch and then navigates you to the new branch.
@@ -59,10 +82,9 @@ A second stylized (and cute!) example of this workflow can be seen [in this twee
 
 [^checkout]: `git checkout` is another exceedingly common git command. Many resources on the internet may encourage the usage of `git checkout <branch name>` to switch branches, or `git checkout -b <new branch name>` to create a new branch and then switch to it. This is okay! However, `git checkout` also has other capabilities, and that glut of functionality can be confusing to users. This makes `git switch` the simpler, more modern option.]
 
-
 1. Use `git switch main` to navigate to the main branch. Use `git pull origin main` to update your local version of the `main` branch with any remote changes. 
 2. Use `git switch -c <new branch name>` to create and switch to a new branch with the name `iss<number>`, where <number> is the issue number from GitHub.
-3. Work as if you are on the main branch but push to branch `iss<number>`. 
+3. Work as if you are on the main branch but push to branch `iss<number>` with `git push origin iss<number>`. 
 
 [Jenny Bryan](https://happygitwithr.com/git-branches.html) provides a more thorough background.
 
@@ -72,20 +94,20 @@ The easiest way to merge branches is on GitHub with pull requests. When you are 
 
 1. On GitHub, click the new pull request button. 
 
-![An New Pull Request](images/new-pull-request.png){width=20%}
+![A New Pull Request](images/new-pull-request.png){width=20%}
 
 
 2. Then set a pull request from the branch on the right to the branch on the left. 
 
-![](images/pull-request.png){fig-align="center" width=70%}
+![PR Direction](images/pull-request.png){fig-align="center" width=70%}
 
 
 3. Navigate to the pull requests page and review the pull request. <br>
-![](images/pull-requests.png){fig-align="center" width=25%}
+![Pull Requests Tab](images/pull-requests.png){fig-align="center" width=25%}
 
 4. Merge the pull request:
 
-![](images/merge-pull-request.png){fig-align="center" width=70%}
+![Merging a PR](images/merge-pull-request.png){fig-align="center" width=70%}
 
 ### Putting it all together
 
@@ -93,38 +115,111 @@ The easiest way to merge branches is on GitHub with pull requests. When you are 
 2. Create a new branch named after the GitHub issue number
 3. After one or more commits, create a pull request and merge the code
 
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+exercise_number <-  1 + exercise_number
+
+```
+
+1. In your local repository, create branch `iss001`.
+2. Add an informative README.md. 
+3. Add, commit, and push your changes. 
+4. Open a pull request. 
+5. Merge in the pull request and close the issue.
+:::
+
 ### Merge conflicts
 
 If you run into merge conflicts, either follow the GitHub instructions or follow [Jenny Bryan's instructions](https://happygitwithr.com/git-branches.html) for resolving the conflict at the command line. Do not panic! 
 
-## GitHub Pages
+## Collaboration Using Git + GitHub (with branching)
 
-As we introduced in @sec-ghp, GitHub offers a free and simple tool for a hosting website in a GitHub repository called [GitHub pages](https://pages.github.com/). A basic setup is to use index.html or README.md as an index to connect individual pages together whose URLs are based on their file names. 
+Our workflow so far has involved only one person, but the true power of GitHub comes through collaboration! There are two main models for collaborating with GitHub.
 
-Let's walk through an example:
+1.  Shared repository with branching
+2.  Fork and pull
 
-### README as homepage
+We have almost exclusively seen approach one used by collaborative teams. Approach two is more common when a repository has been publicized, and someone external to the work wants to propose changes while lacking the ability to "write" (or push) to that repository. Approach one is covered in more detail in the next chapter. 
 
-1. Create a new local directory with a README.md.
-2. Run `echo "<h1>Page 1<\h1>" > page1.html` at the command line.
-3. `git init`, `git add`, and `git commit` your changes.
-4. Create a remote repository on GitHub and link it to your local repository.
-5. Push your local changes.
-6. Navigate to Settings in your GitHub repo. Go to GitHub pages and set the source to "main branch". The page will reload and a link will appear. Go to the link. 
-7. Add page1 to the end of the link
-8. Add the link to page1 in the README. `git add`, `git commit`, and `git push`.
+![A Common Branching Workflow](images/git-branching.png){fig-align="center" width=100%}
 
-### index as homepage
+To add a collaborator to your repository, under Settings select "Collaborators" under the Access menu on the left. Select the "Add people" button and add your collaborators by entering their GitHub user name.
 
-The [Urban Institute R Users Group website](https://urbaninstitute.github.io/r-at-urban/index.html) does not use the README as a home page. Instead it uses and index page. 
+Then, adopt an Issue > Branch > PR Workflow. Always work on different branches. 
 
-1. Run `echo "<h1>Index<\h1>" > index.html` at the command line.
-2. Run `echo "<a href="https://awunderground.github.io/git-example/page1">Page 1</a>" > index.html` at the command line where url is the link to Page 1 on GitHub pages. 
-3. Add, commit, and push your code to the main branch.
-4. After a few minutes return to the link provided on GitHub pages.
+## Code Reviews in GitHub
+
+GitHub's strength is code reviews. 
+
+[This page outlines the functionality.](https://github.com/features/code-review/)
+
+### 1. Request
+
+Pull requests can reconcile code from different branches (e.g. `iss001` and `main`).
+
+For example, I will put in a pull request from `iss001` to `main`. At this point, a reviewer will be requested in the pull request.
+
+<img src="images/request-review.png" width="400" height="200"/>
+
+### 2. Review
+
+The code will not be merged to `main` until the reviewer(s) approve the pull request.
+
+GitHub will generate a line-by-line comparison of every line that is added or removed from `iss001` to `main`.
+
+<img src="images/line-by-line.png" width="800" height="300"/>
+
+Reviewers can add line-specific comments in GitHub.
+
+<img src="images/comments.png" width="500" height="200"/>
+
+### 3. Approve
+
+Reviewers can also add overall comments before approving or requesting changes for the pull request. If additional changes are added, GitHub will highlight the specific lines that changed in response to the review--this will save the reviewer time on second or third reviews of the same code.
+
+<img src="images/approve-review.png" width="300" height="200"/>
+
+Once the code is approved, the branch can be merged into the `main` branch where it can referenced and used for subsequent analyses.
+
+## Scope of Reviews
+
+Most of my projects use code reviews in GitHub. All code and documentation go through a review process. 
+
+It is possible that changes will be requested before the completion of a code review. For example, a reviewer may send the code back to the analyst if the code isn't reproducible (i.e. doesn't run) or if the documentation is insufficient for th reviewer to follow the logic. 
+
+The scope of the review will involve the following three levels:
+
+1.  Reproduction of results.
+    -   Code should not error out. Warnings and notes are also cause for concern.
+    -   The code should exactly recreate the final result.
+2.  A line-by-line review of code logic.
+    -   Code script should include top-level description of process and what the code accomplishes.
+    -   Does the author's process and analytical choices make sense given the metric they are trying to calculate? Is the process implemented correctly?
+    -   Variable construction: What is the unit of analysis? Is it consistent throughout the dataset?
+    -   Are new variables what they say they are (check codebooks)?
+    -   Check whether simple operations like addition/subtraction/division exclude observations with missing data.
+    -   Does the researcher subset the data at all? Is it done permanently or temporarily?
+    -   How are missing values coded?
+    -   Look at merges/joins and appends - do the data appear to be matched appropriately? Are there identical non-ID variables in both datasets? How are non-matching data handled or dropped?
+    -   Is the correct geographic crosswalk used?
+    -   Are weights used consistently and correctly?
+3.  Code Architecture/Readability.
+    -   Is the code DRY (don't repeat yourself)? If code is repeated more than once, recommend that the writer turn the repeated code into a function or macro.
+    -   Is there a place where a variable is rebuilt or changed later on?
+    -   Are values transcribed by hand?
+    -   "Messy but error-free" is not an acceptable status for finalized code. Code should be easy to follow, efficient, reproduceable, and should reflect well on the organization and project team.
+4.  Public Release *Is the code clearly commented for public release (e.g., no use of abbreviations or acronyms)* Is the code free from any licenses, PII, or proprietary information?
+
+## Extended Example
+
+Let's explore the [Boosting Upward Mobility from Poverty GitHub repository](https://github.com/UI-Research/mobility-from-poverty) to explore this workflow. 
 
 ## Conclusion
-GitHub Pages is a great project management tool. It can be integrated perfectly into the Issue > Branch > PR workflow. Branching is useful to allow separate collaborators to work on different features of a codebase simultaneously without interrupting each other. When conflicts do arise, do not fret! Merge conflicts are normal and can be resolved easily. 
+
+GitHub is a great project management tool. It can be integrated perfectly into the Issue > Branch > PR workflow. Branching is useful to allow separate collaborators to work on different features of a codebase simultaneously without interrupting each other. When conflicts do arise, do not fret! Merge conflicts are normal and can be resolved easily. 
 
 ### More resources
 
@@ -133,4 +228,4 @@ GitHub Pages is a great project management tool. It can be integrated perfectly 
 * [Git Pocket Guide](https://www.amazon.com/Git-Pocket-Guide-Working-Introduction/dp/1449325866)
 * [Getting Git Right](https://www.atlassian.com/git)
 * [Git Learning Lab](https://lab.github.com/)
-* The Urban Institute's [Reproducibility Website](https://ui-research.github.io/reproducibility-at-urban/) and its [Git and Github page](https://ui-research.github.io/reproducibility-at-urban/git-overview.html)
+* The Urban Institute's [Reproducibility Website](https://ui-research.github.io/reproducibility-at-urban/) and its [Git and GitHub page](https://ui-research.github.io/reproducibility-at-urban/git-overview.html)

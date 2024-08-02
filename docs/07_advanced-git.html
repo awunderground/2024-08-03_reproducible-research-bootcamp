@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reproducible Research Bootcamp - 7&nbsp; Advanced Git and Github</title>
+<title>Reproducible Research Bootcamp - 7&nbsp; Advanced Git and GitHub</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./functions-and-tests.html" rel="next">
+<link href="./08_functions-and-tests.html" rel="next">
 <link href="./06_reproducible-research-with-git.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_reproducible-research-with-git.html">Version Control</a></li><li class="breadcrumb-item"><a href="./07_advanced-git.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_reproducible-research-with-git.html">Version Control</a></li><li class="breadcrumb-item"><a href="./07_advanced-git.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and GitHub</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -193,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07_advanced-git.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and GitHub</span></span></a>
   </div>
 </li>
       </ul>
@@ -209,14 +209,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions-and-tests.html" class="sidebar-item-text sidebar-link">
+  <a href="./08_functions-and-tests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assertive-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span></a>
+  <a href="./09_assertive-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Assertive Testing</span></span></a>
   </div>
 </li>
       </ul>
@@ -241,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">Culture and Ethics</span></a>
+ <span class="menu-text">Putting it All Together</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -296,14 +296,18 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">7.1.4</span> Putting it all together</a></li>
   <li><a href="#merge-conflicts" id="toc-merge-conflicts" class="nav-link" data-scroll-target="#merge-conflicts"><span class="header-section-number">7.1.5</span> Merge conflicts</a></li>
   </ul></li>
-  <li><a href="#github-pages" id="toc-github-pages" class="nav-link" data-scroll-target="#github-pages"><span class="header-section-number">7.2</span> GitHub Pages</a>
+  <li><a href="#collaboration-using-git-github-with-branching" id="toc-collaboration-using-git-github-with-branching" class="nav-link" data-scroll-target="#collaboration-using-git-github-with-branching"><span class="header-section-number">7.2</span> Collaboration Using Git + GitHub (with branching)</a></li>
+  <li><a href="#code-reviews-in-github" id="toc-code-reviews-in-github" class="nav-link" data-scroll-target="#code-reviews-in-github"><span class="header-section-number">7.3</span> Code Reviews in GitHub</a>
   <ul class="collapse">
-  <li><a href="#readme-as-homepage" id="toc-readme-as-homepage" class="nav-link" data-scroll-target="#readme-as-homepage"><span class="header-section-number">7.2.1</span> README as homepage</a></li>
-  <li><a href="#index-as-homepage" id="toc-index-as-homepage" class="nav-link" data-scroll-target="#index-as-homepage"><span class="header-section-number">7.2.2</span> index as homepage</a></li>
+  <li><a href="#request" id="toc-request" class="nav-link" data-scroll-target="#request"><span class="header-section-number">7.3.1</span> 1. Request</a></li>
+  <li><a href="#review" id="toc-review" class="nav-link" data-scroll-target="#review"><span class="header-section-number">7.3.2</span> 2. Review</a></li>
+  <li><a href="#approve" id="toc-approve" class="nav-link" data-scroll-target="#approve"><span class="header-section-number">7.3.3</span> 3. Approve</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7.3</span> Conclusion</a>
+  <li><a href="#scope-of-reviews" id="toc-scope-of-reviews" class="nav-link" data-scroll-target="#scope-of-reviews"><span class="header-section-number">7.4</span> Scope of Reviews</a></li>
+  <li><a href="#extended-example" id="toc-extended-example" class="nav-link" data-scroll-target="#extended-example"><span class="header-section-number">7.5</span> Extended Example</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7.6</span> Conclusion</a>
   <ul class="collapse">
-  <li><a href="#more-resources" id="toc-more-resources" class="nav-link" data-scroll-target="#more-resources"><span class="header-section-number">7.3.1</span> More resources</a></li>
+  <li><a href="#more-resources" id="toc-more-resources" class="nav-link" data-scroll-target="#more-resources"><span class="header-section-number">7.6.1</span> More resources</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -311,9 +315,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_reproducible-research-with-git.html">Version Control</a></li><li class="breadcrumb-item"><a href="./07_advanced-git.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_reproducible-research-with-git.html">Version Control</a></li><li class="breadcrumb-item"><a href="./07_advanced-git.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and GitHub</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and Github</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Git and GitHub</span></h1>
 </div>
 
 
@@ -328,7 +332,7 @@ ul.task-list li input[type="checkbox"] {
 <div>
   <div class="abstract">
     <div class="block-title">Abstract</div>
-    git and GitHub are perfect for the Issue &gt; Branch &gt; PR workflow. This chapter introduces that workflow.
+    Git and GitHub are perfect for the Issue &gt; Branch &gt; PR workflow. This chapter introduces that workflow.
   </div>
 </div>
 
@@ -336,14 +340,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<dl>
+<dt><img src="images/Open_Make_Up_For_Ever_2013_-_Combination_-_Czech_Republic_-_20.jpg" class="img-fluid" alt="Czech national synchronized swimming team"></dt>
+<dd>
+<p>Image by <a href="https://en.wikipedia.org/wiki/Synchronized_swimming#/media/File:Open_Make_Up_For_Ever_2013_-_Combination_-_Czech_Republic_-_20.jpg">Pierre-Yves Beaudouin</a></p>
+</dd>
+</dl>
 <section id="the-issue-branch-pr-workflow" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="the-issue-branch-pr-workflow"><span class="header-section-number">7.1</span> The Issue &gt; Branch &gt; PR Workflow</h2>
 <p>There are several popular workflows for collaborating with Git and GitHub. This section outlines an <code>issue</code>-<code>branch</code>-<code>pr</code> workflow which is extremely common and which we use regularly.</p>
 <section id="github-issues" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="github-issues"><span class="header-section-number">7.1.1</span> GitHub issues</h3>
-<p><a href="https://help.github.com/en/github/managing-your-work-on-github/about-issues">GitHub issues</a> are a GitHub project management tool for managing to-dos and conversations about a code base. This feature of Github can be seen as a built-in alternative to project management softwares like Jira, Trello, and monday, among many others.</p>
-<p><img src="images/issues.png" class="img-fluid"></p>
+<p><a href="https://help.github.com/en/github/managing-your-work-on-github/about-issues">GitHub issues</a> are a GitHub project management tool for managing to-dos and conversations about a code base. This feature of GitHub can be seen as a built-in alternative to project management software like Jira, Trello, and monday, among many others.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/issues.png" class="img-fluid figure-img"></p>
+<figcaption>GitHub issues from <code>library(urbnmapr)</code></figcaption>
+</figure>
+</div>
 <p>For each substantial change to the code base, open a GitHub issue.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 1</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Go to your <code>example-project</code> repository on GitHub.</li>
+<li>Open a GitHub issue for a new README.</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="working-with-branches" class="level3" data-number="7.1.2">
 <h3 data-number="7.1.2" class="anchored" data-anchor-id="working-with-branches"><span class="header-section-number">7.1.2</span> Working with Branches</h3>
@@ -354,7 +385,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="branching-diagrammed" class="level4">
 <h4 class="anchored" data-anchor-id="branching-diagrammed">Branching Diagrammed</h4>
-<p>Recall the following diagram from last chapter. We need a way to:</p>
+<p>Consider a more advanced Git workflow. We need a way to:</p>
 <ol type="1">
 <li>Create branches</li>
 <li>Switch between branches</li>
@@ -362,7 +393,7 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/git-branching.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="images/git-branching.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>A standard git workflow</figcaption>
 </figure>
 </div>
@@ -376,7 +407,7 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li>Use <code>git switch main</code> to navigate to the main branch. Use <code>git pull origin main</code> to update your local version of the <code>main</code> branch with any remote changes.</li>
 <li>Use <code>git switch -c &lt;new branch name&gt;</code> to create and switch to a new branch with the name <code>iss&lt;number&gt;</code>, where <number> is the issue number from GitHub.</number></li>
-<li>Work as if you are on the main branch but push to branch <code>iss&lt;number&gt;</code>.</li>
+<li>Work as if you are on the main branch but push to branch <code>iss&lt;number&gt;</code> with <code>git push origin iss&lt;number&gt;</code>.</li>
 </ol>
 <p><a href="https://happygitwithr.com/git-branches.html">Jenny Bryan</a> provides a more thorough background.</p>
 </section>
@@ -390,7 +421,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/new-pull-request.png" class="img-fluid figure-img" style="width:20.0%"></p>
-<figcaption>An New Pull Request</figcaption>
+<figcaption>A New Pull Request</figcaption>
 </figure>
 </div>
 <ol start="2" type="1">
@@ -398,16 +429,18 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/pull-request.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="images/pull-request.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>PR Direction</figcaption>
 </figure>
 </div>
 <ol start="3" type="1">
-<li><p>Navigate to the pull requests page and review the pull request. <br> <img src="images/pull-requests.png" class="img-fluid quarto-figure quarto-figure-center" style="width:25.0%"></p></li>
+<li><p>Navigate to the pull requests page and review the pull request. <br> <img src="images/pull-requests.png" class="img-fluid quarto-figure quarto-figure-center" style="width:25.0%" alt="Pull Requests Tab"></p></li>
 <li><p>Merge the pull request:</p></li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/merge-pull-request.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="images/merge-pull-request.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Merging a PR</figcaption>
 </figure>
 </div>
 </section>
@@ -418,52 +451,123 @@ ul.task-list li input[type="checkbox"] {
 <li>Create a new branch named after the GitHub issue number</li>
 <li>After one or more commits, create a pull request and merge the code</li>
 </ol>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:#1696d2;">Exercise 2</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>In your local repository, create branch <code>iss001</code>.</li>
+<li>Add an informative README.md.</li>
+<li>Add, commit, and push your changes.</li>
+<li>Open a pull request.</li>
+<li>Merge in the pull request and close the issue.</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="merge-conflicts" class="level3" data-number="7.1.5">
 <h3 data-number="7.1.5" class="anchored" data-anchor-id="merge-conflicts"><span class="header-section-number">7.1.5</span> Merge conflicts</h3>
 <p>If you run into merge conflicts, either follow the GitHub instructions or follow <a href="https://happygitwithr.com/git-branches.html">Jenny Bryan’s instructions</a> for resolving the conflict at the command line. Do not panic!</p>
 </section>
 </section>
-<section id="github-pages" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="github-pages"><span class="header-section-number">7.2</span> GitHub Pages</h2>
-<p>As we introduced in <a href="06_reproducible-research-with-git.html#sec-ghp" class="quarto-xref"><span>Section 6.7</span></a>, GitHub offers a free and simple tool for a hosting website in a GitHub repository called <a href="https://pages.github.com/">GitHub pages</a>. A basic setup is to use index.html or README.md as an index to connect individual pages together whose URLs are based on their file names.</p>
-<p>Let’s walk through an example:</p>
-<section id="readme-as-homepage" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="readme-as-homepage"><span class="header-section-number">7.2.1</span> README as homepage</h3>
+<section id="collaboration-using-git-github-with-branching" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="collaboration-using-git-github-with-branching"><span class="header-section-number">7.2</span> Collaboration Using Git + GitHub (with branching)</h2>
+<p>Our workflow so far has involved only one person, but the true power of GitHub comes through collaboration! There are two main models for collaborating with GitHub.</p>
 <ol type="1">
-<li>Create a new local directory with a README.md.</li>
-<li>Run <code>echo "&lt;h1&gt;Page 1&lt;\h1&gt;" &gt; page1.html</code> at the command line.</li>
-<li><code>git init</code>, <code>git add</code>, and <code>git commit</code> your changes.</li>
-<li>Create a remote repository on GitHub and link it to your local repository.</li>
-<li>Push your local changes.</li>
-<li>Navigate to Settings in your GitHub repo. Go to GitHub pages and set the source to “main branch”. The page will reload and a link will appear. Go to the link.</li>
-<li>Add page1 to the end of the link</li>
-<li>Add the link to page1 in the README. <code>git add</code>, <code>git commit</code>, and <code>git push</code>.</li>
+<li>Shared repository with branching</li>
+<li>Fork and pull</li>
+</ol>
+<p>We have almost exclusively seen approach one used by collaborative teams. Approach two is more common when a repository has been publicized, and someone external to the work wants to propose changes while lacking the ability to “write” (or push) to that repository. Approach one is covered in more detail in the next chapter.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/git-branching.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>A Common Branching Workflow</figcaption>
+</figure>
+</div>
+<p>To add a collaborator to your repository, under Settings select “Collaborators” under the Access menu on the left. Select the “Add people” button and add your collaborators by entering their GitHub user name.</p>
+<p>Then, adopt an Issue &gt; Branch &gt; PR Workflow. Always work on different branches.</p>
+</section>
+<section id="code-reviews-in-github" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="code-reviews-in-github"><span class="header-section-number">7.3</span> Code Reviews in GitHub</h2>
+<p>GitHub’s strength is code reviews.</p>
+<p><a href="https://github.com/features/code-review/">This page outlines the functionality.</a></p>
+<section id="request" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="request"><span class="header-section-number">7.3.1</span> 1. Request</h3>
+<p>Pull requests can reconcile code from different branches (e.g.&nbsp;<code>iss001</code> and <code>main</code>).</p>
+<p>For example, I will put in a pull request from <code>iss001</code> to <code>main</code>. At this point, a reviewer will be requested in the pull request.</p>
+<p><img src="images/request-review.png" width="400" height="200"></p>
+</section>
+<section id="review" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="review"><span class="header-section-number">7.3.2</span> 2. Review</h3>
+<p>The code will not be merged to <code>main</code> until the reviewer(s) approve the pull request.</p>
+<p>GitHub will generate a line-by-line comparison of every line that is added or removed from <code>iss001</code> to <code>main</code>.</p>
+<p><img src="images/line-by-line.png" width="800" height="300"></p>
+<p>Reviewers can add line-specific comments in GitHub.</p>
+<p><img src="images/comments.png" width="500" height="200"></p>
+</section>
+<section id="approve" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="approve"><span class="header-section-number">7.3.3</span> 3. Approve</h3>
+<p>Reviewers can also add overall comments before approving or requesting changes for the pull request. If additional changes are added, GitHub will highlight the specific lines that changed in response to the review–this will save the reviewer time on second or third reviews of the same code.</p>
+<p><img src="images/approve-review.png" width="300" height="200"></p>
+<p>Once the code is approved, the branch can be merged into the <code>main</code> branch where it can referenced and used for subsequent analyses.</p>
+</section>
+</section>
+<section id="scope-of-reviews" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="scope-of-reviews"><span class="header-section-number">7.4</span> Scope of Reviews</h2>
+<p>Most of my projects use code reviews in GitHub. All code and documentation go through a review process.</p>
+<p>It is possible that changes will be requested before the completion of a code review. For example, a reviewer may send the code back to the analyst if the code isn’t reproducible (i.e.&nbsp;doesn’t run) or if the documentation is insufficient for th reviewer to follow the logic.</p>
+<p>The scope of the review will involve the following three levels:</p>
+<ol type="1">
+<li>Reproduction of results.
+<ul>
+<li>Code should not error out. Warnings and notes are also cause for concern.</li>
+<li>The code should exactly recreate the final result.</li>
+</ul></li>
+<li>A line-by-line review of code logic.
+<ul>
+<li>Code script should include top-level description of process and what the code accomplishes.</li>
+<li>Does the author’s process and analytical choices make sense given the metric they are trying to calculate? Is the process implemented correctly?</li>
+<li>Variable construction: What is the unit of analysis? Is it consistent throughout the dataset?</li>
+<li>Are new variables what they say they are (check codebooks)?</li>
+<li>Check whether simple operations like addition/subtraction/division exclude observations with missing data.</li>
+<li>Does the researcher subset the data at all? Is it done permanently or temporarily?</li>
+<li>How are missing values coded?</li>
+<li>Look at merges/joins and appends - do the data appear to be matched appropriately? Are there identical non-ID variables in both datasets? How are non-matching data handled or dropped?</li>
+<li>Is the correct geographic crosswalk used?</li>
+<li>Are weights used consistently and correctly?</li>
+</ul></li>
+<li>Code Architecture/Readability.
+<ul>
+<li>Is the code DRY (don’t repeat yourself)? If code is repeated more than once, recommend that the writer turn the repeated code into a function or macro.</li>
+<li>Is there a place where a variable is rebuilt or changed later on?</li>
+<li>Are values transcribed by hand?</li>
+<li>“Messy but error-free” is not an acceptable status for finalized code. Code should be easy to follow, efficient, reproduceable, and should reflect well on the organization and project team.</li>
+</ul></li>
+<li>Public Release <em>Is the code clearly commented for public release (e.g., no use of abbreviations or acronyms)</em> Is the code free from any licenses, PII, or proprietary information?</li>
 </ol>
 </section>
-<section id="index-as-homepage" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="index-as-homepage"><span class="header-section-number">7.2.2</span> index as homepage</h3>
-<p>The <a href="https://urbaninstitute.github.io/r-at-urban/index.html">Urban Institute R Users Group website</a> does not use the README as a home page. Instead it uses and index page.</p>
-<ol type="1">
-<li>Run <code>echo "&lt;h1&gt;Index&lt;\h1&gt;" &gt; index.html</code> at the command line.</li>
-<li>Run <code>echo "&lt;a href="https://awunderground.github.io/git-example/page1"&gt;Page 1&lt;/a&gt;" &gt; index.html</code> at the command line where url is the link to Page 1 on GitHub pages.</li>
-<li>Add, commit, and push your code to the main branch.</li>
-<li>After a few minutes return to the link provided on GitHub pages.</li>
-</ol>
+<section id="extended-example" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="extended-example"><span class="header-section-number">7.5</span> Extended Example</h2>
+<p>Let’s explore the <a href="https://github.com/UI-Research/mobility-from-poverty">Boosting Upward Mobility from Poverty GitHub repository</a> to explore this workflow.</p>
 </section>
-</section>
-<section id="conclusion" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.3</span> Conclusion</h2>
-<p>GitHub Pages is a great project management tool. It can be integrated perfectly into the Issue &gt; Branch &gt; PR workflow. Branching is useful to allow separate collaborators to work on different features of a codebase simultaneously without interrupting each other. When conflicts do arise, do not fret! Merge conflicts are normal and can be resolved easily.</p>
-<section id="more-resources" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="more-resources"><span class="header-section-number">7.3.1</span> More resources</h3>
+<section id="conclusion" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.6</span> Conclusion</h2>
+<p>GitHub is a great project management tool. It can be integrated perfectly into the Issue &gt; Branch &gt; PR workflow. Branching is useful to allow separate collaborators to work on different features of a codebase simultaneously without interrupting each other. When conflicts do arise, do not fret! Merge conflicts are normal and can be resolved easily.</p>
+<section id="more-resources" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="more-resources"><span class="header-section-number">7.6.1</span> More resources</h3>
 <ul>
 <li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a></li>
 <li><a href="https://happygitwithr.com/">Happy Git and GitHub for the UserR</a></li>
 <li><a href="https://www.amazon.com/Git-Pocket-Guide-Working-Introduction/dp/1449325866">Git Pocket Guide</a></li>
 <li><a href="https://www.atlassian.com/git">Getting Git Right</a></li>
 <li><a href="https://lab.github.com/">Git Learning Lab</a></li>
-<li>The Urban Institute’s <a href="https://ui-research.github.io/reproducibility-at-urban/">Reproducibility Website</a> and its <a href="https://ui-research.github.io/reproducibility-at-urban/git-overview.html">Git and Github page</a></li>
+<li>The Urban Institute’s <a href="https://ui-research.github.io/reproducibility-at-urban/">Reproducibility Website</a> and its <a href="https://ui-research.github.io/reproducibility-at-urban/git-overview.html">Git and GitHub page</a></li>
 </ul>
 
 
@@ -893,7 +997,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./functions-and-tests.html" class="pagination-link" aria-label="Modular, Tested Code">
+      <a href="./08_functions-and-tests.html" class="pagination-link" aria-label="Modular, Tested Code">
         <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular, Tested Code</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

@@ -1,6 +1,6 @@
 ---
 title: "Advanced Quarto"
-subtitle: "" 
+abstract: This section explores the potential of Quarto as a tool for technical documentation and literate programming.
 format: 
   html: 
     code-line-numbers: true
@@ -19,7 +19,7 @@ exercise_number <- 1
 
 ## Introduction
 
-This set of notes introduces advanced Quarto concepts including params and embed-resources YAML headers, mathematical notation, cross references, and citations. The [Quarto website](https://quarto.org/docs/guide/) includes more gems and is an example of high-quality technical documentation.
+Quarto contains extensive functionality for building rich documents. The [Quarto website](https://quarto.org/docs/guide/) includes complete documentations and gems, and is an example of high-quality technical documentation.
 
 ```{r}
 #| echo: false
@@ -38,7 +38,7 @@ exercise_number <-  1
 
 ```
 
-## YAMl Headers
+## YAML Headers
 
 ### execute
 
@@ -60,6 +60,25 @@ Here are some of the most useful options:
 | `message: false` | Turns off messages    |
 | `fig-height: 8`  | Changes figure width in inches |
 | `fig-width: 8`   | Changes figure height in inches |
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+1. Pick a Quarto document in your `example-project/`.
+2. Add the following to the YAML header to hide all code chunks:
+
+    execute:
+      echo: false
+
+3. Re-render the document.
+
+:::
 
 ### params
 
@@ -104,7 +123,7 @@ Suppose we embed an image called `image.png` in a Quarto document called `exampl
 #### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
 
 
-1.  In the `hello-quarto.qmd` file you previously created, add `date: today` to your YAML header after `title`. This will update every time the document is rendered.
+1.  In the `analysis.qmd` file you previously created, add `date: today` to your YAML header after `title`. This will update every time the document is rendered.
 :::
 
 ## Sections
@@ -174,7 +193,16 @@ Stenomylus and Camels
 
 ### Data Visualization {#sec-dataviz}
 
-Quarto works well with `library(ggplot2)`. Consider an examples using the `cars` dataset, which contains `speed` and `dist` for `r nrow(cars)`. @fig-histogram shows two histograms displaying the distributions of `speed` and `dist` individually.
+Quarto works well with `library(ggplot2)`. Consider an examples using the `cars` dataset, which contains `speed` and `dist` for `r nrow(cars)`. @fig-histogram shows two histograms displaying the distributions of `speed` and `dist` individually. The header for this chunk is:
+
+```
+#| label: fig-histogram
+#| fig-cap: "Histograms of individual variables"
+#| fig-subcap:
+#|   - "Histogram of `speed`s"
+#|   - "Histogram of `dist`s" 
+#| layout-ncol: 2
+```
 
 ```{r}
 #| label: fig-histogram
@@ -194,7 +222,12 @@ ggplot(cars, aes(x = dist)) +
 
 ```
 
-@fig-scatterplot displays the relationship between these two variables in a scatterplot.
+@fig-scatterplot displays the relationship between these two variables in a scatterplot. It uses the following chunk header:
+
+```
+#| label: fig-scatterplot
+#| fig-cap: "Scatterplot of speed vs. distances"
+```
 
 ```{r}
 #| label: fig-scatterplot
@@ -207,6 +240,14 @@ cars |>
   scatter_grid()
 
 ```
+
+
+
+
+
+
+
+---
 
 ### Data Tables {#sec-tables}
 
@@ -230,9 +271,43 @@ cars |>
 
 ```
 
+`library(gt)`, which is an implementation of a grammar of tables, provides additional functionality for building tables. 
+
+```{r}
+#| label: tbl-stats-gt
+#| tbl-cap: "Summary statistics for speed and dist (gt)"
+
+library(gt)
+
+cars |>
+  summarise(
+    `Median speed` = median(speed),
+    `IQR speed` = IQR(speed),
+    `Median dist` = median(dist),
+    `IQR dist` = IQR(dist),
+    `Correlation, r` = cor(speed, dist)
+  ) |>
+  gt() |>
+  fmt_number(`Correlation, r`, decimals = 3) |>
+  tab_footnote(
+    footnote = md("**Source:** cars data set")
+  )
+
+```
+
+---
+
 ### Diagrams {#sec-diagrams}
 
 Quarto has access to Mermaid and Graphviz for creating diagrams. Here is a simple example from the [Quarto documentation](https://quarto.org/docs/authoring/diagrams.html):
+
+```
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+  C --> D[Result one]
+  C --> E[Result two]
+```
 
 ```{mermaid}
 flowchart LR
@@ -383,6 +458,21 @@ After labeling objects, simply reference the tags with `@`.
 
 The numbers in cross references automatically update when additional referenced objects are added (e.g. a table is added before table 1).
 
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+1. Add a cross reference to a section in analysis.qmd.
+2. Add an equation with a cross reference in analysis.qmd.
+3. Render!
+
+:::
+
 ## Tabset Panels
 
 Tabset panels are a useful way to collapse related information. 
@@ -426,30 +516,56 @@ Content!
 
 ```
 
+## Callout Blocks {#sec-callouts}
 
+Callout blocks are a useful tool for drawing attention to content in a Quarto document. For example, this note set regularly uses `.callout-tip` to add definitions in green callout blocks.
 
-
-
-
-
-
-## Callouts {#sec-callouts}
+```
+:::{.callout-note}
+This template is incomplete and we are always looking for help to expand it!
+:::
+```
 
 :::{.callout-note}
 This template is incomplete and we are always looking for help to expand it!
 :::
 
+```
 :::{.callout-warning}
 Caution, quarto is so powerful you may abandon LaTeX. 
 :::
+```
+
+:::{.callout-warning}
+Caution, quarto is so powerful you may abandon LaTeX. 
+:::
+
+```
+:::{.callout-important}
+Reproducible work is a cornerstone of quality research. Quarto makes reproducible work easy and fun. 
+:::
+
+```
 
 :::{.callout-important}
 Reproducible work is a cornerstone of quality research. Quarto makes reproducible work easy and fun. 
 :::
 
+```
 :::{.callout-tip collapse="true"}
 Use `library(urbntemplates)` to access Urban Institute quarto templates. 
 :::
+```
+
+:::{.callout-tip collapse="true"}
+Use `library(urbntemplates)` to access Urban Institute quarto templates. 
+:::
+
+```
+:::{.callout-caution collapse="true"}
+Quarto may transform the way the Urban Institute communicates research. 
+:::
+```
 
 :::{.callout-caution collapse="true"}
 Quarto may transform the way the Urban Institute communicates research. 

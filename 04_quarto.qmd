@@ -56,7 +56,7 @@ motivation |>
 
 ![**Source:** [Jacob Applebaum](https://en.wikipedia.org/wiki/Donald_Knuth#/media/File:KnuthAtOpenContentAlliance.jpg)](images/knuth.jpg){width="150"}
 
-According to Donald Knuth:
+Donald Knuth, the creator of TeX and LaTeX, is a founder of literate programming. Here is Donald Knuth's motivation according to Donald Knuth:
 
 > Let us change our traditional attitude to the construction of programs: Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do. \~ [@knuth1984]
 
@@ -77,6 +77,8 @@ An increase in travel speed of one mile per hour is associated with a `r round(m
 
 ## Quarto
 
+### Why Quarto
+
 Quarto is a literate statistical programming tool for R, Julia, Python, JavaScript, and more that was released by [Posit](https://posit.co) in 2022. Quarto is an important tool for reproducible research. It combines narrative text with styles, code, and the output of code and can be used to create many types of documents including PDFs, html websites, slides, and more.
 
 Quarto builds on the success of R Markdown. In fact, Quarto will Render R Markdown (`.Rmd`) documents without any edits or changes.
@@ -89,6 +91,8 @@ According to @wickham2016 [Chapter 27](https://r4ds.had.co.nz/r-markdown.html#in
 > 2.  "For collaborating with other data scientists (including future you!), who are interested in both your conclusions, and how you reached them (i.e. the code)."
 > 3.  "As an environment in which to do data science, as a modern day lab notebook where you can capture not only what you did, but also what you were thinking."
 
+### Quarto Process
+
 Quarto uses
 
 -   plain text files ending in `.qmd` that are similar to `.R` files.
@@ -97,15 +101,18 @@ Quarto uses
 
 [^11_quarto-1]: Pandoc is free software that converts documents between markup formats. For example, Pandoc can convert files to and from markdown, LaTeX, jupyter notebook (.ipynb), and Microsoft Word (.docx) formats, among many others. You can see a comprehensive list of files Pandoc can convert on their [About Page](https://pandoc.org/index.html).
 
-Quarto calls `library(knitr)` and "knits" `.qmd` (Quarto files) into `.md` (Markdown files), which Pandoc then converts into any specified output type. Quarto and `library(knitr)` don't need to be explicitly loaded, and the entire process is handled by clicking the "Render" button in RStudio.
+`.qmd` files can be used interactively and they can be used as executables by clicking Render. Clicking the "Render" button starts the rendering process. 
+
+![](images/render.png)
+
+1. Quarto opens a fresh R session and runs all code from scratch. Quarto calls `library(knitr)` and "knits" `.qmd` (Quarto files) into `.md` (Markdown files).
+2. Pandoc converts the `.md` file into any specified output type.
+
+Quarto and `library(knitr)` don't need to be explicitly loaded and most of the magic happens "under the hood."
 
 ![](images/rstudio-qmd-how-it-works.png)
 
 **Source:** [Quarto website](https://quarto.org/docs/get-started/hello/rstudio.html)
-
-Clicking the "Render" button starts this process.
-
-![](images/render.png)
 
 Quarto, `library(knitr)`, and Pandoc are all installed with RStudio.[^11_quarto-2]
 
@@ -129,7 +136,7 @@ exercise_number <- exercise_number + 1
 
 1.  Click the new script button and add a "Quarto Document".
 2.  Give the document a name, an author, and ensure that HTML is selected.
-3.  Save the document as "hello-quarto.qmd".
+3.  Save the document as "analysis.qmd" in your `example-project/` project.
 4.  Click "Render".
 :::
 
@@ -291,13 +298,6 @@ In this case, `eval` makes the code not run. Other chunk-specific settings can b
 
 [^11_quarto-5]: The default dimensions for figures change based on the output format. Visit [here](https://quarto.org/docs/computations/execution-options.html#figure-options) to learn more.
 
-Default settings for the entire document can be changed in the YAML header with the `execute` option:
-
-```         
-execute:
-  warning: false
-```
-
 ::: callout
 #### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
 
@@ -428,6 +428,35 @@ An alternative to rendering a Quarto document with the Render button is to use t
 
 -   The Urban Institute State and Local Finance Initiative creates [State Fiscal Briefs](https://www.urban.org/policy-centers/cross-center-initiatives/state-and-local-finance-initiative/projects/state-fiscal-briefs) by iterating R Markdown documents.
 -   [Data\@Urban](https://medium.com/@urban_institute/iterated-fact-sheets-with-r-markdown-d685eb4eafce)
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+Rendering a Quarto document to PDF requires a LaTeX distribution. 
+
+1.  If you already have a LaTeX distribution like `tinytext` or `MiKTeX`, then skip this exercise.
+2.  Follow [these instructions](https://yihui.org/tinytex/) to install `library(tinytex)`.
+:::
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+
+exercise_number <- exercise_number + 1
+```
+
+1. Start a new .qmd document. During the prompt, select PDF output instead of HTML output. 
+2. Create a basic .qmd document. 
+3, Render the PDF. 
+:::
 
 ## Conclusion
 

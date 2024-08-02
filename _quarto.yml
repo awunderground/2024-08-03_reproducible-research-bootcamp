@@ -25,12 +25,12 @@ book:
         - 07_advanced-git.qmd
     - part: Programming
       chapters:
-        - functions-and-tests.qmd
-        - assertive-testing.qmd
+        - 08_functions-and-tests.qmd
+        - 09_assertive-testing.qmd
     - part: Environment Management
       chapters:
         - renv.qmd
-    - part: Culture and Ethics
+    - part: Putting it All Together
       chapters:
         - culture-and-ethics.qmd
     - references.qmd
