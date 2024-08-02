@@ -56,7 +56,7 @@ motivation |>
 
 ## Assertive Testing of Data
 
->While reproducibility drastically reduces the number of errors and opacity of analysis, without assertive testing it runs the risk of applying an analysis to corrupted data, or applying an analysis to data that have drifted too far from assumptions. ~ Parker
+>While reproducibility drastically reduces the number of errors and opacity of analysis, without assertive testing it runs the risk of applying an analysis to corrupted data, or applying an analysis to data that have drifted too far from assumptions. ~ [@parker]
 
 Assertions are useful for verifying the quality of data. Many of the principles from assertions and unit testing for functions apply:
 
@@ -66,7 +66,7 @@ Assertions are useful for verifying the quality of data. Many of the principles 
 
 Assertive testing of data and assumptions is often much squishier than the unit testing and assertions from the previous section. We must now rely on subject matter expertise and experience with the data to develop assertions that can catch corruptions of the data or data processing mistakes. 
 
-> Assertive testing means establishing these quality-control checks – usually based on past knowledge of possible corruptions of the data – and halting an analysis if the quality-control checks are not passed, so the analyst can investigate and hopefully fix (or at least account for) the problem. ~ Parker
+> Assertive testing means establishing these quality-control checks – usually based on past knowledge of possible corruptions of the data – and halting an analysis if the quality-control checks are not passed, so the analyst can investigate and hopefully fix (or at least account for) the problem. ~ [@parker]
 
 ### `library(assertr)`
 
@@ -158,9 +158,10 @@ msleep |>
 exercise_number <- exercise_number + 1
 ```
 
-1. Run `glimpse(trees)`. 
-2. `verify()` that the variables `Girth` is numeric.
-3. `assert()` that all three variables are in the interval $[0, \infty)$.
+1. Add a new code chunk to `analysis.qmd`.
+2. Run `glimpse(trees)`. 
+3. `verify()` that the variables `Girth` is numeric.
+4. `assert()` that all three variables are in the interval $[0, \infty)$.
 :::
 
 [This vignette](https://docs.ropensci.org/assertr/) demonstrates additional functionality. 
@@ -186,8 +187,9 @@ Example: [Boosting Upward Mobility from Poverty](https://github.com/UI-Research/
 [`library(tidylog)`](https://cran.r-project.org/web/packages/tidylog/readme/README.html) prints diagnostic information when functions from `library(dplyr)` and `library(tidylog)` are used.
 
 ```{r}
-library(tidylog)
+#| message: false
 
+library(tidylog)
 
 ```
 
@@ -310,7 +312,7 @@ stopifnot(class(pull(table4a_tidy, cases)) == "numeric")
 
 It's easy to get tired and to cut corners. Assertions never rest. 
 
-> Understand, that your assertions is out there. It can't be bargained with. It can't be reasoned with. It doesn't feel pity or remorse or fear. It absolutely will not stop ever until your analysis is correct. ~ [Terminator (sort of)]https://www.youtube.com/watch?v=zu0rP2VWLWw)
+> Understand, that your assertion is out there. It can't be bargained with. It can't be reasoned with. It doesn't feel pity or remorse or fear. It absolutely will not stop ever until your analysis is correct. ~ [Terminator (sort of)]https://www.youtube.com/watch?v=zu0rP2VWLWw)
 
 ## Assertive Testing of Assumptions
 

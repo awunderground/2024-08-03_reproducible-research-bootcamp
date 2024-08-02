@@ -1,0 +1,20 @@
+---
+title: "Alternative Software"
+abstract: This section lists software alternatives to the tools covered in the training.
+---
+
+### Version Control
+
+- GitLab is an alternative to GitHub.
+
+
+### Programming
+
+- Great expectations is a Python alternative to `library(assertr)`.
+
+### Environment Management
+
+- venv and conda are Python altenratives to `library(renv)`.
+
+
+

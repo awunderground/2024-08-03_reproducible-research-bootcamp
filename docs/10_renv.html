@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -50,7 +49,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./culture-and-ethics.html" rel="next">
+<link href="./11_culture-and-ethics.html" rel="next">
 <link href="./09_assertive-testing.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -67,13 +66,7 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -82,7 +75,6 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -98,12 +90,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./renv.html">Environment Management</a></li><li class="breadcrumb-item"><a href="./renv.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_renv.html">Environment Management</a></li><li class="breadcrumb-item"><a href="./10_renv.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">`library(renv)`</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -113,7 +105,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Reproducible Research Bootcamp</a> 
@@ -252,7 +244,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./renv.html" class="sidebar-item-text sidebar-link active">
+  <a href="./10_renv.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></span></a>
   </div>
 </li>
@@ -269,8 +261,14 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./culture-and-ethics.html" class="sidebar-item-text sidebar-link">
+  <a href="./11_culture-and-ethics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Culture and Ethics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_final-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Final Workflow</span></span></a>
   </div>
 </li>
       </ul>
@@ -296,12 +294,18 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Software Requirements</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./alternative-software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Alternative Software</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -328,7 +332,7 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./renv.html">Environment Management</a></li><li class="breadcrumb-item"><a href="./renv.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></h1>
 </div>
@@ -344,46 +348,40 @@ div.csl-indent {
   
 <div>
   <div class="abstract">
-    <div class="block-title">Abstract</div>
+    <div class="abstract-title">Abstract</div>
     This sections introduces enviroment management with a focus on <code>library(renv)</code>.
   </div>
 </div>
 
-
 </header>
-
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/LAGO_LACAR.jpg" class="img-fluid figure-img"></p>
-<figcaption>Lácar Lake, of glacial origin, in the province of Neuquén, Argentina</figcaption>
+<figcaption class="figure-caption">Lácar Lake, of glacial origin, in the province of Neuquén, Argentina</figcaption>
 </figure>
 </div>
 <div class="cell">
-<div id="tbl-roadmap" class="cell quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;10.1: Opinionated Analysis Development
-</figcaption>
-<div aria-describedby="tbl-roadmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="jrnvpobedd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jrnvpobedd table {
+<div id="tbl-roadmap" class="anchored">
+
+<div id="ljsligbvba" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ljsligbvba table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jrnvpobedd thead, #jrnvpobedd tbody, #jrnvpobedd tfoot, #jrnvpobedd tr, #jrnvpobedd td, #jrnvpobedd th {
+#ljsligbvba thead, #ljsligbvba tbody, #ljsligbvba tfoot, #ljsligbvba tr, #ljsligbvba td, #ljsligbvba th {
   border-style: none;
 }
 
-#jrnvpobedd p {
+#ljsligbvba p {
   margin: 0;
   padding: 0;
 }
 
-#jrnvpobedd .gt_table {
+#ljsligbvba .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -409,12 +407,12 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-left-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_caption {
+#ljsligbvba .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jrnvpobedd .gt_title {
+#ljsligbvba .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -426,7 +424,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-bottom-width: 0;
 }
 
-#jrnvpobedd .gt_subtitle {
+#ljsligbvba .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -438,7 +436,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-top-width: 0;
 }
 
-#jrnvpobedd .gt_heading {
+#ljsligbvba .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -450,13 +448,13 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_bottom_border {
+#ljsligbvba .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_col_headings {
+#ljsligbvba .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -471,7 +469,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_col_heading {
+#ljsligbvba .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -491,7 +489,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#jrnvpobedd .gt_column_spanner_outer {
+#ljsligbvba .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -503,15 +501,15 @@ Table&nbsp;10.1: Opinionated Analysis Development
   padding-right: 4px;
 }
 
-#jrnvpobedd .gt_column_spanner_outer:first-child {
+#ljsligbvba .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jrnvpobedd .gt_column_spanner_outer:last-child {
+#ljsligbvba .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jrnvpobedd .gt_column_spanner {
+#ljsligbvba .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -523,11 +521,11 @@ Table&nbsp;10.1: Opinionated Analysis Development
   width: 100%;
 }
 
-#jrnvpobedd .gt_spanner_row {
+#ljsligbvba .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jrnvpobedd .gt_group_heading {
+#ljsligbvba .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -553,7 +551,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   text-align: left;
 }
 
-#jrnvpobedd .gt_empty_group_heading {
+#ljsligbvba .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -568,15 +566,15 @@ Table&nbsp;10.1: Opinionated Analysis Development
   vertical-align: middle;
 }
 
-#jrnvpobedd .gt_from_md > :first-child {
+#ljsligbvba .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jrnvpobedd .gt_from_md > :last-child {
+#ljsligbvba .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jrnvpobedd .gt_row {
+#ljsligbvba .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -595,7 +593,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   overflow-x: hidden;
 }
 
-#jrnvpobedd .gt_stub {
+#ljsligbvba .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -608,7 +606,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#jrnvpobedd .gt_stub_row_group {
+#ljsligbvba .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -622,15 +620,15 @@ Table&nbsp;10.1: Opinionated Analysis Development
   vertical-align: top;
 }
 
-#jrnvpobedd .gt_row_group_first td {
+#ljsligbvba .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jrnvpobedd .gt_row_group_first th {
+#ljsligbvba .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jrnvpobedd .gt_summary_row {
+#ljsligbvba .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -640,16 +638,16 @@ Table&nbsp;10.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#jrnvpobedd .gt_first_summary_row {
+#ljsligbvba .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_first_summary_row.thick {
+#ljsligbvba .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jrnvpobedd .gt_last_summary_row {
+#ljsligbvba .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -659,7 +657,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_grand_summary_row {
+#ljsligbvba .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -669,7 +667,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#jrnvpobedd .gt_first_grand_summary_row {
+#ljsligbvba .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -679,7 +677,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-top-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_last_grand_summary_row_top {
+#ljsligbvba .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -689,11 +687,11 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_striped {
+#ljsligbvba .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jrnvpobedd .gt_table_body {
+#ljsligbvba .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -702,7 +700,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-bottom-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_footnotes {
+#ljsligbvba .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -716,7 +714,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_footnote {
+#ljsligbvba .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -725,7 +723,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#jrnvpobedd .gt_sourcenotes {
+#ljsligbvba .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -739,7 +737,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   border-right-color: #D3D3D3;
 }
 
-#jrnvpobedd .gt_sourcenote {
+#ljsligbvba .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -747,67 +745,67 @@ Table&nbsp;10.1: Opinionated Analysis Development
   padding-right: 5px;
 }
 
-#jrnvpobedd .gt_left {
+#ljsligbvba .gt_left {
   text-align: left;
 }
 
-#jrnvpobedd .gt_center {
+#ljsligbvba .gt_center {
   text-align: center;
 }
 
-#jrnvpobedd .gt_right {
+#ljsligbvba .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jrnvpobedd .gt_font_normal {
+#ljsligbvba .gt_font_normal {
   font-weight: normal;
 }
 
-#jrnvpobedd .gt_font_bold {
+#ljsligbvba .gt_font_bold {
   font-weight: bold;
 }
 
-#jrnvpobedd .gt_font_italic {
+#ljsligbvba .gt_font_italic {
   font-style: italic;
 }
 
-#jrnvpobedd .gt_super {
+#ljsligbvba .gt_super {
   font-size: 65%;
 }
 
-#jrnvpobedd .gt_footnote_marks {
+#ljsligbvba .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jrnvpobedd .gt_asterisk {
+#ljsligbvba .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jrnvpobedd .gt_indent_1 {
+#ljsligbvba .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jrnvpobedd .gt_indent_2 {
+#ljsligbvba .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jrnvpobedd .gt_indent_3 {
+#ljsligbvba .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jrnvpobedd .gt_indent_4 {
+#ljsligbvba .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jrnvpobedd .gt_indent_5 {
+#ljsligbvba .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;10.1:  <p>Opinionated Analysis Development</p> </caption>
   <thead>
     <tr class="gt_heading">
       <td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Opinionated Analysis Development</td>
@@ -823,7 +821,7 @@ Table&nbsp;10.1: Opinionated Analysis Development
   <tbody class="gt_table_body">
     <tr><td headers="Opinionated Approach" class="gt_row gt_left">Defined dependencies</td>
 <td headers="Question Addressed" class="gt_row gt_left">If an external library you’re using is updated, can you still reproduce your original results?</td>
-<td headers="Tool" class="gt_row gt_left">.renv</td>
+<td headers="Tool" class="gt_row gt_left">library(renv)</td>
 <td headers="Section" class="gt_row gt_center">Environment Management</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
@@ -839,8 +837,6 @@ Table&nbsp;10.1: Opinionated Analysis Development
 </table>
 </div>
 </div>
-</div>
-</figure>
 </div>
 </div>
 <section id="problem-definition" class="level2" data-number="10.1">
@@ -1158,7 +1154,7 @@ Share
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>In your main project run <code>renv::init()</code>.</li>
+<li>Run <code>renv::init()</code> in <code>example-analysis/</code>.</li>
 <li>Install the necessary R packages with <code>renv::install()</code>.</li>
 <li>Use <code>renv::snapshot()</code> to document the state of the project layer of the computing environment.</li>
 </ol>
@@ -1205,7 +1201,7 @@ Container
 <p>A container is a self-contained system for running computer software. Typically, containers are designed to be small and fit-for-use with specific analyses.</p>
 </div>
 </div>
-<p>Containerization is the process of creating a self-contained computer environment to run an analysis.</p>
+<p>Containerization is the process of creating a self-contained computer environment to run an analysis. Lars Vilhuber, the Data Editor for the American Economic Association, <a href="https://github.com/larsvilhuber/ssb-demo/blob/master/code/Description-docker-conf.md">has advocated for using containers in economics research</a>.</p>
 <p><a href="https://www.docker.com/">Docker</a> is a popular container tool. Docker can manage the software layer of a computing environment and the package layer of a computing environment. Docker can:</p>
 <ul>
 <li>Specify the computer operating system</li>
@@ -1243,7 +1239,7 @@ Container
 <p>Improving project organization and documentation, literate programming, version control, programming best practices, and managing the package layer of a computing environment will almost always yield more benefits than focusing on the software layer or hardware layer of a computing environment.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-gold2024" class="csl-entry" role="listitem">
 Gold, Alex K. 2024. <em>DevOps for data science</em>. First edition. Boca Raton, FL: CRC Press.
 </div>
@@ -1330,27 +1326,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1360,17 +1339,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1382,130 +1352,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -1549,7 +1396,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1575,32 +1421,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1662,18 +1482,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./09_assertive-testing.html" class="pagination-link" aria-label="Assertive Testing">
+      <a href="./09_assertive-testing.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Assertive Testing</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./culture-and-ethics.html" class="pagination-link" aria-label="Culture and Ethics">
+      <a href="./11_culture-and-ethics.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Culture and Ethics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

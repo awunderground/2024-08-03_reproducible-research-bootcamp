@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,13 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -96,7 +90,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -109,33 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
 </head>
 
 <body class="nav-sidebar floating">
@@ -144,12 +110,12 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04_quarto.html">Literate Programming</a></li><li class="breadcrumb-item"><a href="./05_advanced-quarto.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Advanced Quarto</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04_quarto.html">Literate Programming</a></li><li class="breadcrumb-item"><a href="./05_advanced-quarto.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Advanced Quarto</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -159,7 +125,7 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Reproducible Research Bootcamp</a> 
@@ -298,7 +264,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./renv.html" class="sidebar-item-text sidebar-link">
+  <a href="./10_renv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>library(renv)</code></span></span></a>
   </div>
 </li>
@@ -315,8 +281,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./culture-and-ethics.html" class="sidebar-item-text sidebar-link">
+  <a href="./11_culture-and-ethics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Culture and Ethics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_final-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Final Workflow</span></span></a>
   </div>
 </li>
       </ul>
@@ -342,12 +314,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Software Requirements</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./alternative-software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Alternative Software</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -397,7 +375,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04_quarto.html">Literate Programming</a></li><li class="breadcrumb-item"><a href="./05_advanced-quarto.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Advanced Quarto</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Advanced Quarto</span></h1>
 </div>
@@ -413,19 +391,17 @@ window.Quarto = {
   
 <div>
   <div class="abstract">
-    <div class="block-title">Abstract</div>
+    <div class="abstract-title">Abstract</div>
     This section explores the potential of Quarto as a tool for technical documentation and literate programming.
   </div>
 </div>
 
-
 </header>
-
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Schablone_Logarex_25524-S,_Chemie_II.jpg" class="img-fluid figure-img"></p>
-<figcaption>Chemistry stencils that used to be used for drawing equipment in lab notebooks</figcaption>
+<figcaption class="figure-caption">Chemistry stencils that were used for drawing equipment in lab notebooks</figcaption>
 </figure>
 </div>
 <section id="introduction" class="level2" data-number="5.1">
@@ -490,10 +466,13 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>Pick a Quarto document in your <code>example-project/</code>.</p></li>
-<li><p>Add the following to the YAML header to hide all code chunks:</p>
-<p>execute: echo: false</p></li>
-<li><p>Re-render the document.</p></li>
+<li>Pick a Quarto document in your <code>example-project/</code>.</li>
+<li>Add the following to the YAML header to hide all code chunks:</li>
+</ol>
+<pre><code>execute:
+  echo: false</code></pre>
+<ol start="3" type="1">
+<li>Re-render the document.</li>
 </ol>
 </div>
 </div>
@@ -570,14 +549,10 @@ Warning
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="sec-figures"><span class="header-section-number">5.4.1</span> Figures</h3>
 <p>Quarto has powerful tools for including images. It also includes native tools for adding alt text directly to images. For example, the following code generates the subsequent image:</p>
 <pre><code>![stenomylus](images/Stenomylus.jpg){#fig-stenomylus fig-alt="A sketch of two stenomylus."}</code></pre>
-<div id="fig-stenomylus" class="quarto-figure quarto-figure-center quarto-float anchored" alt="A sketch of two stenomylus.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-stenomylus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/Stenomylus.jpg" class="img-fluid figure-img" alt="A sketch of two stenomylus.">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stenomylus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1: stenomylus
-</figcaption>
+<div id="fig-stenomylus" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/Stenomylus.jpg" class="img-fluid figure-img" alt="A sketch of two stenomylus."></p>
+<figcaption class="figure-caption">Figure&nbsp;5.1: stenomylus</figcaption>
 </figure>
 </div>
 <p>Quarto also allows for easily laying out multiple figures.</p>
@@ -591,110 +566,84 @@ Stenomylus and Camels
 :::
 </code></pre>
 <div id="fig-camels-combo" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-camels-combo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-camels-combo" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-stenomylus" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-stenomylus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/Stenomylus.jpg" class="img-fluid figure-img" data-ref-parent="fig-camels-combo">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-stenomylus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) stenomylus
-</figcaption>
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-stenomylus" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/Stenomylus.jpg" class="img-fluid figure-img" data-ref-parent="fig-camels-combo"></p>
+<figcaption class="figure-caption">(a) stenomylus</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-camels-combo" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-camels" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-camels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/camels.jpeg" class="img-fluid figure-img" data-ref-parent="fig-camels-combo">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-camels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Hanno
-</figcaption>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-camels" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/camels.jpeg" class="img-fluid figure-img" data-ref-parent="fig-camels-combo"></p>
+<figcaption class="figure-caption">(b) Hanno</figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-camels-combo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.2: Stenomylus and Camels
-</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5.2: Stenomylus and Camels</figcaption><p></p>
 </figure>
 </div>
 </section>
 <section id="sec-dataviz" class="level3" data-number="5.4.2">
 <h3 data-number="5.4.2" class="anchored" data-anchor-id="sec-dataviz"><span class="header-section-number">5.4.2</span> Data Visualization</h3>
-<p>Quarto works well with <code>library(ggplot2)</code>. Consider an examples using the <code>cars</code> dataset, which contains <code>speed</code> and <code>dist</code> for 50. <a href="#fig-histogram" class="quarto-xref">Figure&nbsp;<span>5.3</span></a> shows two histograms displaying the distributions of <code>speed</code> and <code>dist</code> individually. The header for this chunk is:</p>
+<p>Quarto works well with <code>library(ggplot2)</code>. Consider an examples using the <code>cars</code> dataset, which contains <code>speed</code> and <code>dist</code> for 50. <a href="#fig-histogram">Figure&nbsp;<span>5.3</span></a> shows two histograms displaying the distributions of <code>speed</code> and <code>dist</code> individually. The header for this chunk is:</p>
 <pre><code>#| label: fig-histogram
 #| fig-cap: "Histograms of individual variables"
 #| fig-subcap:
 #|   - "Histogram of `speed`s"
 #|   - "Histogram of `dist`s" 
 #| layout-ncol: 2</code></pre>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> speed)) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of speeds"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> dist)) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of distances"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="fig-histogram" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-histogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-histogram" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-histogram-1" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-histogram-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05_advanced-quarto_files/figure-html/fig-histogram-1.png" class="img-fluid figure-img" data-ref-parent="fig-histogram" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-histogram-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Histogram of <code>speed</code>s
-</figcaption>
+<div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> speed)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of speeds"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> dist)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of distances"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-histogram" class="cell quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-histogram-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="05_advanced-quarto_files/figure-html/fig-histogram-1.png" class="img-fluid figure-img" data-ref-parent="fig-histogram" width="672"></p>
+<figcaption class="figure-caption">(a) Histogram of <code>speed</code>s</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-histogram" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-histogram-2" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-histogram-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05_advanced-quarto_files/figure-html/fig-histogram-2.png" class="img-fluid figure-img" data-ref-parent="fig-histogram" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-histogram-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Histogram of <code>dist</code>s
-</figcaption>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-histogram-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="05_advanced-quarto_files/figure-html/fig-histogram-2.png" class="img-fluid figure-img" data-ref-parent="fig-histogram" width="672"></p>
+<figcaption class="figure-caption">(b) Histogram of <code>dist</code>s</figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-histogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.3: Histograms of individual variables
-</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5.3: Histograms of individual variables</figcaption><p></p>
 </figure>
 </div>
-<p><a href="#fig-scatterplot" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> displays the relationship between these two variables in a scatterplot. It uses the following chunk header:</p>
+</div>
+<p><a href="#fig-scatterplot">Figure&nbsp;<span>5.4</span></a> displays the relationship between these two variables in a scatterplot. It uses the following chunk header:</p>
 <pre><code>#| label: fig-scatterplot
 #| fig-cap: "Scatterplot of speed vs. distances"</code></pre>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cars Traveling at Higher Speeds Take Longer to Stop"</span>) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">scatter_grid</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cars Traveling at Higher Speeds Take Longer to Stop"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">scatter_grid</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-scatterplot" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05_advanced-quarto_files/figure-html/fig-scatterplot-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.4: Scatterplot of speed vs.&nbsp;distances
-</figcaption>
+<div id="fig-scatterplot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="05_advanced-quarto_files/figure-html/fig-scatterplot-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.4: Scatterplot of speed vs.&nbsp;distances</figcaption>
 </figure>
 </div>
 </div>
@@ -704,25 +653,21 @@ Figure&nbsp;5.4: Scatterplot of speed vs.&nbsp;distances
 <section id="sec-tables" class="level3" data-number="5.4.3">
 <h3 data-number="5.4.3" class="anchored" data-anchor-id="sec-tables"><span class="header-section-number">5.4.3</span> Data Tables</h3>
 <p>The default for df-print is kable. This is the only type of table that works with the table references. kable works well until there is tons of data, where paged thrives.</p>
-<p><a href="#tbl-stats-kable" class="quarto-xref">Table&nbsp;<span>5.1</span></a> displays basic summary statistics for these two variables.</p>
+<p><a href="#tbl-stats-kable">Table&nbsp;<span>5.1</span></a> displays basic summary statistics for these two variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="st">`</span><span class="at">Median speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(speed),</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="st">`</span><span class="at">IQR speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(speed),</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    <span class="st">`</span><span class="at">Median dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(dist),</span>
-<span id="cb11-6"><a href="#cb11-6"></a>    <span class="st">`</span><span class="at">IQR dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(dist),</span>
-<span id="cb11-7"><a href="#cb11-7"></a>    <span class="st">`</span><span class="at">Correlation, r</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">cor</span>(speed, dist)</span>
-<span id="cb11-8"><a href="#cb11-8"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="tbl-stats-kable" class="cell quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stats-kable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.1: Summary statistics for speed and dist (kable)
-</figcaption>
-<div aria-describedby="tbl-stats-kable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="st">`</span><span class="at">Median speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(speed),</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="st">`</span><span class="at">IQR speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(speed),</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="st">`</span><span class="at">Median dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(dist),</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="st">`</span><span class="at">IQR dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(dist),</span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="st">`</span><span class="at">Correlation, r</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">cor</span>(speed, dist)</span>
+<span id="cb12-8"><a href="#cb12-8"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<div id="tbl-stats-kable" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;5.1: Summary statistics for speed and dist (kable)</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">Median speed</th>
@@ -744,51 +689,44 @@ Table&nbsp;5.1: Summary statistics for speed and dist (kable)
 </table>
 </div>
 </div>
-</figure>
-</div>
 </div>
 <p><code>library(gt)</code>, which is an implementation of a grammar of tables, provides additional functionality for building tables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb12-5"><a href="#cb12-5"></a>    <span class="st">`</span><span class="at">Median speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(speed),</span>
-<span id="cb12-6"><a href="#cb12-6"></a>    <span class="st">`</span><span class="at">IQR speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(speed),</span>
-<span id="cb12-7"><a href="#cb12-7"></a>    <span class="st">`</span><span class="at">Median dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(dist),</span>
-<span id="cb12-8"><a href="#cb12-8"></a>    <span class="st">`</span><span class="at">IQR dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(dist),</span>
-<span id="cb12-9"><a href="#cb12-9"></a>    <span class="st">`</span><span class="at">Correlation, r</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">cor</span>(speed, dist)</span>
-<span id="cb12-10"><a href="#cb12-10"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb12-11"><a href="#cb12-11"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb12-12"><a href="#cb12-12"></a>  <span class="fu">fmt_number</span>(<span class="st">`</span><span class="at">Correlation, r</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a>  <span class="fu">tab_footnote</span>(</span>
-<span id="cb12-14"><a href="#cb12-14"></a>    <span class="at">footnote =</span> <span class="fu">md</span>(<span class="st">"**Source:** cars data set"</span>)</span>
-<span id="cb12-15"><a href="#cb12-15"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="tbl-stats-gt" class="cell quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stats-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.2: Summary statistics for speed and dist (gt)
-</figcaption>
-<div aria-describedby="tbl-stats-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="st">`</span><span class="at">Median speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(speed),</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="st">`</span><span class="at">IQR speed</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(speed),</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="st">`</span><span class="at">Median dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(dist),</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="st">`</span><span class="at">IQR dist</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">IQR</span>(dist),</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="st">`</span><span class="at">Correlation, r</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">cor</span>(speed, dist)</span>
+<span id="cb13-10"><a href="#cb13-10"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>  <span class="fu">fmt_number</span>(<span class="st">`</span><span class="at">Correlation, r</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>  <span class="fu">tab_footnote</span>(</span>
+<span id="cb13-14"><a href="#cb13-14"></a>    <span class="at">footnote =</span> <span class="fu">md</span>(<span class="st">"**Source:** cars data set"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<div id="urhlnewmse" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#urhlnewmse table {
+<div id="tbl-stats-gt" class="anchored">
+
+<div id="btqzsxcvzt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#btqzsxcvzt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#urhlnewmse thead, #urhlnewmse tbody, #urhlnewmse tfoot, #urhlnewmse tr, #urhlnewmse td, #urhlnewmse th {
+#btqzsxcvzt thead, #btqzsxcvzt tbody, #btqzsxcvzt tfoot, #btqzsxcvzt tr, #btqzsxcvzt td, #btqzsxcvzt th {
   border-style: none;
 }
 
-#urhlnewmse p {
+#btqzsxcvzt p {
   margin: 0;
   padding: 0;
 }
 
-#urhlnewmse .gt_table {
+#btqzsxcvzt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -814,12 +752,12 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-left-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_caption {
+#btqzsxcvzt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#urhlnewmse .gt_title {
+#btqzsxcvzt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -831,7 +769,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-bottom-width: 0;
 }
 
-#urhlnewmse .gt_subtitle {
+#btqzsxcvzt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -843,7 +781,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-top-width: 0;
 }
 
-#urhlnewmse .gt_heading {
+#btqzsxcvzt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -855,13 +793,13 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-right-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_bottom_border {
+#btqzsxcvzt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_col_headings {
+#btqzsxcvzt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -876,7 +814,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-right-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_col_heading {
+#btqzsxcvzt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -896,7 +834,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   overflow-x: hidden;
 }
 
-#urhlnewmse .gt_column_spanner_outer {
+#btqzsxcvzt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -908,15 +846,15 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   padding-right: 4px;
 }
 
-#urhlnewmse .gt_column_spanner_outer:first-child {
+#btqzsxcvzt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#urhlnewmse .gt_column_spanner_outer:last-child {
+#btqzsxcvzt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#urhlnewmse .gt_column_spanner {
+#btqzsxcvzt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -928,11 +866,11 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   width: 100%;
 }
 
-#urhlnewmse .gt_spanner_row {
+#btqzsxcvzt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#urhlnewmse .gt_group_heading {
+#btqzsxcvzt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -958,7 +896,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   text-align: left;
 }
 
-#urhlnewmse .gt_empty_group_heading {
+#btqzsxcvzt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -973,15 +911,15 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   vertical-align: middle;
 }
 
-#urhlnewmse .gt_from_md > :first-child {
+#btqzsxcvzt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#urhlnewmse .gt_from_md > :last-child {
+#btqzsxcvzt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#urhlnewmse .gt_row {
+#btqzsxcvzt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1000,7 +938,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   overflow-x: hidden;
 }
 
-#urhlnewmse .gt_stub {
+#btqzsxcvzt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1013,7 +951,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   padding-right: 5px;
 }
 
-#urhlnewmse .gt_stub_row_group {
+#btqzsxcvzt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1027,15 +965,15 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   vertical-align: top;
 }
 
-#urhlnewmse .gt_row_group_first td {
+#btqzsxcvzt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#urhlnewmse .gt_row_group_first th {
+#btqzsxcvzt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#urhlnewmse .gt_summary_row {
+#btqzsxcvzt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1045,16 +983,16 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   padding-right: 5px;
 }
 
-#urhlnewmse .gt_first_summary_row {
+#btqzsxcvzt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_first_summary_row.thick {
+#btqzsxcvzt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#urhlnewmse .gt_last_summary_row {
+#btqzsxcvzt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1064,7 +1002,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-bottom-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_grand_summary_row {
+#btqzsxcvzt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1074,7 +1012,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   padding-right: 5px;
 }
 
-#urhlnewmse .gt_first_grand_summary_row {
+#btqzsxcvzt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1084,7 +1022,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-top-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_last_grand_summary_row_top {
+#btqzsxcvzt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1094,11 +1032,11 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-bottom-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_striped {
+#btqzsxcvzt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#urhlnewmse .gt_table_body {
+#btqzsxcvzt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1107,7 +1045,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-bottom-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_footnotes {
+#btqzsxcvzt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1121,7 +1059,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-right-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_footnote {
+#btqzsxcvzt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1130,7 +1068,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   padding-right: 5px;
 }
 
-#urhlnewmse .gt_sourcenotes {
+#btqzsxcvzt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1144,7 +1082,7 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   border-right-color: #D3D3D3;
 }
 
-#urhlnewmse .gt_sourcenote {
+#btqzsxcvzt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1152,98 +1090,92 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   padding-right: 5px;
 }
 
-#urhlnewmse .gt_left {
+#btqzsxcvzt .gt_left {
   text-align: left;
 }
 
-#urhlnewmse .gt_center {
+#btqzsxcvzt .gt_center {
   text-align: center;
 }
 
-#urhlnewmse .gt_right {
+#btqzsxcvzt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#urhlnewmse .gt_font_normal {
+#btqzsxcvzt .gt_font_normal {
   font-weight: normal;
 }
 
-#urhlnewmse .gt_font_bold {
+#btqzsxcvzt .gt_font_bold {
   font-weight: bold;
 }
 
-#urhlnewmse .gt_font_italic {
+#btqzsxcvzt .gt_font_italic {
   font-style: italic;
 }
 
-#urhlnewmse .gt_super {
+#btqzsxcvzt .gt_super {
   font-size: 65%;
 }
 
-#urhlnewmse .gt_footnote_marks {
+#btqzsxcvzt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#urhlnewmse .gt_asterisk {
+#btqzsxcvzt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#urhlnewmse .gt_indent_1 {
+#btqzsxcvzt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#urhlnewmse .gt_indent_2 {
+#btqzsxcvzt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#urhlnewmse .gt_indent_3 {
+#btqzsxcvzt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#urhlnewmse .gt_indent_4 {
+#btqzsxcvzt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#urhlnewmse .gt_indent_5 {
+#btqzsxcvzt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-
-<table class="gt_table do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="header gt_col_headings">
-<th id="Median speed" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Median speed</th>
-<th id="IQR speed" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">IQR speed</th>
-<th id="Median dist" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Median dist</th>
-<th id="IQR dist" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">IQR dist</th>
-<th id="Correlation, r" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Correlation, r</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_right" headers="Median speed">15</td>
-<td class="gt_row gt_right" headers="IQR speed">7</td>
-<td class="gt_row gt_right" headers="Median dist">36</td>
-<td class="gt_row gt_right" headers="IQR dist">30</td>
-<td class="gt_row gt_right" headers="Correlation, r">0.807</td>
-</tr>
-</tbody><tfoot class="gt_footnotes">
-<tr class="even">
-<td colspan="5" class="gt_footnote"><strong>Source:</strong> cars data set</td>
-</tr>
-</tfoot>
-
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;5.2:  <p>Summary statistics for speed and dist (gt)</p> </caption>
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Median speed">Median speed</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="IQR speed">IQR speed</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Median dist">Median dist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="IQR dist">IQR dist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Correlation, r">Correlation, r</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Median speed" class="gt_row gt_right">15</td>
+<td headers="IQR speed" class="gt_row gt_right">7</td>
+<td headers="Median dist" class="gt_row gt_right">36</td>
+<td headers="IQR dist" class="gt_row gt_right">30</td>
+<td headers="Correlation, r" class="gt_row gt_right">0.807</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"> <strong>Source:</strong> cars data set</td>
+    </tr>
+  </tfoot>
 </table>
-
 </div>
 </div>
-</div>
-</div>
-</figure>
 </div>
 </div>
 <hr>
@@ -1256,10 +1188,9 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   B --&gt; C{Decision}
   C --&gt; D[Result one]
   C --&gt; E[Result two]</code></pre>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="cell-output-display">
 <div>
-<p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
   A[Hard edge] --&gt; B(Round edge)
@@ -1268,7 +1199,6 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
   C --&gt; E[Result two]
 </pre>
 </div>
-<p></p></figure><p></p>
 </div>
 </div>
 </div>
@@ -1278,25 +1208,21 @@ Table&nbsp;5.2: Summary statistics for speed and dist (gt)
 <h2 data-number="5.5" class="anchored" data-anchor-id="sec-equations"><span class="header-section-number">5.5</span> Equations</h2>
 <section id="first-model" class="level3" data-number="5.5.1">
 <h3 data-number="5.5.1" class="anchored" data-anchor-id="first-model"><span class="header-section-number">5.5.1</span> First Model</h3>
-<p>We can fit a simple linear regression model of the form shown in <a href="#eq-slr" class="quarto-xref">Equation&nbsp;<span>5.1</span></a>.</p>
+<p>We can fit a simple linear regression model of the form shown in <a href="#eq-slr">Equation&nbsp;<span>5.1</span></a>.</p>
 <p><span id="eq-slr"><span class="math display">\[
 dist = \hat{\beta}_0 + \hat{\beta}_1 \times speed + \epsilon
 \tag{5.1}\]</span></span></p>
-<p><a href="#tbl-lm" class="quarto-xref">Table&nbsp;<span>5.3</span></a> shows the regression output for this model.</p>
+<p><a href="#tbl-lm">Table&nbsp;<span>5.3</span></a> shows the regression output for this model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dist_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>  </span>
-<span id="cb14-3"><a href="#cb14-3"></a>dist_fit <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="tbl-lm" class="cell quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.3: Linear regression model for predicting price from area
-</figcaption>
-<div aria-describedby="tbl-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>dist_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  </span>
+<span id="cb15-3"><a href="#cb15-3"></a>dist_fit <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<div id="tbl-lm" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;5.3: Linear regression model for predicting price from area</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">term</th>
@@ -1325,31 +1251,25 @@ Table&nbsp;5.3: Linear regression model for predicting price from area
 </table>
 </div>
 </div>
-</figure>
-</div>
 </div>
 </section>
 <section id="second-model" class="level3" data-number="5.5.2">
 <h3 data-number="5.5.2" class="anchored" data-anchor-id="second-model"><span class="header-section-number">5.5.2</span> Second Model</h3>
-<p>Let’s fit a more complicated multiple linear regression model of the form shown in <a href="#eq-mlr" class="quarto-xref">Equation&nbsp;<span>5.2</span></a>.</p>
+<p>Let’s fit a more complicated multiple linear regression model of the form shown in <a href="#eq-mlr">Equation&nbsp;<span>5.2</span></a>.</p>
 <p><span id="eq-mlr"><span class="math display">\[
 dist = \hat{\beta}_0 + \hat{\beta}_1 \times speed + \hat{\beta}_2 \times speed ^ 2 + \epsilon
 \tag{5.2}\]</span></span></p>
-<p><a href="#tbl-lm2" class="quarto-xref">Table&nbsp;<span>5.4</span></a> shows the regression output for this model.</p>
+<p><a href="#tbl-lm2">Table&nbsp;<span>5.4</span></a> shows the regression output for this model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>dist_fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> <span class="fu">poly</span>(speed, <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), <span class="at">data =</span> cars)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>  </span>
-<span id="cb15-3"><a href="#cb15-3"></a>dist_fit2 <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="tbl-lm2" class="cell quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.4: Second linear regression model for predicting price from area
-</figcaption>
-<div aria-describedby="tbl-lm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>dist_fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> <span class="fu">poly</span>(speed, <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), <span class="at">data =</span> cars)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>  </span>
+<span id="cb16-3"><a href="#cb16-3"></a>dist_fit2 <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<div id="tbl-lm2" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;5.4: Second linear regression model for predicting price from area</caption>
 <colgroup>
 <col style="width: 50%">
 <col style="width: 12%">
@@ -1392,20 +1312,18 @@ Table&nbsp;5.4: Second linear regression model for predicting price from area
 </table>
 </div>
 </div>
-</figure>
-</div>
 </div>
 </section>
 <section id="math-mode" class="level3" data-number="5.5.3">
 <h3 data-number="5.5.3" class="anchored" data-anchor-id="math-mode"><span class="header-section-number">5.5.3</span> Math Mode</h3>
 <p>Use <code>$</code> to start and stop in-line math notation and <code>$$</code> to start multi-line math notation. Math notation uses LaTeX’s syntax for mathematical notation.</p>
 <p>Here’s an example with in-line math:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1"></a>Consider a binomially distributed random variable, $X \sim binom(n, p)$. </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a>Consider a binomially distributed random variable, $X \sim binom(n, p)$. </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Consider a binomially distributed random variable, <span class="math inline">\(X \sim binom(n, p)\)</span>.</p>
 <p>Here’s an example with a chunk of math:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a>$$</span>
-<span id="cb17-2"><a href="#cb17-2"></a>P(X = x) = {n \choose x} p ^ x (1 - p) ^ {n - x}</span>
-<span id="cb17-3"><a href="#cb17-3"></a>$${#eq-binomial}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1"></a>$$</span>
+<span id="cb18-2"><a href="#cb18-2"></a>P(X = x) = {n \choose x} p ^ x (1 - p) ^ {n - x}</span>
+<span id="cb18-3"><a href="#cb18-3"></a>$${#eq-binomial}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span id="eq-binomial"><span class="math display">\[
 P(X = x) = {n \choose x} p ^ x (1 - p) ^ {n - x}
 \tag{5.3}\]</span></span></p>
@@ -1414,13 +1332,9 @@ P(X = x) = {n \choose x} p ^ x (1 - p) ^ {n - x}
 <h3 data-number="5.5.4" class="anchored" data-anchor-id="important-syntax"><span class="header-section-number">5.5.4</span> Important Syntax</h3>
 <p>Math mode recognizes basic math symbols available on your keyboard including <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>&gt;</code>, <code>&lt;</code>, <code>(</code>, and <code>)</code>.</p>
 <p>Math mode contains all greek letters. For example, <code>\alpha</code> (<span class="math inline">\(\alpha\)</span>) and <code>\beta</code> (<span class="math inline">\(\beta\)</span>).</p>
-<div id="tbl-greek" class="quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-greek-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.5: My Caption
-</figcaption>
-<div aria-describedby="tbl-greek-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="tbl-greek" class="anchored">
 <table class="table">
+<caption>Table&nbsp;5.5: My Caption</caption>
 <thead>
 <tr class="header">
 <th>LaTeX</th>
@@ -1467,8 +1381,6 @@ Table&nbsp;5.5: My Caption
 </tbody>
 </table>
 </div>
-</figure>
-</div>
 <p>Math mode also recognizes <span class="math inline">\(\log(x)\)</span> (<code>\log(x)</code>) and <span class="math inline">\(\sqrt{x}\)</span> (<code>\sqrt{x}</code>).</p>
 <p>Superscripts (<code>^</code>) are important for exponentiation and subscripts (<code>_</code>) are important for adding indices. <code>y = x ^ 2</code> renders as <span class="math inline">\(y = x ^ 2\)</span> and <code>x_1, x_2, x_3</code> renders as <span class="math inline">\(x_1, x_2, x_3\)</span>. Brackets are useful for multi-character superscripts and subscripts like <span class="math inline">\(s_{11}\)</span> (<code>s_{11}</code>).</p>
 <p>It is useful to add symbols to letters. For example, <code>\bar{x}</code> is useful for sample means (<span class="math inline">\(\bar{x}\)</span>), <code>\hat{y}</code> is useful for predicted values (<span class="math inline">\(\hat{y}\)</span>), and <code>\vec{\beta}</code> is useful for vectors of coefficients (<span class="math inline">\(\vec{\beta}\)</span>).</p>
@@ -1505,11 +1417,11 @@ Warning
 <section id="sec-cross-references" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="sec-cross-references"><span class="header-section-number">5.6</span> Cross references</h2>
 <p>This document is littered with cross references. Cross references require labeling objects. For example:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">## Cross references {#sec-cross-references}</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a></span>
-<span id="cb19-3"><a href="#cb19-3"></a>$$</span>
-<span id="cb19-4"><a href="#cb19-4"></a>dist = \hat{\beta}_0 + \hat{\beta}_1 \times speed + \epsilon</span>
-<span id="cb19-5"><a href="#cb19-5"></a>$$ {#eq-slr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">## Cross references {#sec-cross-references}</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>$$</span>
+<span id="cb20-4"><a href="#cb20-4"></a>dist = \hat{\beta}_0 + \hat{\beta}_1 \times speed + \epsilon</span>
+<span id="cb20-5"><a href="#cb20-5"></a>$$ {#eq-slr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>After labeling objects, simply reference the tags with <code>@</code>.</p>
 <p>The numbers in cross references automatically update when additional referenced objects are added (e.g.&nbsp;a table is added before table 1).</p>
 <div class="callout callout-style-simple callout-none no-icon callout-titled">
@@ -1538,41 +1450,37 @@ Warning
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="05_advanced-quarto_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="05_advanced-quarto_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>cars <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<div id="ehfbpvntsk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ehfbpvntsk table {
+
+<div id="qtykpsmaaa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qtykpsmaaa table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ehfbpvntsk thead, #ehfbpvntsk tbody, #ehfbpvntsk tfoot, #ehfbpvntsk tr, #ehfbpvntsk td, #ehfbpvntsk th {
+#qtykpsmaaa thead, #qtykpsmaaa tbody, #qtykpsmaaa tfoot, #qtykpsmaaa tr, #qtykpsmaaa td, #qtykpsmaaa th {
   border-style: none;
 }
 
-#ehfbpvntsk p {
+#qtykpsmaaa p {
   margin: 0;
   padding: 0;
 }
 
-#ehfbpvntsk .gt_table {
+#qtykpsmaaa .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1598,12 +1506,12 @@ Warning
   border-left-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_caption {
+#qtykpsmaaa .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ehfbpvntsk .gt_title {
+#qtykpsmaaa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1615,7 +1523,7 @@ Warning
   border-bottom-width: 0;
 }
 
-#ehfbpvntsk .gt_subtitle {
+#qtykpsmaaa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1627,7 +1535,7 @@ Warning
   border-top-width: 0;
 }
 
-#ehfbpvntsk .gt_heading {
+#qtykpsmaaa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1639,13 +1547,13 @@ Warning
   border-right-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_bottom_border {
+#qtykpsmaaa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_col_headings {
+#qtykpsmaaa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1660,7 +1568,7 @@ Warning
   border-right-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_col_heading {
+#qtykpsmaaa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1680,7 +1588,7 @@ Warning
   overflow-x: hidden;
 }
 
-#ehfbpvntsk .gt_column_spanner_outer {
+#qtykpsmaaa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1692,15 +1600,15 @@ Warning
   padding-right: 4px;
 }
 
-#ehfbpvntsk .gt_column_spanner_outer:first-child {
+#qtykpsmaaa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ehfbpvntsk .gt_column_spanner_outer:last-child {
+#qtykpsmaaa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ehfbpvntsk .gt_column_spanner {
+#qtykpsmaaa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1712,11 +1620,11 @@ Warning
   width: 100%;
 }
 
-#ehfbpvntsk .gt_spanner_row {
+#qtykpsmaaa .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ehfbpvntsk .gt_group_heading {
+#qtykpsmaaa .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1742,7 +1650,7 @@ Warning
   text-align: left;
 }
 
-#ehfbpvntsk .gt_empty_group_heading {
+#qtykpsmaaa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1757,15 +1665,15 @@ Warning
   vertical-align: middle;
 }
 
-#ehfbpvntsk .gt_from_md > :first-child {
+#qtykpsmaaa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ehfbpvntsk .gt_from_md > :last-child {
+#qtykpsmaaa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ehfbpvntsk .gt_row {
+#qtykpsmaaa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1784,7 +1692,7 @@ Warning
   overflow-x: hidden;
 }
 
-#ehfbpvntsk .gt_stub {
+#qtykpsmaaa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1797,7 +1705,7 @@ Warning
   padding-right: 5px;
 }
 
-#ehfbpvntsk .gt_stub_row_group {
+#qtykpsmaaa .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1811,15 +1719,15 @@ Warning
   vertical-align: top;
 }
 
-#ehfbpvntsk .gt_row_group_first td {
+#qtykpsmaaa .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ehfbpvntsk .gt_row_group_first th {
+#qtykpsmaaa .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ehfbpvntsk .gt_summary_row {
+#qtykpsmaaa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1829,16 +1737,16 @@ Warning
   padding-right: 5px;
 }
 
-#ehfbpvntsk .gt_first_summary_row {
+#qtykpsmaaa .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_first_summary_row.thick {
+#qtykpsmaaa .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ehfbpvntsk .gt_last_summary_row {
+#qtykpsmaaa .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1848,7 +1756,7 @@ Warning
   border-bottom-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_grand_summary_row {
+#qtykpsmaaa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1858,7 +1766,7 @@ Warning
   padding-right: 5px;
 }
 
-#ehfbpvntsk .gt_first_grand_summary_row {
+#qtykpsmaaa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1868,7 +1776,7 @@ Warning
   border-top-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_last_grand_summary_row_top {
+#qtykpsmaaa .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1878,11 +1786,11 @@ Warning
   border-bottom-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_striped {
+#qtykpsmaaa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ehfbpvntsk .gt_table_body {
+#qtykpsmaaa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1891,7 +1799,7 @@ Warning
   border-bottom-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_footnotes {
+#qtykpsmaaa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1905,7 +1813,7 @@ Warning
   border-right-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_footnote {
+#qtykpsmaaa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1914,7 +1822,7 @@ Warning
   padding-right: 5px;
 }
 
-#ehfbpvntsk .gt_sourcenotes {
+#qtykpsmaaa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1928,7 +1836,7 @@ Warning
   border-right-color: #D3D3D3;
 }
 
-#ehfbpvntsk .gt_sourcenote {
+#qtykpsmaaa .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1936,279 +1844,178 @@ Warning
   padding-right: 5px;
 }
 
-#ehfbpvntsk .gt_left {
+#qtykpsmaaa .gt_left {
   text-align: left;
 }
 
-#ehfbpvntsk .gt_center {
+#qtykpsmaaa .gt_center {
   text-align: center;
 }
 
-#ehfbpvntsk .gt_right {
+#qtykpsmaaa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ehfbpvntsk .gt_font_normal {
+#qtykpsmaaa .gt_font_normal {
   font-weight: normal;
 }
 
-#ehfbpvntsk .gt_font_bold {
+#qtykpsmaaa .gt_font_bold {
   font-weight: bold;
 }
 
-#ehfbpvntsk .gt_font_italic {
+#qtykpsmaaa .gt_font_italic {
   font-style: italic;
 }
 
-#ehfbpvntsk .gt_super {
+#qtykpsmaaa .gt_super {
   font-size: 65%;
 }
 
-#ehfbpvntsk .gt_footnote_marks {
+#qtykpsmaaa .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ehfbpvntsk .gt_asterisk {
+#qtykpsmaaa .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ehfbpvntsk .gt_indent_1 {
+#qtykpsmaaa .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ehfbpvntsk .gt_indent_2 {
+#qtykpsmaaa .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ehfbpvntsk .gt_indent_3 {
+#qtykpsmaaa .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ehfbpvntsk .gt_indent_4 {
+#qtykpsmaaa .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ehfbpvntsk .gt_indent_5 {
+#qtykpsmaaa .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="header gt_col_headings">
-<th id="speed" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">speed</th>
-<th id="dist" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">dist</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">4</td>
-<td class="gt_row gt_right" headers="dist">2</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">4</td>
-<td class="gt_row gt_right" headers="dist">10</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">7</td>
-<td class="gt_row gt_right" headers="dist">4</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">7</td>
-<td class="gt_row gt_right" headers="dist">22</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">8</td>
-<td class="gt_row gt_right" headers="dist">16</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">9</td>
-<td class="gt_row gt_right" headers="dist">10</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">10</td>
-<td class="gt_row gt_right" headers="dist">18</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">10</td>
-<td class="gt_row gt_right" headers="dist">26</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">10</td>
-<td class="gt_row gt_right" headers="dist">34</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">11</td>
-<td class="gt_row gt_right" headers="dist">17</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">11</td>
-<td class="gt_row gt_right" headers="dist">28</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">12</td>
-<td class="gt_row gt_right" headers="dist">14</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">12</td>
-<td class="gt_row gt_right" headers="dist">20</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">12</td>
-<td class="gt_row gt_right" headers="dist">24</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">12</td>
-<td class="gt_row gt_right" headers="dist">28</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">13</td>
-<td class="gt_row gt_right" headers="dist">26</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">13</td>
-<td class="gt_row gt_right" headers="dist">34</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">13</td>
-<td class="gt_row gt_right" headers="dist">34</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">13</td>
-<td class="gt_row gt_right" headers="dist">46</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">14</td>
-<td class="gt_row gt_right" headers="dist">26</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">14</td>
-<td class="gt_row gt_right" headers="dist">36</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">14</td>
-<td class="gt_row gt_right" headers="dist">60</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">14</td>
-<td class="gt_row gt_right" headers="dist">80</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">15</td>
-<td class="gt_row gt_right" headers="dist">20</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">15</td>
-<td class="gt_row gt_right" headers="dist">26</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">15</td>
-<td class="gt_row gt_right" headers="dist">54</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">16</td>
-<td class="gt_row gt_right" headers="dist">32</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">16</td>
-<td class="gt_row gt_right" headers="dist">40</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">17</td>
-<td class="gt_row gt_right" headers="dist">32</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">17</td>
-<td class="gt_row gt_right" headers="dist">40</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">17</td>
-<td class="gt_row gt_right" headers="dist">50</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">18</td>
-<td class="gt_row gt_right" headers="dist">42</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">18</td>
-<td class="gt_row gt_right" headers="dist">56</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">18</td>
-<td class="gt_row gt_right" headers="dist">76</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">18</td>
-<td class="gt_row gt_right" headers="dist">84</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">19</td>
-<td class="gt_row gt_right" headers="dist">36</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">19</td>
-<td class="gt_row gt_right" headers="dist">46</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">19</td>
-<td class="gt_row gt_right" headers="dist">68</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">20</td>
-<td class="gt_row gt_right" headers="dist">32</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">20</td>
-<td class="gt_row gt_right" headers="dist">48</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">20</td>
-<td class="gt_row gt_right" headers="dist">52</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">20</td>
-<td class="gt_row gt_right" headers="dist">56</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">20</td>
-<td class="gt_row gt_right" headers="dist">64</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">22</td>
-<td class="gt_row gt_right" headers="dist">66</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">23</td>
-<td class="gt_row gt_right" headers="dist">54</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">24</td>
-<td class="gt_row gt_right" headers="dist">70</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">24</td>
-<td class="gt_row gt_right" headers="dist">92</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">24</td>
-<td class="gt_row gt_right" headers="dist">93</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="speed">24</td>
-<td class="gt_row gt_right" headers="dist">120</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="speed">25</td>
-<td class="gt_row gt_right" headers="dist">85</td>
-</tr>
-</tbody>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="speed">speed</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="dist">dist</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="speed" class="gt_row gt_right">4</td>
+<td headers="dist" class="gt_row gt_right">2</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">4</td>
+<td headers="dist" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">7</td>
+<td headers="dist" class="gt_row gt_right">4</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">7</td>
+<td headers="dist" class="gt_row gt_right">22</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">8</td>
+<td headers="dist" class="gt_row gt_right">16</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">9</td>
+<td headers="dist" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">10</td>
+<td headers="dist" class="gt_row gt_right">18</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">10</td>
+<td headers="dist" class="gt_row gt_right">26</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">10</td>
+<td headers="dist" class="gt_row gt_right">34</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">11</td>
+<td headers="dist" class="gt_row gt_right">17</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">11</td>
+<td headers="dist" class="gt_row gt_right">28</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">12</td>
+<td headers="dist" class="gt_row gt_right">14</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">12</td>
+<td headers="dist" class="gt_row gt_right">20</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">12</td>
+<td headers="dist" class="gt_row gt_right">24</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">12</td>
+<td headers="dist" class="gt_row gt_right">28</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">13</td>
+<td headers="dist" class="gt_row gt_right">26</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">13</td>
+<td headers="dist" class="gt_row gt_right">34</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">13</td>
+<td headers="dist" class="gt_row gt_right">34</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">13</td>
+<td headers="dist" class="gt_row gt_right">46</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">14</td>
+<td headers="dist" class="gt_row gt_right">26</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">14</td>
+<td headers="dist" class="gt_row gt_right">36</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">14</td>
+<td headers="dist" class="gt_row gt_right">60</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">14</td>
+<td headers="dist" class="gt_row gt_right">80</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">15</td>
+<td headers="dist" class="gt_row gt_right">20</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">15</td>
+<td headers="dist" class="gt_row gt_right">26</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">15</td>
+<td headers="dist" class="gt_row gt_right">54</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">16</td>
+<td headers="dist" class="gt_row gt_right">32</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">16</td>
+<td headers="dist" class="gt_row gt_right">40</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">17</td>
+<td headers="dist" class="gt_row gt_right">32</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">17</td>
+<td headers="dist" class="gt_row gt_right">40</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">17</td>
+<td headers="dist" class="gt_row gt_right">50</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">18</td>
+<td headers="dist" class="gt_row gt_right">42</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">18</td>
+<td headers="dist" class="gt_row gt_right">56</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">18</td>
+<td headers="dist" class="gt_row gt_right">76</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">18</td>
+<td headers="dist" class="gt_row gt_right">84</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">19</td>
+<td headers="dist" class="gt_row gt_right">36</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">19</td>
+<td headers="dist" class="gt_row gt_right">46</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">19</td>
+<td headers="dist" class="gt_row gt_right">68</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">20</td>
+<td headers="dist" class="gt_row gt_right">32</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">20</td>
+<td headers="dist" class="gt_row gt_right">48</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">20</td>
+<td headers="dist" class="gt_row gt_right">52</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">20</td>
+<td headers="dist" class="gt_row gt_right">56</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">20</td>
+<td headers="dist" class="gt_row gt_right">64</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">22</td>
+<td headers="dist" class="gt_row gt_right">66</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">23</td>
+<td headers="dist" class="gt_row gt_right">54</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">24</td>
+<td headers="dist" class="gt_row gt_right">70</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">24</td>
+<td headers="dist" class="gt_row gt_right">92</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">24</td>
+<td headers="dist" class="gt_row gt_right">93</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">24</td>
+<td headers="dist" class="gt_row gt_right">120</td></tr>
+    <tr><td headers="speed" class="gt_row gt_right">25</td>
+<td headers="dist" class="gt_row gt_right">85</td></tr>
+  </tbody>
+  
+  
 </table>
-
-</div>
 </div>
 </div>
 </div>
@@ -2325,17 +2132,16 @@ Caution
 <section id="sec-footnotes" class="level2" data-number="5.9">
 <h2 data-number="5.9" class="anchored" data-anchor-id="sec-footnotes"><span class="header-section-number">5.9</span> Footnotes</h2>
 <p>Here is an inline note<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, footnote<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and a much longer footnote.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<p>Long notes can contain multiple paragraphs.</p>
 <p>The notes are created with the following:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1"></a>Here is an inline note^<span class="co">[</span><span class="ot">The tooltip is pretty cool!</span><span class="co">]</span>, footnote<span class="ot">[^1]</span>, and a much longer footnote.<span class="ot">[^longnote]</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="ot">[^1]: </span>I suppose the footnotes are really more endnotes. </span>
-<span id="cb28-4"><a href="#cb28-4"></a></span>
-<span id="cb28-5"><a href="#cb28-5"></a><span class="ot">[^longnote]: </span>The longnote gives the ability to add very long footnotes. </span>
-<span id="cb28-6"><a href="#cb28-6"></a>  </span>
-<span id="cb28-7"><a href="#cb28-7"></a>  Long notes can contain multiple paragraphs. </span>
-<span id="cb28-8"><a href="#cb28-8"></a></span>
-<span id="cb28-9"><a href="#cb28-9"></a>The notes are created with the following:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1"></a>Here is an inline note^<span class="co">[</span><span class="ot">The tooltip is pretty cool!</span><span class="co">]</span>, footnote<span class="ot">[^1]</span>, and a much longer footnote.<span class="ot">[^longnote]</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="ot">[^1]: </span>I suppose the footnotes are really more endnotes. </span>
+<span id="cb29-4"><a href="#cb29-4"></a></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="ot">[^longnote]: </span>The longnote gives the ability to add very long footnotes. </span>
+<span id="cb29-6"><a href="#cb29-6"></a>  </span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="in">    Long notes can contain multiple paragraphs. </span></span>
+<span id="cb29-8"><a href="#cb29-8"></a></span>
+<span id="cb29-9"><a href="#cb29-9"></a>The notes are created with the following:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="citations" class="level2" data-number="5.10">
 <h2 data-number="5.10" class="anchored" data-anchor-id="citations"><span class="header-section-number">5.10</span> Citations</h2>
@@ -2374,7 +2180,7 @@ Digital Object Identifier (DOI)
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/magic-wand.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="46"></p>
+<p><img src="images/magic-wand.png" class="img-fluid figure-img" width="46"></p>
 </figure>
 </div>
 </div>
@@ -2443,7 +2249,8 @@ Digital Object Identifier (DOI)
 <ol>
 <li id="fn1"><p>The tooltip is pretty cool!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>I suppose the footnotes are really more endnotes.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>The longnote gives the ability to add very long footnotes.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The longnote gives the ability to add very long footnotes.</p>
+<p>Long notes can contain multiple paragraphs.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -2527,27 +2334,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2557,17 +2347,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2579,130 +2360,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -2746,7 +2404,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2772,32 +2429,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2859,18 +2490,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./04_quarto.html" class="pagination-link" aria-label="Quarto">
+      <a href="./04_quarto.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quarto</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./06_reproducible-research-with-git.html" class="pagination-link" aria-label="Reproducible Research with Git and GitHub">
+      <a href="./06_reproducible-research-with-git.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Research with Git and GitHub</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

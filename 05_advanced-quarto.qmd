@@ -9,7 +9,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-![Chemistry stencils that used to be used for drawing equipment in lab notebooks](images/Schablone_Logarex_25524-S,_Chemie_II.jpg)
+![Chemistry stencils that were used for drawing equipment in lab notebooks](images/Schablone_Logarex_25524-S,_Chemie_II.jpg)
 
 ```{r hidden-here-load}
 #| include: false
@@ -73,8 +73,10 @@ exercise_number <- exercise_number + 1
 1. Pick a Quarto document in your `example-project/`.
 2. Add the following to the YAML header to hide all code chunks:
 
-    execute:
-      echo: false
+```
+execute:
+  echo: false
+```
 
 3. Re-render the document.
 
@@ -578,8 +580,8 @@ Here is an inline note^[The tooltip is pretty cool!], footnote[^1], and a much l
 [^1]: I suppose the footnotes are really more endnotes. 
 
 [^longnote]: The longnote gives the ability to add very long footnotes. 
-  
-  Long notes can contain multiple paragraphs. 
+
+    Long notes can contain multiple paragraphs. 
 
 The notes are created with the following:
 
@@ -590,13 +592,10 @@ Here is an inline note^[The tooltip is pretty cool!], footnote[^1], and a much l
 
 [^longnote]: The longnote gives the ability to add very long footnotes. 
   
-  Long notes can contain multiple paragraphs. 
+    Long notes can contain multiple paragraphs. 
 
 The notes are created with the following:
 ```
-
-
-
 
 ## Citations
 

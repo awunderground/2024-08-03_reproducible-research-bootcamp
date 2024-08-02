@@ -300,7 +300,7 @@ exercise_number <- exercise_number + 1
 exercise_number <- exercise_number + 1
 ```
 
-1.  In your main project run `renv::init()`.
+1.  Run `renv::init()` in `example-analysis/`.
 2.  Install the necessary R packages with `renv::install()`.
 3.  Use `renv::snapshot()` to document the state of the project layer of the computing environment.
 :::
@@ -343,7 +343,7 @@ Interestingly, @gold2024 is critical of Docker:
 A container is a self-contained system for running computer software. Typically, containers are designed to be small and fit-for-use with specific analyses.
 :::
 
-Containerization is the process of creating a self-contained computer environment to run an analysis.
+Containerization is the process of creating a self-contained computer environment to run an analysis. Lars Vilhuber, the Data Editor for the American Economic Association, [has advocated for using containers in economics research](https://github.com/larsvilhuber/ssb-demo/blob/master/code/Description-docker-conf.md).
 
 [Docker](https://www.docker.com/) is a popular container tool. Docker can manage the software layer of a computing environment and the package layer of a computing environment. Docker can:
 

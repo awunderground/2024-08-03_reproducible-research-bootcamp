@@ -97,10 +97,29 @@ Suppose we're an airplane manufacturer. Unit tests are all of the checks we woul
 
 Let's consider a few important principles of assertions and tests. 
 
-- Definition: Test-driven development is the practice of writing unit tests before writing code and then evaluating the code against the tests. We'll also consider writing assertions before writing code and evaluating a program against assertions as test-driven development.
-- Definition: Fail fast, fail often is the principle of working to catch mistakes as soon as they happen. When an error occurs, well-placed tests early in an analysis can minimize the scope of debugging, save computation time, and avoid costly mistakes.
-- Definition: Fail loudly is the principle that errors should be difficult to ignore. In general, we will favor fatal errors that force us to address the underlying problem before proceeding.[^quarto]
-- Definition: Fail clearly is the principle that errors should return meaningful and informative error messages. 
+::: {.callout-tip}
+## Test-driven development
+
+Test-driven development is the practice of writing unit tests before writing code and then evaluating the code against the tests. We'll also consider writing assertions before writing code and evaluating a program against assertions as test-driven development.
+:::
+
+::: {.callout-tip}
+## Fail fast, fail often
+
+Fail fast, fail often is the principle of working to catch mistakes as soon as they happen. When an error occurs, well-placed tests early in an analysis can minimize the scope of debugging, save computation time, and avoid costly mistakes.
+:::
+
+::: {.callout-tip}
+## Fail loudly
+
+Fail loudly is the principle that errors should be difficult to ignore. In general, we will favor fatal errors that force us to address the underlying problem before proceeding.[^quarto]
+:::
+
+::: {.callout-tip}
+## Fail clearly
+
+Fail clearly is the principle that errors should return meaningful and informative error messages. 
+:::
 
 [^quarto]: Recall, Quarto requires the code to run error-free for the document to render. 
 
@@ -116,7 +135,13 @@ Functions allow us to reuse bits of R code over and over. In fact, we can iterat
 
 > If you decide to change logic, can you change it in just one place?
 
-Functions are the best way to follow the DRY principle. DRY, or **d**on't **r**epeat **y**ourself, is the principle that we should we should create a function any time we do something three times.
+::: {.callout-tip}
+## DRY
+
+DRY, or **d**on't **r**epeat **y**ourself, is the principle that we should we should create a function any time we do something three times.
+:::
+
+Functions are the best way to follow the DRY principle. 
 
 Copying-and-pasting is typically bad because it is easy to make mistakes and we typically want a single source source of truth in a script. Custom functions also promote modular code design and testing.
 
@@ -290,7 +315,7 @@ Tips for writing functions:
 -   As a general principle, functions should each do only one task. This makes it much easier to debug your code and reuse functions!
 -   Use `::` (e.g. `dplyr::filter()` instead of `filter()`) when writing custom functions. This will create stabler code and make it easier to develop R packages.
 
-### Functions with Multiple Outputs
+### `return()`
 
 When `return()` is reached in a function, `return()` is evaluated, evaluation ends and R leaves the function. 
 

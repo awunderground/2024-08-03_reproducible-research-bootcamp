@@ -3,7 +3,7 @@ section_order <- c("Project Organization", "Literate Programming", "Version Cont
 motivation <- tibble::tribble(
   ~`Analysis Feature`, ~`Opinionated Approach`, ~`Question Addressed`, ~Tool, ~Section,
   "Reproducible and Auditable", "Executable analysis scripts", "Can you re-run the analysis and get the same results?", "Code first", "Project Organization",
-  "Reproducible and Auditable", "Defined dependencies", "If an external library you’re using is updated, can you still reproduce your original results?", ".renv", "Environment Management",
+  "Reproducible and Auditable", "Defined dependencies", "If an external library you’re using is updated, can you still reproduce your original results?", "library(renv)", "Environment Management",
   "Reproducible and Auditable", "Watchers for changed code and data", "If you change code, do you know which downstream code need to be re-executed?", "library(targets)", NA,
   "Reproducible and Auditable", "Watchers for changed code and data", "If the data or code change but the analysis is not re-executed, will your analysis reflect that it is out-of-date?", "library(targets)", NA,
   "Reproducible and Auditable", "Version control (individual)", "Can you re-run your analysis with new data and compare it to previous results?", "Git", "Version Control",

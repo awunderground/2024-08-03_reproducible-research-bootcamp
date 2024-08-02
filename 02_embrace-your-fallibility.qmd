@@ -54,11 +54,15 @@ In The Field Guide to Understanding Human Error [@dekker2014], the author argues
 1.  **Old-World View:** errors are the fault of individuals
 2.  **New-World View:** errors are the fault of flawed systems that fail individuals
 
-Errors and mistakes are **inevitable**. We want to use systems that don't fail us as statisticians and data scientists. This is our gestalt moment like the famous duck-rabbit illusion in @fig-duck-rabbit.
+::: {.callout-note}
+Errors and mistakes are **inevitable**. This is our gestalt moment like the famous duck-rabbit illusion in @fig-duck-rabbit.
+
+Looking at the demands of research and data analysis, we must no longer see grit as sufficient. Instead, we need to see and use systems that don't fail us as statisticians and data scientists. 
+:::
 
 ### How are we going to do this?
 
-Errors and mistakes are **inevitable**. We want to adopt evidence-based best practices that minimize the probability of making an error and maximize the probability of catching an error when it inevitably happens.
+Errors and mistakes are **inevitable**. We want to adopt evidence-based best practices that minimize the probability of making an error and maximize the probability of catching an inevitable error.
 
 [@parker] describes a process called opinionated analysis development.
 
@@ -77,9 +81,11 @@ Working with data has **gotten tougher with time**.
 -   Data are larger on average. For example, The Billion Prices Project scraped prices from all around the world to build inflation indices [@cavallo2016].
 -   Complex data collection efforts are more common. For example, [@chetty2019] have gained access to massive administrative data sets and used formal privacy to understand inter-generational mobility.
 -   Open source packages that provide incredible functionality for free change over time.
--   Papers like "The garden of forking paths: Why multiple comparisons can be a problem, even when there is no “fishing expedition” or “p-hacking” [@gelman2013garden] and the research hypothesis was posited ahead of time∗" and "Why Most Published Research Findings Are False" [@ioannidis2005] have motivated huge increases in transparency including focuses on pre-registration and computational reproducibility.
+-   Papers like "The garden of forking paths: Why multiple comparisons can be a problem, even when there is no 'fishing expedition' or 'p-hacking' [@gelman2013garden] and the research hypothesis was posited ahead of time∗" and "Why Most Published Research Findings Are False" [@ioannidis2005] have motivated huge increases in transparency including focuses on pre-registration and computational reproducibility.
 
 > There is a growing realization that statistically significant claims in scientific publications are routinely mistaken. A dataset can be analyzed in so many different ways (with the choices being not just what statistical test to perform but also decisions on what data to exclude or exclude, what measures to study, what interactions to consider, etc.), that very little information is provided by the statement that a study came up with a p \< .05 result. The short version is that it’s easy to find a p \< .05 comparison even if nothing is going on, if you look hard enough—and good scientists are skilled at looking hard enough and subsequently coming up with good stories (plausible even to themselves, as well as to their colleagues and peer reviewers) to back up any statistically-significant comparisons they happen to come up with. ~ Gelman and Loken
+
+From this perspective, what we need is  Truman Show for every researcher where we can watch their decisionmaking and the nuances of the decisions they make. **That's impractical!** But from the point of good science, pulling back the curtain with computational reproducibility is a way to mitigate these concerns. 
 
 Even for simple analysis, we can ask ourselves an entire set of questions at the end of the analysis. @tbl-questions lists a few of these questions.
 
@@ -100,6 +106,26 @@ motivation |>
 ```
 
 ## What are we going to do?
+
+::: {.callout-tip}
+## Replication
+
+Replication is the recreation of findings across repeated studies. It is a cornerstone of science.
+:::
+
+::: {.callout-tip}
+## Reproducibility
+
+Reproducibility is the ability to access data, source code, tools, and documentation and recreate all calculations, visualizations, and artifacts of an analysis.
+:::
+
+Computational reproducibility *should* be the minimum standard for computational social sciences and statistical programming.
+
+We are going to center reproducibility in the practices we maintain, the tools we use, and culture we foster. By centering reproducibility, we will be able to create analyses that are 
+
+1.  Accurate
+2.  Reproducible and auditable
+3.  Collaborative
 
 @tbl-features groups these questions in analysis features and suggests opinionated approaches to each question.
 
@@ -167,29 +193,52 @@ motivation |>
     footnote = "This was originally 'Code Review'",
     locations = cells_body(columns = `Opinionated Approach`, rows = 7)
   )|>
+    tab_footnote(
+    footnote = "We will not spend much time on these topics",
+    locations = cells_body(
+      columns = Tool,
+      rows = Tool %in% c("library(targets)", "library(microbenchmark)")
+    )
+    )|>
   tab_footnote(
     footnote = "Added by Aaron R. Williams",
     locations = cells_column_labels(columns = Tool)
   ) |>  
+  tab_style(
+    style = list(cell_fill(color = "gray80")),
+    locations = cells_body(
+      columns = Tool,
+      rows = Tool %in% c("library(targets)", "library(microbenchmark)")
+    )
+  ) |>
   tab_source_note(
     source_note = md("**Source:** Parker, Hilary. n.d. “Opinionated Analysis Development.” https://doi.org/10.7287/peerj.preprints.3210v1.")
   )
-
 ```
 
 ### Bonus stuff!
 
-Adopting these opinionated approaches and tools promotes reproducible research. Adopting these opinionated approaches and tools also provides a bunch of great bonuses. 
+Adopting these opinionated approaches and tools promotes reproducible research. Adopting these opinionated approaches and tools also provides a bunch of great bonuses.
 
 -   Reproducible analyses are easy to scale. Using tools we will cover, we created almost [4,000 county- and city-level websites](https://upward-mobility.urban.org/measuring-upward-mobility-counties-and-cities-across-us). 
 -   GitHub offers free web hosting for hosting books and web pages like the notes we're viewing right now. 
 -   Quarto makes it absurdly easy to build beautiful websites and PDFs. 
+
 ## Roadmap
 
-Finally, we sort @tbl-tools into @tbl-roadmap, which outlines the structure of the rest of the day.
+The day roughly follows the process for setting up a reproducible data analysis. 
+
+- **Project organization** will cover how to organize all of the files of a data analysis so they are clear and so they work well with other tools. 
+- **Literate programming** will cover Quarto, which will allow us to combine narrative text, code, and the output of code into clear artifacts of our data analysis. 
+- **Version control** will cover Git and GitHub. These will allow us to organize the process of reviewing and merging code. 
+- In **programming**, we'll discuss best practices for writing code for data analysis like writing modular, well-tested functions and assertive testing of data, assumptions, and results.  
+- **Environment management** will cover `library(renv)` and the process of managing package dependencies while using open-source code. 
+- If we have time, we can discuss how a positive climate and ethical practices can improve transparency and strengthen science. 
+
+We sort @tbl-tools into @tbl-roadmap-prime, which outlines the structure of the rest of the day.
 
 ```{r}
-#| label: tbl-roadmap
+#| label: tbl-roadmap-prime
 #| tbl-cap: "Opinionated Analysis Development"
 
 motivation |>
@@ -213,12 +262,3 @@ motivation |>
   )
 
 ```
-
-The day roughly follows the process for setting up a reproducible data analysis. 
-
-- **Project organization** will cover how to organize all of the files of a data analysis so they are clear and so they work well with other tools. 
-- **Literate programming** will cover Quarto, which will allow us to combine narrative text, code, and the output of code into clear artifacts of our data analysis. 
-- **Version control** will cover Git and GitHub. These will allow us to organize the process of reviewing and merging code. 
-- In **programming**, we'll discuss best practices for writing code for data analysis like writing modular, well-tested functions and assertive testing of data, assumptions, and results.  
-- **Environment management** will cover .renv and the process of managing package dependencies while using open-source code. 
-- If we have time, we can discuss how a positive climate and ethical practices can improve transparency and strengthen science. 

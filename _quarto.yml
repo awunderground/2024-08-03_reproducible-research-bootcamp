@@ -29,14 +29,17 @@ book:
         - 09_assertive-testing.qmd
     - part: Environment Management
       chapters:
-        - renv.qmd
+        - 10_renv.qmd
     - part: Putting it All Together
       chapters:
-        - culture-and-ethics.qmd
+        - 11_culture-and-ethics.qmd
+        - 12_final-workflow.qmd
     - references.qmd
   appendices:
     - reproducible-research-bootcamp_software-installation.qmd
+    - alternative-software.qmd
       
+bibliography: references.bib
 
 format:
   html:

@@ -297,6 +297,24 @@ exercise_number <-  1 + exercise_number
 
 We're going to create a repo remotely on GitHub and clone it to our computer.
 
+1.  Go [here](https://github.com/awunderground/2024-08-03_reproducible-research-bootcamp) to see the repository for today's course materials.
+2. Click the green "Code" button and copy the URL under SSH.
+3. At the command line, navigate to where you want to clone the course notes.
+4. `git clone https://github.com/awunderground/2024-08-03_reproducible-research-bootcamp`
+
+:::
+
+::: callout
+#### [`r paste("Exercise", exercise_number)`]{style="color:#1696d2;"}
+
+```{r}
+#| echo: false
+exercise_number <-  1 + exercise_number
+
+```
+
+We're going to create a repo remotely on GitHub and clone it to our computer.
+
 1.  Go to GitHub.
 2.  Click the big green "New" button.
 3.  Call the repo `my-first-repo`. Select a public repository and check the box that says `Add a README file`.
@@ -317,8 +335,7 @@ We're going to create a repo remotely on GitHub and clone it to our computer.
 
 [^files]: GitHub refuses to store files larger than 100 MiB. This poses a challenge to writing reproducible code. However, many data sources can be downloaded directly from the web or via APIs, allowing code to be reproducible without relying on storing large data sets on GitHub. 
 
-![](images/git-github-workflow.jpeg){fig-align="center" width=100%}
-
+![Basic Git + GitHub workflow](images/git-workflow-commands.png){fig-align="center" width=100%}
 
 ### Commands
 
@@ -348,7 +365,7 @@ exercise_number <-  1 + exercise_number
 
 1.  Navigate to your `example-project` directory on the command line and run `git status` to confirm that there isn't a git repo.
 2. Use `git init` to initialize a new repository. 
-3.  In the terminal, run `git add index.qmd index.html`. Then run `git status`.
+3.  In the terminal, run `git add analysis.qmd analysis.html`. Then run `git status`.
 4.  Then run `git commit -m "add draft analysis"` to commit the two files with a commit message. Then run `git status` again and observe the change.
 5. Create a repository on GitHub called `example-project`. Select a public repository and **do not** check the box that says `Add a README file`.
 6. Follow the instructions to `…or push an existing repository from the command line`.
@@ -364,7 +381,7 @@ exercise_number <-  1 + exercise_number
 
 ```
 
-1.  Make some changes to `index.qmd` and re-render the document. 
+1. Make some changes to `index.qmd` and re-render the document. 
 2. Add your files. 
 3. Commit your files. 
 4. Push your files. 
