@@ -249,7 +249,7 @@ exercise_number <- exercise_number + 1
 
 ### 3. Code chunks
 
-![](images/inline-r-code.png)
+We can add in-line R code to a Quarto document with `` `r knitr::inline_expr("2+2")` ``.
 
 More frequently, code is added in code chunks:
 
